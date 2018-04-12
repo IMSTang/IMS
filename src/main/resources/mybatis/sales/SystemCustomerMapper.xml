@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.sales.customer.dao.ICustomerDao">
+
+    <resultMap type="customer" id="customerResult">
+        <id     property="customerId"     column="customer_id" />
+        <result property="customerName"   column="customer_name" />
+        <result property="status"   column="status" />
+        <result property="firstName"   column="first_name" />
+        <result property="lastName"   column="last_name" />
+        <result property="middleName"   column="middle_name" />
+        <result property="nameTitle"   column="name_title" />
+        <result property="jobTitle"   column="job_title" />
+        <result property="mainPhone"   column="main_phone" />
+        <result property="workPhone"   column="work_phone" />
+        <result property="mobile"   column="mobile" />
+        <result property="fax"   column="fax" />
+        <result property="mainMail"   column="main_mail" />
+        <result property="ccMail"   column="cc_mail" />
+        <result property="addressShipTo"   column="address_ship_to" />
+        <result property="addressBillTo"   column="address_bill_to" />
+        <result property="description"   column="description" />
+        <result property="createBy"   column="create_by" />
+        <result property="createTime"   column="create_time" />
+        <result property="updateBy"   column="update_by" />
+        <result property="updateTime"   column="update_time" />
+    </resultMap>
+
+    <select id="selectAllCustomer" resultMap="customerResult">
+		select * from sys_customer
+	</select>
+
+
+
+
+    <insert id="insertCustomer" parameterType="customer">
+        insert into sys_customer(
+        <if test="customerId != null and customerId != 0">customer_id,</if>
+
+        <if test="customerName != null and customerName  != ''">customer_name,</if>
+        <if test="status != null">status,</if>
+        <if test="firstName != null and  firstName != ''">first_name,</if>
+        <if test="lastName != null and  lastName != ''">last_name,</if>
+        <if test="middleName != null and  middleName != ''">middle_name,</if>
+        <if test="nameTitle != null and  nameTitle != ''">name_title,</if>
+        <if test="jobTitle != null and  jobTitle != ''">job_title,</if>
+        <if test="mainPhone != null and  mainPhone != ''">main_phone,</if>
+        <if test="workPhone != null and  workPhone != ''">work_phone,</if>
+        <if test="mobile != null and  mobile != ''">mobile,</if>
+        <if test="fax != null and  fax != ''">fax,</if>
+        <if test="mainMail != null and  mainMail != ''">main_mail,</if>
+        <if test="ccMail != null and  ccMail != ''">cc_mail,</if>
+        <if test="addressShipTo != null and  addressShipTo != ''">address_ship_to,</if>
+        <if test="addressBillTo != null and  addressBillTo != ''">address_bill_to,</if>
+        <if test="description != null and  description != ''">description,</if>
+        <if test="createBy != null and createBy  != ''">create_by,</if>
+        create_time,
+        <if test="updateBy != null and  updateBy != ''">update_by,</if>
+        update_time
+
+        )values(
+        <if test="customerId != null and customerId != 0">#{customerId},</if>
+
+        <if test="customerName != null and customerName  != ''">#{customerName},</if>
+        <if test="status != null">#{status},</if>
+        <if test="firstName != null and  firstName != ''">#{firstName},</if>
+        <if test="lastName != null and  lastName != ''">#{lastName},</if>
+        <if test="middleName != null and  middleName != ''">#{middleName},</if>
+        <if test="nameTitle != null and  nameTitle != ''">#{nameTitle},</if>
+        <if test="jobTitle != null and  jobTitle != ''">#{jobTitle},</if>
+        <if test="mainPhone != null and  mainPhone != ''">#{mainPhone},</if>
+        <if test="workPhone != null and  workPhone != ''">#{workPhone},</if>
+        <if test="mobile != null and  mobile != ''">#{mobile},</if>
+        <if test="fax != null and  fax != ''">#{fax},</if>
+        <if test="mainMail != null and  mainMail != ''">#{mainMail},</if>
+        <if test="ccMail != null and  ccMail != ''">#{ccMail},</if>
+        <if test="addressShipTo != null and  addressShipTo != ''">#{addressShipTo},</if>
+        <if test="addressBillTo != null and  addressBillTo != ''">#{addressBillTo},</if>
+        <if test="description != null and  description != ''">#{description},</if>
+        <if test="createBy != null and createBy  != ''">#{createBy},</if>
+        sysdate(),
+        <if test="updateBy != null and  updateBy != ''">#{updateBy},</if>
+        sysdate()
+        )
+    </insert>
+
+    <update id="updateCustomer" parameterType="customer">
+        update sys_customer
+        <set>
+            <if test="customerId != null and customerId != 0">customer_id=#{customerId},</if>
+
+            <if test="customerName != null and customerName  != ''">customer_name=#{customerName},</if>
+            <if test="status != null">status=#{status},</if>
+            <if test="firstName != null and  firstName != ''">first_name=#{firstName},</if>
+            <if test="lastName != null and  lastName != ''">last_name=#{lastName},</if>
+            <if test="middleName != null and  middleName != ''">middle_name=#{middleName},</if>
+            <if test="nameTitle != null and  nameTitle != ''">name_title=#{nameTitle},</if>
+            <if test="jobTitle != null and  jobTitle != ''">job_title=#{jobTitle},</if>
+            <if test="mainPhone != null and  mainPhone != ''">main_phone=#{mainPhone},</if>
+            <if test="workPhone != null and  workPhone != ''">work_phone=#{workPhone},</if>
+            <if test="mobile != null and  mobile != ''">mobile=#{mobile},</if>
+            <if test="fax != null and  fax != ''">fax=#{fax},</if>
+            <if test="mainMail != null and  mainMail != ''">main_mail=#{mainMail},</if>
+            <if test="ccMail != null and  ccMail != ''">cc_mail=#{ccMail},</if>
+            <if test="addressShipTo != null and  addressShipTo != ''">address_ship_to=#{addressShipTo},</if>
+            <if test="addressBillTo != null and  addressBillTo != ''">address_bill_to=#{addressBillTo},</if>
+            <if test="description != null and  description != ''">description=#{description},</if>
+            <if test="createBy != null and createBy  != ''">create_by=#{createBy},</if>
+            create_time=sysdate(),
+            <if test="updateBy != null and  updateBy != ''">update_by=#{updateBy},</if>
+            update_time =sysdate()
+        </set>
+        where 1=1
+        <if test="customerId != null and customerId  != ''">and customer_id = #{customerId}</if>
+    </update>
+
+    <delete id="deleteCustomerById" parameterType="Long">
+		delete from sys_customer where customerId = #{customerId}
+	</delete>
+
+</mapper>
