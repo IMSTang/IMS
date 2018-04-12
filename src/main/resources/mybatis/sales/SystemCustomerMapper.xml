@@ -116,7 +116,7 @@
         <if test="customerId != null and customerId  != ''">and customer_id = #{customerId}</if>
     </update>
 
-    <delete id="deleteCustomerById" parameterType="Long">
+    <delete id="deleteCustomerById" parameterType="int">
 		delete from sys_customer where customerId = #{customerId}
 	</delete>
 

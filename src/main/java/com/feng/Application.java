@@ -17,6 +17,7 @@ public class Application
     public static void main(String[] args)
     {
         SpringApplication.run(Application.class, args);
-        System.out.println("open URL : http://localhost:8086");
+        System.out.println("open URL : http://localhost:8082"+args);
+
     }
 }

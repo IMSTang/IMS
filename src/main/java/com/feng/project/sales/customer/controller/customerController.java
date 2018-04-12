@@ -45,7 +45,10 @@ public class customerController {
     }
 
 
-
+    /**
+     * get customer Info
+     * @return customer list
+     */
     @RequiresPermissions("sales:customer:view")
     @GetMapping("/list")
     @ResponseBody
@@ -55,8 +58,19 @@ public class customerController {
         List<Customer> customerList = customerService.selectAllCustomer();
 
         System.out.println("-------------------------------------1---------------------------"+((Customer)customerList.get(0)).getCustomerName());
+        System.out.println("------------------------------------执行删除---------------------------" );
+        remove(1);
+        System.out.println("------------------------------------删除完成---------------------------" );
         return customerList;
     }
 
+    public JSON remove(@PathVariable("customerId") int customerId){
+        if (customerService.deleteCustomerById(customerId) > 0)
+        {
+            return JSON.ok();
+        }
+        return JSON.error();
+
+    }
 
 }

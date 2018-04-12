@@ -15,4 +15,9 @@ public class CustomerServiceImpl implements ICustomerService {
     public List<Customer> selectAllCustomer() {
         return customerDao.selectAllCustomer();
     }
+
+    @Override
+    public int deleteCustomerById(int customerId) {
+        return customerDao.deleteCustomerById(customerId);
+    }
 }
