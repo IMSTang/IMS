@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.feng</groupId>
-	<artifactId>feng</artifactId>
+	<artifactId>IMS</artifactId>
 	<version>1.0.8</version>
 	<packaging>jar</packaging>
 
-	<name>feng</name>
-	<description>JHD</description>
+	<name>IMS</name>
+	<description>Invoicing Management System</description>
 	
 	<parent>
 		<groupId>org.springframework.boot</groupId>
