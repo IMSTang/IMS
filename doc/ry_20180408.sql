@@ -21,16 +21,16 @@ create table sys_dept (
 -- ----------------------------
 -- 初始化-部门表数据
 -- ----------------------------
-insert into sys_dept values(100,  0,   '若依集团', 0, '马云', '15011112221', 'ry@qq.com', 0, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(101,  100, '研发部门', 1, '马研', '15011112222', 'ry@qq.com', 0, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(102,  100, '市场部门', 2, '马市', '15011112223', 'ry@qq.com', 0, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(103,  100, '测试部门', 3, '马测', '15011112224', 'ry@qq.com', 0, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(104,  100, '财务部门', 4, '马财', '15011112225', 'ry@qq.com', 1, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(105,  100, '运维部门', 5, '马运', '15011112226', 'ry@qq.com', 1, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(106,  101, '研发一部', 1, '马一', '15011112227', 'ry@qq.com', 0, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(107,  101, '研发二部', 2, '马二', '15011112228', 'ry@qq.com', 1, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(108,  102, '市场一部', 1, '马一', '15011112229', 'ry@qq.com', 0, 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_dept values(109,  102, '市场二部', 2, '马二', '15011112210', 'ry@qq.com', 1, 'admin', '2018-03-01', 'ry', '2018-03-01');
+insert into sys_dept values(100,  0,   '若依集团', 0, '马云', '15011112221', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(101,  100, '研发部门', 1, '马研', '15011112222', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(102,  100, '市场部门', 2, '马市', '15011112223', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(103,  100, '测试部门', 3, '马测', '15011112224', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(104,  100, '财务部门', 4, '马财', '15011112225', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(105,  100, '运维部门', 5, '马运', '15011112226', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(106,  101, '研发一部', 1, '马一', '15011112227', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(107,  101, '研发二部', 2, '马二', '15011112228', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(108,  102, '市场一部', 1, '马一', '15011112229', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(109,  102, '市场二部', 2, '马二', '15011112210', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
 
 
 -- ----------------------------
@@ -59,8 +59,8 @@ create table sys_user (
 -- ----------------------------
 -- 初始化-用户信息表数据
 -- ----------------------------
-insert into sys_user values(1, 106, 'admin', '若依', 'yzz_ivy@163.com', '15088888888', '172eee54aa664e9dd0536b063796e54e', '', 'Y', 0, '维护中', 'admin', '2018-03-01', 'ry', '2018-03-01');
-insert into sys_user values(2, 108, 'ry',    '若依', 'ry@163.com',      '15288888888', '2f59d63eddd54f3977d6fe25aec8b2bc', '', 'N', 1, '锁定中', 'admin', '2018-03-01', 'ry', '2018-03-01');
+insert into sys_user values(1, 106, 'admin', '若依', 'yzz_ivy@163.com', '15088888888', '172eee54aa664e9dd0536b063796e54e', '', 'Y', 0, '维护中', 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_user values(2, 108, 'admin',    '若依', 'ry@163.com',      '15288888888', '2f59d63eddd54f3977d6fe25aec8b2bc', '', 'N', 1, '锁定中', 'admin', '2018-03-01', 'admin', '2018-03-01');
 
 
 -- ----------------------------
@@ -85,10 +85,10 @@ create table sys_post
 -- ----------------------------
 -- 初始化-岗位信息表数据
 -- ----------------------------
-insert into sys_post values(1, 'ceo',  '董事长',    1, 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_post values(2, 'se',   '项目经理',  2, 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_post values(3, 'hr',   '人力资源',  3, 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_post values(4, 'user', '普通员工',  4, 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_post values(1, 'ceo',  '董事长',    1, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(2, 'se',   '项目经理',  2, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(3, 'hr',   '人力资源',  3, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(4, 'user', '普通员工',  4, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
 -- ----------------------------
@@ -112,8 +112,8 @@ create table sys_role (
 -- ----------------------------
 -- 初始化-角色信息表数据
 -- ----------------------------
-insert into sys_role values('1', '管理员',   'admin',  1,  0, 'admin', '2018-03-01', 'ry', '2018-03-01', '管理员');
-insert into sys_role values('2', '普通角色', 'common', 2,  0, 'admin', '2018-03-01', 'ry', '2018-03-01', '普通角色');
+insert into sys_role values('1', '管理员',   'admin',  1,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '管理员');
+insert into sys_role values('2', '普通角色', 'common', 2,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '普通角色');
 
 
 -- ----------------------------
@@ -142,82 +142,82 @@ create table sys_menu (
 -- 初始化-菜单信息表数据
 -- ----------------------------
 -- 一级菜单
-insert into sys_menu values('1', '系统管理', '0', '1', '#', 'M', '0', '', 'fa fa-gear',         'admin', '2018-03-01', 'ry', '2018-03-01', '系统管理目录');
-insert into sys_menu values('2', '系统监控', '0', '2', '#', 'M', '0', '', 'fa fa-video-camera', 'admin', '2018-03-01', 'ry', '2018-03-01', '系统监控目录');
-insert into sys_menu values('3', '系统工具', '0', '3', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'ry', '2018-03-01', '系统工具目录');
+insert into sys_menu values('1', '系统管理', '0', '1', '#', 'M', '0', '', 'fa fa-gear',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统管理目录');
+insert into sys_menu values('2', '系统监控', '0', '2', '#', 'M', '0', '', 'fa fa-video-camera', 'admin', '2018-03-01', 'admin', '2018-03-01', '系统监控目录');
+insert into sys_menu values('3', '系统工具', '0', '3', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统工具目录');
 -- 二级菜单
-insert into sys_menu values('4',   '用户管理', '1', '1', '/system/user',        'C', '0', 'system:user:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '用户管理菜单');
-insert into sys_menu values('5',   '角色管理', '1', '2', '/system/role',        'C', '0', 'system:role:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '角色管理菜单');
-insert into sys_menu values('6',   '菜单管理', '1', '3', '/system/menu',        'C', '0', 'system:menu:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '菜单管理菜单');
-insert into sys_menu values('7',   '部门管理', '1', '4', '/system/dept',        'C', '0', 'system:dept:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '部门管理菜单');
-insert into sys_menu values('8',   '岗位管理', '1', '5', '/system/post',        'C', '0', 'system:post:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '岗位管理菜单');
-insert into sys_menu values('9',   '参数设置', '1', '6', '/system/config',      'C', '0', 'system:config:view',       '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '参数设置菜单');
-insert into sys_menu values('10',  '字典管理', '1', '7', '/system/dict',        'C', '0', 'system:dict:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '字典管理菜单');
-insert into sys_menu values('11',  '操作日志', '2', '1', '/monitor/operlog',    'C', '0', 'monitor:operlog:view',     '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '操作日志菜单');
-insert into sys_menu values('12',  '登录日志', '2', '2', '/monitor/logininfor', 'C', '0', 'monitor:logininfor:view',  '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '登录日志菜单');
-insert into sys_menu values('13',  '在线用户', '2', '3', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '在线用户菜单');
-insert into sys_menu values('14',  '定时任务', '2', '4', '/monitor/job',        'C', '0', 'monitor:job:view',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '定时任务菜单');
-insert into sys_menu values('15',  '数据监控', '2', '5', '/monitor/data',       'C', '0', 'monitor:data:view',        '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '数据监控菜单');
-insert into sys_menu values('16',  '代码生成', '3', '1', '/tool/gen',           'C', '0', 'tool:gen:view',            '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '代码生成菜单');
+insert into sys_menu values('4',   '用户管理', '1', '1', '/system/user',        'C', '0', 'system:user:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '用户管理菜单');
+insert into sys_menu values('5',   '角色管理', '1', '2', '/system/role',        'C', '0', 'system:role:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '角色管理菜单');
+insert into sys_menu values('6',   '菜单管理', '1', '3', '/system/menu',        'C', '0', 'system:menu:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '菜单管理菜单');
+insert into sys_menu values('7',   '部门管理', '1', '4', '/system/dept',        'C', '0', 'system:dept:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '部门管理菜单');
+insert into sys_menu values('8',   '岗位管理', '1', '5', '/system/post',        'C', '0', 'system:post:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '岗位管理菜单');
+insert into sys_menu values('9',   '参数设置', '1', '6', '/system/config',      'C', '0', 'system:config:view',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '参数设置菜单');
+insert into sys_menu values('10',  '字典管理', '1', '7', '/system/dict',        'C', '0', 'system:dict:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典管理菜单');
+insert into sys_menu values('11',  '操作日志', '2', '1', '/monitor/operlog',    'C', '0', 'monitor:operlog:view',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '操作日志菜单');
+insert into sys_menu values('12',  '登录日志', '2', '2', '/monitor/logininfor', 'C', '0', 'monitor:logininfor:view',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '登录日志菜单');
+insert into sys_menu values('13',  '在线用户', '2', '3', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '在线用户菜单');
+insert into sys_menu values('14',  '定时任务', '2', '4', '/monitor/job',        'C', '0', 'monitor:job:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '定时任务菜单');
+insert into sys_menu values('15',  '数据监控', '2', '5', '/monitor/data',       'C', '0', 'monitor:data:view',        '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '数据监控菜单');
+insert into sys_menu values('16',  '代码生成', '3', '1', '/tool/gen',           'C', '0', 'tool:gen:view',            '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '代码生成菜单');
 -- 用户管理按钮
-insert into sys_menu values('17', '用户查询', '4', '1',  '#',  'F', '0', 'system:user:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('18', '用户新增', '4', '2',  '#',  'F', '0', 'system:user:add',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('19', '用户修改', '4', '3',  '#',  'F', '0', 'system:user:edit',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('20', '用户删除', '4', '4',  '#',  'F', '0', 'system:user:remove',       '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('21', '用户保存', '4', '5',  '#',  'F', '0', 'system:user:save',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('22', '批量删除', '4', '6',  '#',  'F', '0', 'system:user:batchRemove',  '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('23', '重置密码', '4', '7',  '#',  'F', '0', 'system:user:resetPwd',     '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('17', '用户查询', '4', '1',  '#',  'F', '0', 'system:user:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('18', '用户新增', '4', '2',  '#',  'F', '0', 'system:user:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('19', '用户修改', '4', '3',  '#',  'F', '0', 'system:user:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('20', '用户删除', '4', '4',  '#',  'F', '0', 'system:user:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('21', '用户保存', '4', '5',  '#',  'F', '0', 'system:user:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('22', '批量删除', '4', '6',  '#',  'F', '0', 'system:user:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('23', '重置密码', '4', '7',  '#',  'F', '0', 'system:user:resetPwd',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 角色管理按钮
-insert into sys_menu values('24', '角色查询', '5', '1',  '#',  'F', '0', 'system:role:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('25', '角色新增', '5', '2',  '#',  'F', '0', 'system:role:add',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('26', '角色修改', '5', '3',  '#',  'F', '0', 'system:role:edit',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('27', '角色删除', '5', '4',  '#',  'F', '0', 'system:role:remove',       '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('28', '角色保存', '5', '5',  '#',  'F', '0', 'system:role:save',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('29', '批量删除', '5', '6',  '#',  'F', '0', 'system:role:batchRemove',  '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('24', '角色查询', '5', '1',  '#',  'F', '0', 'system:role:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('25', '角色新增', '5', '2',  '#',  'F', '0', 'system:role:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('26', '角色修改', '5', '3',  '#',  'F', '0', 'system:role:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('27', '角色删除', '5', '4',  '#',  'F', '0', 'system:role:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('28', '角色保存', '5', '5',  '#',  'F', '0', 'system:role:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('29', '批量删除', '5', '6',  '#',  'F', '0', 'system:role:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 菜单管理按钮
-insert into sys_menu values('30', '菜单查询', '6', '1',  '#',  'F', '0', 'system:menu:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('31', '菜单新增', '6', '2',  '#',  'F', '0', 'system:menu:add',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('32', '菜单修改', '6', '3',  '#',  'F', '0', 'system:menu:edit',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('33', '菜单删除', '6', '4',  '#',  'F', '0', 'system:menu:remove',       '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('34', '菜单保存', '6', '5',  '#',  'F', '0', 'system:menu:save',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('30', '菜单查询', '6', '1',  '#',  'F', '0', 'system:menu:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('31', '菜单新增', '6', '2',  '#',  'F', '0', 'system:menu:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('32', '菜单修改', '6', '3',  '#',  'F', '0', 'system:menu:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('33', '菜单删除', '6', '4',  '#',  'F', '0', 'system:menu:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('34', '菜单保存', '6', '5',  '#',  'F', '0', 'system:menu:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 部门管理按钮
-insert into sys_menu values('35', '部门查询', '7', '1',  '#',  'F', '0', 'system:dept:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('36', '部门新增', '7', '2',  '#',  'F', '0', 'system:dept:add',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('37', '部门修改', '7', '3',  '#',  'F', '0', 'system:dept:edit',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('38', '部门删除', '7', '4',  '#',  'F', '0', 'system:dept:remove',       '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('39', '部门保存', '7', '5',  '#',  'F', '0', 'system:dept:save',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('35', '部门查询', '7', '1',  '#',  'F', '0', 'system:dept:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('36', '部门新增', '7', '2',  '#',  'F', '0', 'system:dept:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('37', '部门修改', '7', '3',  '#',  'F', '0', 'system:dept:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('38', '部门删除', '7', '4',  '#',  'F', '0', 'system:dept:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('39', '部门保存', '7', '5',  '#',  'F', '0', 'system:dept:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 岗位管理按钮
-insert into sys_menu values('40', '岗位查询', '8', '1',  '#',  'F', '0', 'system:post:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('41', '岗位新增', '8', '2',  '#',  'F', '0', 'system:post:add',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('42', '岗位修改', '8', '3',  '#',  'F', '0', 'system:post:edit',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('43', '岗位删除', '8', '4',  '#',  'F', '0', 'system:post:remove',       '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('44', '岗位保存', '8', '5',  '#',  'F', '0', 'system:post:save',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('45', '批量删除', '10', '4', '#',  'F', '0', 'system:post:batchRemove',  '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('40', '岗位查询', '8', '1',  '#',  'F', '0', 'system:post:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('41', '岗位新增', '8', '2',  '#',  'F', '0', 'system:post:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('42', '岗位修改', '8', '3',  '#',  'F', '0', 'system:post:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('43', '岗位删除', '8', '4',  '#',  'F', '0', 'system:post:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('44', '岗位保存', '8', '5',  '#',  'F', '0', 'system:post:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('45', '批量删除', '10', '4', '#',  'F', '0', 'system:post:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 字典管理按钮
-insert into sys_menu values('46', '字典查询', '10', '1', '#',  'F', '0', 'system:dict:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('47', '字典新增', '10', '2', '#',  'F', '0', 'system:dict:add',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('48', '字典修改', '10', '3', '#',  'F', '0', 'system:dict:edit',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('49', '批量删除', '10', '4', '#',  'F', '0', 'system:dict:batchRemove',  '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('50', '字典保存', '10', '5', '#',  'F', '0', 'system:dict:save',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('46', '字典查询', '10', '1', '#',  'F', '0', 'system:dict:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('47', '字典新增', '10', '2', '#',  'F', '0', 'system:dict:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('48', '字典修改', '10', '3', '#',  'F', '0', 'system:dict:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('49', '批量删除', '10', '4', '#',  'F', '0', 'system:dict:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('50', '字典保存', '10', '5', '#',  'F', '0', 'system:dict:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 操作日志按钮
-insert into sys_menu values('51', '操作查询', '11', '1', '#',  'F', '0', 'monitor:operlog:list',            '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('52', '批量删除', '11', '2', '#',  'F', '0', 'monitor:operlog:batchRemove',     '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('53', '详细信息', '11', '3', '#',  'F', '0', 'monitor:operlog:detail',          '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('51', '操作查询', '11', '1', '#',  'F', '0', 'monitor:operlog:list',            '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('52', '批量删除', '11', '2', '#',  'F', '0', 'monitor:operlog:batchRemove',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('53', '详细信息', '11', '3', '#',  'F', '0', 'monitor:operlog:detail',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 登录日志按钮
-insert into sys_menu values('54', '登录查询', '12', '1', '#',  'F', '0', 'monitor:logininfor:list',         '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('55', '批量删除', '12', '2', '#',  'F', '0', 'monitor:logininfor:batchRemove',  '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('54', '登录查询', '12', '1', '#',  'F', '0', 'monitor:logininfor:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('55', '批量删除', '12', '2', '#',  'F', '0', 'monitor:logininfor:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 在线用户按钮
-insert into sys_menu values('56', '在线查询', '13', '1', '#',  'F', '0', 'monitor:online:list',             '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('57', '批量强退', '13', '2', '#',  'F', '0', 'monitor:online:batchForceLogout', '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('58', '单条强退', '13', '3', '#',  'F', '0', 'monitor:online:forceLogout',      '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('56', '在线查询', '13', '1', '#',  'F', '0', 'monitor:online:list',             '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('57', '批量强退', '13', '2', '#',  'F', '0', 'monitor:online:batchForceLogout', '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('58', '单条强退', '13', '3', '#',  'F', '0', 'monitor:online:forceLogout',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 定时任务按钮
-insert into sys_menu values('59', '任务查询', '14', '1', '#',  'F', '0', 'monitor:job:list',             '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('60', '任务新增', '14', '2', '#',  'F', '0', 'monitor:job:add',              '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('61', '任务修改', '14', '3', '#',  'F', '0', 'monitor:job:edit',             '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('62', '任务删除', '14', '4', '#',  'F', '0', 'monitor:job:remove',           '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('63', '任务保存', '14', '5', '#',  'F', '0', 'monitor:job:save',             '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('64', '状态修改', '14', '6', '#',  'F', '0', 'monitor:job:changeStatus',     '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_menu values('65', '批量删除', '14', '7', '#',  'F', '0', 'monitor:job:batchRemove',      '#', 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_menu values('59', '任务查询', '14', '1', '#',  'F', '0', 'monitor:job:list',             '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('60', '任务新增', '14', '2', '#',  'F', '0', 'monitor:job:add',              '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('61', '任务修改', '14', '3', '#',  'F', '0', 'monitor:job:edit',             '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('62', '任务删除', '14', '4', '#',  'F', '0', 'monitor:job:remove',           '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('63', '任务保存', '14', '5', '#',  'F', '0', 'monitor:job:save',             '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('64', '状态修改', '14', '6', '#',  'F', '0', 'monitor:job:changeStatus',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('65', '批量删除', '14', '7', '#',  'F', '0', 'monitor:job:batchRemove',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- ----------------------------
 -- 6、用户和角色关联表  用户N-1角色
@@ -347,7 +347,7 @@ create table sys_oper_log (
   dept_name 		varchar(50)     default '' 		 	 	   comment '部门名称',
   oper_url 		    varchar(255) 	default '' 				   comment '请求URL',
   oper_ip 			varchar(30) 	default '' 				   comment '主机地址',
-  oper_param 		varchar(255) 	default '' 				   comment '请求参数',
+  oper_param 		varchar(2000) 	default '' 				   comment '请求参数',
   status 			int(1) 		    default 0				   comment '操作状态 0正常 1异常',
   error_msg 		varchar(2000) 	default '' 				   comment '错误消息',
   oper_time 		timestamp       default current_timestamp  comment '操作时间',
@@ -376,8 +376,8 @@ create table sys_dict_type
 	unique (dict_type)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_dict_type values(1, '银行列表', 'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '银行数据列表');
-insert into sys_dict_type values(2, '支付通道', 'sys_pay_code',  0, 'admin', '2018-03-01', 'ry', '2018-03-01', '支付通道列表');
+insert into sys_dict_type values(1, '银行列表', 'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '银行数据列表');
+insert into sys_dict_type values(2, '支付通道', 'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '支付通道列表');
 
 
 -- ----------------------------
@@ -400,18 +400,18 @@ create table sys_dict_data
 	primary key (dict_code)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_dict_data values(1,  1, '工商银行', '01',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(2,  2, '建设银行', '02',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(3,  3, '农业银行', '03',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(4,  4, '光大银行', '04',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(5,  5, '兴业银行', '05',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', ''); 
-insert into sys_dict_data values(6,  6, '中国银行', '06',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(7,  7, '平安银行', '07',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(8,  8, '招商银行', '08',  'sys_bank_code', 0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(9,  1, '微信支付', 'WX',  'sys_pay_code',  0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(10, 2, '支付宝',   'ZFB', 'sys_pay_code',  0, 'admin', '2018-03-01', 'ry', '2018-03-01', ''); 
-insert into sys_dict_data values(11, 3, 'QQ支付',   'JD',  'sys_pay_code',  0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_dict_data values(12, 4, '京东支付', 'QQ',  'sys_pay_code',  0, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_dict_data values(1,  1, '工商银行', '01',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(2,  2, '建设银行', '02',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(3,  3, '农业银行', '03',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(4,  4, '光大银行', '04',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(5,  5, '兴业银行', '05',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', ''); 
+insert into sys_dict_data values(6,  6, '中国银行', '06',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(7,  7, '平安银行', '07',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(8,  8, '招商银行', '08',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(9,  1, '微信支付', 'WX',  'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(10, 2, '支付宝',   'ZFB', 'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', ''); 
+insert into sys_dict_data values(11, 3, 'QQ支付',   'JD',  'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_dict_data values(12, 4, '京东支付', 'QQ',  'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- ----------------------------
 -- 12、系统访问记录
@@ -474,8 +474,8 @@ create table sys_job (
   primary key (job_id, job_name, job_group)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_job values(1, 'ryTask', '系统默认（无参）', 'ryNoParams',  '',   '0/10 * * * * ?', 1, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
-insert into sys_job values(2, 'ryTask', '系统默认（有参）', 'ryParams',    'ry', '0/20 * * * * ?', 1, 'admin', '2018-03-01', 'ry', '2018-03-01', '');
+insert into sys_job values(1, 'ryTask', '系统默认（无参）', 'ryNoParams',  '',   '0/10 * * * * ?', 1, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_job values(2, 'ryTask', '系统默认（有参）', 'ryParams',    'admin', '0/20 * * * * ?', 1, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- ----------------------------
 -- 15、定时任务调度日志表
