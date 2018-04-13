@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.purchase.vendor.dao.IVendorDao">
+
+	<resultMap type="Vendor" id="VendorResult">
+		<id     property="vendorId"        column="vendor_id"       />
+		<result property="vendorName"      column="vendor_name"     />
+		<result property="firstName"      column="first_name"     />
+		<result property="lastName"      column="last_name"     />
+		<result property="middleName"      column="middle_name"     />
+		<result property="nameTitle"      column="name_title"     />
+		<result property="jobTitle"      column="job_title"     />
+		<result property="mainPhone"      column="main_phone"     />
+		<result property="workPhone"      column="work_phone"     />
+		<result property="mobile"      column="mobile"     />
+		<result property="fax"      column="fax"     />
+		<result property="mainMail"      column="main_mail"     />
+		<result property="ccMail"      column="cc_mail"     />
+		<result property="addressShipFrom"      column="address_ship_from"     />
+		<result property="addressBillFrom"      column="address_bill_from"     />
+		<result property="status"        column="status"        />
+		<result property="createBy"      column="create_by"     />
+		<result property="createTime"    column="create_time"   />
+		<result property="updateBy"      column="update_by"     />
+		<result property="updateTime"    column="update_time"   />
+		<result property="remark"        column="remark"        />
+		<result property="contacts"        column="contacts"        />
+	</resultMap>
+	
+	<select id="selectVendorList" parameterType="Vendor" resultMap="VendorResult">
+		select *, concat_ws(', ',name_title,last_name,first_name) as contacts from pur_vendor
+		<where>
+			status = 0
+			<if test="searchValue != null and searchValue != ''">
+				AND vendor_name like #{searchValue} OR address_ship_from like #{searchValue}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectVendorAll" resultMap="VendorResult">
+		SELECT *, concat_ws(', ',name_title,last_name,first_name) as contacts FROM pur_vendor where status = 0
+	</select>
+
+	<select id="selectVendorById" parameterType="Long" resultMap="VendorResult">
+		select *, concat_ws(', ',name_title,last_name,first_name) as contacts
+		from pur_vendor v
+		where v.status = 0 and v.vendor_id = #{vendorId}
+	</select>
+	
+	<delete id="deleteVendorById" parameterType="Long">
+		update pur_vendor set status = 1
+		where 1=1 and vendor_id = #{vendorId}
+ 	</delete>
+ 	
+ 	<update id="batchDeleteVendor" parameterType="String">
+		update pur_vendor set status = 1
+		where vendor_id in
+ 		<foreach collection="array" item="vendorId" open="(" separator="," close=")">
+ 			#{vendorId}
+        </foreach> 
+ 	</update>
+ 	
+ 	<update id="updateVendor" parameterType="Vendor">
+ 		update pur_vendor
+ 		<set>
+			<if test="vendorName != null and vendorName != ''">vendor_name = #{vendorName},</if>
+			<if test="firstName != null and firstName != ''">first_name = #{firstName},</if>
+			<if test="lastName != null and lastName != ''">last_name = #{lastName},</if>
+			<if test="middleName != null and middleName != ''">middle_name = #{middleName},</if>
+			<if test="nameTitle != null and nameTitle != ''">name_title = #{nameTitle},</if>
+			<if test="jobTitle != null and jobTitle != ''">job_title = #{jobTitle},</if>
+			<if test="mainPhone != null and mainPhone != ''">main_phone = #{mainPhone},</if>
+			<if test="workPhone != null and workPhone != ''">work_phone = #{workPhone},</if>
+			<if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
+			<if test="fax != null and fax != ''">fax = #{fax},</if>
+			<if test="mainMail != null and mainMail != ''">main_mail = #{mainMail},</if>
+			<if test="ccMail != null and ccMail != ''">cc_mail = #{ccMail},</if>
+			<if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from = #{addressShipFrom},</if>
+			<if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from = #{addressBillFrom},</if>
+ 			<if test="status !=null">status = #{status},</if>
+ 			<if test="remark != null and remark != ''">remark = #{remark},</if>
+ 			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+ 			update_time = sysdate()
+ 		</set>
+ 		where 1=1
+ 		<if test="vendorId != null">and vendor_id = #{vendorId}</if>
+	</update>
+ 	
+ 	<insert id="insertVendor" parameterType="Vendor" useGeneratedKeys="true" keyProperty="vendorId">
+ 		insert into pur_vendor(
+ 			<if test="vendorId != null and vendorId != 0">vendor_id,</if>
+ 			<if test="vendorName != null and vendorName != ''">vendor_name,</if>
+ 			<if test="firstName != null and firstName != ''">first_name,</if>
+			<if test="lastName != null and lastName != ''">last_name,</if>
+			<if test="middleName != null and middleName != ''">middle_name,</if>
+			<if test="nameTitle != null and nameTitle != ''">name_title,</if>
+			<if test="jobTitle != null and jobTitle != ''">job_title,</if>
+			<if test="mainPhone != null and mainPhone != ''">main_phone,</if>
+			<if test="workPhone != null and workPhone != ''">work_phone,</if>
+			<if test="mobile != null and mobile != ''">mobile,</if>
+			<if test="fax != null and fax != ''">fax,</if>
+			<if test="mainMail != null and mainMail != ''">main_mail,</if>
+			<if test="ccMail != null and ccMail != ''">cc_mail,</if>
+			<if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from,</if>
+			<if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from,</if>
+ 			<if test="status !=null">status,</if>
+ 			<if test="remark != null and remark != ''">remark,</if>
+ 			<if test="createBy != null and createBy != ''">create_by,</if>
+ 			create_time
+ 		)values(
+ 			<if test="vendorId != null and vendorId != 0">#{vendorId},</if>
+			<if test="vendorName != null and vendorName != ''">#{vendorName},</if>
+			<if test="firstName != null and firstName != ''">#{firstName},</if>
+			<if test="lastName != null and lastName != ''">#{lastName},</if>
+			<if test="middleName != null and middleName != ''">#{middleName},</if>
+			<if test="nameTitle != null and nameTitle != ''">#{nameTitle},</if>
+			<if test="jobTitle != null and jobTitle != ''">#{jobTitle},</if>
+			<if test="mainPhone != null and mainPhone != ''">#{mainPhone},</if>
+			<if test="workPhone != null and workPhone != ''">#{workPhone},</if>
+			<if test="mobile != null and mobile != ''">#{mobile},</if>
+			<if test="fax != null and fax != ''">#{fax},</if>
+			<if test="mainMail != null and mainMail != ''">#{mainMail},</if>
+			<if test="ccMail != null and ccMail != ''">#{ccMail},</if>
+			<if test="addressShipFrom != null and addressShipFrom != ''">#{addressShipFrom},</if>
+			<if test="addressBillFrom != null and addressBillFrom != ''">#{addressBillFrom},</if>
+ 			<if test="status !=null">status,</if>
+ 			<if test="remark != null and remark != ''">#{remark},</if>
+ 			<if test="createBy != null and createBy != ''">#{createBy},</if>
+ 			sysdate()
+ 		)
+	</insert>
+
+</mapper> 
