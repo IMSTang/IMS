@@ -1,0 +1,16 @@
+$("#form-customer-add").validate({
+    rules:{
+        roleName:{
+            required:true,
+        },
+        roleKey:{
+            required:true,
+        },
+        roleSort:{
+            required:true,
+        },
+    },
+    submitHandler:function(form){
+        add();
+    }
+});

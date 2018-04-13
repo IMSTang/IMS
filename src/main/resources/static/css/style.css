@@ -108,6 +108,7 @@ body.body-small .navbar-top-links li:last-child {
     z-index: 1000;
     border-radius: 0;
     box-shadow: 0 0 3px rgba(86, 96, 117, 0.3);
+    width: auto;
 }
 
 .dropdown-menu>li>a {
@@ -7347,3 +7348,10 @@ body.skin-3 {
     border-color: #cccccc!important;
 }
 
+/*hxq added*/
+.xq-table>thead:first-child>tr:first-child>th:first-child {
+    padding: 0 8px;
+}
+.xq-wrapper .dropdown-menu {
+    width: 150px;
+}
