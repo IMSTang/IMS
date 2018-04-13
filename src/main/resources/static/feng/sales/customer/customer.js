@@ -16,6 +16,8 @@ function loading() {
             field : 'customerName',
             title : 'Customer Name'
         },
+        {
+            field : 'first_name',
        {
             field : 'status',
             title : 'Status',
