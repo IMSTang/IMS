@@ -16,7 +16,6 @@ function loading() {
             field : 'customerName',
             title : 'Customer Name'
         },
-
        {
             field : 'status',
             title : 'Status',
@@ -111,7 +110,6 @@ function loading() {
                 actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="add(\'' + row.customerId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
                 actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' + row.customerId + '\')"><i class="fa fa-remove"></i></a>');
                 return actions.join('');
-
             }
          }
         ];
