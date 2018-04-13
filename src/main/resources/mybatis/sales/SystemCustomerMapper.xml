@@ -29,14 +29,14 @@
     </resultMap>
 
     <select id="selectAllCustomer" resultMap="customerResult">
-		select * from sys_customer
+		select * from sale_customer
 	</select>
 
 
 
 
     <insert id="insertCustomer" parameterType="customer">
-        insert into sys_customer(
+        insert into sale_customer(
         <if test="customerId != null and customerId != 0">customer_id,</if>
 
         <if test="customerName != null and customerName  != ''">customer_name,</if>
@@ -87,7 +87,7 @@
     </insert>
 
     <update id="updateCustomer" parameterType="customer">
-        update sys_customer
+        update sale_customer
         <set>
             <if test="customerId != null and customerId != 0">customer_id=#{customerId},</if>
 
@@ -117,7 +117,7 @@
     </update>
 
     <delete id="deleteCustomerById" parameterType="int">
-		delete from sys_customer where customerId = #{customerId}
+		delete from sale_customer where customer_id = #{customerId}
 	</delete>
 
 </mapper>

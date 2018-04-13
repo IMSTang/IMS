@@ -20,4 +20,9 @@ public class CustomerServiceImpl implements ICustomerService {
     public int deleteCustomerById(int customerId) {
         return customerDao.deleteCustomerById(customerId);
     }
+
+    @Override
+    public int saveCustomer(Customer customer) {
+        return 0;
+    }
 }

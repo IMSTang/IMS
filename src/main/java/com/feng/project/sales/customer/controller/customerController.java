@@ -29,7 +29,7 @@ import com.feng.project.system.post.service.IPostService;
  */
 @Controller
 @RequestMapping("/sales/customer")
-public class customerController {
+public class customerController extends BaseController{
     private String prefix = "/sales/customer";
 
 
@@ -52,18 +52,20 @@ public class customerController {
     @RequiresPermissions("sales:customer:view")
     @GetMapping("/list")
     @ResponseBody
-    public List<Customer> list()
+    public TableDataInfo list()
     {
         System.out.println("------------------------------------查询数据库之前- ---------------------------" );
         List<Customer> customerList = customerService.selectAllCustomer();
 
         System.out.println("-------------------------------------1---------------------------"+((Customer)customerList.get(0)).getCustomerName());
-        System.out.println("------------------------------------执行删除---------------------------" );
-        remove(1);
-        System.out.println("------------------------------------删除完成---------------------------" );
-        return customerList;
+
+        return getDataTable(customerList);
     }
 
+    @Log(title = "JHD", action = "remove customer")
+    @RequiresPermissions("sales:customer:remove")
+    @GetMapping("/remove/{customerId}")
+    @ResponseBody
     public JSON remove(@PathVariable("customerId") int customerId){
         if (customerService.deleteCustomerById(customerId) > 0)
         {

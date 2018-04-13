@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="gray-bg">
@@ -9,8 +10,8 @@
             <i class="glyphicon glyphicon-plus"></i>
         </button>
         <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="sales:customer:batchRemove">
-            <i class="glyphicon glyphicon-trash"></i>
-        </button>
+        <i class="glyphicon glyphicon-trash"></i>
+    </button>
     </div>
     <table class="bootstrap-table xq-table" data-mobile-responsive="true"></table>
 </div>

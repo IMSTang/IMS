@@ -13,6 +13,17 @@ public interface ICustomerDao {
      */
     public List<Customer> selectAllCustomer();
 
-
+    /**
+     * delete customer by id
+     * @param customerId
+     * @return
+     */
     public int deleteCustomerById(int customerId);
+
+    /**
+     * insert customer
+     * @param customer
+     * @return
+     */
+    public int insertCustomer(Customer customer);
 }

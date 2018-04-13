@@ -13,10 +13,11 @@ function loading() {
             title : 'ID'
         },
         {
-            field : 'customer_name',
+            field : 'customerName',
             title : 'Customer Name'
         },
-        {
+
+       {
             field : 'status',
             title : 'Status',
             formatter : function(item, index) {
@@ -28,31 +29,31 @@ function loading() {
             }
         },
         {
-            field : 'first_name',
+            field : 'firstName',
             title : 'First Name'
         },
         {
-            field : 'last_name',
+            field : 'lastName',
             title : 'Last Name'
         },
         {
-            field : 'middle_name',
+            field : 'middleName',
             title : 'Middle Name'
         },
         {
-            field : 'name_title',
+            field : 'nameTitle',
             title : 'Name Title'
         },
         {
-            field : 'job_title',
+            field : 'jobTitle',
             title : 'Job Title'
         },
         {
-            field : 'main_phone',
+            field : 'mainPhone',
             title : 'Main phone'
         },
         {
-            field : 'work_phone',
+            field : 'workPhone',
             title : 'Work Phone'
         },
         {
@@ -64,19 +65,19 @@ function loading() {
             title : 'Fax'
         },
         {
-            field : 'main_mail',
+            field : 'mainMail',
             title : 'Main Mail'
         },
         {
-            field : 'cc_mail',
+            field : 'ccMail',
             title : 'CC Mail'
         },
         {
-            field : 'address_ship_to',
+            field : 'addressShipTo',
             title : 'Address Ship To'
         },
         {
-            field : 'address_bill_to',
+            field : 'addressBillTo',
             title : 'Address Bill To'
         },
         {
@@ -84,39 +85,36 @@ function loading() {
             title : 'Description'
         },
         {
-            field : 'create_by',
+            field : 'createBy',
             title : 'Create By'
         },
         {
-            field : 'create_time',
+            field : 'createTime',
             title : 'Create Time'
         },
         {
-            field : 'update_by',
+            field : 'updateBy',
             title : 'Update By'
         },
-        {
-            field : 'update_time',
-            title : 'Update Time',
-            formatter : function(row, index) {
-                return formatDate(row.createTime,"yyyy-MM-dd");
-            }
+       {
+            field : 'updateTime',
+            title : 'Update Time'
+
         },
+
         {
             title : 'Action',
             align : 'center',
-            formatter : function(row, index) {
-                if(row.parentId != 0) {
-                    var actions = [];
-                    actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.deptId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
-                    actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="add(\'' + row.deptId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
-                    actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' + row.deptId + '\')"><i class="fa fa-remove"></i></a>');
-                    return actions.join('');
-                } else {
-                    return "";
-                }
+            formatter : function(value,row, index) {
+                var actions = [];
+                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.customerId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
+                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="add(\'' + row.customerId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
+                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' + row.customerId + '\')"><i class="fa fa-remove"></i></a>');
+                return actions.join('');
+
             }
-        }];
+         }
+        ];
     var url = prefix + "/list";
     $.initTable(columns, url);
 }

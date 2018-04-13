@@ -51,6 +51,7 @@ function queryUserList() {
             title: '操作',
             align: 'center',
             formatter: function(value, row, index) {
+
             	if(row.userType == "N") {
             		var actions = [];
                 	actions.push('<a class="btn btn-primary btn-sm" href="#" title="编辑" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i></a> ');
