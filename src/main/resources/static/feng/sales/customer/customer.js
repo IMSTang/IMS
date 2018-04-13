@@ -10,14 +10,16 @@ function loading() {
         },
         {
             field : 'customerId',
-            title : 'ID'
+            title : 'Customer ID'
         },
         {
             field : 'customerName',
             title : 'Customer Name'
         },
         {
-            field : 'first_name',
+            field: 'first_name',
+            title: 'First Name'
+        },
        {
             field : 'status',
             title : 'Status',
