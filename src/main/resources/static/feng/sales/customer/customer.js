@@ -17,17 +17,6 @@ function loading() {
             title : 'Customer Name'
         },
         {
-            field : 'status',
-            title : 'Status',
-            formatter : function(item, index) {
-                if (item.status == '0') {
-                    return '<span class="label label-primary">aaa</span>';
-                } else if (item.status == '1') {
-                    return '<span class="label label-danger">bbb</span>';
-                }
-            }
-        },
-        {
             field : 'first_name',
             title : 'First Name'
         },
@@ -82,25 +71,6 @@ function loading() {
         {
             field : 'description',
             title : 'Description'
-        },
-        {
-            field : 'create_by',
-            title : 'Create By'
-        },
-        {
-            field : 'create_time',
-            title : 'Create Time'
-        },
-        {
-            field : 'update_by',
-            title : 'Update By'
-        },
-        {
-            field : 'update_time',
-            title : 'Update Time',
-            formatter : function(row, index) {
-                return formatDate(row.createTime,"yyyy-MM-dd");
-            }
         },
         {
             title : 'Action',
