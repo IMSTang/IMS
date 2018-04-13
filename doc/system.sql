@@ -18,20 +18,14 @@ create table sys_dept (
   primary key (dept_id)
 ) engine=innodb auto_increment=200 default charset=utf8;
 
+
 -- ----------------------------
 -- 初始化-部门表数据
 -- ----------------------------
-insert into sys_dept values(100,  0,   '若依集团', 0, '马云', '15011112221', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(101,  100, '研发部门', 1, '马研', '15011112222', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(102,  100, '市场部门', 2, '马市', '15011112223', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(103,  100, '测试部门', 3, '马测', '15011112224', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(104,  100, '财务部门', 4, '马财', '15011112225', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(105,  100, '运维部门', 5, '马运', '15011112226', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(106,  101, '研发一部', 1, '马一', '15011112227', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(107,  101, '研发二部', 2, '马二', '15011112228', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(108,  102, '市场一部', 1, '马一', '15011112229', 'ry@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_dept values(109,  102, '市场二部', 2, '马二', '15011112210', 'ry@qq.com', 1, 'admin', '2018-03-01', 'admin', '2018-03-01');
-
+insert into sys_dept values(100,  0,   'JHD CORP', 0, 'JHD', '15011112221', 'jdh@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(101,  100, 'Storage Dept', 1, 'storage1', '15011112222', 'storage1@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(102,  100, 'Sales Dept', 2, 'sale1', '15011112223', 'sale1@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_dept values(103,  100, 'Purchase Dept', 3, 'purchase1', '15011112224', 'purchase1@qq.com', 0, 'admin', '2018-03-01', 'admin', '2018-03-01');
 
 -- ----------------------------
 -- 2、用户信息表
@@ -59,8 +53,8 @@ create table sys_user (
 -- ----------------------------
 -- 初始化-用户信息表数据
 -- ----------------------------
-insert into sys_user values(1, 106, 'admin', '若依', 'yzz_ivy@163.com', '15088888888', '172eee54aa664e9dd0536b063796e54e', '', 'Y', 0, '维护中', 'admin', '2018-03-01', 'admin', '2018-03-01');
-insert into sys_user values(2, 108, 'admin',    '若依', 'ry@163.com',      '15288888888', '2f59d63eddd54f3977d6fe25aec8b2bc', '', 'N', 1, '锁定中', 'admin', '2018-03-01', 'admin', '2018-03-01');
+insert into sys_user values(1, 106, 'admin', 'JHD_admin', 'JHD_admin@qq.com', '15088888888', '172eee54aa664e9dd0536b063796e54e', '', 'Y', 0, '维护中', 'admin', '2018-03-01', 'admin', '2018-03-01');
+
 
 
 -- ----------------------------
@@ -85,10 +79,10 @@ create table sys_post
 -- ----------------------------
 -- 初始化-岗位信息表数据
 -- ----------------------------
-insert into sys_post values(1, 'ceo',  '董事长',    1, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_post values(2, 'se',   '项目经理',  2, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_post values(3, 'hr',   '人力资源',  3, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_post values(4, 'user', '普通员工',  4, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(1, 'adm',  'Administrator',    1, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(2, 'sto',   'Storage',  2, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(3, 'sale',   'Sales',  3, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_post values(4, 'pur', 'Purchase',  4, 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
 -- ----------------------------
@@ -112,8 +106,10 @@ create table sys_role (
 -- ----------------------------
 -- 初始化-角色信息表数据
 -- ----------------------------
-insert into sys_role values('1', '管理员',   'admin',  1,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '管理员');
-insert into sys_role values('2', '普通角色', 'common', 2,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '普通角色');
+insert into sys_role values('1', 'Administrator',   'admin',  1,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '管理员');
+insert into sys_role values('2', 'Storage', 'storage', 2,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Storage');
+insert into sys_role values('3', 'Sales', 'sales', 3,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Sales');
+insert into sys_role values('4', 'Purchase', 'purchase', 4,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase');
 
 
 -- ----------------------------
@@ -142,7 +138,7 @@ create table sys_menu (
 -- 初始化-菜单信息表数据
 -- ----------------------------
 -- 一级菜单
-insert into sys_menu values('1', '系统管理', '0', '1', '#', 'M', '0', '', 'fa fa-gear',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统管理目录');
+insert into sys_menu values('1', 'System Management', '0', '1', '#', 'M', '0', '', 'fa fa-gear',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统管理目录');
 insert into sys_menu values('2', '系统监控', '0', '2', '#', 'M', '0', '', 'fa fa-video-camera', 'admin', '2018-03-01', 'admin', '2018-03-01', '系统监控目录');
 insert into sys_menu values('3', '系统工具', '0', '3', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统工具目录');
 -- 二级菜单
@@ -233,7 +229,6 @@ create table sys_user_role (
 -- 初始化-用户和角色关联表数据
 -- ----------------------------
 insert into sys_user_role values ('1', '1');
-insert into sys_user_role values ('2', '2');
 
 
 -- ----------------------------
@@ -330,7 +325,6 @@ create table sys_user_post
 -- 初始化-用户与岗位关联表数据
 -- ----------------------------
 insert into sys_user_post values ('1', '1');
-insert into sys_user_post values ('2', '2');
 
 
 -- ----------------------------
@@ -354,8 +348,6 @@ create table sys_oper_log (
   primary key (oper_id)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_oper_log values(1, '监控管理', '在线用户-强退用户', 'com.fengproject.monitor.online.controller.UserOnlineController()', 'web', 'admin', '研发部门', 'delete.do?id=1', '127.0.0.1', 'JSON参数', 0, '错误描述', '2018-03-01');
-
 
 -- ----------------------------
 -- 10、字典类型表
@@ -376,8 +368,6 @@ create table sys_dict_type
 	unique (dict_type)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_dict_type values(1, '银行列表', 'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '银行数据列表');
-insert into sys_dict_type values(2, '支付通道', 'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '支付通道列表');
 
 
 -- ----------------------------
@@ -400,19 +390,6 @@ create table sys_dict_data
 	primary key (dict_code)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_dict_data values(1,  1, '工商银行', '01',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(2,  2, '建设银行', '02',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(3,  3, '农业银行', '03',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(4,  4, '光大银行', '04',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(5,  5, '兴业银行', '05',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', ''); 
-insert into sys_dict_data values(6,  6, '中国银行', '06',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(7,  7, '平安银行', '07',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(8,  8, '招商银行', '08',  'sys_bank_code', 0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(9,  1, '微信支付', 'WX',  'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(10, 2, '支付宝',   'ZFB', 'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', ''); 
-insert into sys_dict_data values(11, 3, 'QQ支付',   'JD',  'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_dict_data values(12, 4, '京东支付', 'QQ',  'sys_pay_code',  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-
 -- ----------------------------
 -- 12、系统访问记录
 -- ----------------------------
@@ -428,8 +405,6 @@ create table sys_logininfor (
   login_time 	timestamp    default current_timestamp comment '访问时间',
   primary key (info_id)
 ) engine=innodb auto_increment=100 default charset=utf8;
-
-insert into sys_logininfor values(1, 'admin', '127.0.0.1', 'Chrome 45', 'Windows 7', 0, '登录成功' ,'2018-03-01');
 
 
 -- ----------------------------
@@ -449,9 +424,6 @@ create table sys_user_online (
   expire_time 	    int(5) 		 default 0 			 	    comment '超时时间，单位为分钟',
   primary key (sessionId)
 ) engine=innodb default charset=utf8;
-
-insert into sys_user_online(sessionId, login_name, dept_name, ipaddr, browser, os, status) 
-values('c3b252c3-2229-4be4-a5f7-7aba4b0c314c', 'admin', '研发部门', '127.0.0.1', 'Chrome 45', 'Windows 7', 'on_line');
 
 
 -- ----------------------------
@@ -474,8 +446,6 @@ create table sys_job (
   primary key (job_id, job_name, job_group)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-insert into sys_job values(1, 'ryTask', '系统默认（无参）', 'ryNoParams',  '',   '0/10 * * * * ?', 1, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_job values(2, 'ryTask', '系统默认（有参）', 'ryParams',    'admin', '0/20 * * * * ?', 1, 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- ----------------------------
 -- 15、定时任务调度日志表

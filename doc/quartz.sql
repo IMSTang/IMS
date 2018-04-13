@@ -16,6 +16,7 @@ create table qrtz_job_details (
     primary key (sched_name,job_name,job_group)
 );
 
+
 -- ----------------------------
 -- 2、 存储已配置的 Trigger 的信息
 -- ----------------------------

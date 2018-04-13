@@ -14,13 +14,14 @@ insert into sys_menu values('215', 'SaveVendor', '210', '5',  '#',  'F', '0', 'p
 insert into sys_menu values('216', 'BatchRemove', '210', '6', '#',  'F', '0', 'purchase:vendor:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
+
 -- ----------------------------
 -- 210、供应商信息表
 -- ----------------------------
 drop table if exists pur_vendor;
 create table pur_vendor
 (
-    vendor_id       int(11)         not null auto_increment    comment '岗位ID',
+    vendor_id       int(11)         not null auto_increment    comment 'Vendor ID',
 	vendor_name     varchar(100)    not null                   comment 'Vendor Name',
 	first_name     varchar(40)     null                   comment 'First Name',
 	last_name      varchar(40)     null                   comment 'Last Name',
@@ -43,6 +44,4 @@ create table pur_vendor
     remark 		  varchar(500) 	  default '' 				 comment '备注',
 	primary key (vendor_id)
 ) engine=innodb default charset=utf8;
-
-
 
