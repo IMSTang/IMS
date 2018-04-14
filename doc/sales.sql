@@ -21,7 +21,20 @@ insert into sys_role_menu values ('1', '103');
 
 
 
+/*
+Navicat MySQL Data Transfer
 
+Source Server         : localhost
+Source Server Version : 50720
+Source Host           : localhost:3306
+Source Database       : feng
+
+Target Server Type    : MYSQL
+Target Server Version : 50720
+File Encoding         : 65001
+
+Date: 2018-04-14 19:32:50
+*/
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -51,11 +64,12 @@ CREATE TABLE `sale_customer` (
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `update_by` varchar(64) DEFAULT NULL,
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `remark` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sale_customer
 -- ----------------------------
-INSERT INTO `sale_customer` VALUES ('00000000002', 'jack', '0', 'aa', 'bb', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'jjj', 'admin', '2018-04-14 17:13:35', 'admin', '2018-04-14 17:13:35');
-INSERT INTO `sale_customer` VALUES ('00000000003', 'tom', '1', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'das', 'admin', '2018-04-14 17:21:28', 'admin', '2018-04-14 17:21:28');
+INSERT INTO `sale_customer` VALUES ('00000000002', 'jack', '0', 'aa', 'bb', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'jjj', 'admin', '2018-04-14 19:24:50', 'admin', '2018-04-14 19:24:50', 'admin');
+INSERT INTO `sale_customer` VALUES ('00000000003', 'tom', '1', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'das', 'admin', '2018-04-14 17:21:28', 'admin', '2018-04-14 17:21:28', 'admin');

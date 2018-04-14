@@ -26,6 +26,7 @@
         <result property="createTime"   column="create_time" />
         <result property="updateBy"   column="update_by" />
         <result property="updateTime"   column="update_time" />
+        <result property="remark"   column="remark" />
     </resultMap>
 
     <select id="selectAllCustomer" resultMap="customerResult">
@@ -58,7 +59,8 @@
         <if test="createBy != null and createBy  != ''">create_by,</if>
         create_time,
         <if test="updateBy != null and  updateBy != ''">update_by,</if>
-        update_time
+        update_time,
+        <if test="remark != null and  remark != ''">remark</if>
 
         )values(
         <if test="customerId != null and customerId != 0">#{customerId},</if>
@@ -82,7 +84,8 @@
         <if test="createBy != null and createBy  != ''">#{createBy},</if>
         sysdate(),
         <if test="updateBy != null and  updateBy != ''">#{updateBy},</if>
-        sysdate()
+        sysdate(),
+        <if test="remark != null and  remark != ''">#{remark}</if>
         )
     </insert>
 
@@ -110,7 +113,8 @@
             <if test="createBy != null and createBy  != ''">create_by=#{createBy},</if>
             create_time=sysdate(),
             <if test="updateBy != null and  updateBy != ''">update_by=#{updateBy},</if>
-            update_time =sysdate()
+            update_time =sysdate(),
+            <if test="remark != null and  remark != ''">remark=#{remark}</if>
         </set>
         where 1=1
         <if test="customerId != null and customerId  != ''">and customer_id = #{customerId}</if>

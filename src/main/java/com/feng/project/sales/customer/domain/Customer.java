@@ -24,4 +24,5 @@ public class Customer {
     private  String createTime;
     private  String updateBy;
     private  String updateTime;
+    private  String remark;
 }
