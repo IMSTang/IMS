@@ -121,6 +121,15 @@ function loading() {
     $.initTable(columns, url);
 }
 
+
+/*
+* add a customer
+* */
+function add() {
+    var url = prefix + '/add';
+    layer_show("add customer", url, '800', '590');
+}
+
 function batchRemove() {
     var rows = $.getSelections("roleId");
     if (rows.length == 0) {

@@ -1,5 +1,6 @@
 package com.feng.project.sales.customer.controller;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 import com.feng.project.sales.customer.domain.Customer;
@@ -12,14 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
-import com.feng.project.system.post.domain.Post;
-import com.feng.project.system.post.service.IPostService;
+
 
 
 /**
@@ -54,16 +54,18 @@ public class customerController extends BaseController{
     @ResponseBody
     public TableDataInfo list()
     {
-        System.out.println("------------------------------------查询数据库之前- ---------------------------" );
         List<Customer> customerList = customerService.selectAllCustomer();
-
-        System.out.println("-------------------------------------1---------------------------"+((Customer)customerList.get(0)).getCustomerName());
-
         return getDataTable(customerList);
     }
 
+
+    /**
+     * delete customer by id(in fact update customer status 0 to 1)
+     * @param customerId customer Id
+     * @return json
+     */
     @Log(title = "JHD", action = "remove customer")
-    @RequiresPermissions("sales:customer:remove")
+    @RequiresPermissions("sales:customer:batchRemove")
     @GetMapping("/remove/{customerId}")
     @ResponseBody
     public JSON remove(@PathVariable("customerId") int customerId){
@@ -72,6 +74,40 @@ public class customerController extends BaseController{
             return JSON.ok();
         }
         return JSON.error();
+
+    }
+
+
+    /**
+     * return add package
+     * @param model
+     * @return
+     */
+    @Log(title = "JHD", action = "add customer")
+    @RequiresPermissions("sales:customer:add")
+    @GetMapping("/add")
+    public  String  add(Model model){
+//        List<Customer> customers = customerService.selectAllCustomer();
+//        model.addAttribute("customers",customers);
+
+        return prefix +"/add";
+    }
+
+
+    /**
+     * check customer Name Unique
+     * @param customer
+     * @return 1 exit,0 not exit
+     */
+    @PostMapping("/checkNameUnique")
+    @ResponseBody
+    public String checkNameUnique(Customer customer){
+        String flag="0";
+
+        if(customer != null){
+            flag = customerService.checkNameUnique(customer.getCustomerName());
+        }
+        return  flag;
 
     }
 

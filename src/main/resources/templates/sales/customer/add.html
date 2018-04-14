@@ -3,89 +3,96 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <link href="/ajax/libs/jquery-ztree/3.5/css/metro/zTreeStyle.css" rel="stylesheet">
+<link href="/ajax/libs/iCheck/custom.css" rel="stylesheet">
+<link href="/ajax/libs/select/select2.css" rel="stylesheet">
+<link href="/feng/css/feng.css?v=1.0.8" rel="stylesheet"/>
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form class="form-horizontal" id="form-customer-add">
         <div class="form-group">
-            <label class="col-sm-2 control-label ">ID：</label>
+            <input name="customerId"  type="hidden" id="customerId"/>
+            <label class="col-sm-2 control-label ">Customer Name：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
-            </div>
-            <label class="col-sm-2 control-label ">Customer：</label>
-            <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="customerName" id="customerName"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">First Name：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="firstName" id="firstName"/>
             </div>
             <label class="col-sm-2 control-label ">Last Name：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="lastName" id="lastName"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">Middle Name：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="middleName" id="middleName"/>
             </div>
             <label class="col-sm-2 control-label ">Name Title：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="nameTitle" id="nameTitle"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">Job Title：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="jobTitle" id="jobTitle"/>
             </div>
             <label class="col-sm-2 control-label ">Main phone：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="mainPhone" id="mainPhone"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">Work Phone：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="workPhone" id="workPhone"/>
             </div>
             <label class="col-sm-2 control-label ">Mobile：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="mobile" id="mobile"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">Fax：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="fax" id="fax"/>
             </div>
             <label class="col-sm-2 control-label ">Main Mail：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="mainMail" id="mainMail"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">CC Mail：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="ccMail" id="ccMail"/>
             </div>
             <label class="col-sm-2 control-label ">Add. Ship To：</label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="addressShipTo" id="addressShipTo"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">Add. Bill To：</label>
             <div class="col-sm-10">
-                <input class="form-control" type="text" name="roleName" id="11"/>
+                <input class="form-control" type="text" name="addressBillTo" id="addressBillTo"/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label ">Description：</label>
             <div class="col-sm-10">
-                <textarea class="form-control" name="roleName" id="11"></textarea>
+                <textarea class="form-control" name="description" id="description"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-control-static col-sm-offset-9">
+                <button type="submit" class="btn btn-primary">submit</button>
+                <button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">close</button>
             </div>
         </div>
     </form>
@@ -93,6 +100,11 @@
 <div th:include="include::footer"></div>
 <script src="/ajax/libs/jquery-ztree/3.5/js/jquery.ztree.all-3.5.js"></script>
 <script type="text/javascript" src="/feng/sales/customer/add.js">
+</script>
+<script src="/ajax/libs/iCheck/icheck.min.js"></script>
+<script src="/ajax/libs/select/select2.js"></script>
+<script>
+    $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
 </script>
 </body>
 </html>

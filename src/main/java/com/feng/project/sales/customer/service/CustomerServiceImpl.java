@@ -1,5 +1,6 @@
 package com.feng.project.sales.customer.service;
 
+import com.feng.common.constant.CustomerConstants;
 import com.feng.project.sales.customer.dao.ICustomerDao;
 import com.feng.project.sales.customer.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,14 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public int saveCustomer(Customer customer) {
         return 0;
+    }
+
+    @Override
+    public String checkNameUnique(String customerName) {
+       int count = customerDao.checkNameUnique(customerName);
+       if(count>0){
+           return CustomerConstants.NAME_NOT_UNIQUE;
+       }
+       return  CustomerConstants.NAME_UNIQUE;
     }
 }

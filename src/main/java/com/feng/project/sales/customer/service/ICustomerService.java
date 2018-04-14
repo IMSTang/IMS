@@ -20,4 +20,11 @@ public interface ICustomerService {
 
     public  int saveCustomer(Customer customer);
 
+    /**
+     * check customer Name Unique
+     * @param customerName customer Name
+     * @return customer number
+     */
+    public  String checkNameUnique(String  customerName);
+
 }

@@ -26,4 +26,11 @@ public interface ICustomerDao {
      * @return
      */
     public int insertCustomer(Customer customer);
+
+    /**
+     * check customer Name Unique
+     * @param customerName customer Name
+     * @return customer number
+     */
+    public int checkNameUnique(String customerName);
 }

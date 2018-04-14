@@ -120,4 +120,8 @@
 		delete from sale_customer where customer_id = #{customerId}
 	</delete>
 
+
+    <select id="checkNameUnique" parameterType="String" resultType="int">
+		select count(*) from sale_customer where customer_name=#{customerName} and status="0"
+	</select>
 </mapper>
