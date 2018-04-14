@@ -4,9 +4,10 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
     #url: jdbc:mysql://10.213.24.45:3306/ry?useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://127.0.0.1:3306/feng?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://47.97.219.255:3306/ims?useUnicode=true&characterEncoding=utf8
+#    url: jdbc:mysql://localhost:3306/ims?useUnicode=true&characterEncoding=utf8
     username: root
-    password: 123
+    password: password
     # 初始化大小，最小，最大
     initialSize: 1
     minIdle: 3
