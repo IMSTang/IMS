@@ -29,10 +29,12 @@
         <result property="remark"   column="remark" />
     </resultMap>
 
-    <select id="selectAllCustomer" resultMap="customerResult">
+    <select id="selectAllCustomer"   resultMap="customerResult">
 		select * from sale_customer
 	</select>
-
+    <select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">
+		select * from sale_customer where remark=#{loginName}
+	</select>
 
 
 
@@ -121,11 +123,17 @@
     </update>
 
     <delete id="deleteCustomerById" parameterType="int">
-		delete from sale_customer where customer_id = #{customerId}
+-- 		delete from sale_customer where customer_id = #{customerId}
+        update sale_customer set status="1"  where customer_id = #{customerId}
 	</delete>
 
 
     <select id="checkNameUnique" parameterType="String" resultType="int">
 		select count(*) from sale_customer where customer_name=#{customerName} and status="0"
 	</select>
+
+
+
+
+
 </mapper>

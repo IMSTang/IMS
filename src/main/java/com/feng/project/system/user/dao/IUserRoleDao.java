@@ -37,4 +37,12 @@ public interface IUserRoleDao
      */
     public int batchUserRole(List<UserRole> userRoleList);
 
+
+    /**
+     * get role id by user id
+     * @param userId
+     * @return
+     */
+    public int getRoleId(String userId);
+
 }

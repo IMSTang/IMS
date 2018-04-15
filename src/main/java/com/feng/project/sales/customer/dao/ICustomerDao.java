@@ -13,6 +13,13 @@ public interface ICustomerDao {
      */
     public List<Customer> selectAllCustomer();
 
+
+    /**
+     * get Own customer
+     * @return Customer list
+     */
+
+    public List<Customer> selectOwnCustomer(String loginName);
     /**
      * delete customer by id
      * @param customerId

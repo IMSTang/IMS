@@ -157,6 +157,7 @@ public class UserController extends BaseController
     @ResponseBody
     public JSON save(User user)
     {
+
         if (userService.saveUser(user) > 0)
         {
             return JSON.ok();
