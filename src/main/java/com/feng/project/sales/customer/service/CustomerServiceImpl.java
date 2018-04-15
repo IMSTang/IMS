@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.feng.common.utils.security.ShiroUtils;
 import  com.feng.project.system.user.dao.IUserRoleDao;
-import com.feng.project.system.user.service.UserServiceImpl;
+import com.feng.common.utils.StringUtils;
+
 import java.util.List;
 @Repository("customerService")
 public class CustomerServiceImpl implements ICustomerService {
@@ -39,14 +40,33 @@ public class CustomerServiceImpl implements ICustomerService {
         return  customerDao.selectOwnCustomer(loginName);
     }
 
+
+    /**
+     * delete Customer By Id
+     * @param customerId
+     * @return
+     */
     @Override
     public int deleteCustomerById(int customerId) {
         return customerDao.deleteCustomerById(customerId);
     }
 
+
+    /**
+     * save customer
+     * @param customer
+     * @return
+     */
     @Override
     public int saveCustomer(Customer customer) {
-        return 0;
+
+   // int count = 0;
+   // int customerId = customer.getCustomerId();
+   customer.setCreateBy(ShiroUtils.getLoginName());
+   customer.setRemark(ShiroUtils.getLoginName());
+   return customerDao.insertCustomer(customer);
+
+
     }
 
     @Override

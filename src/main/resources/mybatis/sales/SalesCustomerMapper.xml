@@ -38,12 +38,11 @@
 
 
 
+
     <insert id="insertCustomer" parameterType="customer">
         insert into sale_customer(
-        <if test="customerId != null and customerId != 0">customer_id,</if>
 
         <if test="customerName != null and customerName  != ''">customer_name,</if>
-        <if test="status != null">status,</if>
         <if test="firstName != null and  firstName != ''">first_name,</if>
         <if test="lastName != null and  lastName != ''">last_name,</if>
         <if test="middleName != null and  middleName != ''">middle_name,</if>
@@ -65,10 +64,8 @@
         <if test="remark != null and  remark != ''">remark</if>
 
         )values(
-        <if test="customerId != null and customerId != 0">#{customerId},</if>
 
         <if test="customerName != null and customerName  != ''">#{customerName},</if>
-        <if test="status != null">#{status},</if>
         <if test="firstName != null and  firstName != ''">#{firstName},</if>
         <if test="lastName != null and  lastName != ''">#{lastName},</if>
         <if test="middleName != null and  middleName != ''">#{middleName},</if>
@@ -90,6 +87,8 @@
         <if test="remark != null and  remark != ''">#{remark}</if>
         )
     </insert>
+
+
 
     <update id="updateCustomer" parameterType="customer">
         update sale_customer

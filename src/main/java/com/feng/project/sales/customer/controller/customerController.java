@@ -119,7 +119,9 @@ public class customerController extends BaseController{
     @PostMapping("/save")
     @ResponseBody
     public JSON  save(Customer customer){
-        System.out.println("save customer------------------------------"+customer.getCustomerName());
-        return JSON.ok();
+       if(customerService.saveCustomer(customer)>0) {
+           return JSON.ok();
+       }
+       return JSON.error();
     }
 }
