@@ -69,16 +69,22 @@ function add() {
         url : "/sales/customer/save",
         data : {
 
-            "userId": userId,
-            "deptId": deptId,
-            "loginName": loginName,
-            "userName": userName,
-            "password": password,
-            "email": email,
-            "phonenumber": phonenumber,
-            "status": status,
-            "roleIds": roleIds,
-            "postIds": postIds
+            "customerId":customerId,
+            "customerName":customerName,
+            "firstName":firstName,
+            "lastName":lastName,
+            "middleName":middleName,
+            "nameTitle":nameTitle,
+            "jobTitle":jobTitle,
+            "mainPhone":mainPhone,
+            "workPhone":workPhone,
+            "mobile":mobile,
+            "fax":fax,
+            "mainMail":mainMail,
+            "ccMail":ccMail,
+            "addressShipTo":addressShipTo,
+            "addressBillTo":addressBillTo,
+            "description":description
         },
         async : false,
         error : function(request) {

@@ -1,9 +1,12 @@
 package com.feng.project.sales.customer.domain;
+import com.feng.framework.web.page.PageDomain;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
-public class Customer {
-    private  int  customerId;
+@EqualsAndHashCode(callSuper = true)
+public class Customer extends PageDomain {
+    private  Long  customerId;
     private  String customerName;
     private  int status;
     private  String firstName;

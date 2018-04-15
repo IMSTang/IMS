@@ -36,7 +36,10 @@ public class customerController extends BaseController{
     @Autowired
     private ICustomerService customerService;
 
-
+    /**
+     * return customer package
+     * @return
+     */
     @RequiresPermissions("sales:customer:view")
     @GetMapping()
     public String customer()
@@ -111,4 +114,12 @@ public class customerController extends BaseController{
 
     }
 
+    @RequiresPermissions("sales:customer:save")
+    @Log(title = "JHD", action = "save customer")
+    @PostMapping("/save")
+    @ResponseBody
+    public JSON  save(Customer customer){
+        System.out.println("save customer------------------------------"+customer.getCustomerName());
+        return JSON.ok();
+    }
 }
