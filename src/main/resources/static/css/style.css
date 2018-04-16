@@ -105,7 +105,7 @@ body.body-small .navbar-top-links li:last-child {
     display: none;
     float: left;
     font-size: 12px;
-    left: 0;
+    left: 25px;
     list-style: none outside none;
     padding: 0;
     position: absolute;
@@ -188,6 +188,7 @@ body.body-small .navbar-top-links li:last-child {
 .nav-header {
     padding: 33px 25px;
     border-bottom: 1px solid #1A1817;
+    text-align: center;
 }
 
 .pace-done .nav-header {
@@ -7421,4 +7422,7 @@ a.forgetPw:hover {
 body
 {
     font-family:myFont;
+}
+.gray-bg .table {
+    background: #fff;
 }
