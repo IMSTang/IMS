@@ -99,7 +99,6 @@ body.body-small .navbar-top-links li:last-child {
     padding: 20px 10px;
     min-height: 50px;
 }
-
 .dropdown-menu {
     border: medium none;
     display: none;
@@ -7425,4 +7424,7 @@ body
 }
 .gray-bg .table {
     background: #fff;
+}
+.bootstrap-table .dropdown-menu {
+    width: 150px;
 }
