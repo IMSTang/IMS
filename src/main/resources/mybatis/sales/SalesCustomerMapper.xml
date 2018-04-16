@@ -21,7 +21,6 @@
         <result property="ccMail"   column="cc_mail" />
         <result property="addressShipTo"   column="address_ship_to" />
         <result property="addressBillTo"   column="address_bill_to" />
-        <result property="description"   column="description" />
         <result property="createBy"   column="create_by" />
         <result property="createTime"   column="create_time" />
         <result property="updateBy"   column="update_by" />
@@ -33,7 +32,7 @@
 		select * from sale_customer
 	</select>
     <select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">
-		select * from sale_customer where remark=#{loginName}
+		select * from sale_customer where create_by=#{loginName}
 	</select>
 
 
@@ -56,7 +55,6 @@
         <if test="ccMail != null and  ccMail != ''">cc_mail,</if>
         <if test="addressShipTo != null and  addressShipTo != ''">address_ship_to,</if>
         <if test="addressBillTo != null and  addressBillTo != ''">address_bill_to,</if>
-        <if test="description != null and  description != ''">description,</if>
         <if test="createBy != null and createBy  != ''">create_by,</if>
         create_time,
         <if test="updateBy != null and  updateBy != ''">update_by,</if>
@@ -79,7 +77,6 @@
         <if test="ccMail != null and  ccMail != ''">#{ccMail},</if>
         <if test="addressShipTo != null and  addressShipTo != ''">#{addressShipTo},</if>
         <if test="addressBillTo != null and  addressBillTo != ''">#{addressBillTo},</if>
-        <if test="description != null and  description != ''">#{description},</if>
         <if test="createBy != null and createBy  != ''">#{createBy},</if>
         sysdate(),
         <if test="updateBy != null and  updateBy != ''">#{updateBy},</if>
@@ -110,7 +107,6 @@
             <if test="ccMail != null and  ccMail != ''">cc_mail=#{ccMail},</if>
             <if test="addressShipTo != null and  addressShipTo != ''">address_ship_to=#{addressShipTo},</if>
             <if test="addressBillTo != null and  addressBillTo != ''">address_bill_to=#{addressBillTo},</if>
-            <if test="description != null and  description != ''">description=#{description},</if>
             <if test="createBy != null and createBy  != ''">create_by=#{createBy},</if>
             create_time=sysdate(),
             <if test="updateBy != null and  updateBy != ''">update_by=#{updateBy},</if>

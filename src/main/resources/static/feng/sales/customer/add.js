@@ -18,20 +18,12 @@ $("#form-customer-add").validate({
                 }
             }
         },
-        customerName:{
-            required:true,
-        },
-        firstName:{
-            required:true,
-        },
-        mainPhone:{
-            required:true,
-        },
+        // customerName:{
+        //     required:true,
+        // },
         mainMail:{
             required:true,
-        },
-        addressShipTo:{
-            required:true,
+            email:true
         },
     },
     messages: {
@@ -40,7 +32,7 @@ $("#form-customer-add").validate({
         }
     },
     submitHandler:function(form){
-        add();
+       add();
     }
 });
 
@@ -61,7 +53,7 @@ function add() {
     var ccMail = $("input[name='ccMail']").val();
     var addressShipTo = $("input[name='addressShipTo']").val();
     var addressBillTo = $("input[name='addressBillTo']").val();
-    var description = $("input[name='description']").val();
+    var remark = $("input[name='remark']").val();
 
     $.ajax({
         cache : true,
@@ -84,7 +76,7 @@ function add() {
             "ccMail":ccMail,
             "addressShipTo":addressShipTo,
             "addressBillTo":addressBillTo,
-            "description":description
+            "remark":remark
         },
         async : false,
         error : function(request) {

@@ -22,7 +22,6 @@ public class Customer extends PageDomain {
     private  String ccMail;
     private  String addressShipTo;
     private  String addressBillTo;
-    private  String description;
     private  String createBy;
     private  String createTime;
     private  String updateBy;

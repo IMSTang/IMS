@@ -80,10 +80,7 @@ function loading() {
         //     field : 'addressBillTo',
         //     title : 'Address Bill To'
         // },
-        {
-            field : 'description',
-            title : 'Description'
-        },
+
        //  {
        //      field : 'createBy',
        //      title : 'Create By'

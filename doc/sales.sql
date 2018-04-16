@@ -23,20 +23,19 @@ insert into sys_role_menu values ('1', '104');
 
 
 
-
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50720
-Source Host           : localhost:3306
-Source Database       : feng
+Source Server         :  47.97.219.255
+Source Server Version : 50639
+Source Host           : 47.97.219.255:3306
+Source Database       : ims
 
 Target Server Type    : MYSQL
-Target Server Version : 50720
+Target Server Version : 50639
 File Encoding         : 65001
 
-Date: 2018-04-14 19:32:50
+Date: 2018-04-16 11:23:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -62,17 +61,17 @@ CREATE TABLE `sale_customer` (
   `cc_mail` varchar(100) DEFAULT NULL,
   `address_ship_to` varchar(200) DEFAULT NULL,
   `address_bill_to` varchar(200) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
   `create_by` varchar(64) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `update_by` varchar(64) DEFAULT NULL,
   `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `remark` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sale_customer
 -- ----------------------------
-INSERT INTO `sale_customer` VALUES ('00000000002', 'jack', '0', 'aa', 'bb', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'jjj', 'admin', '2018-04-14 19:24:50', 'admin', '2018-04-14 19:24:50', 'admin');
-INSERT INTO `sale_customer` VALUES ('00000000003', 'tom', '1', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'das', 'admin', '2018-04-14 17:21:28', 'admin', '2018-04-14 17:21:28', 'admin');
+INSERT INTO `sale_customer` VALUES ('00000000002', 'jack', '0', 'aa', 'bb', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'admin', '2018-04-14 19:24:50', 'admin', '2018-04-14 19:24:50', 'admin');
+INSERT INTO `sale_customer` VALUES ('00000000003', 'tom', '1', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'admin', '2018-04-15 13:34:36', 'admin', '2018-04-15 13:34:36', 'my');
+INSERT INTO `sale_customer` VALUES ('00000000006', 'a', '0', 'a', 'a', 'a', 'aa', 'a', 'a', 'a', 'a', 'aa', 'a', 'a', 'a', 'a', 'admin', '2018-04-15 20:40:42', null, '2018-04-15 20:40:42', 'admin');

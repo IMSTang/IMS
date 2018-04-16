@@ -172,6 +172,7 @@ public class UserController extends BaseController
     @ResponseBody
     public String checkNameUnique(User user)
     {
+
         String uniqueFlag = "0";
         if (user != null)
         {
