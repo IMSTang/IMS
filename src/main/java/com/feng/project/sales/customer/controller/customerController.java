@@ -76,8 +76,8 @@ public class customerController extends BaseController{
      * @return json
      */
     @Log(title = "Sales Management", action = "Customer - remove customer")
-    @RequiresPermissions("sales:customer:batchRemove")
-    @GetMapping("/remove/{customerId}")
+    @RequiresPermissions("sales:customer:remove")
+    @RequestMapping("/remove/{customerId}")
     @ResponseBody
     public JSON remove(@PathVariable("customerId") int customerId){
         if (customerService.deleteCustomerById(customerId) > 0)
@@ -147,5 +147,7 @@ public class customerController extends BaseController{
         }
         return  JSON.error();
     }
+
+
 
 }
