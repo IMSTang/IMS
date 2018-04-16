@@ -140,7 +140,7 @@ create table sys_menu (
 -- 一级菜单
 insert into sys_menu values('1', 'System Management', '0', '1', '#', 'M', '0', '', 'fa fa-gear',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统管理目录');
 insert into sys_menu values('2', '系统监控', '0', '2', '#', 'M', '0', '', 'fa fa-video-camera', 'admin', '2018-03-01', 'admin', '2018-03-01', '系统监控目录');
-insert into sys_menu values('3', '系统工具', '0', '3', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统工具目录');
+
 -- 二级菜单
 insert into sys_menu values('4',   '用户管理', '1', '1', '/system/user',        'C', '0', 'system:user:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '用户管理菜单');
 insert into sys_menu values('5',   '角色管理', '1', '2', '/system/role',        'C', '0', 'system:role:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '角色管理菜单');
@@ -154,7 +154,7 @@ insert into sys_menu values('12',  '登录日志', '2', '2', '/monitor/logininfo
 insert into sys_menu values('13',  '在线用户', '2', '3', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '在线用户菜单');
 insert into sys_menu values('14',  '定时任务', '2', '4', '/monitor/job',        'C', '0', 'monitor:job:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '定时任务菜单');
 insert into sys_menu values('15',  '数据监控', '2', '5', '/monitor/data',       'C', '0', 'monitor:data:view',        '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '数据监控菜单');
-insert into sys_menu values('16',  '代码生成', '3', '1', '/tool/gen',           'C', '0', 'tool:gen:view',            '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '代码生成菜单');
+
 -- 用户管理按钮
 insert into sys_menu values('17', '用户查询', '4', '1',  '#',  'F', '0', 'system:user:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('18', '用户新增', '4', '2',  '#',  'F', '0', 'system:user:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
@@ -246,7 +246,6 @@ create table sys_role_menu (
 -- ----------------------------
 insert into sys_role_menu values ('1', '1');
 insert into sys_role_menu values ('1', '2');
-insert into sys_role_menu values ('1', '3');
 insert into sys_role_menu values ('1', '4');
 insert into sys_role_menu values ('1', '5');
 insert into sys_role_menu values ('1', '6');
@@ -259,7 +258,6 @@ insert into sys_role_menu values ('1', '12');
 insert into sys_role_menu values ('1', '13');
 insert into sys_role_menu values ('1', '14');
 insert into sys_role_menu values ('1', '15');
-insert into sys_role_menu values ('1', '16');
 insert into sys_role_menu values ('1', '17');
 insert into sys_role_menu values ('1', '18');
 insert into sys_role_menu values ('1', '19');
