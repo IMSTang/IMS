@@ -29,10 +29,10 @@
     </resultMap>
 
     <select id="selectAllCustomer"   resultMap="customerResult">
-		select * from sale_customer
+		select * from sale_customer where status="0"
 	</select>
     <select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">
-		select * from sale_customer where create_by=#{loginName}
+		select * from sale_customer where create_by=#{loginName} and status="0"
 	</select>
 
     <!--<select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">-->
@@ -120,10 +120,10 @@
         <if test="customerId != null and customerId  != ''">and customer_id = #{customerId}</if>
     </update>
 
-    <delete id="deleteCustomerById" parameterType="int">
+    <update id="deleteCustomerById" parameterType="int">
 -- 		delete from sale_customer where customer_id = #{customerId}
         update sale_customer set status="1"  where customer_id = #{customerId}
-	</delete>
+	</update>
 
 
     <select id="checkNameUnique" parameterType="String" resultType="int">
@@ -133,5 +133,11 @@
 
 
 
+    <update id="batchDeleteCustomer" parameterType="String">
+        update   sale_customer set status="1"  where customer_id in
+        <foreach collection="array" item="customerId" open="(" separator="," close=")">
+            #{customerId}
+        </foreach>
+    </update>
 
 </mapper>

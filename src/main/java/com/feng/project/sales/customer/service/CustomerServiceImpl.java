@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.feng.common.utils.security.ShiroUtils;
 import  com.feng.project.system.user.dao.IUserRoleDao;
-import com.feng.common.utils.StringUtils;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
-@Repository("customerService")
+
+
+//@Repository("customerService")
+@Service("customerService")
 public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private ICustomerDao customerDao;
@@ -21,33 +23,23 @@ public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private IRoleDao roleDao;
 
+    private static  String ROLE_KEY;
     /**
      * get customer list
      * @return
      */
     @Override
     public List<Customer> selectAllCustomer() {
-        //get current login name
+
         String loginName=ShiroUtils.getLoginName();
-
-        //get role id by user Id
-        String userId = ShiroUtils.getUserId().toString();
-        int roleId = userRoleDao.getRoleId(userId);
-        Long lRoleId = new Long((long)roleId);
-
-        //get role name
-        String roleKey = (roleDao.selectRoleById(lRoleId)).getRoleKey();
-
-
-
     //    equal current user prmission, get all info if is admin
-        if (roleKey.equals(CustomerConstants.ADMINISTRATOR) || roleKey.equals(CustomerConstants.SALESMANAGER) ){
+        if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
             return customerDao.selectAllCustomer();
 
         }
 
-        return  customerDao.selectOwnCustomer(loginName);
 
+        return  customerDao.selectOwnCustomer(loginName);
 
 
     }
@@ -88,5 +80,36 @@ public class CustomerServiceImpl implements ICustomerService {
            return CustomerConstants.NAME_NOT_UNIQUE;
        }
        return  CustomerConstants.NAME_UNIQUE;
+    }
+
+
+    /**
+     * batch Delete Customer
+     * @param ids
+     * @return
+     */
+    @Override
+    public int batchDeleteCustomer(int[] ids) {
+        return customerDao.batchDeleteCustomer(ids);
+    }
+
+
+    @Override
+    public String initRole(){
+        //get current login name
+        String loginName=ShiroUtils.getLoginName();
+
+        //get role id by user Id
+        String userId = ShiroUtils.getUserId().toString();
+        int roleId = userRoleDao.getRoleId(userId);
+        Long lRoleId = new Long((long)roleId);
+
+        //get role name
+        ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
+
+
+
+        return ROLE_KEY;
+
     }
 }

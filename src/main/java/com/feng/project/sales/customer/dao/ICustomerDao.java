@@ -40,4 +40,12 @@ public interface ICustomerDao {
      * @return customer number
      */
     public int checkNameUnique(String customerName);
+
+
+    /**
+     * batch Delete Customer
+     * @param ids
+     * @return
+     */
+    public  int batchDeleteCustomer(int[] ids);
 }

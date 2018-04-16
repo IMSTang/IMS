@@ -1,20 +1,15 @@
 package com.feng.project.sales.customer.controller;
 
-import java.sql.SQLOutput;
-import java.util.List;
 
+import java.util.List;
 import com.feng.project.sales.customer.domain.Customer;
 import com.feng.project.sales.customer.service.ICustomerService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.ResponseBody;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
@@ -44,22 +39,35 @@ public class customerController extends BaseController{
     @GetMapping()
     public String customer()
     {
+        String result = customerService.initRole();
+        if(result == null)
+            return "error";
         return prefix + "/customer";
     }
+
+
+
+
+
 
 
     /**
      * get customer Info
      * @return customer list
      */
-    @RequiresPermissions("sales:customer:view")
+    @RequiresPermissions("sales:customer:list")
     @GetMapping("/list")
     @ResponseBody
-    public TableDataInfo list()
+    public TableDataInfo list(Customer customer)
     {
+        setPageInfo(customer);
         List<Customer> customerList = customerService.selectAllCustomer();
         return getDataTable(customerList);
     }
+
+
+
+
 
 
     /**
@@ -67,7 +75,7 @@ public class customerController extends BaseController{
      * @param customerId customer Id
      * @return json
      */
-    @Log(title = "JHD", action = "remove customer")
+    @Log(title = "Sales Management", action = "Customer - remove customer")
     @RequiresPermissions("sales:customer:batchRemove")
     @GetMapping("/remove/{customerId}")
     @ResponseBody
@@ -86,7 +94,7 @@ public class customerController extends BaseController{
      * @param model
      * @return
      */
-    @Log(title = "JHD", action = "add customer")
+    @Log(title = "Sales Management", action = "Customer -add customer")
     @RequiresPermissions("sales:customer:add")
     @GetMapping("/add")
     public  String  add(Model model){
@@ -114,7 +122,7 @@ public class customerController extends BaseController{
     }
 
     @RequiresPermissions("sales:customer:save")
-    @Log(title = "JHD", action = "save customer")
+    @Log(title = "Sales Management", action = "Customer - save customer")
     @PostMapping("/save")
     @ResponseBody
     public JSON  save(Customer customer){
@@ -123,4 +131,21 @@ public class customerController extends BaseController{
        }
        return JSON.error();
     }
+
+
+    /**
+     *batch Remove customer
+     */
+    @RequiresPermissions("sales:customer:batchRemove")
+    @Log(title = "Sales Management", action = "Customer - batchRemoveCustomer")
+    @PostMapping("/batchRemove")
+    @ResponseBody
+    public  JSON batchRemove(@RequestParam("ids[]")int[] ids){
+        int rows = customerService.batchDeleteCustomer(ids);
+        if(rows>0){
+            return  JSON.ok();
+        }
+        return  JSON.error();
+    }
+
 }

@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Customer extends PageDomain {
-    private  Long  customerId;
+    private  int  customerId;
     private  String customerName;
     private  int status;
     private  String firstName;

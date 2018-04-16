@@ -27,4 +27,14 @@ public interface ICustomerService {
      */
     public  String checkNameUnique(String  customerName);
 
+
+    /**
+     * batch Delete Customer
+     * @param ids
+     * @return
+     */
+    public  int batchDeleteCustomer(int[] ids);
+
+
+    public String initRole();
 }
