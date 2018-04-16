@@ -104,10 +104,9 @@ public class customerController extends BaseController{
      */
     @PostMapping("/checkNameUnique")
     @ResponseBody
-    public String checkNameUnique(Customer customer){
+    public String  checkNameUnique(Customer customer){
         String flag="0";
-
-        if(customer != null){
+          if(customer != null){
             flag = customerService.checkNameUnique(customer.getCustomerName());
         }
         return  flag;
