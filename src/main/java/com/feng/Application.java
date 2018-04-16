@@ -1,5 +1,7 @@
 package com.feng;
 
+import com.feng.common.utils.ServiceInfoUtil;
+import com.feng.common.utils.security.ShiroUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +19,8 @@ public class Application
     public static void main(String[] args)
     {
         SpringApplication.run(Application.class, args);
-        System.out.println("open URL : http://localhost:8082"+args);
+        int port = ServiceInfoUtil.getPort();
+        System.out.println("open URL : http://localhost:"+port);
 
     }
 }
