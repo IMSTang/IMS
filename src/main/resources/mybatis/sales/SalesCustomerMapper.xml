@@ -35,6 +35,9 @@
 		select * from sale_customer where create_by=#{loginName}
 	</select>
 
+    <!--<select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">-->
+		<!--select * from sale_customer where customer_name like CONCAT('%',#{loginName},'%' )-->
+	<!--</select>-->
 
 
 

@@ -14,5 +14,6 @@ public class CustomerConstants {
     /**
      * Administrator role id
      */
-    public final  static int ADMINISTRATOR=1;
+    public final  static String ADMINISTRATOR="admin";
+    public final static String  SALESMANAGER="salesManager";
 }

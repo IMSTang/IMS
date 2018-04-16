@@ -3,6 +3,7 @@ package com.feng.project.sales.customer.service;
 import com.feng.common.constant.CustomerConstants;
 import com.feng.project.sales.customer.dao.ICustomerDao;
 import com.feng.project.sales.customer.domain.Customer;
+import com.feng.project.system.role.dao.IRoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.feng.common.utils.security.ShiroUtils;
@@ -17,6 +18,9 @@ public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private IUserRoleDao userRoleDao;
 
+    @Autowired
+    private IRoleDao roleDao;
+
     /**
      * get customer list
      * @return
@@ -29,15 +33,23 @@ public class CustomerServiceImpl implements ICustomerService {
         //get role id by user Id
         String userId = ShiroUtils.getUserId().toString();
         int roleId = userRoleDao.getRoleId(userId);
+        Long lRoleId = new Long((long)roleId);
+
+        //get role name
+        String roleKey = (roleDao.selectRoleById(lRoleId)).getRoleKey();
 
 
-        //equal current user prmission, get all info if is admin
-        if (roleId == CustomerConstants.ADMINISTRATOR){
+
+    //    equal current user prmission, get all info if is admin
+        if (roleKey.equals(CustomerConstants.ADMINISTRATOR) || roleKey.equals(CustomerConstants.SALESMANAGER) ){
             return customerDao.selectAllCustomer();
 
         }
 
         return  customerDao.selectOwnCustomer(loginName);
+
+
+
     }
 
 
