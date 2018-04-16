@@ -4,9 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title>JHD管理系统首页</title>
-    <meta name="keywords" content="JHD管理系统首页">
-    <meta name="description" content="JHD管理系统首页">
+    <title>JHD Invoicing Management System</title>
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
@@ -32,16 +30,16 @@
                          <img src="img/profile_small.jpg" alt="image" class="img-circle" height="60" width="60"/></span>
                          <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                          <span class="clear"><span class="block m-t-xs"><strong class="font-bold" th:text="${user.userName}">JHD</strong></span>
-                         <span class="text-muted text-xs block" th:text="${user.dept.deptName}">研发部<b class="caret"></b></span> </span> </a>
+                         <span class="text-muted text-xs block" th:text="${user.dept.deptName}">myDept<b class="caret"></b></span> </span> </a>
                          <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                             <li><a class="menuItem" href="profile.html">个人信息</a></li>
+                             <li><a class="menuItem" href="profile.html">Profile</a></li>
                              <li class="divider"></li>
-                             <li><a href="/logout">退出</a></li>
+                             <li><a href="/logout">Logout</a></li>
                          </ul>
                     </div>
                 </li>
                  <li class="active">
-                    <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">主页</span> </a>
+                    <a href="index.html"><i class="fa fa-home"></i> <span class="nav-label">Home Page</span> </a>
                      <!--<span class="fa arrow"></span>-->
                      <!--<ul class="nav nav-second-level"> -->
                         <!--<li class="active"><a class="menuItem" th:href="@{/system/main}">了解JHD</a></li>-->
@@ -82,9 +80,9 @@
                 </div>
                 <ul class="nav navbar-top-links navbar-right">
 	                <li>
-	                    <span class="m-r-sm text-muted welcome-message">欢迎来到JHD管理后台.</span>
+	                    <span class="m-r-sm text-muted welcome-message">Welcome To JHD CORP Invoicing Management System</span>
 	                </li>
-                    <li class="hidden-xs"><a href="/logout" ><i class="fa fa-sign-out"></i> 注销</a></li>
+                    <li class="hidden-xs"><a href="/logout" ><i class="fa fa-sign-out"></i> Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -94,7 +92,7 @@
             </button>
             <nav class="page-tabs menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active menuTab">首页</a>
+                    <a href="javascript:;" class="active menuTab">Home Page</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right tabRight">
@@ -102,15 +100,15 @@
             </button>
             <div class="btn-group roll-nav roll-right">
                 <button class="dropdown J_tabClose" data-toggle="dropdown">
-                    	页签操作<span class="caret"></span>
+                    	Page_Action<span class="caret"></span>
                 </button>
                 <ul role="menu" class="dropdown-menu dropdown-menu-right">
-                    <li class="tabReload"><a>刷新</a></li>
-                    <li class="tabCloseAll"><a>全部关闭</a></li>
-                    <li class="tabCloseOther"><a>关闭其他</a></li>
+                    <li class="tabReload"><a>Refresh</a></li>
+                    <li class="tabCloseAll"><a>Close All</a></li>
+                    <li class="tabCloseOther"><a>Close Others</a></li>
                 </ul>
             </div>
-            <a href="/logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            <!--<a href="/logout" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>-->
         </div>
         <div class="row mainContent" id="content-main">
             <iframe class="feng_iframe" name="iframe0" width="100%" height="100%"
