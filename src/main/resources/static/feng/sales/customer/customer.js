@@ -124,6 +124,14 @@ function add() {
     layer_show("add customer", url, '800', '590');
 }
 
+
+// delete customer
+function remove(id) {
+    $.modalConfirm("Do you want to remove this customer？", function(r) {
+        _ajax(prefix + "/remove/" + id, "", "post", r);
+    })
+}
+
 function batchRemove() {
     var rows = $.getSelections("customerId");
     if (rows.length == 0) {

@@ -12,6 +12,7 @@ insert into sys_menu values('102', 'add', '101', '2',  '#',  'F', '0', 'sales:cu
 insert into sys_menu values('103', 'delete', '101', '3',  '#',  'F', '0', 'sales:customer:batchRemove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('104', 'saveCustomer', '101', '4',  '#',  'F', '0', 'sales:customer:save',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('105', 'queryCustomer', '101', '1',  '#',  'F', '0', 'sales:customer:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('106', 'removeCustomer', '101', '5',  '#',  'F', '0', 'sales:customer:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
 
@@ -22,6 +23,7 @@ insert into sys_role_menu values ('1', '102');
 insert into sys_role_menu values ('1', '103');
 insert into sys_role_menu values ('1', '104');
 insert into sys_role_menu values ('1', '105');
+insert into sys_role_menu values ('1', '106');
 
 
 

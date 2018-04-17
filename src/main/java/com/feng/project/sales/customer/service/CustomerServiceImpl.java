@@ -52,6 +52,7 @@ public class CustomerServiceImpl implements ICustomerService {
      */
     @Override
     public int deleteCustomerById(int customerId) {
+        System.out.println("customerId++++++++++++++++++++++++"+customerId);
         return customerDao.deleteCustomerById(customerId);
     }
 

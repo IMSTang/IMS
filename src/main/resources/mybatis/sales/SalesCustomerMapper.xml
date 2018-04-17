@@ -121,8 +121,7 @@
     </update>
 
     <update id="deleteCustomerById" parameterType="int">
--- 		delete from sale_customer where customer_id = #{customerId}
-        update sale_customer set status="1"  where customer_id = #{customerId}
+        update   sale_customer set status="1"  where customer_id=#{customerId}
 	</update>
 
 
