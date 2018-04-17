@@ -37,4 +37,22 @@ public interface ICustomerService {
 
 
     public String initRole();
+
+
+
+
+    /**
+     * get customer by id
+     * @param customerId id
+     * @return Customer object
+     */
+    public Customer selectCustomerById(int customerId);
+
+
+    /**
+     * update customer
+     * @param customer
+     * @return
+     */
+
 }

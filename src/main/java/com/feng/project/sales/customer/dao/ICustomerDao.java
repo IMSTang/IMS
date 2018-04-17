@@ -48,4 +48,20 @@ public interface ICustomerDao {
      * @return
      */
     public  int batchDeleteCustomer(int[] ids);
+
+
+    /**
+     * get customer by id
+     * @param customerId id
+     * @return Customer object
+     */
+    public Customer selectCustomerById(int customerId);
+
+    /**
+     * update customer
+     * @param customer
+     * @return
+     */
+    public  int  updateCustomer(Customer customer);
+
 }

@@ -1,44 +1,23 @@
-$("#form-customer-add").validate({
+$("#form-customer-edit").validate({
     rules:{
         customerName:{
             required:true,
-            minlength: 1,
-            remote: {
-                url: "/sales/customer/checkNameUnique",
-                type: "post",
-                dataType: "text",
-                data: {
-                    name : function() {
-                        return $.trim($("#customerName").val());
-                    }
-                },
-                dataFilter: function(data, type) {
-                    if (data == "0") return true;
-                    else return false;
-                }
-            }
         },
-        // customerName:{
-        //     required:true,
-        // },
+
         mainMail:{
             required:true,
             email:true
         },
     },
-    messages: {
-        "customerName": {
-            remote: "customer have been exist"
-        }
-    },
+
     submitHandler:function(form){
-       add();
+        edit();
     }
 });
 
 
-function add() {
-   // var customerId = $("input[name='customerId']").val();
+function edit() {
+    var customerId = $("input[name='customerId']").val();
     var customerName = $("input[name='customerName']").val();
     var firstName = $("input[name='firstName']").val();
     var lastName = $("input[name='lastName']").val();
@@ -61,7 +40,7 @@ function add() {
         url : "/sales/customer/save",
         data : {
 
-          //  "customerId":customerId,
+            "customerId":customerId,
             "customerName":customerName,
             "firstName":firstName,
             "lastName":lastName,
@@ -84,8 +63,8 @@ function add() {
         },
         success : function(data) {
             if (data.code == 0) {
-                parent.layer.msg("add successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
-                    $.parentReload();
+                parent.layer.msg("Updated successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+                    window.parent.location.reload();
                 });
             } else {
                 $.modalAlert(data.msg, "error");

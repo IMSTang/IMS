@@ -1,6 +1,7 @@
 package com.feng.project.sales.customer.service;
 
 import com.feng.common.constant.CustomerConstants;
+import com.feng.common.utils.StringUtils;
 import com.feng.project.sales.customer.dao.ICustomerDao;
 import com.feng.project.sales.customer.domain.Customer;
 import com.feng.project.system.role.dao.IRoleDao;
@@ -52,7 +53,6 @@ public class CustomerServiceImpl implements ICustomerService {
      */
     @Override
     public int deleteCustomerById(int customerId) {
-        System.out.println("customerId++++++++++++++++++++++++"+customerId);
         return customerDao.deleteCustomerById(customerId);
     }
 
@@ -65,11 +65,18 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public int saveCustomer(Customer customer) {
 
-   // int count = 0;
-   // int customerId = customer.getCustomerId();
-   customer.setCreateBy(ShiroUtils.getLoginName());
-   customer.setRemark(ShiroUtils.getLoginName());
-   return customerDao.insertCustomer(customer);
+//    int count = 0;
+     Long customerId = customer.getCustomerId();
+
+       if(StringUtils.isNotNull(customerId)){
+        //update customer
+        customer.setUpdateBy(ShiroUtils.getLoginName());
+        return customerDao.updateCustomer(customer);
+    } else {
+        //add customer
+        customer.setCreateBy(ShiroUtils.getLoginName());
+       return customerDao.insertCustomer(customer);
+  }
 
 
     }
@@ -112,5 +119,10 @@ public class CustomerServiceImpl implements ICustomerService {
 
         return ROLE_KEY;
 
+    }
+
+    @Override
+    public Customer selectCustomerById(int customerId) {
+        return customerDao.selectCustomerById(customerId);
     }
 }

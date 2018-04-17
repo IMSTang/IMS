@@ -149,5 +149,13 @@ public class customerController extends BaseController{
     }
 
 
+    @Log(title = "Sales Management", action = "Customer - edit Customer")
+    @RequiresPermissions("sales:customer:edit")
+    @GetMapping("/edit/{customerId}")
+    public String edit(@PathVariable("customerId") int customerId,Model model){
+        Customer customer = customerService.selectCustomerById(customerId);
+        model.addAttribute("customer",customer);
+        return  prefix+"/edit";
+    }
 
 }

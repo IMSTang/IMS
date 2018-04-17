@@ -132,6 +132,18 @@ function remove(id) {
     })
 }
 
+/**
+ * modify customer
+ */
+function edit(customerId) {
+    var url = prefix + '/edit/' + customerId;
+    layer_show("edit Customer", url, '800', '600');
+}
+
+
+/**
+ * batch delete customer
+ */
 function batchRemove() {
     var rows = $.getSelections("customerId");
     if (rows.length == 0) {

@@ -40,6 +40,10 @@
 	<!--</select>-->
 
 
+    <select id="selectCustomerById" parameterType="int" resultMap="customerResult">
+		select * from sale_customer where customer_id=#{customerId} and status="0"
+	</select>
+
 
     <insert id="insertCustomer" parameterType="customer">
         insert into sale_customer(
@@ -61,8 +65,9 @@
         <if test="createBy != null and createBy  != ''">create_by,</if>
         create_time,
         <if test="updateBy != null and  updateBy != ''">update_by,</if>
-        update_time,
-        <if test="remark != null and  remark != ''">remark</if>
+
+        <if test="remark != null and  remark != ''">remark,</if>
+        update_time
 
         )values(
 
@@ -83,8 +88,8 @@
         <if test="createBy != null and createBy  != ''">#{createBy},</if>
         sysdate(),
         <if test="updateBy != null and  updateBy != ''">#{updateBy},</if>
-        sysdate(),
-        <if test="remark != null and  remark != ''">#{remark}</if>
+        <if test="remark != null and  remark != ''">#{remark},</if>
+        sysdate()
         )
     </insert>
 
@@ -96,7 +101,6 @@
             <if test="customerId != null and customerId != 0">customer_id=#{customerId},</if>
 
             <if test="customerName != null and customerName  != ''">customer_name=#{customerName},</if>
-            <if test="status != null">status=#{status},</if>
             <if test="firstName != null and  firstName != ''">first_name=#{firstName},</if>
             <if test="lastName != null and  lastName != ''">last_name=#{lastName},</if>
             <if test="middleName != null and  middleName != ''">middle_name=#{middleName},</if>
@@ -110,14 +114,11 @@
             <if test="ccMail != null and  ccMail != ''">cc_mail=#{ccMail},</if>
             <if test="addressShipTo != null and  addressShipTo != ''">address_ship_to=#{addressShipTo},</if>
             <if test="addressBillTo != null and  addressBillTo != ''">address_bill_to=#{addressBillTo},</if>
-            <if test="createBy != null and createBy  != ''">create_by=#{createBy},</if>
-            create_time=sysdate(),
             <if test="updateBy != null and  updateBy != ''">update_by=#{updateBy},</if>
-            update_time =sysdate(),
-            <if test="remark != null and  remark != ''">remark=#{remark}</if>
+            <if test="remark != null and  remark != ''">remark=#{remark},</if>
+            update_time =sysdate()
         </set>
-        where 1=1
-        <if test="customerId != null and customerId  != ''">and customer_id = #{customerId}</if>
+        where  customer_id = #{customerId}
     </update>
 
     <update id="deleteCustomerById" parameterType="int">
