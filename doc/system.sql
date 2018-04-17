@@ -108,8 +108,9 @@ create table sys_role (
 -- ----------------------------
 insert into sys_role values('1', 'Administrator',   'admin',  1,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', '管理员');
 insert into sys_role values('2', 'Storage', 'storage', 2,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Storage');
-insert into sys_role values('3', 'Sales', 'sales', 3,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Sales');
+insert into sys_role values('3', 'SalesManager', 'salesManager', 3,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'salesManager');
 insert into sys_role values('4', 'Purchase', 'purchase', 4,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase');
+insert into sys_role values('5', 'Sales', 'sales', 3,  0, 'admin', '2018-03-01', 'admin', '2018-03-01', 'Sales');
 
 
 -- ----------------------------
@@ -133,27 +134,26 @@ create table sys_menu (
   remark 			varchar(500) 	default '' 				   comment '备注',
   primary key (menu_id)
 ) engine=innodb auto_increment=1000 default charset=utf8;
-
+department
 -- ----------------------------
 -- 初始化-菜单信息表数据
 -- ----------------------------
 -- 一级菜单
 insert into sys_menu values('1', 'System Management', '0', '1', '#', 'M', '0', '', 'fa fa-gear',         'admin', '2018-03-01', 'admin', '2018-03-01', '系统管理目录');
-insert into sys_menu values('2', '系统监控', '0', '2', '#', 'M', '0', '', 'fa fa-video-camera', 'admin', '2018-03-01', 'admin', '2018-03-01', '系统监控目录');
 
 -- 二级菜单
-insert into sys_menu values('4',   '用户管理', '1', '1', '/system/user',        'C', '0', 'system:user:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '用户管理菜单');
-insert into sys_menu values('5',   '角色管理', '1', '2', '/system/role',        'C', '0', 'system:role:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '角色管理菜单');
-insert into sys_menu values('6',   '菜单管理', '1', '3', '/system/menu',        'C', '0', 'system:menu:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '菜单管理菜单');
-insert into sys_menu values('7',   '部门管理', '1', '4', '/system/dept',        'C', '0', 'system:dept:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '部门管理菜单');
-insert into sys_menu values('8',   '岗位管理', '1', '5', '/system/post',        'C', '0', 'system:post:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '岗位管理菜单');
+insert into sys_menu values('4',   'Users', '1', '1', '/system/user',        'C', '0', 'system:user:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '用户管理菜单');
+insert into sys_menu values('5',   'Roles', '1', '2', '/system/role',        'C', '0', 'system:role:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '角色管理菜单');
+insert into sys_menu values('6',   'Menus', '1', '3', '/system/menu',        'C', '0', 'system:menu:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '菜单管理菜单');
+insert into sys_menu values('7',   'Department', '1', '4', '/system/dept',        'C', '0', 'system:dept:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '部门管理菜单');
+insert into sys_menu values('8',   'Post', '1', '5', '/system/post',        'C', '0', 'system:post:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '岗位管理菜单');
 insert into sys_menu values('9',   '参数设置', '1', '6', '/system/config',      'C', '0', 'system:config:view',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '参数设置菜单');
 insert into sys_menu values('10',  '字典管理', '1', '7', '/system/dict',        'C', '0', 'system:dict:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典管理菜单');
-insert into sys_menu values('11',  '操作日志', '2', '1', '/monitor/operlog',    'C', '0', 'monitor:operlog:view',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '操作日志菜单');
-insert into sys_menu values('12',  '登录日志', '2', '2', '/monitor/logininfor', 'C', '0', 'monitor:logininfor:view',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '登录日志菜单');
-insert into sys_menu values('13',  '在线用户', '2', '3', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '在线用户菜单');
-insert into sys_menu values('14',  '定时任务', '2', '4', '/monitor/job',        'C', '0', 'monitor:job:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '定时任务菜单');
-insert into sys_menu values('15',  '数据监控', '2', '5', '/monitor/data',       'C', '0', 'monitor:data:view',        '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '数据监控菜单');
+insert into sys_menu values('11',  'Operation Logs', '1', '11', '/monitor/operlog',    'C', '0', 'monitor:operlog:view',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '操作日志菜单');
+insert into sys_menu values('12',  'Login Logs', '1', '12', '/monitor/logininfor', 'C', '0', 'monitor:logininfor:view',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '登录日志菜单');
+insert into sys_menu values('13',  'Online Users', '1', '13', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '在线用户菜单');
+insert into sys_menu values('14',  '定时任务', '1', '14', '/monitor/job',        'C', '0', 'monitor:job:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '定时任务菜单');
+insert into sys_menu values('15',  '数据监控', '1', '15', '/monitor/data',       'C', '0', 'monitor:data:view',        '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '数据监控菜单');
 
 -- 用户管理按钮
 insert into sys_menu values('17', '用户查询', '4', '1',  '#',  'F', '0', 'system:user:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
@@ -245,7 +245,6 @@ create table sys_role_menu (
 -- 初始化-角色和菜单关联表数据
 -- ----------------------------
 insert into sys_role_menu values ('1', '1');
-insert into sys_role_menu values ('1', '2');
 insert into sys_role_menu values ('1', '4');
 insert into sys_role_menu values ('1', '5');
 insert into sys_role_menu values ('1', '6');

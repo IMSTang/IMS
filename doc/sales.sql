@@ -1,7 +1,7 @@
 
 
 -- 一级菜单
-insert into sys_menu values('100', 'Sales Management', '0', '5', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Sales Management');
+insert into sys_menu values('100', 'Sales Management', '0', '5', '#', 'M', '0', '', 'fa fa-shopping-basket',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Sales Management');
 
 -- 二级菜单
 insert into sys_menu values('101',   'Customer', '100', '1', '/sales/customer',        'C', '0', 'sales:customer:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Customer');

@@ -1,5 +1,5 @@
 -- 一级菜单
-insert into sys_menu values('200', 'Purchase Management', '0', '3', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase Management');
+insert into sys_menu values('200', 'Purchase Management', '0', '3', '#', 'M', '0', '', 'fa fa-credit-card',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase Management');
 -- 二级菜单
 insert into sys_menu values('210',   'Vendor', '200', '1', '/purchase/vendor',        'C', '0', 'purchase:vendor:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Vendor');
 insert into sys_menu values('220',   'Inquiry', '200', '2', '/purchase/inquiry',        'C', '0', 'purchase:inquiry:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inquiry');
@@ -13,6 +13,15 @@ insert into sys_menu values('214', 'RemoveVendor', '210', '4',  '#',  'F', '0', 
 insert into sys_menu values('215', 'SaveVendor', '210', '5',  '#',  'F', '0', 'purchase:vendor:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('216', 'BatchRemove', '210', '6', '#',  'F', '0', 'purchase:vendor:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
+
+-- 将按钮权限赋予role
+insert into sys_role_menu values ('1', '210');
+insert into sys_role_menu values ('1', '211');
+insert into sys_role_menu values ('1', '212');
+insert into sys_role_menu values ('1', '213');
+insert into sys_role_menu values ('1', '214');
+insert into sys_role_menu values ('1', '215');
+insert into sys_role_menu values ('1', '216');
 
 
 -- ----------------------------
