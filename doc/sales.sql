@@ -4,27 +4,27 @@
 insert into sys_menu values('100', 'Sales Management', '0', '5', '#', 'M', '0', '', 'fa fa-shopping-basket',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Sales Management');
 
 -- 二级菜单
-insert into sys_menu values('101',   'Customer', '100', '1', '/sales/customer',        'C', '0', 'sales:customer:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Customer');
+insert into sys_menu values('110',   'Customer', '100', '1', '/sales/customer',        'C', '0', 'sales:customer:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Customer');
 
 
 -- 用户按钮
-insert into sys_menu values('102', 'add', '101', '2',  '#',  'F', '0', 'sales:customer:add',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('103', 'delete', '101', '3',  '#',  'F', '0', 'sales:customer:batchRemove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('104', 'saveCustomer', '101', '4',  '#',  'F', '0', 'sales:customer:save',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('105', 'queryCustomer', '101', '1',  '#',  'F', '0', 'sales:customer:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('106', 'removeCustomer', '101', '5',  '#',  'F', '0', 'sales:customer:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('107', 'editCustomer', '101', '6',  '#',  'F', '0', 'sales:customer:edit',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('111', 'add', '110', '2',  '#',  'F', '0', 'sales:customer:add',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('112', 'delete', '110', '3',  '#',  'F', '0', 'sales:customer:batchRemove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('113', 'saveCustomer', '110', '4',  '#',  'F', '0', 'sales:customer:save',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('114', 'queryCustomer', '110', '1',  '#',  'F', '0', 'sales:customer:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('115', 'removeCustomer', '110', '5',  '#',  'F', '0', 'sales:customer:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('116', 'editCustomer', '110', '6',  '#',  'F', '0', 'sales:customer:edit',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
 -- 将按钮权限赋予role
 insert into sys_role_menu values ('1', '100');
-insert into sys_role_menu values ('1', '101');
-insert into sys_role_menu values ('1', '102');
-insert into sys_role_menu values ('1', '103');
-insert into sys_role_menu values ('1', '104');
-insert into sys_role_menu values ('1', '105');
-insert into sys_role_menu values ('1', '106');
-insert into sys_role_menu values ('1', '107');
+insert into sys_role_menu values ('1', '110');
+insert into sys_role_menu values ('1', '111');
+insert into sys_role_menu values ('1', '112');
+insert into sys_role_menu values ('1', '113');
+insert into sys_role_menu values ('1', '114');
+insert into sys_role_menu values ('1', '115');
+insert into sys_role_menu values ('1', '116');
 
 
 /*
