@@ -8,7 +8,7 @@ public interface ICustomerService {
      * select all customer info
      * @return customer list
      */
-    public List<Customer> selectAllCustomer();
+    public List<Customer> selectAllCustomer(Customer customer);
 
     /**
      * delete customer by id

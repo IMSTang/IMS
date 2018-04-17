@@ -28,11 +28,19 @@
         <result property="remark"   column="remark" />
     </resultMap>
 
-    <select id="selectAllCustomer"   resultMap="customerResult">
+    <select id="selectAllCustomer"  parameterType="customer"  resultMap="customerResult">
 		select * from sale_customer where status="0"
+        <if test="searchValue != null and searchValue != ''">
+            AND customer_name like CONCAT('%',#{searchValue},'%' )
+        </if>
 	</select>
-    <select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">
+
+
+    <select id="selectOwnCustomer"  parameterType="String" resultMap="customerResult">
 		select * from sale_customer where create_by=#{loginName} and status="0"
+        <if test="searchValue != null and searchValue != ''">
+            AND customer_name like CONCAT('%',#{searchValue},'%' )
+        </if>
 	</select>
 
     <!--<select id="selectOwnCustomer" parameterType="String" resultMap="customerResult">-->

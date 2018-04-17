@@ -4,6 +4,8 @@ package com.feng.project.sales.customer.dao;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import com.feng.project.sales.customer.domain.Customer;
+import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface ICustomerDao {
 
@@ -11,7 +13,7 @@ public interface ICustomerDao {
      * get all customer
      * @return Customer list
      */
-    public List<Customer> selectAllCustomer();
+    public List<Customer> selectAllCustomer(Customer customer);
 
 
     /**
@@ -19,7 +21,7 @@ public interface ICustomerDao {
      * @return Customer list
      */
 
-    public List<Customer> selectOwnCustomer(String loginName);
+    public List<Customer> selectOwnCustomer(@Param("loginName") String loginName, @Param("searchValue") String searchValue);
     /**
      * delete customer by id
      * @param customerId

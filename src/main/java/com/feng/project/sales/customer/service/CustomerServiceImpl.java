@@ -5,6 +5,7 @@ import com.feng.common.utils.StringUtils;
 import com.feng.project.sales.customer.dao.ICustomerDao;
 import com.feng.project.sales.customer.domain.Customer;
 import com.feng.project.system.role.dao.IRoleDao;
+import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.feng.common.utils.security.ShiroUtils;
@@ -30,17 +31,17 @@ public class CustomerServiceImpl implements ICustomerService {
      * @return
      */
     @Override
-    public List<Customer> selectAllCustomer() {
+    public List<Customer> selectAllCustomer(Customer customer) {
+
 
         String loginName=ShiroUtils.getLoginName();
-    //    equal current user prmission, get all info if is admin
+        //equal current user prmission, get all info if is admin
         if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
-            return customerDao.selectAllCustomer();
+            return customerDao.selectAllCustomer(customer);
 
         }
 
-
-        return  customerDao.selectOwnCustomer(loginName);
+        return  customerDao.selectOwnCustomer( loginName,customer.getSearchValue()  );
 
 
     }

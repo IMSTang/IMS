@@ -61,7 +61,7 @@ public class customerController extends BaseController{
     public TableDataInfo list(Customer customer)
     {
         setPageInfo(customer);
-        List<Customer> customerList = customerService.selectAllCustomer();
+        List<Customer> customerList = customerService.selectAllCustomer(customer);
         return getDataTable(customerList);
     }
 
