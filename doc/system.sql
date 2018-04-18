@@ -134,7 +134,7 @@ create table sys_menu (
   remark 			varchar(500) 	default '' 				   comment '备注',
   primary key (menu_id)
 ) engine=innodb auto_increment=1000 default charset=utf8;
-department
+
 -- ----------------------------
 -- 初始化-菜单信息表数据
 -- ----------------------------
