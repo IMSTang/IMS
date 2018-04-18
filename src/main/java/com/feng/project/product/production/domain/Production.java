@@ -16,7 +16,7 @@ public class Production  extends PageDomain {
         private String testMethod;
         private String placeOfOrigin;
         private String efficiency;
-        private String safetyStack;
+        private String safetyStock;
         private String createBy;
         private String createTime;
         private String updateBy;
@@ -96,12 +96,12 @@ public class Production  extends PageDomain {
                 this.efficiency = efficiency;
         }
 
-        public String getSafetyStack() {
-                return safetyStack;
+        public String getSafetyStock() {
+                return safetyStock;
         }
 
-        public void setSafetyStack(String safetyStack) {
-                this.safetyStack = safetyStack;
+        public void setSafetyStock(String safetyStock) {
+                this.safetyStock = safetyStock;
         }
 
         public String getCreateBy() {

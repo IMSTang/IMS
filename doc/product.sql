@@ -54,7 +54,7 @@ create table pro_production
 	test_method     varchar(100)     null                   comment 'test_method',
 	place_of_origin     varchar(100)     null                   comment 'place_of_origin',
 	efficiency     varchar(50)     null                   comment 'efficiency',
-	safety_stack         varchar(50)     null                   comment 'safety_stack',
+	safety_stock        int(10)     null                   comment '最低补货库存量',
     create_by     varchar(64)     default ''                 comment '创建者',
     create_time   timestamp       default current_timestamp  comment '创建时间',
     update_by     varchar(64) 	  default ''			     comment '更新者',

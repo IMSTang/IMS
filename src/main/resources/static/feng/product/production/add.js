@@ -22,7 +22,7 @@ var specificationCn  = $("input[name='specificationCn']").val();
 var testMethod  = $("input[name='testMethod']").val(); 
 var placeOfOrigin  = $("input[name='placeOfOrigin']").val(); 
 var efficiency  = $("input[name='efficiency']").val(); 
-var safetyStack  = $("input[name='safetyStack']").val(); 
+var safetyStock  = $("input[name='safetyStock']").val();
 var createBy  = $("input[name='createBy']").val(); 
 var createTime  = $("input[name='createTime']").val(); 
 var updateBy  = $("input[name='updateBy']").val(); 
@@ -45,7 +45,7 @@ var remark  = $("input[name='remark']").val();
             "testMethod": testMethod, 
             "placeOfOrigin": placeOfOrigin, 
             "efficiency": efficiency, 
-            "safetyStack": safetyStack, 
+            "safetyStock": safetyStock,
             "createBy": createBy, 
             "createTime": createTime, 
             "updateBy": updateBy, 

@@ -12,7 +12,7 @@
         <result column="test_method" property="testMethod" jdbcType="VARCHAR" />
         <result column="place_of_origin" property="placeOfOrigin" jdbcType="VARCHAR" />
         <result column="efficiency" property="efficiency" jdbcType="VARCHAR" />
-        <result column="safety_stack" property="safetyStack" jdbcType="VARCHAR" />
+        <result column="safety_stock" property="safetyStock"  />
         <result column="create_by" property="createBy" jdbcType="VARCHAR" />
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
         <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     </resultMap>
     <sql id="Base_Column_List" >
         production_id,item_code, item_name, item_name_cn, product_category, specification, specification_cn,
-        test_method, place_of_origin, efficiency, safety_stack, create_by, create_time, update_by,
+        test_method, place_of_origin, efficiency, safety_stock, create_by, create_time, update_by,
         update_time, remark, status
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
@@ -83,8 +83,8 @@
             <if test="efficiency != null" >
                 efficiency,
             </if>
-            <if test="safetyStack != null" >
-                safety_stack,
+            <if test="safetyStock != null" >
+                safety_stock,
             </if>
             <if test="createBy != null" >
                 create_by,
@@ -126,8 +126,8 @@
             <if test="efficiency != null" >
                 #{efficiency,jdbcType=VARCHAR},
             </if>
-            <if test="safetyStack != null" >
-                #{safetyStack,jdbcType=VARCHAR},
+            <if test="safetyStock != null" >
+                #{safetyStock},
             </if>
             <if test="createBy != null" >
                 #{createBy,jdbcType=VARCHAR},
@@ -174,8 +174,8 @@
             <if test="efficiency != null" >
                 efficiency = #{efficiency,jdbcType=VARCHAR},
             </if>
-            <if test="safetyStack != null" >
-                safety_stack = #{safetyStack,jdbcType=VARCHAR},
+            <if test="safetyStock != null" >
+                safety_stock = #{safetyStock},
             </if>
             <if test="createBy != null" >
                 create_by = #{createBy,jdbcType=VARCHAR},
@@ -207,7 +207,7 @@
         test_method = #{testMethod,jdbcType=VARCHAR},
         place_of_origin = #{placeOfOrigin,jdbcType=VARCHAR},
         efficiency = #{efficiency,jdbcType=VARCHAR},
-        safety_stack = #{safetyStack,jdbcType=VARCHAR},
+        safety_stock = #{safetyStock},
         create_by = #{createBy,jdbcType=VARCHAR},
         create_time = #{createTime,jdbcType=TIMESTAMP},
         update_by = #{updateBy,jdbcType=VARCHAR},
