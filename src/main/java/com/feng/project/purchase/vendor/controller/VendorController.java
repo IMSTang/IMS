@@ -5,6 +5,7 @@ import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.purchase.vendor.domain.Vendor;
+import com.feng.project.purchase.vendor.domain.VendorIdName;
 import com.feng.project.purchase.vendor.service.IVendorService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -40,9 +43,21 @@ public class VendorController extends BaseController
     @ResponseBody
     public TableDataInfo list(Vendor vendor)
     {
+        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
         setPageInfo(vendor);
         List<Vendor> list = vendorService.selectVendorList(vendor);
         return getDataTable(list);
+    }
+
+    @GetMapping("/search_name")
+    @ResponseBody
+    public List<VendorIdName> search_name(HttpServletRequest request, HttpServletResponse response)
+    {
+        String vName = request.getParameter("inputStr");
+        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        List<VendorIdName> list = vendorService.selectVendorIdName(vName);
+        System.out.println(list);
+        return list;
     }
 
     /**
@@ -83,7 +98,6 @@ public class VendorController extends BaseController
     /**
      * 新增Vendor
      */
-    @Log(title = "Purchase Management", action = "Vendor Management - add Vendor")
     @RequiresPermissions("purchase:vendor:add")
     @GetMapping("/add")
     public String add(Model model)
@@ -94,7 +108,6 @@ public class VendorController extends BaseController
     /**
      * 修改Vendor
      */
-    @Log(title = "Purchase Management", action = "Vendor Management - edit Vendor")
     @RequiresPermissions("purchase:vendor:edit")
     @GetMapping("/edit/{vendorId}")
     public String edit(@PathVariable("vendorId") Long vendorId, Model model)

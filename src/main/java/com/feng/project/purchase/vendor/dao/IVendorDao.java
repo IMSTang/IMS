@@ -1,6 +1,7 @@
 package com.feng.project.purchase.vendor.dao;
 
 import com.feng.project.purchase.vendor.domain.Vendor;
+import com.feng.project.purchase.vendor.domain.VendorIdName;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,6 +22,14 @@ public interface IVendorDao
      * @return 供应商集合
      */
     public List<Vendor> selectVendorList(Vendor vendor);
+
+    /**
+     * 查询供应商Name
+     *
+     * @param vendor 供应商ID Name信息
+     * @return 供应商集合
+     */
+    public List<VendorIdName> selectVendorIdName(String vName);
 
     /**
      * 查询所有供应商

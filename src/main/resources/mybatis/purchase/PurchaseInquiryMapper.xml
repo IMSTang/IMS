@@ -2,85 +2,70 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.feng.project.purchase.vendor.dao.IVendorDao">
+<mapper namespace="com.feng.project.purchase.inquiry.dao.IInquiryDao">
 
-	<resultMap type="Vendor" id="VendorResult">
-		<id     property="vendorId"        column="vendor_id"       />
+	<resultMap type="Inquiry" id="InquiryResult">
+		<id     property="inquiryId"        column="inquiry_id"       />
+		<result property="inquiryUUID"      column="inquiry_uuid"     />
+		<result property="inquiryDate"      column="inquiry_date"     />
 		<result property="vendorName"      column="vendor_name"     />
-		<result property="firstName"      column="first_name"     />
-		<result property="lastName"      column="last_name"     />
-		<result property="middleName"      column="middle_name"     />
-		<result property="nameTitle"      column="name_title"     />
-		<result property="jobTitle"      column="job_title"     />
-		<result property="mainPhone"      column="main_phone"     />
-		<result property="workPhone"      column="work_phone"     />
-		<result property="mobile"      column="mobile"     />
-		<result property="fax"      column="fax"     />
-		<result property="mainMail"      column="main_mail"     />
-		<result property="ccMail"      column="cc_mail"     />
-		<result property="addressShipFrom"      column="address_ship_from"     />
-		<result property="addressBillFrom"      column="address_bill_from"     />
+		<result property="vendorId"      column="vendor_id"     />
+		<result property="itemCode"      column="item_code"     />
+		<result property="itemName"      column="item_name"     />
+		<result property="price"      column="price"     />
+		<result property="quantity"      column="quantity"     />
 		<result property="status"        column="status"        />
 		<result property="createBy"      column="create_by"     />
 		<result property="createTime"    column="create_time"   />
 		<result property="updateBy"      column="update_by"     />
 		<result property="updateTime"    column="update_time"   />
 		<result property="remark"        column="remark"        />
-		<result property="contacts"        column="contacts"        />
 	</resultMap>
-
-	<resultMap type="VendorIdName" id="VendorIdNameResult">
-		<id     property="vendorId"        column="vendor_id"       />
-		<result property="vendorName"      column="vendor_name"     />
-	</resultMap>
-
-	<select id="selectVendorList" parameterType="Vendor" resultMap="VendorResult">
-		select *, concat_ws(', ',name_title,last_name,first_name) as contacts from pur_vendor
+	
+	<select id="selectInquiryList" parameterType="Inquiry" resultMap="InquiryResult">
+		select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
+		(select vendor_name from pur_vendor v where v.vendor_id = i.vendor_id) as vendor_name,
+		(select item_name from pro_production p where p.item_code = b.item_code) as item_name
+		from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id
 		<where>
-			status = 0
-			<if test="searchValue != null and searchValue != ''">
-				AND vendor_name like CONCAT('%',#{searchValue},'%' )
-			</if>
+			i.status = 0
+			<!--<if test="searchValue != null and searchValue != ''">-->
+				<!--AND inquiry_name like CONCAT('%',#{searchValue},'%' )-->
+			<!--</if>-->
 		</where>
-	</select>
-
-	<select id="selectVendorIdName" parameterType="String" resultMap="VendorIdNameResult">
-		select vendor_id,vendor_name from pur_vendor
-		<where>
-			status = 0
-			<if test="searchValue != null and searchValue != ''">
-				AND vendor_name like CONCAT('%',#{searchValue},'%' )
-			</if>
-		</where>
-	</select>
-
-	<select id="selectVendorAll" resultMap="VendorResult">
-		SELECT *, concat_ws(', ',name_title,last_name,first_name) as contacts FROM pur_vendor where status = 0
-	</select>
-
-	<select id="selectVendorById" parameterType="Long" resultMap="VendorResult">
-		select *, concat_ws(', ',name_title,last_name,first_name) as contacts
-		from pur_vendor v
-		where v.status = 0 and v.vendor_id = #{vendorId}
 	</select>
 	
-	<delete id="deleteVendorById" parameterType="Long">
-		update pur_vendor set status = 1
-		where 1=1 and vendor_id = #{vendorId}
+	<select id="selectInquiryAll" resultMap="InquiryResult">
+		select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
+		(select vendor_name from pur_vendor v where v.vendor_id = i.vendor_id) as vendor_name,
+		(select item_name from pro_production p where p.item_code = b.item_code) as item_name
+		from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id
+		where status = 0
+	</select>
+
+	<select id="selectInquiryById" parameterType="Long" resultMap="InquiryResult">
+		select *, concat_ws(', ',name_title,last_name,first_name) as contacts
+		from pur_inquiry v
+		where v.status = 0 and v.inquiry_id = #{inquiryId}
+	</select>
+	
+	<delete id="deleteInquiryById" parameterType="Long">
+		update pur_inquiry set status = 1
+		where 1=1 and inquiry_id = #{inquiryId}
  	</delete>
  	
- 	<update id="batchDeleteVendor" parameterType="String">
-		update pur_vendor set status = 1
-		where vendor_id in
- 		<foreach collection="array" item="vendorId" open="(" separator="," close=")">
- 			#{vendorId}
+ 	<update id="batchDeleteInquiry" parameterType="String">
+		update pur_inquiry set status = 1
+		where inquiry_id in
+ 		<foreach collection="array" item="inquiryId" open="(" separator="," close=")">
+ 			#{inquiryId}
         </foreach> 
  	</update>
  	
- 	<update id="updateVendor" parameterType="Vendor">
- 		update pur_vendor
+ 	<update id="updateInquiry" parameterType="Inquiry">
+ 		update pur_inquiry
  		<set>
-			<if test="vendorName != null and vendorName != ''">vendor_name = #{vendorName},</if>
+			<if test="inquiryName != null and inquiryName != ''">inquiry_name = #{inquiryName},</if>
 			<if test="firstName != null and firstName != ''">first_name = #{firstName},</if>
 			<if test="lastName != null and lastName != ''">last_name = #{lastName},</if>
 			<if test="middleName != null and middleName != ''">middle_name = #{middleName},</if>
@@ -100,13 +85,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			update_time = sysdate()
  		</set>
  		where 1=1
- 		<if test="vendorId != null">and vendor_id = #{vendorId}</if>
+ 		<if test="inquiryId != null">and inquiry_id = #{inquiryId}</if>
 	</update>
  	
- 	<insert id="insertVendor" parameterType="Vendor" useGeneratedKeys="true" keyProperty="vendorId">
- 		insert into pur_vendor(
- 			<if test="vendorId != null and vendorId != 0">vendor_id,</if>
- 			<if test="vendorName != null and vendorName != ''">vendor_name,</if>
+ 	<insert id="insertInquiry" parameterType="Inquiry" useGeneratedKeys="true" keyProperty="inquiryId">
+ 		insert into pur_inquiry(
+ 			<if test="inquiryId != null and inquiryId != 0">inquiry_id,</if>
+ 			<if test="inquiryName != null and inquiryName != ''">inquiry_name,</if>
  			<if test="firstName != null and firstName != ''">first_name,</if>
 			<if test="lastName != null and lastName != ''">last_name,</if>
 			<if test="middleName != null and middleName != ''">middle_name,</if>
@@ -125,8 +110,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			<if test="createBy != null and createBy != ''">create_by,</if>
  			create_time
  		)values(
- 			<if test="vendorId != null and vendorId != 0">#{vendorId},</if>
-			<if test="vendorName != null and vendorName != ''">#{vendorName},</if>
+ 			<if test="inquiryId != null and inquiryId != 0">#{inquiryId},</if>
+			<if test="inquiryName != null and inquiryName != ''">#{inquiryName},</if>
 			<if test="firstName != null and firstName != ''">#{firstName},</if>
 			<if test="lastName != null and lastName != ''">#{lastName},</if>
 			<if test="middleName != null and middleName != ''">#{middleName},</if>
