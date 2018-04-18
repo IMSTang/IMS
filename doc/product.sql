@@ -44,6 +44,7 @@ insert into sys_role_menu values ('1', '326');
 drop table if exists pro_production;
 create table pro_production
 (
+  production_id int(11) unsigned NOT NULL AUTO_INCREMENT,
   item_code       varchar(100)        not null     comment 'item_code',
 	item_name       varchar(100)    not null                   comment 'item_name',
 	item_name_cn     varchar(100)     null                   comment 'item_name_cn',
@@ -59,13 +60,14 @@ create table pro_production
     update_by     varchar(64) 	  default ''			     comment '更新者',
 	update_time   timestamp       default current_timestamp  comment '更新时间',
     remark 		  varchar(500) 	  default '' 				 comment '备注',
-	primary key (item_code)
+    status     int(1) NOT NULL DEFAULT '0' COMMENT '0正常,1删除',
+	primary key (production_id)
 ) engine=innodb default charset=utf8;
 
 drop table if exists pro_production_mapping;
 create table pro_production_mapping
 (
-
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
   item_code       varchar(100)        not null     comment 'item_code',
 	item_name       varchar(100)    not null                   comment 'item_name',
 	new_item_code       varchar(100)        not null     comment 'new item_code',
@@ -76,6 +78,7 @@ create table pro_production_mapping
     update_by     varchar(64) 	  default ''			     comment '更新者',
 	update_time   timestamp       default current_timestamp  comment '更新时间',
     remark 		  varchar(500) 	  default '' 				 comment '备注',
-	primary key (item_code, new_item_code)
+    status     int(1) NOT NULL DEFAULT '0' COMMENT '0正常,1删除',
+	primary key (id)
 
 ) engine=innodb default charset=utf8;
