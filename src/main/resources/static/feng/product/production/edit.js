@@ -6,11 +6,20 @@ $("#form-production-edit").validate({
         itemName:{
             required:true,
         },
+
+        safetyStock:{
+            digits : true,
+        }
 	},
 	submitHandler:function(form){
 		edit();
 	}
 });
+
+
+
+
+
 
 function edit() {
 var productionId  = $("input[name='productionId']").val();
@@ -28,7 +37,8 @@ var createBy  = $("input[name='createBy']").val();
 var createTime  = $("input[name='createTime']").val(); 
 var updateBy  = $("input[name='updateBy']").val(); 
 var updateTime  = $("input[name='updateTime']").val(); 
-var remark  = $("input[name='remark']").val(); 
+var remark  = $("input[name='remark']").val();
+
 
 	$.ajax({
 		cache : true,

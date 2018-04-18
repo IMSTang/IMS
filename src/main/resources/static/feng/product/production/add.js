@@ -2,7 +2,10 @@ $("#form-production-add").validate({
 	rules:{
 		itemCode:{
 			required:true,
-		}
+		},
+        safetyStock:{
+            digits : true,
+        }
 	},
 	submitHandler:function(form){
 		add();
