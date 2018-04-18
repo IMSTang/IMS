@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal m" id="form-production-add">
+
+			<input name="productionId"  type="hidden" id="productionId"/>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Item Code:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="itemCode" id="itemCode">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Item Name:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="itemName" id="itemName">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Item Name CN:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="itemNameCn" id="itemNameCn">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Specification:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="specification" id="specification">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Specification CN:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="specificationCn" id="specificationCn">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Product Category:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="productCategory" id="productCategory">
+				</div>
+				<label class="col-sm-2 control-label">Test Method:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="testMethod" id="testMethod">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Place Of Origin:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="placeOfOrigin" id="placeOfOrigin">
+				</div>
+				<label class="col-sm-2 control-label">Efficiency:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="efficiency" id="efficiency">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Safety Stack:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="safetyStack" id="safetyStack">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Remark:</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-control-static col-sm-offset-9">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">Close</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/feng/product/production/add.js">
+	</script>
+</body>
+</html>
