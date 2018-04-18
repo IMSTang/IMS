@@ -13,8 +13,17 @@ insert into sys_menu values('214', 'RemoveVendor', '210', '4',  '#',  'F', '0', 
 insert into sys_menu values('215', 'SaveVendor', '210', '5',  '#',  'F', '0', 'purchase:vendor:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('216', 'BatchRemove', '210', '6', '#',  'F', '0', 'purchase:vendor:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
+-- Inquiry 询价管理按钮
+insert into sys_menu values('221', 'QueryInquiry', '220', '1',  '#',  'F', '0', 'purchase:inquiry:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('222', 'AddInquiry', '220', '2',  '#',  'F', '0', 'purchase:inquiry:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('223', 'EditInquiry', '220', '3',  '#',  'F', '0', 'purchase:inquiry:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('224', 'RemoveInquiry', '220', '4',  '#',  'F', '0', 'purchase:inquiry:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('225', 'SaveInquiry', '220', '5',  '#',  'F', '0', 'purchase:inquiry:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('226', 'BatchRemove', '220', '6', '#',  'F', '0', 'purchase:inquiry:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+
 
 -- 将按钮权限赋予role
+insert into sys_role_menu values ('1', '200');
 insert into sys_role_menu values ('1', '210');
 insert into sys_role_menu values ('1', '211');
 insert into sys_role_menu values ('1', '212');
@@ -22,7 +31,13 @@ insert into sys_role_menu values ('1', '213');
 insert into sys_role_menu values ('1', '214');
 insert into sys_role_menu values ('1', '215');
 insert into sys_role_menu values ('1', '216');
-
+insert into sys_role_menu values ('1', '220');
+insert into sys_role_menu values ('1', '221');
+insert into sys_role_menu values ('1', '222');
+insert into sys_role_menu values ('1', '223');
+insert into sys_role_menu values ('1', '224');
+insert into sys_role_menu values ('1', '225');
+insert into sys_role_menu values ('1', '226');
 
 -- ----------------------------
 -- 210、供应商信息表
@@ -54,3 +69,36 @@ create table pur_vendor
 	primary key (vendor_id)
 ) engine=innodb default charset=utf8;
 
+
+-- ----------------------------
+-- 220、询价表
+-- ----------------------------
+drop table if exists pur_inquiry;
+create table pur_inquiry
+(
+    inquiry_id       int(11)      not null auto_increment    comment 'Inquiry ID',
+    inquiry_date     timestamp    not null                   comment 'Inquiry Date',
+	vendor_id        int(11)      not null                   comment 'Vendor Id',
+	reminder         int(10)      default 3                  comment 'Reminder',
+	status        int(1)          not null                   comment '状态（0正常 1停用）',
+    create_by     varchar(64)     default ''                 comment '创建者',
+    create_time   timestamp       default current_timestamp  comment '创建时间',
+    update_by     varchar(64) 	  default ''			     comment '更新者',
+	update_time   timestamp       default current_timestamp  comment '更新时间',
+    remark 		  varchar(500) 	  default '' 				 comment '备注',
+	primary key (inquiry_id)
+) engine=innodb default charset=utf8;
+
+-- ----------------------------
+-- 220、询价子表
+-- ----------------------------
+drop table if exists pur_inquiry_body;
+create table pur_inquiry_body
+(
+    inquiry_body_id       int(11)      not null auto_increment    comment 'Inquiry body ID',
+	inquiry_id     varchar(32)  not null                   comment 'Inquiry uuid',
+	item_code     varchar(10)     not null                       comment 'Item Code',
+	price     	  float(10,2)     not null                   comment 'Price',
+	quantity      float(10,3)     not null                   comment 'Quantity',
+	primary key (inquiry_body_id)
+) engine=innodb default charset=utf8;
