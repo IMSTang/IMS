@@ -58,14 +58,14 @@ $(function() {
     $.initTable(columns, url);
 });
 
-/*
 
-/!*inquiry Management-新增*!/
+
+// /!*inquiry Management-新增*!/
 function add() {
     var url = prefix + '/add';
-    layer_show("add Inquiry", url, '800', '600');
+    layer_show("add Quote", url, '800', '600');
 }
-
+/*
 /!*inquiry Management-修改*!/
 function edit(inquiryId) {
     var url = prefix + '/edit/' + inquiryId;
