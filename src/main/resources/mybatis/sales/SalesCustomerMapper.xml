@@ -106,7 +106,6 @@
     <update id="updateCustomer" parameterType="customer">
         update sale_customer
         <set>
-            <if test="customerId != null and customerId != 0">customer_id=#{customerId},</if>
 
             <if test="customerName != null and customerName  != ''">customer_name=#{customerName},</if>
             <if test="firstName != null and  firstName != ''">first_name=#{firstName},</if>

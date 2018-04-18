@@ -7,7 +7,7 @@
     <form class="form-horizontal m" id="form-customer-edit">
         <input name="customerId"  type="hidden" id="customerId" th:value="${customer.customerId}"/>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Vendor Name:</label>
+            <label class="col-sm-3 control-label">Customer Name:</label>
             <div class="col-sm-8">
                 <input class="form-control" type="text" name="customerName" id="customerName" th:value="${customer.customerName}">
             </div>
@@ -27,6 +27,7 @@
                 <input class="form-control" type="text" name="lastName" id="lastName" th:value="${customer.lastName}">
             </div>
         </div>
+
         <div class="form-group">
             <label class="col-sm-3 control-label">Job Title:</label>
             <div class="col-sm-8">
@@ -64,15 +65,15 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Address Ship From:</label>
+            <label class="col-sm-3 control-label">Address Ship To:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" name="addressShipFrom" id="addressShipFrom" th:value="${customer.addressShipTo}">
+                <input class="form-control" type="text" name="addressShipTo" id="addressShipTo" th:value="${customer.addressShipTo}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Address Bill From:</label>
+            <label class="col-sm-3 control-label">Address Bill To:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" name="addressBillFrom" id="addressBillFrom" th:value="${customer.addressBillTo}">
+                <input class="form-control" type="text" name="addressBillTo" id="addressBillTo" th:value="${customer.addressBillTo}">
             </div>
         </div>
         <div class="form-group">

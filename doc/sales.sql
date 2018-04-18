@@ -26,7 +26,6 @@ insert into sys_role_menu values ('1', '114');
 insert into sys_role_menu values ('1', '115');
 insert into sys_role_menu values ('1', '116');
 
-
 /*
 Navicat MySQL Data Transfer
 
@@ -39,7 +38,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50639
 File Encoding         : 65001
 
-Date: 2018-04-16 11:23:44
+Date: 2018-04-18 09:37:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -49,7 +48,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `sale_customer`;
 CREATE TABLE `sale_customer` (
-  `customer_id` int(11) unsigned zerofill NOT NULL AUTO_INCREMENT,
+  `customer_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `customer_name` varchar(100) NOT NULL,
   `status` int(1) NOT NULL DEFAULT '0' COMMENT '0正常,1删除',
   `first_name` varchar(40) DEFAULT NULL,
@@ -66,16 +65,16 @@ CREATE TABLE `sale_customer` (
   `address_ship_to` varchar(200) DEFAULT NULL,
   `address_bill_to` varchar(200) DEFAULT NULL,
   `create_by` varchar(64) DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `update_by` varchar(64) DEFAULT NULL,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `remark` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of sale_customer
 -- ----------------------------
-INSERT INTO `sale_customer` VALUES ('00000000002', 'jack', '0', 'aa', 'bb', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'admin', '2018-04-14 19:24:50', 'admin', '2018-04-14 19:24:50', 'admin');
-INSERT INTO `sale_customer` VALUES ('00000000003', 'tom', '1', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'admin', '2018-04-15 13:34:36', 'admin', '2018-04-15 13:34:36', 'my');
-INSERT INTO `sale_customer` VALUES ('00000000006', 'a', '0', 'a', 'a', 'a', 'aa', 'a', 'a', 'a', 'a', 'aa', 'a', 'a', 'a', 'a', 'admin', '2018-04-15 20:40:42', null, '2018-04-15 20:40:42', 'admin');
+INSERT INTO `sale_customer` VALUES ('1', 'jack', '0', 'aa', 'bbssd', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'admin', '2018-04-18 09:36:03', 'admin', '2018-04-18 09:37:09', 'admin111111');
+INSERT INTO `sale_customer` VALUES ('3', 'tom', '0', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'bb', '2018-04-17 15:52:56', 'admin', '2018-04-17 15:52:56', 'my');
+INSERT INTO `sale_customer` VALUES ('10', 'sdssd', '0', 's', 's', 's', 's', 's', 's', 's', 's', 's', 'wewe@qsq', 's', 'ss', 's', 'aa', '2018-04-17 15:52:54', 'admin', '2018-04-17 15:52:54', 'admin');
