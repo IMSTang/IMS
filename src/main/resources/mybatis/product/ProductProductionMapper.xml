@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feng.project.product.production.dao.IProductionDao" >
+    <resultMap id="BaseResultMap" type="com.feng.project.product.production.domain.Production" >
+        <id column="production_id" property="productionId"  />
+        <result column="item_code" property="itemCode" jdbcType="VARCHAR" />
+        <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+        <result column="item_name_cn" property="itemNameCn" jdbcType="VARCHAR" />
+        <result column="product_category" property="productCategory" jdbcType="VARCHAR" />
+        <result column="specification" property="specification" jdbcType="VARCHAR" />
+        <result column="specification_cn" property="specificationCn" jdbcType="VARCHAR" />
+        <result column="test_method" property="testMethod" jdbcType="VARCHAR" />
+        <result column="place_of_origin" property="placeOfOrigin" jdbcType="VARCHAR" />
+        <result column="efficiency" property="efficiency" jdbcType="VARCHAR" />
+        <result column="safety_stack" property="safetyStack" jdbcType="VARCHAR" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result property="status"   column="status" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        production_id,item_code, item_name, item_name_cn, product_category, specification, specification_cn,
+        test_method, place_of_origin, efficiency, safety_stack, create_by, create_time, update_by,
+        update_time, remark, status
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
+        select
+        <include refid="Base_Column_List" />
+        from pro_production
+        where production_id = #{productionId}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="Long" >
+        update pro_production set status = 1
+        where production_id = #{productionId}
+    </delete>
+
+
+
+
+    <update id="batchDeleteProduction" parameterType="String">
+        update pro_production set status = 1
+        where production_id in
+        <foreach collection="array" item="productionId" open="(" separator="," close=")">
+            #{productionId}
+        </foreach>
+
+    </update>
+
+
+
+
+    <insert id="insertSelective" parameterType="com.feng.project.product.production.domain.Production"
+            useGeneratedKeys="true" keyProperty="productionId">
+      insert into pro_production (
+
+            <if test="itemCode != null" >
+                item_code,
+            </if>
+            <if test="itemName != null" >
+                item_name,
+            </if>
+            <if test="itemNameCn != null" >
+                item_name_cn,
+            </if>
+            <if test="productCategory != null" >
+                product_category,
+            </if>
+            <if test="specification != null" >
+                specification,
+            </if>
+            <if test="specificationCn != null" >
+                specification_cn,
+            </if>
+            <if test="testMethod != null" >
+                test_method,
+            </if>
+            <if test="placeOfOrigin != null" >
+                place_of_origin,
+            </if>
+            <if test="efficiency != null" >
+                efficiency,
+            </if>
+            <if test="safetyStack != null" >
+                safety_stack,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+                update_time,
+            <if test="remark != null" >
+                remark,
+            </if>
+             create_time
+        )values(
+            <if test="itemCode != null">#{itemCode,jdbcType=VARCHAR},
+            </if>
+            <if test="
+        itemName != null">
+                #{itemName,jdbcType=VARCHAR},
+            </if>
+            <if test="itemNameCn != null" >
+                #{itemNameCn,jdbcType=VARCHAR},
+            </if>
+            <if test="productCategory != null" >
+                #{productCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="specification != null" >
+                #{specification,jdbcType=VARCHAR},
+            </if>
+            <if test="specificationCn != null" >
+                #{specificationCn,jdbcType=VARCHAR},
+            </if>
+            <if test="testMethod != null" >
+                #{testMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="placeOfOrigin != null" >
+                #{placeOfOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="efficiency != null" >
+                #{efficiency,jdbcType=VARCHAR},
+            </if>
+            <if test="safetyStack != null" >
+                #{safetyStack,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            sysdate(),
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+        sysdate()
+           )
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.feng.project.product.production.domain.Production" >
+
+        update pro_production
+        <set >
+            <if test="itemCode != null" >
+                item_code = #{itemCode,jdbcType=VARCHAR},
+            </if>
+            <if test="itemName != null" >
+                item_name = #{itemName,jdbcType=VARCHAR},
+            </if>
+            <if test="itemNameCn != null" >
+                item_name_cn = #{itemNameCn,jdbcType=VARCHAR},
+            </if>
+            <if test="productCategory != null" >
+                product_category = #{productCategory,jdbcType=VARCHAR},
+            </if>
+            <if test="specification != null" >
+                specification = #{specification,jdbcType=VARCHAR},
+            </if>
+            <if test="specificationCn != null" >
+                specification_cn = #{specificationCn,jdbcType=VARCHAR},
+            </if>
+            <if test="testMethod != null" >
+                test_method = #{testMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="placeOfOrigin != null" >
+                place_of_origin = #{placeOfOrigin,jdbcType=VARCHAR},
+            </if>
+            <if test="efficiency != null" >
+                efficiency = #{efficiency,jdbcType=VARCHAR},
+            </if>
+            <if test="safetyStack != null" >
+                safety_stack = #{safetyStack,jdbcType=VARCHAR},
+            </if>
+            <if test="createBy != null" >
+                create_by = #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                update_by = #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null" >
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where 1=1
+        <if test="productionId != null">and production_id = #{productionId}</if>
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.feng.project.product.production.domain.Production" >
+
+        update pro_production
+        set item_name = #{itemName,jdbcType=VARCHAR},
+        item_name_cn = #{itemNameCn,jdbcType=VARCHAR},
+        product_category = #{productCategory,jdbcType=VARCHAR},
+        specification = #{specification,jdbcType=VARCHAR},
+        specification_cn = #{specificationCn,jdbcType=VARCHAR},
+        test_method = #{testMethod,jdbcType=VARCHAR},
+        place_of_origin = #{placeOfOrigin,jdbcType=VARCHAR},
+        efficiency = #{efficiency,jdbcType=VARCHAR},
+        safety_stack = #{safetyStack,jdbcType=VARCHAR},
+        create_by = #{createBy,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_by = #{updateBy,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        remark = #{remark,jdbcType=VARCHAR}
+        where item_code = #{itemCode,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectProductionAll"  parameterType="com.feng.project.product.production.domain.Production"
+            resultMap="BaseResultMap" >
+		SELECT *  FROM pro_production where status="0"
+        <if test="searchValue != null and searchValue != ''">
+            AND itemCode like CONCAT('%',#{searchValue},'%' )
+        </if>
+	</select>
+
+
+    <select id="selectProductionList" parameterType="com.feng.project.product.production.domain.Production"
+            resultMap="BaseResultMap">
+        SELECT *  FROM pro_production
+        <where>
+            status = 0
+            <if test="searchValue != null and searchValue != ''">
+                AND (
+                (item_name like CONCAT('%',#{searchValue},'%' ) )
+                OR (item_code like CONCAT('%',#{searchValue},'%' ) )
+                OR (item_name_cn like CONCAT('%',#{searchValue},'%' ) )
+                )
+            </if>
+        </where>
+    </select>
+
+
+</mapper>
