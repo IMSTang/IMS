@@ -6,18 +6,18 @@
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
     <div class="btn-group hidden-xs" id="tableToolbar" role="group">
-        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:add()'" shiro:hasPermission="sales:customer:add">
+        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:add()'" shiro:hasPermission="sales:quote:add">
             <i class="glyphicon glyphicon-plus"></i>
         </button>
-        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="sales:customer:batchRemove">
+        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="sales:quote:batchRemove">
             <i class="glyphicon glyphicon-trash"></i>
         </button>
     </div>
-    <table class="bootstrap-table" data-mobile-responsive="true" data-sort-name="customer_id" data-sort-order="asc">
+    <table class="bootstrap-table" data-mobile-responsive="true"
+           data-sort-name="quote_id" data-sort-order="asc">
     </table>
-
 </div>
 <div th:include="include :: footer"></div>
-<script type="text/javascript" src="/feng/sales/customer/customer.js"></script>
+<script type="text/javascript" src="/feng/sales/quote/quote.js"></script>
 </body>
 </html>
