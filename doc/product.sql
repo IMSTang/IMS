@@ -41,8 +41,8 @@ insert into sys_role_menu values ('1', '326');
 -- ----------------------------
 -- 210、供应商信息表
 -- ----------------------------
-drop table if exists production;
-create table production
+drop table if exists pro_production;
+create table pro_production
 (
   item_code       varchar(100)        not null     comment 'item_code',
 	item_name       varchar(100)    not null                   comment 'item_name',
@@ -62,8 +62,8 @@ create table production
 	primary key (item_code)
 ) engine=innodb default charset=utf8;
 
-drop table if exists production_mapping;
-create table production_mapping
+drop table if exists pro_production_mapping;
+create table pro_production_mapping
 (
 
   item_code       varchar(100)        not null     comment 'item_code',
@@ -77,4 +77,5 @@ create table production_mapping
 	update_time   timestamp       default current_timestamp  comment '更新时间',
     remark 		  varchar(500) 	  default '' 				 comment '备注',
 	primary key (item_code, new_item_code)
+
 ) engine=innodb default charset=utf8;
