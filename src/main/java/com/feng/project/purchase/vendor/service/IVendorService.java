@@ -1,6 +1,7 @@
 package com.feng.project.purchase.vendor.service;
 
 import com.feng.project.purchase.vendor.domain.Vendor;
+import com.feng.project.purchase.vendor.domain.VendorIdName;
 
 import java.util.List;
 
@@ -18,6 +19,13 @@ public interface IVendorService
      * @return 供应商信息集合
      */
     public List<Vendor> selectVendorList(Vendor vendor);
+    /**
+     * 查询供应商Id Name集合
+     *
+     * @param vendor 供应商Id Name信息
+     * @return 供应商Id Name信息集合
+     */
+    public List<VendorIdName> selectVendorIdName(String vName);
 
     /**
      * 查询所有供应商

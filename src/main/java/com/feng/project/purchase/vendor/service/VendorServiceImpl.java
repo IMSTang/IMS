@@ -4,6 +4,7 @@ import com.feng.common.utils.StringUtils;
 import com.feng.common.utils.security.ShiroUtils;
 import com.feng.project.purchase.vendor.dao.IVendorDao;
 import com.feng.project.purchase.vendor.domain.Vendor;
+import com.feng.project.purchase.vendor.domain.VendorIdName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,17 @@ public class VendorServiceImpl implements IVendorService
     public List<Vendor> selectVendorList(Vendor vendor)
     {
         return vendorDao.selectVendorList(vendor);
+    }
+    /**
+     * 查询供应商信息集合
+     *
+     * @param vendor 供应商信息
+     * @return 供应商信息集合
+     */
+    @Override
+    public List<VendorIdName> selectVendorIdName(String vName)
+    {
+        return vendorDao.selectVendorIdName(vName);
     }
 
     /**
