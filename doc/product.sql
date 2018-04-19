@@ -72,7 +72,7 @@ create table pro_production_mapping
 	item_name       varchar(100)    not null                   comment 'item_name',
 	new_item_code       varchar(100)        not null     comment 'new item_code',
 	new_item_name       varchar(100)    not null                   comment 'item_name',
-  rate                 varchar(100)    not null                   comment '换算比例',
+  rate                 double(16,2)    not null                   comment '换算比例',
     create_by     varchar(64)     default ''                 comment '创建者',
     create_time   timestamp       default current_timestamp  comment '创建时间',
     update_by     varchar(64) 	  default ''			     comment '更新者',
