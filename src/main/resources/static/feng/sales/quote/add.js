@@ -40,13 +40,14 @@ $("#customerName").autocomplete({
 
 
 
-
+addElement();
 
 var Element_index = 1;
 /**
  * 添加一套输入产品信息按钮
  */
-$("#add").click(function(){
+$("#add").click(addElement);
+function addElement(){
     /**
      * div
      */
@@ -103,7 +104,7 @@ $("#add").click(function(){
     TButton.name="delButton";
     TButton.id="delButton";
     TButton.onclick=function () {//绑定点击事件
-       // var delId = "div"+Element_index;
+        // var delId = "div"+Element_index;
         delButton(div.id);
     };
 
@@ -114,14 +115,14 @@ $("#add").click(function(){
     div.appendChild(TButton);
     document.getElementById("tableDiv").appendChild(div);
     Element_index++;
-});
-
+}
 
 /***
  * 删除一套产品信息按钮
  */
 
 function delButton(divId) {
+
 
     var div = document.getElementById(divId);
    var parentDiv =  document.getElementById('tableDiv');
