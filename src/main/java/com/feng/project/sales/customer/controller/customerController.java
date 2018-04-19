@@ -3,6 +3,7 @@ package com.feng.project.sales.customer.controller;
 
 import java.util.List;
 import com.feng.project.sales.customer.domain.Customer;
+import com.feng.project.sales.customer.domain.CustomerIdName;
 import com.feng.project.sales.customer.service.ICustomerService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,14 +69,13 @@ public class customerController extends BaseController{
 
 
 
-    @GetMapping("/search")
+    @GetMapping("/search_name")
     @ResponseBody
-    public List<Customer> search(Customer customer)
+    public List<CustomerIdName> search_name(Customer customer)
     {
 
-        System.out.println("++++++++++++++++++++++++++++++");
-        System.out.println("++++++++++++++++++++++++++++++"+customer);
-        List<Customer> customerList = customerService.selectAllCustomer(customer);
+
+        List<CustomerIdName> customerList = customerService.selectCustomerIdName(customer);
         return customerList;
 
     }

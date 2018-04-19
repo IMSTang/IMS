@@ -3,7 +3,7 @@ $("#customerName").autocomplete({
         minLength: 0,
         source: function (request, response) {
             $.ajax({
-                url: "/sales/customer/search",
+                url: "/sales/customer/search_name",
                 type: "get",
                 dataType: "json",
                 data: {"searchValue":  $("input[name='customerName']").val() },

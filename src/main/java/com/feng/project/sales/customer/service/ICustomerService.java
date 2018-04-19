@@ -1,6 +1,7 @@
 package com.feng.project.sales.customer.service;
 import java.util.List;
 import com.feng.project.sales.customer.domain.Customer;
+import com.feng.project.sales.customer.domain.CustomerIdName;
 
 public interface ICustomerService {
 
@@ -49,10 +50,13 @@ public interface ICustomerService {
     public Customer selectCustomerById(int customerId);
 
 
+
+
     /**
-     * update customer
+     * get customer id and name
      * @param customer
      * @return
      */
+    public List<CustomerIdName> selectCustomerIdName(Customer customer);
 
 }

@@ -1,6 +1,7 @@
 package com.feng.project.sales.customer.dao;
 
 
+import com.feng.project.sales.customer.domain.CustomerIdName;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import com.feng.project.sales.customer.domain.Customer;
@@ -65,5 +66,13 @@ public interface ICustomerDao {
      * @return
      */
     public  int  updateCustomer(Customer customer);
+
+
+    /**
+     * get customer id and name
+     * @param customer
+     * @return
+     */
+    public List<CustomerIdName> selectCustomerIdName(Customer customer);
 
 }

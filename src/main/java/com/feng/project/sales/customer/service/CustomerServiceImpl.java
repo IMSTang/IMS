@@ -4,6 +4,7 @@ import com.feng.common.constant.CustomerConstants;
 import com.feng.common.utils.StringUtils;
 import com.feng.project.sales.customer.dao.ICustomerDao;
 import com.feng.project.sales.customer.domain.Customer;
+import com.feng.project.sales.customer.domain.CustomerIdName;
 import com.feng.project.system.role.dao.IRoleDao;
 import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,5 +132,17 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public Customer selectCustomerById(int customerId) {
         return customerDao.selectCustomerById(customerId);
+    }
+
+
+    /**
+     * get customer id and name
+     *
+     * @param customer
+     * @return
+     */
+    @Override
+    public List<CustomerIdName> selectCustomerIdName(Customer customer) {
+        return customerDao.selectCustomerIdName(customer);
     }
 }
