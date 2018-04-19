@@ -35,6 +35,104 @@ $("#customerName").autocomplete({
     });
 
 
+
+
+
+
+
+
+
+var Element_index = 1;
+/**
+ * 添加一套输入产品信息按钮
+ */
+$("#add").click(function(){
+    /**
+     * div
+     */
+
+    var div = document.createElement('div');
+    div.padding="10px";
+    div.id="div"+Element_index;
+
+
+    /**
+     *item Code
+     */
+    var TCode=document.createElement("input");
+    TCode.type="text";
+    TCode.name="itemCode"+Element_index;
+    TCode.id="itemCode"+Element_index;
+
+
+    /**
+     * item Name
+     * */
+    var TName=document.createElement("input");
+    TName.type="text";
+    TName.name="itemName"+Element_index;
+    TName.id="itemName"+Element_index;
+
+
+    /**
+     * price
+     */
+    var TPrice=document.createElement("input");
+    TPrice.type="text";
+    TPrice.name="price"+Element_index;
+    TPrice.id="price"+Element_index;
+
+
+
+
+    /***
+     * quantity
+     */
+    var TQuantity=document.createElement("input");
+    TQuantity.type="text";
+    TQuantity.name="quantity"+Element_index;
+    TQuantity.id="quantity"+Element_index;
+
+    /**
+     * -
+     */
+    var TButton=document.createElement("input");
+    TButton.type="button";
+    TButton.text=Element_index;
+    TButton.value="-";
+    TButton.name="delButton";
+    TButton.id="delButton";
+    TButton.onclick=function () {//绑定点击事件
+       // var delId = "div"+Element_index;
+        delButton(div.id);
+    };
+
+    div.appendChild(TCode);
+    div.appendChild(TName);
+    div.appendChild(TQuantity);
+    div.appendChild(TPrice);
+    div.appendChild(TButton);
+    document.getElementById("tableDiv").appendChild(div);
+    Element_index++;
+});
+
+
+/***
+ * 删除一套产品信息按钮
+ */
+
+function delButton(divId) {
+
+    var div = document.getElementById(divId);
+   var parentDiv =  document.getElementById('tableDiv');
+
+    if( parentDiv.childElementCount>1){
+    parentDiv.removeChild(div);
+    }
+
+}
+
+
 /*
 $("#form-quote-add").validate({
     rules:{
