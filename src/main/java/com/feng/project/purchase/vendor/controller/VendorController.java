@@ -43,7 +43,6 @@ public class VendorController extends BaseController
     @ResponseBody
     public TableDataInfo list(Vendor vendor)
     {
-        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
         setPageInfo(vendor);
         List<Vendor> list = vendorService.selectVendorList(vendor);
         return getDataTable(list);
@@ -54,8 +53,8 @@ public class VendorController extends BaseController
     public List<VendorIdName> search_name(HttpServletRequest request, HttpServletResponse response)
     {
         String vName = request.getParameter("inputStr");
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         List<VendorIdName> list = vendorService.selectVendorIdName(vName);
+
         System.out.println(list);
         return list;
     }
@@ -94,7 +93,21 @@ public class VendorController extends BaseController
         }
         return JSON.error();
     }
+    /**
+     * check vendor Name Unique
+     * @param vendor
+     * @return 1 exit,0 not exit
+     */
+    @PostMapping("/checkNameUnique")
+    @ResponseBody
+    public String  checkNameUnique(Vendor vendor){
+        String flag="0";
+        if(vendor != null){
+            flag = vendorService.checkNameUnique(vendor.getVendorName());
+        }
+        return  flag;
 
+    }
     /**
      * 新增Vendor
      */

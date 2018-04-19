@@ -2,6 +2,7 @@ package com.feng.project.purchase.vendor.service;
 
 import com.feng.project.purchase.vendor.domain.Vendor;
 import com.feng.project.purchase.vendor.domain.VendorIdName;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -66,4 +67,12 @@ public interface IVendorService
      * @return 结果
      */
     public int saveVendor(Vendor vendor);
+
+    /**
+     * check vendor Name Unique
+     * @param customerName vendor Name
+     * @return flag number
+     */
+    public  String checkNameUnique(String  customerName);
+
 }

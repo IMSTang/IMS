@@ -1,8 +1,6 @@
 package com.feng.project.purchase.vendor.domain;
 
-import com.feng.framework.web.page.PageDomain;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * 供应商对象 pur_vendor
@@ -10,11 +8,10 @@ import lombok.EqualsAndHashCode;
  * @author feng
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class VendorIdName extends PageDomain
+public class VendorIdName
 {
     /** 供应商ID */
     private Long vendorId;
-    /**  */
+    /** Name */
     private String vendorName;
 }

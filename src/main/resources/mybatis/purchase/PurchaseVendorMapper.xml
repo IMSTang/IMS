@@ -45,11 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectVendorIdName" parameterType="String" resultMap="VendorIdNameResult">
-		select vendor_id,vendor_name from pur_vendor
+		select vendor_id ,vendor_name from pur_vendor
 		<where>
 			status = 0
-			<if test="searchValue != null and searchValue != ''">
-				AND vendor_name like CONCAT('%',#{searchValue},'%' )
+			<if test="_parameter != null and _parameter != ''">
+				AND vendor_name like CONCAT('%',#{_parameter},'%' )
 			</if>
 		</where>
 	</select>
@@ -76,6 +76,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			#{vendorId}
         </foreach> 
  	</update>
+
+	<select id="checkNameUnique" parameterType="String" resultType="int">
+		select count(*) from pur_vendor where vendor_name=#{vendorName} and status="0"
+	</select>
  	
  	<update id="updateVendor" parameterType="Vendor">
  		update pur_vendor

@@ -117,4 +117,13 @@ public class VendorServiceImpl implements IVendorService
         return count;
     }
 
+    @Override
+    public String checkNameUnique(String vendorName) {
+        int count = vendorDao.checkNameUnique(vendorName);
+        if(count>0){
+            return "1";
+        }
+        return "0";
+    }
+
 }
