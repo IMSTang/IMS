@@ -2,6 +2,7 @@
 $("#customerName").autocomplete({
         minLength: 0,
         source: function (request, response) {
+
             $.ajax({
                 url: "/sales/customer/search_name",
                 type: "get",
@@ -38,11 +39,60 @@ $("#customerName").autocomplete({
 
 
 
+function codeInfomation(codeElement,nameElement,idElement){
+
+    $(codeElement).autocomplete({
+
+        minLength: 0,
+        source: function (request, response) {
+
+           var elementValue =  $(codeElement).val();
+            $.ajax({
+                url: "/product/production/search/"+elementValue+"/code",
+                type: "get",
+                dataType: "json",
+                data: {
+                },
+
+                success: function (data) {
+
+                    response($.map(data, function (item) {
+
+                        return {
+                            label: item.itemCode,
+                            value: item.itemName,
+                            PID:item.productionId
+                        }
+                    }));
+                }
+            });
+        }
+        ,
+        focus: function (event, ui) {
+
+            $(codeElement).val(ui.item.label);
+            $(nameElement).val(ui.item.value);
+            $(idElement).val(ui.item.PID);
+            return false;
+        },
+        select: function (event, ui) {
+            $(codeElement).val(ui.item.label);
+            $(nameElement).val(ui.item.value);
+            $(idElement).val(ui.item.PID);
+            return false;
+        }
+    });
+}
 
 
-addElement();
+
 
 var Element_index = 1;
+/**
+ * 默认界面上显示一套商品信息
+ */
+addElement();
+
 /**
  * 添加一套输入产品信息按钮
  */
@@ -58,12 +108,13 @@ function addElement(){
 
 
     /**
-     *item Code
-     */
-    var TCode=document.createElement("input");
-    TCode.type="text";
-    TCode.name="itemCode"+Element_index;
-    TCode.id="itemCode"+Element_index;
+     * item Name ID
+     * */
+    var TId=document.createElement("input");
+    TId.type="text";
+    TId.name="itemId"+Element_index;
+    TId.id="itemId"+Element_index;
+
 
 
     /**
@@ -73,6 +124,28 @@ function addElement(){
     TName.type="text";
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
+
+
+    /**
+     *item Code
+     */
+    var TCode=document.createElement("input");
+    TCode.type="text";
+    TCode.name="itemCode"+Element_index;
+    TCode.id="itemCode"+Element_index;
+
+    TCode.onclick=function () {//绑定点击事件
+        codeInfomation(TCode,TName,TId);
+    };
+    /**
+     *
+     *
+     * 添加name 的点击事件
+     *
+     *
+     *
+     */
+
 
 
     /**
@@ -108,6 +181,7 @@ function addElement(){
         delButton(div.id);
     };
 
+    div.appendChild(TId);
     div.appendChild(TCode);
     div.appendChild(TName);
     div.appendChild(TQuantity);
