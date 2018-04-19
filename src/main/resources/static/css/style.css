@@ -201,6 +201,9 @@ body.body-small .navbar-top-links li:last-child {
 .jhd-nav .nav>li {
     border-left: 4px solid #3a3633;
 }
+.jhd-nav .nav>li:hover {
+    border-left: 4px solid #403f3d;
+}
 .jhd-nav .nav>li.active {
     border-left: 4px solid #f23f3f;
     background: #403f3d;
@@ -211,13 +214,13 @@ body.body-small .navbar-top-links li:last-child {
     background: -ms-linear-gradient(left,#403f3d 93%,#3a3938 100%);
     background: linear-gradient(to right,#403f3d 93%,#3a3938 100%);
 }
-.jhd-nav>li
 
-.nav.nav-second-level>li.active {
+
+.jhd-nav .nav.nav-second-level>li.active {
     border: none;
 }
 
-.nav.nav-second-level.collapse[style] {
+.jhd-nav .nav.nav-second-level.collapse[style] {
     height: auto !important;
 }
 
@@ -282,20 +285,25 @@ body.body-small .navbar-top-links li:last-child {
     content: "\f107";
 }
 
-.nav-second-level li, .nav-third-level li {
+.jhd-nav .nav-second-level li, .nav-third-level li {
     border-bottom: none !important;
+    border-left: none;
+}
+.jhd-nav .nav-second-level li:hover, .nav-third-level li:hover{
+    border-bottom: none !important;
+    border-left: none;
 }
 
-.nav-second-level li a {
+.jhd-nav .nav-second-level li a {
     padding: 7px 15px 7px 10px;
     padding-left: 52px;
 }
 
-.nav-third-level li a {
+.jhd-nav .nav-third-level li a {
     padding-left: 62px;
 }
 
-.nav-second-level li:last-child {
+.jhd-nav .nav-second-level li:last-child {
     margin-bottom: 10px;
 }
 
