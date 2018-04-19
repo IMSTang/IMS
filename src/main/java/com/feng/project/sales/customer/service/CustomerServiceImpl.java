@@ -25,14 +25,20 @@ public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private IRoleDao roleDao;
 
-    private static  String ROLE_KEY;
+    private static  String ROLE_KEY=null;
     /**
      * get customer list
      * @return
      */
+
+
+
     @Override
     public List<Customer> selectAllCustomer(Customer customer) {
 
+        if(ROLE_KEY == null){
+             initRole();
+        }
 
         String loginName=ShiroUtils.getLoginName();
         //equal current user prmission, get all info if is admin
@@ -104,7 +110,7 @@ public class CustomerServiceImpl implements ICustomerService {
 
 
     @Override
-    public String initRole(){
+    public  String initRole(){
         //get current login name
         String loginName=ShiroUtils.getLoginName();
 

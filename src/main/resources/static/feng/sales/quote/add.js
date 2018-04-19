@@ -3,33 +3,35 @@ $("#customerName").autocomplete({
         minLength: 0,
         source: function (request, response) {
             $.ajax({
-                url: "/sales/quote/save",
-                type: "post",
+                url: "/sales/customer/search",
+                type: "get",
                 dataType: "json",
-                data: { },
+                data: {"searchValue":  $("input[name='customerName']").val() },
 
                 success: function (data) {
 
                     response($.map(data, function (item) {
+
                         return {
-                            label: item.label,
-                            value: item.value
+                            label: item.customerName,
+                            value: item.customerId
                         }
                     }));
                 }
             });
         },
-    /*    focus: function (event, ui) {
+        focus: function (event, ui) {
 
             $("#customerName").val(ui.item.label);
-            $("#customer1").val(ui.item.value);
+            $("#customerId").val(ui.item.value);
             return false;
         },
         select: function (event, ui) {
+
             $("#customerName").val(ui.item.label);
-            $("#customer1").val(ui.item.value);
+            $("#customerId").val(ui.item.value);
             return false;
-        }*/
+        }
     });
 
 
