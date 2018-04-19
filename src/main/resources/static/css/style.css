@@ -7446,6 +7446,9 @@ body
     font-size: 14px;
     font-weight: normal;
 }
+.gray-bg .table-hover>tbody>tr:hover {
+    background-color: #ffe9e9;
+}
 .bootstrap-table .dropdown-menu {
     width: 150px;
 }
