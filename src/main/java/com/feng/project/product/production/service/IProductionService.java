@@ -1,6 +1,7 @@
 package com.feng.project.product.production.service;
 import java.util.List;
 import com.feng.project.product.production.domain.Production;
+import com.feng.project.product.production.domain.ProductionSimple;
 
 public interface IProductionService {
 
@@ -11,4 +12,5 @@ public interface IProductionService {
     public  int saveProduction(Production production);
     public  int batchDeleteProduction(Long[] ids);
 
+    public List<ProductionSimple>  selectProductionSimpleList(String searchStr, String type);
 }

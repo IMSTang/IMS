@@ -1,6 +1,6 @@
 package com.feng.project.product.production.dao;
 
-
+import com.feng.project.product.production.domain.ProductionSimple;
 import com.feng.project.purchase.vendor.domain.Vendor;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
@@ -25,5 +25,8 @@ public interface IProductionDao {
 
     public int updateByPrimaryKey(Production record);
 
+
+    public List<ProductionSimple> selectProductionSimpleByCode(String searchStr);
+    public List<ProductionSimple> selectProductionSimpleByName(String searchStr);
 
 }

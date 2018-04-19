@@ -4,9 +4,8 @@ package com.feng.project.product.production.controller;
 import java.util.List;
 
 import com.feng.project.product.production.domain.Production;
+import com.feng.project.product.production.domain.ProductionSimple;
 import com.feng.project.product.production.service.IProductionService;
-import com.feng.project.sales.customer.domain.Customer;
-import com.feng.project.sales.customer.service.ICustomerService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +33,7 @@ public class ProductionController extends BaseController{
     }
     @Autowired
     private IProductionService productionService;
+
 
     @RequiresPermissions("product:production:list")
     @GetMapping("/list")
@@ -91,7 +91,7 @@ public class ProductionController extends BaseController{
 
 
     @Log(title = "Productions Management", action = "Production - edit production")
-    @RequiresPermissions("purchase:vendor:edit")
+    @RequiresPermissions("product:production:edit")
     @GetMapping("/edit/{productionId}")
     public String edit(@PathVariable("productionId") Long productionId, Model model)
     {
@@ -99,6 +99,16 @@ public class ProductionController extends BaseController{
         model.addAttribute("production", production);
         return prefix + "/edit";
     }
+
+
+    @GetMapping("/search/{searchStr}/{type}")
+    @ResponseBody
+    public List<ProductionSimple> search(@PathVariable("searchStr") String searchStr, @PathVariable("type") String type)
+    {
+        List<ProductionSimple> psList = productionService.selectProductionSimpleList(searchStr, type);
+        return psList;
+    }
+
 
 
 }

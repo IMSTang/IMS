@@ -20,6 +20,13 @@
         <result column="remark" property="remark" jdbcType="VARCHAR" />
         <result property="status"   column="status" />
     </resultMap>
+
+    <resultMap type="ProductionSimple" id="prodcutionSimpleResult">
+        <id column="production_id" property="productionId"  />
+        <result column="item_code" property="itemCode" jdbcType="VARCHAR" />
+        <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    </resultMap>
+
     <sql id="Base_Column_List" >
         production_id,item_code, item_name, item_name_cn, product_category, specification, specification_cn,
         test_method, place_of_origin, efficiency, safety_stock, create_by, create_time, update_by,
@@ -240,5 +247,35 @@
         </where>
     </select>
 
+
+
+
+
+
+
+
+    <select id="selectProductionSimpleByCode" parameterType="String"
+            resultMap="prodcutionSimpleResult">
+        SELECT production_id, item_code, item_name FROM pro_production
+        <where>
+            status = 0
+                AND (
+                (item_code like CONCAT('%',#{itemCode},'%' ) )
+                )
+        </where>
+    </select>
+
+    <select id="selectProductionSimpleByName" parameterType="String"
+            resultMap="prodcutionSimpleResult">
+
+        SELECT production_id, item_code, item_name FROM pro_production
+        <where>
+            status = 0
+                    AND (
+                    (item_name like CONCAT('%',#{itemName},'%' ) )
+
+                    )
+        </where>
+    </select>
 
 </mapper>

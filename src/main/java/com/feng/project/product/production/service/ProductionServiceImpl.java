@@ -2,6 +2,7 @@ package com.feng.project.product.production.service;
 import com.feng.common.utils.StringUtils;
 import com.feng.project.product.production.dao.IProductionDao;
 import com.feng.project.product.production.domain.Production;
+import com.feng.project.product.production.domain.ProductionSimple;
 import com.feng.project.purchase.vendor.domain.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -59,5 +60,17 @@ public class ProductionServiceImpl implements IProductionService {
         return productionDao.batchDeleteProduction(ids);
     }
 
+    @Override
+    public List<ProductionSimple> selectProductionSimpleList(String searchStr, String type) {
+
+        if("code".equalsIgnoreCase(type)) {
+            return productionDao.selectProductionSimpleByCode(searchStr);
+        }
+
+        if("name".equalsIgnoreCase(type)) {
+            return productionDao.selectProductionSimpleByName(searchStr);
+        }
+        return null;
+    }
 
 }
