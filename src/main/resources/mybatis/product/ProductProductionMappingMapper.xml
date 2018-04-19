@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.product.productionMapping.dao.IProductionMappingDao" >
+
+    <resultMap id="BaseResultMap" type="com.feng.project.product.productionMapping.domain.ProductionMapping" >
+
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="item_code" property="itemCode" jdbcType="VARCHAR" />
+        <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+        <result column="new_item_code" property="newItemCode" jdbcType="VARCHAR" />
+        <result column="new_item_name" property="newItemName" jdbcType="VARCHAR" />
+        <result column="rate" property="rate" jdbcType="VARCHAR" />
+        <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, item_code, item_name, new_item_code, new_item_name, rate, create_by, create_time,
+		update_by, update_time, remark, status
+	</sql>
+
+    <select id="selectProductionMappingList" parameterType="ProductionMapping" resultMap="BaseResultMap">
+        select *  from pro_production_mapping
+        <where>
+            status = 0
+            <if test="searchValue != null and searchValue != ''">
+                AND (
+                (item_name like CONCAT('%',#{searchValue},'%' ) )
+                OR (item_code like CONCAT('%',#{searchValue},'%' ) )
+                )
+            </if>
+        </where>
+    </select>
+
+
+    <update id="updateProductionMapping" parameterType="ProductionMapping">
+        update pro_production_mapping
+        <set>
+            <if test="itemCode != null and itemCode != ''">item_code = #{itemCode},</if>
+            <if test="itemName != null and itemName != ''">item_name = #{itemName},</if>
+            <if test="newItemCode != null and newItemCode != ''">new_item_code = #{newItemCode},</if>
+            <if test="newItemName != null and newItemName != ''">new_item_name = #{newItemName},</if>
+            <if test="rate !=null">rate = #{rate},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </set>
+        where 1=1
+        <if test="id != null">and id = #{id}</if>
+    </update>
+
+    <insert id="insertProductionMapping" parameterType="ProductionMapping" useGeneratedKeys="true" keyProperty="id">
+        insert into pro_production_mapping(
+
+        <if test="itemCode != null and itemCode != ''">item_code,</if>
+        <if test="itemName != null and itemName != ''">item_name,</if>
+        <if test="newItemCode != null and newItemCode != ''">new_item_code,</if>
+        <if test="newItemName != null and newItemName != ''">new_item_name,</if>
+        <if test="rate != null and rate != ''">rate,</if>
+        <if test="remark != null and remark != ''">remark,</if>
+        <if test="createBy != null and createBy != ''">create_by,</if>
+        create_time
+        )values(
+        <if test="itemCode != null and itemCode != ''">#{itemCode},</if>
+        <if test="itemName != null and itemName != ''">#{itemName},</if>
+        <if test="newItemCode != null and newItemCode != ''">#{newItemCode},</if>
+        <if test="newItemName != null and newItemName != ''">#{newItemName},</if>
+        <if test="rate != null and rate != 0">#{rate},</if>
+        <if test="remark != null and remark != ''">#{remark},</if>
+        <if test="createBy != null and createBy != ''">#{createBy},</if>
+        sysdate()
+        )
+    </insert>
+
+
+
+
+
+    <select id="selectProductionMappingById" resultMap="BaseResultMap" parameterType="Long" >
+        select
+        <include refid="Base_Column_List" />
+        from pro_production_mapping
+        where id = #{id}
+    </select>
+
+
+
+    <delete id="deleteById" parameterType="Long" >
+        update pro_production_mapping set status = 1
+        where id = #{id}
+    </delete>
+
+    <update id="batchDeleteProductionMapping" parameterType="String">
+        update pro_production_mapping set status = 1
+        where id in
+        <foreach collection="array" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+
+    </update>
+
+
+
+</mapper>

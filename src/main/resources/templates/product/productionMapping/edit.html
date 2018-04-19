@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal m" id="form-productionMapping-edit">
+		
+			<input name="id"  type="hidden" id="productionId" th:value="${productionMapping.id}"/>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Item Code:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="itemCode" id="itemCode" th:value="${productionMapping.itemCode}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Item Name:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="itemName" id="itemName" th:value="${productionMapping.itemName}">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">New Item Code:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="newItemCode" id="newItemCode" th:value="${productionMapping.newItemCode}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">New Item Name:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="newItemName" id="newItemName" th:value="${productionMapping.newItemName}">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Rate:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="rate" id="rate" th:value="${productionMapping.rate}">
+				</div>
+			</div>
+			
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Remark:</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" class="form-control" type="text"  th:value="${productionMapping.remark}">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<div class="form-control-static col-sm-offset-9">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">Close</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/feng/product/productionMapping/edit.js">
+	</script>
+</body>
+</html>
