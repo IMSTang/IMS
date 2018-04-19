@@ -70,7 +70,11 @@ a:focus {
 }
 
 .nav>li>a i {
-    margin-right: 6px;
+    margin-right: 4px;
+    width: 16px;
+}
+.nav>li>a i.font12 {
+    font-size: 12px;
 }
 
 .navbar {
@@ -194,8 +198,10 @@ body.body-small .navbar-top-links li:last-child {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
-
-.nav>li.active {
+.jhd-nav .nav>li {
+    border-left: 4px solid #3a3633;
+}
+.jhd-nav .nav>li.active {
     border-left: 4px solid #f23f3f;
     background: #403f3d;
     background: -moz-linear-gradient(left,#403f3d 93%,#3a3938 100%);
@@ -205,6 +211,7 @@ body.body-small .navbar-top-links li:last-child {
     background: -ms-linear-gradient(left,#403f3d 93%,#3a3938 100%);
     background: linear-gradient(to right,#403f3d 93%,#3a3938 100%);
 }
+.jhd-nav>li
 
 .nav.nav-second-level>li.active {
     border: none;
