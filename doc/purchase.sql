@@ -1,5 +1,5 @@
 -- 一级菜单
-insert into sys_menu values('200', 'Purchase Management', '0', '3', '#', 'M', '0', '', 'fa fa-credit-card',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase Management');
+insert into sys_menu values('200', 'Purchase Management', '0', '3', '#', 'M', '0', '', 'fa fa-credit-card font12',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase Management');
 -- 二级菜单
 insert into sys_menu values('210',   'Vendor', '200', '1', '/purchase/vendor',        'C', '0', 'purchase:vendor:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Vendor');
 insert into sys_menu values('220',   'Inquiry', '200', '2', '/purchase/inquiry',        'C', '0', 'purchase:inquiry:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inquiry');
@@ -60,7 +60,7 @@ create table pur_vendor
 	cc_mail     varchar(100)     null                   comment 'CC mail',
 	address_ship_from     varchar(200)     null                   comment 'Address ship from',
 	address_bill_from     varchar(200)     null                   comment 'Address bill from',
-	status        int(1)          not null                   comment '状态（0正常 1停用）',
+	status        int(1)          default 0                  comment '状态（0正常 1停用）',
     create_by     varchar(64)     default ''                 comment '创建者',
     create_time   timestamp       default current_timestamp  comment '创建时间',
     update_by     varchar(64) 	  default ''			     comment '更新者',
@@ -80,7 +80,7 @@ create table pur_inquiry
     inquiry_date     timestamp    not null                   comment 'Inquiry Date',
 	vendor_id        int(11)      not null                   comment 'Vendor Id',
 	reminder         int(10)      default 3                  comment 'Reminder',
-	status        int(1)          not null                   comment '状态（0正常 1停用）',
+	status        int(1)          default 0                   comment '状态（0正常 1停用）',
     create_by     varchar(64)     default ''                 comment '创建者',
     create_time   timestamp       default current_timestamp  comment '创建时间',
     update_by     varchar(64) 	  default ''			     comment '更新者',
