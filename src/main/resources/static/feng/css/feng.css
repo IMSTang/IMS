@@ -1,14 +1,7 @@
-/*!
- *   feng.css v1.0.8
- *   Author: feng
- */
-
-/** �û����� ��ʽ���� */
-
 .box {
 	position: relative;
 	border-radius: 3px;
-	background: #ffffff;
+	background: #f3f3f4;
 	border-top: 3px solid #d2d6de;
 	margin-bottom: 20px;
 	width: 100%;
