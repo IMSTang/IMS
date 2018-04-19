@@ -79,4 +79,11 @@ public interface IVendorDao
      */
     public int insertVendor(Vendor vendor);
 
+    /**
+     * check vendor Name Unique
+     * @param vendorName vendor Name
+     * @return vendor number
+     */
+    public int checkNameUnique(String vendorName);
+
 }

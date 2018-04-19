@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<head th:include="include :: header"></head>
+<head th:include="include :: header">
+	<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
+</head>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-inquiry-add">
@@ -19,6 +21,9 @@
 				</div>
 				<input name="vendorId"  type="hidden" id="vendorId"/>
 			</div>
+			<!--<div>-->
+				<!--<input type="text" name="vendorName" id="vendorName">-->
+			<!--</div>-->
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Item Code:</label>
 				<div class="col-sm-8">
@@ -55,55 +60,12 @@
 			</div>
 		</form>
 
-		<div class="ui-widget">
-			<label for="city">Your city: </label>
-			<input id="city">
-		</div>
-
-		<div class="ui-widget" style="margin-top:2em; font-family:Arial">
-			Result:
-			<div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-		</div>
-
 	</div>
 	<div th:include="include::footer"></div>
+	<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
 	<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.js"></script>
-	<!--<script type="text/javascript" src="/feng/purchase/inquiry/add.js"></script>-->
-	<script>
-        $(function() {
-            function log( message ) {
-                $( "<div>" ).text( message ).prependTo( "#log" );
-                $( "#log" ).scrollTop( 0 );
-            }
+	<script type="text/javascript" src="/feng/purchase/inquiry/add.js"></script>
 
-            $( "#city" ).autocomplete({
-                source: function( request, response ) {
-                    $.ajax({
-                        url: "http://gd.geobytes.com/AutoCompleteCity",
-                        dataType: "json",
-                        data: {
-                            q: request.term
-                        },
-                        success: function( data ) {
-                            response( data );
-                        }
-                    });
-                },
-                minLength: 3,
-                select: function( event, ui ) {
-                    log( ui.item ?
-                        "Selected: " + ui.item.label :
-                        "Nothing selected, input was " + this.value);
-                },
-                open: function() {
-                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-                },
-                close: function() {
-                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-                }
-            });
-        });
-	</script>
 
 </body>
 </html>

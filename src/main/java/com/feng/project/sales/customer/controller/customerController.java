@@ -60,9 +60,24 @@ public class customerController extends BaseController{
     @ResponseBody
     public TableDataInfo list(Customer customer)
     {
+
         setPageInfo(customer);
         List<Customer> customerList = customerService.selectAllCustomer(customer);
         return getDataTable(customerList);
+    }
+
+
+
+    @GetMapping("/search")
+    @ResponseBody
+    public List<Customer> search(Customer customer)
+    {
+
+        System.out.println("++++++++++++++++++++++++++++++");
+        System.out.println("++++++++++++++++++++++++++++++"+customer);
+        List<Customer> customerList = customerService.selectAllCustomer(customer);
+        return customerList;
+
     }
 
 

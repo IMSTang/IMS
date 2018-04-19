@@ -1,11 +1,30 @@
 $("#form-vendor-add").validate({
 	rules:{
-		vendorName:{
-			required:true,
-		},
+		// vendorName:{
+		// 	required:true,
+		// },
+        vendorName:{
+            required:true,
+            minlength: 1,
+            remote: {
+                url: "/purchase/vendor/checkNameUnique",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#vendorName").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return true;
+                    else return false;
+                }
+            }
+        },
         mainMail:{
-			required:true,
-		},
+            required:true,
+            email:true
+        },
 	},
 	submitHandler:function(form){
 		add();

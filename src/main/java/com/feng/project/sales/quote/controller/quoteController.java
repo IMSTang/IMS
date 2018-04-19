@@ -65,7 +65,7 @@ public class quoteController extends BaseController {
 
 
     @Log(title = "sale  Management", action = "Quote Management - save Quote")
- //   @RequiresPermissions("sales:quote:save")
+    @RequiresPermissions("sales:quote:save")
     @PostMapping("/save")
     @ResponseBody
     public JSON save(Quote quote)
