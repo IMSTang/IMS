@@ -1,5 +1,6 @@
 package com.feng.project.purchase.demand.controller;
 
+import com.feng.common.utils.DateUtils;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
@@ -89,6 +90,8 @@ public class DemandController extends BaseController
     @GetMapping("/add")
     public String add(Model model)
     {
+        String date_today = DateUtils.dateTimeStr().substring(0,10);
+        model.addAttribute("today", date_today);
         return prefix + "/add";
     }
 

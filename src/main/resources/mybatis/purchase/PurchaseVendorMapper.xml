@@ -35,7 +35,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 
 	<select id="selectVendorList" parameterType="Vendor" resultMap="VendorResult">
-		select *, concat_ws(', ',name_title,last_name,first_name) as contacts from pur_vendor
+		select *, concat_ws(', ',name_title,last_name,middle_name,first_name) as contacts from pur_vendor
 		<where>
 			status = 0
 			<if test="searchValue != null and searchValue != ''">
@@ -55,11 +55,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="selectVendorAll" resultMap="VendorResult">
-		SELECT *, concat_ws(', ',name_title,last_name,first_name) as contacts FROM pur_vendor where status = 0
+		SELECT *, concat_ws(', ',name_title,last_name,middle_name,first_name) as contacts FROM pur_vendor where status = 0
 	</select>
 
 	<select id="selectVendorById" parameterType="Long" resultMap="VendorResult">
-		select *, concat_ws(', ',name_title,last_name,first_name) as contacts
+		select *, concat_ws(', ',name_title,last_name,middle_name,first_name) as contacts
 		from pur_vendor v
 		where v.status = 0 and v.vendor_id = #{vendorId}
 	</select>

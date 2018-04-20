@@ -24,15 +24,15 @@
 				<div class="col-sm-3">
 					<input class="form-control" type="text" name="itemCode" id="itemCode" th:value="${demand.itemCode}">
 				</div>
-				<label class="col-sm-2 control-label">Specification:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" readonly="true" name="specification" id="specification" th:value="${demand.specification}">
-				</div>
+				<!--<label class="col-sm-2 control-label">Specification:</label>-->
+				<!--<div class="col-sm-3">-->
+					<!--<input class="form-control" type="text" readonly="true" name="specification" id="specification" th:value="${demand.production.specification}">-->
+				<!--</div>-->
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Item Name:</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" readonly="true" name="itemName" id="itemName" th:value="${demand.itemName}">
+					<input class="form-control" type="text" name="itemName" id="itemName" th:value="${demand.production.itemName}">
 				</div>
 			</div>
 			<div class="form-group">
@@ -52,13 +52,13 @@
 				</div>
 				<label class="col-sm-2 control-label">Create By:</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="createBy" id="createBy" th:value="${demand.createBy}">
+					<input class="form-control" type="text" readonly="true" name="createBy" id="createBy" th:value="${demand.createBy}">
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Remark:</label>
 				<div class="col-sm-8">
-					<input id="remark" name="remark" class="form-control" type="text" th:value="${demand.remark}">
+					<textarea id="remark" name="remark" rows="3" class="form-control" type="text" th:value="${demand.remark}"></textarea>
 				</div>
 			</div>
 			<div class="form-group">
@@ -70,6 +70,9 @@
 		</form>
 	</div>
 	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
+	<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
+	<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
 	<script type="text/javascript" src="/feng/purchase/demand/edit.js">
 	</script>
 </body>

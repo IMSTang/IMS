@@ -90,7 +90,7 @@ drop table if exists pur_inquiry;
 create table pur_inquiry
 (
     inquiry_id       int(11)      not null auto_increment    comment 'Inquiry ID',
-    inquiry_date     timestamp    not null                   comment 'Inquiry Date',
+    inquiry_date     varchar(10) not null                   comment 'Inquiry Date',
 	vendor_id        int(11)      not null                   comment 'Vendor Id',
 	reminder         int(10)      default 3                  comment 'Reminder',
 	status        int(1)          default 0                   comment '状态（0正常 1停用）',
@@ -123,8 +123,8 @@ create table pur_inquiry_body
 drop table if exists pur_product_demand;
 create table pur_product_demand
 (
-    demand_id       int(11)      not null auto_increment    comment 'Inquiry ID',
-    demand_date     timestamp    not null                   comment 'Inquiry Date',
+    demand_id       int(11)      not null auto_increment    comment 'demand ID',
+    demand_date     varchar(10) not null               comment 'demand Date',
 	vendor_id        int(11)      not null                   comment 'Vendor Id',
 	vendor_name   varchar(100)    not null                   comment 'Vendor Name',
 	item_code     varchar(10)     not null                   comment 'Item Code',
