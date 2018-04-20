@@ -39,16 +39,17 @@ $("#customerName").autocomplete({
 
 
 
-function codeInfomation(codeElement,nameElement,idElement){
+function autoInfomation(element1,element2,idElement,elementType){
 
-    $(codeElement).autocomplete({
+    $(element1).autocomplete({
 
         minLength: 0,
         source: function (request, response) {
 
-           var elementValue =  $(codeElement).val();
+           var elementValue =  $(element1).val();
+
             $.ajax({
-                url: "/product/production/search/"+elementValue+"/code",
+                url: "/product/production/search/"+elementValue+"/"+elementType,
                 type: "get",
                 dataType: "json",
                 data: {
@@ -57,11 +58,23 @@ function codeInfomation(codeElement,nameElement,idElement){
                 success: function (data) {
 
                     response($.map(data, function (item) {
+                        if(elementType == "code"){
+
 
                         return {
+
                             label: item.itemCode,
                             value: item.itemName,
                             PID:item.productionId
+                        }  }
+                        else{
+                            return {
+
+                                label: item.itemName,
+                                value: item.itemCode,
+                                PID:item.productionId
+                            }
+
                         }
                     }));
                 }
@@ -70,14 +83,14 @@ function codeInfomation(codeElement,nameElement,idElement){
         ,
         focus: function (event, ui) {
 
-            $(codeElement).val(ui.item.label);
-            $(nameElement).val(ui.item.value);
+            $(element1).val(ui.item.label);
+            $(element2).val(ui.item.value);
             $(idElement).val(ui.item.PID);
             return false;
         },
         select: function (event, ui) {
-            $(codeElement).val(ui.item.label);
-            $(nameElement).val(ui.item.value);
+            $(element1).val(ui.item.label);
+            $(element2).val(ui.item.value);
             $(idElement).val(ui.item.PID);
             return false;
         }
@@ -111,7 +124,7 @@ function addElement(){
      * item Name ID
      * */
     var TId=document.createElement("input");
-    TId.type="text";
+    TId.type="hidden";
     TId.name="itemId"+Element_index;
     TId.id="itemId"+Element_index;
 
@@ -135,16 +148,13 @@ function addElement(){
     TCode.id="itemCode"+Element_index;
 
     TCode.onclick=function () {//绑定点击事件
-        codeInfomation(TCode,TName,TId);
+        autoInfomation(TCode,TName,TId,"code");
     };
-    /**
-     *
-     *
-     * 添加name 的点击事件
-     *
-     *
-     *
-     */
+
+
+    TName.onclick=function () {//绑定点击事件
+        autoInfomation(TName,TCode,TId,"name");
+    };
 
 
 
@@ -208,7 +218,7 @@ function delButton(divId) {
 }
 
 
-/*
+
 $("#form-quote-add").validate({
     rules:{
         itemCode:{
@@ -230,6 +240,20 @@ function add() {
     var quoteDate = $("input[name='quoteDate']").val();
     var customerId = $("input[name='customerId']").val();
     var customerName = $("input[name='customerName']").val();
+
+
+    var items = new Array();
+    var parentDiv =  document.getElementById('tableDiv');
+    var inputs = parentDiv.getElementsByTagName('input');
+    for(  i=0;i<inputs.length;i++){
+        if(i%6==0){
+            continue;
+        }
+        alert(inputs[i].val())
+    }
+
+    /*
+
     var itemCode = $("input[name='itemCode']").val();
     var itemName = $("input[name='itemName']").val();
     var price = $("input[name='price']").val();
@@ -264,6 +288,5 @@ function add() {
                 $.modalAlert(data.msg, "error");
             }
         }
-    });
+    });*/
 }
-*/
