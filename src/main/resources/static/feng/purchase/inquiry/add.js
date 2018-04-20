@@ -23,11 +23,8 @@ $("#vendorName").autocomplete({
             type: "get",
             dataType: "json",
             data: {"inputStr":  $("input[name='vendorName']").val() },
-
             success: function (data) {
-
                 response($.map(data, function (item) {
-
                     return {
                         label: item.vendorName,
                         value: item.vendorId
@@ -37,19 +34,14 @@ $("#vendorName").autocomplete({
         });
     },
     focus: function (event, ui) {
-
         $("#vendorName").val(ui.item.label);
         $("#vendorId").val(ui.item.value);
         return false;
     },
     select: function (event, ui) {
-
         $("#vendorName").val(ui.item.label);
         $("#vendorId").val(ui.item.value);
         return false;
-    },
-    focus: function () {
-        $(this).autocomplete("search");
     }
 });
 

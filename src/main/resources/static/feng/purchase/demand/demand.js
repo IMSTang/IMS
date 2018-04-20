@@ -6,16 +6,16 @@ $(function() {
         },
         {
             field: 'demandId',
-            title: 'Demand Id'
+            title: 'Id'
         },
         {
             field: 'demandDate',
             title: 'Demand Date'
         },
-        {
-            field: 'vendorId',
-            title: 'Vendor Id'
-        },
+        // {
+        //     field: 'vendorId',
+        //     title: 'Vendor Id'
+        // },
         {
             field: 'vendorName',
             title: 'Vendor Name'
@@ -25,7 +25,7 @@ $(function() {
             title: 'Item Code'
         },
         {
-            field: 'itemName',
+            field: 'production.itemName',
             title: 'Item Name'
         },
         {
@@ -41,13 +41,17 @@ $(function() {
             title: 'Urgency Degree'
         },
         {
+            field: 'status',
+            title: 'Status'
+        },
+        {
             field: 'createBy',
             title: 'Create By'
         },
-        {
-            field: 'createTime',
-            title: 'Create Time'
-        },
+        // {
+        //     field: 'createTime',
+        //     title: 'Create Time'
+        // },
         {
             title: 'Action',
             align: 'center',

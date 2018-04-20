@@ -15,6 +15,102 @@ $("#form-demand-edit").validate({
 	}
 });
 
+$("#itemCode").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "code";
+        var elementValue =  $("#itemCode").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.itemCode,
+                        value: item.itemName,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#itemCode").val(ui.item.label);
+        $("#itemName").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#itemCode").val(ui.item.label);
+        $("#itemName").val(ui.item.value);
+        return false;
+    }
+});
+
+$("#itemName").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "name";
+        var elementValue =  $("#itemName").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.itemName,
+                        value: item.itemCode,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.label);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.label);
+        return false;
+    }
+});
+
+$("#vendorName").autocomplete({
+    minLength: 0,
+    source: function (request, response) {
+        $.ajax({
+            url: "/purchase/vendor/search_name",
+            type: "get",
+            dataType: "json",
+            data: {"inputStr":  $("input[name='vendorName']").val() },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.vendorName,
+                        value: item.vendorId
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#vendorName").val(ui.item.label);
+        $("#vendorId").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#vendorName").val(ui.item.label);
+        $("#vendorId").val(ui.item.value);
+        return false;
+    }
+});
+
 function edit() {
 	var demandId = $("input[name='demandId']").val();
     var demandDate = $("input[name='demandDate']").val();
