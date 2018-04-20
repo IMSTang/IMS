@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.purchase.demand.dao.IDemandDao">
+
+	<resultMap type="Demand" id="DemandResult">
+		<id     property="demandId"        column="demand_id"     />
+		<result property="demandDate"      column="demand_date"   />
+		<result property="vendorId"        column="vendor_id"     />
+		<result property="vendorName"      column="vendor_name"   />
+		<result property="itemCode"        column="item_code"     />
+		<result property="price"           column="price"         />
+		<result property="quantity"        column="quantity"      />
+		<result property="urgencyDegree"   column="urgency_degree"/>
+		<result property="status"          column="status"        />
+		<result property="createBy"        column="create_by"     />
+		<result property="createTime"      column="create_time"   />
+		<result property="updateBy"        column="update_by"     />
+		<result property="updateTime"      column="update_time"   />
+		<result property="remark"          column="remark"        />
+		<association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
+	</resultMap>
+
+	<resultMap id="prodResult" type="Production">
+		<id     property="productionId"   column="production_id" />
+		<result property="itemCode" column="item_code" />
+		<result property="itemName" column="item_name"     />
+		<result property="specification" column="specification" />
+	</resultMap>
+
+	<select id="selectDemandList" parameterType="String" resultMap="DemandResult">
+		select d.*, p.production_id, p.item_code, p.item_name, p.specification
+		from pur_product_demand d left join pro_production p on p.item_code = d.item_code where d.status = 0
+		<if test="searchValue != null and searchValue != ''">
+			AND (vendor_name like CONCAT('%',#{searchValue},'%') or p.item_code like CONCAT('%',#{searchValue},'%')  or p.item_name like CONCAT('%',#{searchValue},'%'))
+		</if>
+	</select>
+
+	<select id="selectDemandAll" resultMap="DemandResult">
+		select d.*, p.production_id, p.item_code, p.item_name, p.specification
+		from pur_product_demand d left join pro_production p on p.item_code = d.item_code where d.status = 0
+	</select>
+
+	<select id="selectDemandById" parameterType="Long" resultMap="DemandResult">
+		select d.*, p.production_id, p.item_code, p.item_name, p.specification
+		from pur_product_demand d left join pro_production p on p.item_code = d.item_code where d.status = 0
+		and d.demand_id = #{demandId}
+	</select>
+	
+	<delete id="deleteDemandById" parameterType="Long">
+		update pur_product_demand set status = 1
+		where 1=1 and demand_id = #{demandId}
+ 	</delete>
+ 	
+ 	<update id="batchDeleteDemand" parameterType="String">
+		update pur_product_demand set status = 1
+		where demand_id in
+ 		<foreach collection="array" item="demandId" open="(" separator="," close=")">
+ 			#{demandId}
+        </foreach> 
+ 	</update>
+	
+ 	<update id="updateDemand" parameterType="Demand">
+ 		update pur_product_demand
+ 		<set>
+			<if test="demandDate != null">demand_date = #{demandDate},</if>
+			<if test="vendorId != null">vendor_id = #{vendorId},</if>
+			<if test="vendorName != null">vendor_name = #{vendorName},</if>
+			<if test="itemCode != null">item_code = #{itemCode},</if>
+			<if test="price != null">price = #{price},</if>
+			<if test="quantity != null">quantity = #{quantity},</if>
+			<if test="urgencyDegree != null">urgency_degree = #{urgencyDegree},</if>
+ 			<if test="status !=null">status = #{status},</if>
+ 			<if test="remark != null">remark = #{remark},</if>
+ 			<if test="updateBy != null">update_by = #{updateBy},</if>
+ 			update_time = sysdate()
+ 		</set>
+ 		where 1=1
+ 		<if test="demandId != null">and demand_id = #{demandId}</if>
+	</update>
+ 	
+ 	<insert id="insertDemand" parameterType="Demand" useGeneratedKeys="true" keyProperty="demandId">
+ 		insert into pur_product_demand(
+ 			<if test="demandId != null and demandId != 0">demand_id,</if>
+ 			<if test="demandDate != null and demandDate != ''">demand_date,</if>
+ 			<if test="vendorId != null and vendorId != ''">vendor_id,</if>
+ 			<if test="vendorName != null and vendorName != ''">vendor_name,</if>
+			<if test="itemCode != null and itemCode != ''">item_code,</if>
+			<if test="price != null and price != ''">price,</if>
+			<if test="quantity != null and quantity != ''">quantity,</if>
+			<if test="urgencyDegree != null and urgencyDegree != ''">urgency_degree,</if>
+ 			<if test="status !=null">status,</if>
+ 			<if test="remark != null and remark != ''">remark,</if>
+ 			<if test="createBy != null and createBy != ''">create_by,</if>
+ 			create_time
+ 		)values(
+ 			<if test="demandId != null and demandId != 0">#{demandId},</if>
+ 			<if test="demandDate != null and demandDate != ''">#{demandDate},</if>
+			<if test="vendorId != null and vendorId != ''">#{vendorId},</if>
+			<if test="vendorName != null and vendorName != ''">#{vendorName},</if>
+			<if test="itemCode != null and itemCode != ''">#{itemCode},</if>
+			<if test="price != null and price != ''">#{price},</if>
+			<if test="quantity != null and quantity != ''">#{quantity},</if>
+			<if test="urgencyDegree != null and urgencyDegree != ''">#{urgencyDegree},</if>
+ 			<if test="status !=null">status,</if>
+ 			<if test="remark != null and remark != ''">#{remark},</if>
+ 			<if test="createBy != null and createBy != ''">#{createBy},</if>
+ 			sysdate()
+ 		)
+	</insert>
+
+</mapper> 

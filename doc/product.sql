@@ -12,12 +12,12 @@ insert into sys_menu values('314', 'Remove', '310', '4',  '#',  'F', '0', 'produ
 insert into sys_menu values('315', 'Save', '310', '5',  '#',  'F', '0', 'product:production:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('316', 'BatchRemove', '310', '6', '#',  'F', '0', 'product:production:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
-insert into sys_menu values('321', 'Query', '310', '1',  '#',  'F', '0', 'product:productionMapping:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('322', 'Add', '310', '2',  '#',  'F', '0', 'product:productionMapping:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('323', 'Edit', '310', '3',  '#',  'F', '0', 'product:productionMapping:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('324', 'Remove', '310', '4',  '#',  'F', '0', 'product:productionMapping:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('325', 'Save', '310', '5',  '#',  'F', '0', 'product:productionMapping:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('326', 'BatchRemove', '310', '6', '#',  'F', '0', 'product:productionMapping:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('321', 'Query', '320', '1',  '#',  'F', '0', 'product:productionMapping:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('322', 'Add', '320', '2',  '#',  'F', '0', 'product:productionMapping:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('323', 'Edit', '320', '3',  '#',  'F', '0', 'product:productionMapping:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('324', 'Remove', '320', '4',  '#',  'F', '0', 'product:productionMapping:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('325', 'Save', '320', '5',  '#',  'F', '0', 'product:productionMapping:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('326', 'BatchRemove', '320', '6', '#',  'F', '0', 'product:productionMapping:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
 
