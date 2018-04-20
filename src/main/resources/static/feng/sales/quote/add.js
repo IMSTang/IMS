@@ -116,7 +116,7 @@ function addElement(){
      */
 
     var div = document.createElement('div');
-    div.style.padding = '5px';
+    div.style.height = '34px';
     div.style.margin= '0 10px';
     div.id="div"+Element_index;
     var clearDiv =document.createElement("div");
@@ -138,7 +138,7 @@ function addElement(){
      * */
     var TName=document.createElement("input");
     TName.type="text";
-    TName.className = 'col-sm-3';
+    TName.className = 'col-sm-4';
     TName.style.margin= '0 4px';
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
@@ -149,7 +149,7 @@ function addElement(){
      */
     var TCode=document.createElement("input");
     TCode.type="text";
-    TCode.className = 'col-sm-3';
+    TCode.className = 'col-sm-2';
     TCode.style.margin= '0 4px';
     TCode.name="itemCode"+Element_index;
     TCode.id="itemCode"+Element_index;
