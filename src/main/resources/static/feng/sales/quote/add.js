@@ -138,7 +138,7 @@ function addElement(){
      * */
     var TName=document.createElement("input");
     TName.type="text";
-    TName.className = 'col-sm-4';
+    TName.className = 'col-sm-4 outline';
     TName.style.margin= '0 -1px';
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
@@ -149,7 +149,7 @@ function addElement(){
      */
     var TCode=document.createElement("input");
     TCode.type="text";
-    TCode.className = 'col-sm-3';
+    TCode.className = 'col-sm-3 outline';
     TCode.style.margin= '0 -1px';
     TCode.name="itemCode"+Element_index;
     TCode.id="itemCode"+Element_index;
@@ -170,7 +170,7 @@ function addElement(){
      */
     var TPrice=document.createElement("input");
     TPrice.type="text";
-    TPrice.className = 'col-sm-2';
+    TPrice.className = 'col-sm-2 outline';
     TPrice.style.margin= '0 -1px';
     TPrice.name="price"+Element_index;
     TPrice.id="price"+Element_index;
@@ -183,7 +183,7 @@ function addElement(){
      */
     var TQuantity=document.createElement("input");
     TQuantity.type="text";
-    TQuantity.className = 'col-sm-2';
+    TQuantity.className = 'col-sm-2 outline';
     TQuantity.style.margin= '0 -1px';
     TQuantity.name="quantity"+Element_index;
     TQuantity.id="quantity"+Element_index;

@@ -7457,6 +7457,19 @@ body
     visibility: hidden;
     font-size: 1px;
 }
+.outline {
+    outline: none;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid #ddd;
+    height: 24px;
+}
+.outline:focus {
+    border-color: #1ab394 !important;
+    border-width: 1px;
+    border-style: solid;
+    height: 24px;
+}
 
 /* css from jQuery-Autocomplete*/
 .autocomplete-suggestions { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
