@@ -116,8 +116,11 @@ function addElement(){
      */
 
     var div = document.createElement('div');
-    div.padding="10px";
+    div.style.padding = '5px';
+    div.style.margin= '0 10px';
     div.id="div"+Element_index;
+    var clearDiv =document.createElement("div");
+    clearDiv.className = 'clear';
 
 
     /**
@@ -135,6 +138,8 @@ function addElement(){
      * */
     var TName=document.createElement("input");
     TName.type="text";
+    TName.className = 'col-sm-3';
+    TName.style.margin= '0 4px';
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
 
@@ -144,6 +149,8 @@ function addElement(){
      */
     var TCode=document.createElement("input");
     TCode.type="text";
+    TCode.className = 'col-sm-3';
+    TCode.style.margin= '0 4px';
     TCode.name="itemCode"+Element_index;
     TCode.id="itemCode"+Element_index;
 
@@ -163,6 +170,8 @@ function addElement(){
      */
     var TPrice=document.createElement("input");
     TPrice.type="text";
+    TPrice.className = 'col-sm-2';
+    TPrice.style.margin= '0 4px';
     TPrice.name="price"+Element_index;
     TPrice.id="price"+Element_index;
 
@@ -174,6 +183,8 @@ function addElement(){
      */
     var TQuantity=document.createElement("input");
     TQuantity.type="text";
+    TQuantity.className = 'col-sm-2';
+    TQuantity.style.margin= '0 4px';
     TQuantity.name="quantity"+Element_index;
     TQuantity.id="quantity"+Element_index;
 
@@ -182,8 +193,12 @@ function addElement(){
      */
     var TButton=document.createElement("input");
     TButton.type="button";
+    TButton.className = 'col-sm-1';
+    TButton.style.margin= '0 4px';
+    TButton.style.height= '24px';
+    TButton.style.padding= '0';
     TButton.text=Element_index;
-    TButton.value="-";
+    TButton.value="Remove";
     TButton.name="delButton";
     TButton.id="delButton";
     TButton.onclick=function () {//绑定点击事件
@@ -197,6 +212,7 @@ function addElement(){
     div.appendChild(TQuantity);
     div.appendChild(TPrice);
     div.appendChild(TButton);
+    div.appendChild(clearDiv);
     document.getElementById("tableDiv").appendChild(div);
     Element_index++;
 }
