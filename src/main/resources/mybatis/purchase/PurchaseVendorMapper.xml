@@ -85,22 +85,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		update pur_vendor
  		<set>
 			<if test="vendorName != null and vendorName != ''">vendor_name = #{vendorName},</if>
-			<if test="firstName != null and firstName != ''">first_name = #{firstName},</if>
-			<if test="lastName != null and lastName != ''">last_name = #{lastName},</if>
-			<if test="middleName != null and middleName != ''">middle_name = #{middleName},</if>
-			<if test="nameTitle != null and nameTitle != ''">name_title = #{nameTitle},</if>
-			<if test="jobTitle != null and jobTitle != ''">job_title = #{jobTitle},</if>
-			<if test="mainPhone != null and mainPhone != ''">main_phone = #{mainPhone},</if>
-			<if test="workPhone != null and workPhone != ''">work_phone = #{workPhone},</if>
-			<if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
-			<if test="fax != null and fax != ''">fax = #{fax},</if>
-			<if test="mainMail != null and mainMail != ''">main_mail = #{mainMail},</if>
-			<if test="ccMail != null and ccMail != ''">cc_mail = #{ccMail},</if>
-			<if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from = #{addressShipFrom},</if>
-			<if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from = #{addressBillFrom},</if>
+			<if test="firstName != null">first_name = #{firstName},</if>
+			<if test="lastName != null">last_name = #{lastName},</if>
+			<if test="middleName != null">middle_name = #{middleName},</if>
+			<if test="nameTitle != null">name_title = #{nameTitle},</if>
+			<if test="jobTitle != null">job_title = #{jobTitle},</if>
+			<if test="mainPhone != null">main_phone = #{mainPhone},</if>
+			<if test="workPhone != null">work_phone = #{workPhone},</if>
+			<if test="mobile != null">mobile = #{mobile},</if>
+			<if test="fax != null">fax = #{fax},</if>
+			<if test="mainMail != null">main_mail = #{mainMail},</if>
+			<if test="ccMail != null">cc_mail = #{ccMail},</if>
+			<if test="addressShipFrom != null">address_ship_from = #{addressShipFrom},</if>
+			<if test="addressBillFrom != null">address_bill_from = #{addressBillFrom},</if>
  			<if test="status !=null">status = #{status},</if>
- 			<if test="remark != null and remark != ''">remark = #{remark},</if>
- 			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+ 			<if test="remark != null">remark = #{remark},</if>
+ 			<if test="updateBy != null">update_by = #{updateBy},</if>
  			update_time = sysdate()
  		</set>
  		where 1=1

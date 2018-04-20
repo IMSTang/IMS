@@ -6,10 +6,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Inquiry" id="InquiryResult">
 		<id     property="inquiryId"        column="inquiry_id"       />
-		<result property="inquiryUUID"      column="inquiry_uuid"     />
+		<result property="inquiryBodyId"      column="inquiry_body_id"     />
 		<result property="inquiryDate"      column="inquiry_date"     />
 		<result property="vendorName"      column="vendor_name"     />
 		<result property="vendorId"      column="vendor_id"     />
+		<result property="reminder"      column="reminder"     />
 		<result property="itemCode"      column="item_code"     />
 		<result property="itemName"      column="item_name"     />
 		<result property="price"      column="price"     />

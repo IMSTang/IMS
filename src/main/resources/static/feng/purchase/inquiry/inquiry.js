@@ -5,10 +5,6 @@ $(function() {
             checkbox: true
         },
         {
-            field: 'inquiryUUID',
-            title: 'Inquiry UUID'
-        },
-        {
             field: 'inquiryId',
             title: 'Inquiry Id'
         },

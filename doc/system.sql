@@ -148,7 +148,8 @@ insert into sys_menu values('6',   'Menus', '1', '3', '/system/menu',        'C'
 insert into sys_menu values('7',   'Department', '1', '4', '/system/dept',        'C', '0', 'system:dept:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '部门管理菜单');
 insert into sys_menu values('8',   'Post', '1', '5', '/system/post',        'C', '0', 'system:post:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '岗位管理菜单');
 insert into sys_menu values('9',   '参数设置', '1', '6', '/system/config',      'C', '0', 'system:config:view',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '参数设置菜单');
-insert into sys_menu values('10',  '字典管理', '1', '7', '/system/dict',        'C', '0', 'system:dict:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典管理菜单');
+insert into sys_menu values('10',  'DictType', '1', '7', '/system/dict',        'C', '0', 'system:dict:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典type菜单');
+insert into sys_menu values('16',  'DictData', '1', '7', '/system/dictData',        'C', '0', 'system:dictdata:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典data菜单');
 insert into sys_menu values('11',  'Operation Logs', '1', '11', '/monitor/operlog',    'C', '0', 'monitor:operlog:view',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '操作日志菜单');
 insert into sys_menu values('12',  'Login Logs', '1', '12', '/monitor/logininfor', 'C', '0', 'monitor:logininfor:view',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '登录日志菜单');
 insert into sys_menu values('13',  'Online Users', '1', '13', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '在线用户菜单');
@@ -195,6 +196,13 @@ insert into sys_menu values('47', '字典新增', '10', '2', '#',  'F', '0', 'sy
 insert into sys_menu values('48', '字典修改', '10', '3', '#',  'F', '0', 'system:dict:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('49', '批量删除', '10', '4', '#',  'F', '0', 'system:dict:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('50', '字典保存', '10', '5', '#',  'F', '0', 'system:dict:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+
+-- 字典Data按钮
+insert into sys_menu values('66', '字典查询', '16', '1', '#',  'F', '0', 'system:dictdata:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('67', '字典新增', '16', '2', '#',  'F', '0', 'system:dictdata:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('68', '字典修改', '16', '3', '#',  'F', '0', 'system:dictdata:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('69', '批量删除', '16', '4', '#',  'F', '0', 'system:dictdata:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('70', '字典保存', '16', '5', '#',  'F', '0', 'system:dictdata:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 操作日志按钮
 insert into sys_menu values('51', '操作查询', '11', '1', '#',  'F', '0', 'monitor:operlog:list',            '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('52', '批量删除', '11', '2', '#',  'F', '0', 'monitor:operlog:batchRemove',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
@@ -257,6 +265,7 @@ insert into sys_role_menu values ('1', '12');
 insert into sys_role_menu values ('1', '13');
 insert into sys_role_menu values ('1', '14');
 insert into sys_role_menu values ('1', '15');
+insert into sys_role_menu values ('1', '16');
 insert into sys_role_menu values ('1', '17');
 insert into sys_role_menu values ('1', '18');
 insert into sys_role_menu values ('1', '19');
@@ -306,6 +315,12 @@ insert into sys_role_menu values ('1', '62');
 insert into sys_role_menu values ('1', '63');
 insert into sys_role_menu values ('1', '64');
 insert into sys_role_menu values ('1', '65');
+
+insert into sys_role_menu values ('1', '66');
+insert into sys_role_menu values ('1', '67');
+insert into sys_role_menu values ('1', '68');
+insert into sys_role_menu values ('1', '69');
+insert into sys_role_menu values ('1', '70');
 
 -- ----------------------------
 -- 8、用户与岗位关联表  用户1-N岗位

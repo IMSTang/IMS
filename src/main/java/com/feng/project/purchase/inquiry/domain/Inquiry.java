@@ -4,6 +4,8 @@ import com.feng.framework.web.page.PageDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * 询价对象 pur_inquiry
  * pur_inquiry
@@ -16,16 +18,17 @@ public class Inquiry extends PageDomain
     /** 询价ID */
     private Long inquiryId;
     /**  */
-    private String inquiryUUID;
-    /**  */
     private String inquiryDate;
     /**  */
     private String vendorId;
     /**  */
     private String vendorName;
     /**  */
-    private String itemCode;
+    private String reminder;
     /**  */
+    private Long inquiryBodyId;
+    /**  */
+    private String itemCode;
     /**  */
     private String itemName;
     /**  */
@@ -44,5 +47,7 @@ public class Inquiry extends PageDomain
     private String updateBy;
     /** 备注 */
     private String remark;
+    /** Body */
+    private List<InquiryBody> body;
 
 }

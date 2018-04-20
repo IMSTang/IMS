@@ -36,8 +36,8 @@ $(function(){
 	    }
 	    layer.alert(content, {
 	        icon: icon,
-	        title: "系统提示",
-	        btn: ['确认'],
+	        title: "Information",
+	        btn: ['OK'],
 	        btnclass: ['btn btn-primary'],
 	    });
 	}
@@ -45,8 +45,8 @@ $(function(){
 	$.modalConfirm = function (content, callBack) {
 	        layer.confirm(content, {
 	        icon: 3,
-	        title: "系统提示",
-	        btn: ['确认', '取消'],
+	        title: "Information",
+	        btn: ['OK', 'Cancel'],
 	        btnclass: ['btn btn-primary', 'btn btn-danger'],
 	    }, function () {
 	        callBack(true);

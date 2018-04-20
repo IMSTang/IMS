@@ -1,8 +1,14 @@
 $("#form-inquiry-add").validate({
 	rules:{
-        itemCode:{
+        vendorName:{
 			required:true,
 		},
+        itemCode:{
+            required:true,
+        },
+        reminder:{
+            digits:true,
+        },
 	},
 	submitHandler:function(form){
 		add();
@@ -13,46 +19,45 @@ $("#vendorName").autocomplete({
     minLength: 0,
     source: function (request, response) {
         $.ajax({
-            type : "GET",
-            url : "/purchase/vendor/search_name",
-            data : {
-                inputStr : request.term
-            },
-            cache : false,
-            datatype : "JSON",
-            success : function(data) {
-                response($.map(data, function(item) {
-                    return { //lable为下拉列表显示数据源。value为选中放入到文本框的值，这种方式可以自定义显示
-                        lable : item.vendorName,
-                        value : item.vendorName,
-                        id : item.vendorId
-                    };
+            url: "/purchase/vendor/search_name",
+            type: "get",
+            dataType: "json",
+            data: {"inputStr":  $("input[name='vendorName']").val() },
+
+            success: function (data) {
+
+                response($.map(data, function (item) {
+
+                    return {
+                        label: item.vendorName,
+                        value: item.vendorId
+                    }
                 }));
-            },
-            error : function() {
-                alert("异常");
             }
-
         });
+    },
+    focus: function (event, ui) {
 
-    },
-    focus: function( event, ui ) {
-        $("vendorId").val( ui.item.id );
-        $("vendorName").val( ui.item.value );
+        $("#vendorName").val(ui.item.label);
+        $("#vendorId").val(ui.item.value);
         return false;
     },
-    select: function( event, ui ) {
-        $("vendorId").val( ui.item.id );
-        $("vendorName").val( ui.item.value );
+    select: function (event, ui) {
+
+        $("#vendorName").val(ui.item.label);
+        $("#vendorId").val(ui.item.value);
         return false;
+    },
+    focus: function () {
+        $(this).autocomplete("search");
     }
 });
 
 function add() {
-    var inquiryUUID = $("input[name='inquiryUUID']").val();
     var inquiryDate = $("input[name='inquiryDate']").val();
 	var vendorId = $("input[name='vendorId']").val();
     var vendorName = $("input[name='vendorName']").val();
+    var reminder = $("input[name='reminder']").val();
     var itemCode = $("input[name='itemCode']").val();
     var itemName = $("input[name='itemName']").val();
     var price = $("input[name='price']").val();
@@ -63,12 +68,10 @@ function add() {
 		type : "POST",
 		url : "/purchase/inquiry/save",
 		data : {
-            "inquiryUUID": inquiryUUID,
             "inquiryDate": inquiryDate,
             "vendorId": vendorId,
-            "vendorName": vendorName,
+            "reminder": reminder,
             "itemCode": itemCode,
-            "itemName": itemName,
             "price": price,
             "quantity": quantity,
 			"status": 0,

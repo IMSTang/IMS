@@ -1,10 +1,13 @@
-$("#form-vendor-edit").validate({
+$("#form-inquiry-edit").validate({
 	rules:{
         vendorName:{
             required:true,
         },
-        mainMail:{
+        itemCode:{
             required:true,
+        },
+        reminder:{
+            digits:true,
         },
 	},
 	submitHandler:function(form){
@@ -13,42 +16,28 @@ $("#form-vendor-edit").validate({
 });
 
 function edit() {
-	var vendorId = $("input[name='vendorId']").val();
+	var inquiryId = $("input[name='inquiryId']").val();
+    var inquiryDate = $("input[name='inquiryDate']").val();
+    var vendorId = $("input[name='vendorId']").val();
     var vendorName = $("input[name='vendorName']").val();
-    var firstName = $("input[name='firstName']").val();
-    var lastName = $("input[name='lastName']").val();
-    var middleName = $("input[name='middleName']").val();
-    var nameTitle = $("input[name='nameTitle']").val();
-    var jobTitle = $("input[name='jobTitle']").val();
-    var mainPhone = $("input[name='mainPhone']").val();
-    var workPhone = $("input[name='workPhone']").val();
-    var mobile = $("input[name='mobile']").val();
-    var fax = $("input[name='fax']").val();
-    var mainMail = $("input[name='mainMail']").val();
-    var ccMail = $("input[name='ccMail']").val();
-    var addressShipFrom = $("input[name='addressShipFrom']").val();
-    var addressBillFrom = $("input[name='addressBillFrom']").val();
+    var reminder = $("input[name='reminder']").val();
+    var itemCode = $("input[name='itemCode']").val();
+    var itemName = $("input[name='itemName']").val();
+    var price = $("input[name='price']").val();
+    var quantity = $("input[name='quantity']").val();
     var remark = $("input[name='remark']").val();
 	$.ajax({
 		cache : true,
 		type : "POST",
-		url : "/purchase/vendor/save",
+		url : "/purchase/inquiry/save",
 		data : {
-			"vendorId": vendorId,
-            "vendorName": vendorName,
-            "firstName": firstName,
-            "lastName": lastName,
-            "middleName": middleName,
-            "nameTitle": nameTitle,
-            "jobTitle": jobTitle,
-            "mainPhone": mainPhone,
-            "workPhone": workPhone,
-            "mobile": mobile,
-            "fax": fax,
-            "mainMail": mainMail,
-            "ccMail": ccMail,
-            "addressShipFrom": addressShipFrom,
-            "addressBillFrom": addressBillFrom,
+            "inquiryId": inquiryId,
+            "inquiryDate": inquiryDate,
+            "vendorId": vendorId,
+            "reminder": reminder,
+            "itemCode": itemCode,
+            "price": price,
+            "quantity": quantity,
             "remark": remark
 		},
 		async : false,
