@@ -54,6 +54,8 @@ insert into sys_role_menu values ('1', '236');
 
 -- ----------------------------
 -- 210、供应商信息表
+-- product_category: Amino_acids, Plant_Extracts, Minerals, Orotein_Powder
+
 -- ----------------------------
 drop table if exists pur_vendor;
 create table pur_vendor
