@@ -6,7 +6,7 @@ window.onload = function() {
 
 function loading() {
 	var columns = [{
-			title : '部门编号',
+			title : 'Dept Id',
 			field : 'deptId',
 			visible : false,
 			align : 'center',
@@ -15,38 +15,38 @@ function loading() {
         },
         {
         	field : 'deptName',
-			title : '部门名称'
+			title : 'Dept Name'
         },
         {
         	field : 'orderNum',
-			title : '排序'
+			title : 'Order'
         },
         {
         	field : 'status',
-			title : '状态',
+			title : 'Status',
 			formatter : function(item, index) {
 				if (item.status == '0') {
-					return '<span class="label label-primary">正常</span>';
+					return '<span class="label label-primary">Active</span>';
 				} else if (item.status == '1') {
-					return '<span class="label label-danger">禁用</span>';
+					return '<span class="label label-danger">Disabled</span>';
 				}
 			}
         },
         {
-			title : '创建时间',
+			title : 'Create Time',
 			formatter : function(row, index) {
 				return formatDate(row.createTime,"yyyy-MM-dd");
 			}
         },
         {
-        	title : '操作',
+        	title : 'Action',
 			align : 'center',
 			formatter : function(row, index) {
 				if(row.parentId != 0) {
 					var actions = [];
-					actions.push('<a class="btn btn-primary btn-sm" href="#" title="编辑" mce_href="#" onclick="edit(\'' + row.deptId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
-					actions.push('<a class="btn btn-primary btn-sm" href="#" title="新增" mce_href="#" onclick="add(\'' + row.deptId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
-					actions.push('<a class="btn btn-warning btn-sm" href="#" title="删除" mce_href="#" onclick="remove(\'' + row.deptId + '\')"><i class="fa fa-remove"></i></a>');
+					actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.deptId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
+					actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="add(\'' + row.deptId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
+					actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' + row.deptId + '\')"><i class="fa fa-remove"></i></a>');
 					return actions.join('');
 				} else {
 					return "";
@@ -60,18 +60,18 @@ function loading() {
 /*部门管理-新增*/
 function add(deptId) {
     var url = prefix + '/add/' + deptId;
-    layer_show("新增部门", url, '800', '500');
+    layer_show("add Dept", url, '800', '500');
 }
 
 /*部门管理-修改*/
 function edit(deptId) {
     var url = prefix + '/edit/' + deptId;
-    layer_show("修改部门", url, '800', '500');
+    layer_show("edit Dept", url, '800', '500');
 }
 
 /*部门管理-删除*/
 function remove(deptId) {
-	layer.confirm("确定要删除部门吗？",{icon: 3, title:'提示'},function(index){
+	layer.confirm("Do you want to remove this dept?",{icon: 3, title:'Information'},function(index){
 		$.ajax({
 			type : 'get',
 			url: prefix + "/remove/" + deptId,
@@ -80,7 +80,7 @@ function remove(deptId) {
 					layer.msg(r.msg, { icon: 1, time: 1000 });
 					loading();
 				} else {
-					layer.alert(r.msg, { icon: 2, title: "系统提示" });
+					layer.alert(r.msg, { icon: 2, title: "Information" });
 				}
 			}
 		});

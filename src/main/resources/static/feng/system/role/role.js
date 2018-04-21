@@ -6,43 +6,43 @@ $(function() {
         },
         {
             field: 'roleId',
-            title: '角色编号'
+            title: 'Role Id'
         },
         {
             field: 'roleName',
-            title: '角色名称'
+            title: 'Role Name'
         },
         {
             field: 'roleKey',
-            title: '权限字符'
+            title: 'Role Key'
         },
         {
             field: 'roleSort',
-            title: '显示顺序'
+            title: 'Order'
         },
         {
             field: 'status',
-            title: '状态',
+            title: 'Status',
             align: 'center',
             formatter: function(value, row, index) {
                 if (value == 0) {
-                    return '<span class="label label-success">正常</span>';
+                    return '<span class="label label-success">Active</span>';
                 } else if (value == 1) {
-                    return '<span class="label label-danger">禁用</span>';
+                    return '<span class="label label-danger">Disabled</span>';
                 }
             }
         },
         {
             field: 'createTime',
-            title: '创建时间'
+            title: 'Create Time'
         },
         {
-            title: '操作',
+            title: 'Action',
             align: 'center',
             formatter: function(value, row, index) {
             	var actions = [];
-				actions.push('<a class="btn btn-primary btn-sm" href="#" title="编辑" mce_href="#" onclick="edit(\'' + row.roleId + '\')"><i class="fa fa-edit"></i></a> ');
-				actions.push('<a class="btn btn-warning btn-sm" href="#" title="删除" onclick="remove(\'' + row.roleId + '\')"><i class="fa fa-remove"></i></a>');
+				actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.roleId + '\')"><i class="fa fa-edit"></i></a> ');
+				actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.roleId + '\')"><i class="fa fa-remove"></i></a>');
 				return actions.join('');
             }
         }];
@@ -53,18 +53,18 @@ $(function() {
 /*角色管理-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("新增角色", url, '800', '550');
+    layer_show("add Role", url, '800', '550');
 }
 
 /*角色管理-修改*/
 function edit(roleId) {
     var url = prefix + '/edit/' + roleId;
-    layer_show("修改角色", url, '800', '550');
+    layer_show("edit Role", url, '800', '550');
 }
 
 // 单条删除
 function remove(id) {
-	$.modalConfirm("确定要删除选中角色吗？", function(r) {
+	$.modalConfirm("Do you want to remove this role?", function(r) {
 		_ajax(prefix + "/remove/" + id, "", "post", r);
     })
 }
@@ -73,10 +73,10 @@ function remove(id) {
 function batchRemove() {
 	var rows = $.getSelections("roleId");
 	if (rows.length == 0) {
-		$.modalMsg("请选择要删除的数据", "warning");
+		$.modalMsg("Please select the data you want to remove", "warning");
 		return;
 	}
-	$.modalConfirm("确认要删除选中的" + rows.length + "条数据吗?", function(r) {
+	$.modalConfirm("Do you want to remove " + rows.length + " roles?", function(r) {
 		_ajax(prefix + '/batchRemove', { "ids": rows }, "post", r);
 	});
 }

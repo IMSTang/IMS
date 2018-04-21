@@ -13,50 +13,50 @@ function queryUserList() {
         },
         {
             field: 'userId',
-            title: '用户ID'
+            title: 'User ID'
         },
         {
             field: 'loginName',
-            title: '登录名称'
+            title: 'Login Name'
         },
         {
             field: 'userName',
-            title: '用户名称'
+            title: 'User Name'
         },
         {
             field: 'email',
-            title: '邮箱'
+            title: 'Email'
         },
         {
             field: 'phonenumber',
-            title: '手机'
+            title: 'Mobile'
         },
         {
             field: 'status',
-            title: '状态',
+            title: 'Status',
             align: 'center',
             formatter: function(value, row, index) {
                 if (value == '0') {
-                    return '<span class="label label-success">正常</span>';
+                    return '<span class="label label-success">Active</span>';
                 } else if (value == '1') {
-                    return '<span class="label label-danger">禁用</span>';
+                    return '<span class="label label-danger">Disabled</span>';
                 }
             }
         },
         {
             field: 'createTime',
-            title: '创建时间'
+            title: 'Create Time'
         },
         {
-            title: '操作',
+            title: 'Action',
             align: 'center',
             formatter: function(value, row, index) {
 
             	if(row.userType == "N") {
             		var actions = [];
-                	actions.push('<a class="btn btn-primary btn-sm" href="#" title="编辑" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i></a> ');
-                	actions.push('<a class="btn btn-warning btn-sm" href="#" title="删除" onclick="remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i></a> ');
-                	actions.push('<a class="btn btn-success btn-sm  href="#" title="重置" onclick="resetPwd(\'' + row.userId + '\')"><i class="fa fa-key"></i></a>');
+                	actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" onclick="edit(\'' + row.userId + '\')"><i class="fa fa-edit"></i></a> ');
+                	actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.userId + '\')"><i class="fa fa-remove"></i></a> ');
+                	actions.push('<a class="btn btn-success btn-sm  href="#" title="Reset Password" onclick="resetPwd(\'' + row.userId + '\')"><i class="fa fa-key"></i></a>');
                 	return actions.join('');
 				} else {
 					return "";
@@ -89,7 +89,7 @@ function queryDeptTreeDaTa()
 		    for (var i = 0; i < nodes.length; i++) {
 		        tree.expandNode(nodes[i], true, false, false);
 		    }
-		}, null, null, "正在加载，请稍后...");
+		}, null, null, "Loading, please wait...");
 	};loadTree();
 	
 	$('#btnExpand').click(function() {
@@ -109,7 +109,7 @@ function queryDeptTreeDaTa()
 
 /*用户管理-删除*/
 function remove(userId) {
-	$.modalConfirm("确定要删除选中用户吗？", function(r) {
+	$.modalConfirm("Do you want to remove this user?", function(r) {
 		_ajax(prefix + "/remove/" + userId, "", "post", r);
     })
 }
@@ -117,29 +117,29 @@ function remove(userId) {
 /*用户管理-修改*/
 function edit(userId) {
     var url = prefix + '/edit/' + userId;
-    layer_show("修改用户", url, '800', '550');
+    layer_show("edit User", url, '800', '550');
 }
 
 /*用户管理-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("新增用户", url, '800', '590');
+    layer_show("add User", url, '800', '590');
 }
 
 /*用户管理-重置密码*/
 function resetPwd(userId) {
     var url = prefix + '/resetPwd/' + userId;
-    layer_show("重置密码", url, '800', '300');
+    layer_show("Reset Password", url, '800', '300');
 }
 
 // 批量强退
 function batchRemove() {
 	var rows = $.getSelections("userId");
 	if (rows.length == 0) {
-		$.modalMsg("请选择要删除的数据", "warning");
+		$.modalMsg("Please select the data you want to remove", "warning");
 		return;
 	}
-	$.modalConfirm("确认要删除选中的" + rows.length + "条数据吗?", function(r) {
+	$.modalConfirm("Do you want to remove " + rows.length + " users?", function(r) {
 		_ajax(prefix + '/batchRemove', { "ids": rows }, "post", r);
 	});
 }

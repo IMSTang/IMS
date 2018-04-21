@@ -13,7 +13,7 @@ var setting = {
 }, menuTrees, loadTree = function(){
 	$.get("/system/menu/treeData", function(data) {
 		menuTrees = $.fn.zTree.init($("#menuTrees"), setting, data); //.expandAll(true);
-	}, null, null, "正在加载，请稍后...");
+	}, null, null, "Loading, please wait...");
 };loadTree();
 
 $("#form-role-add").validate({
@@ -67,11 +67,11 @@ function add() {
 		},
 		async : false,
 		error : function(request) {
-			$.modalAlert("系统错误", "error");
+			$.modalAlert("System ERROR", "error");
 		},
 		success : function(data) {
 			if (data.code == 0) {
-				parent.layer.msg("新增成功,正在刷新数据请稍后……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+				parent.layer.msg("add successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
 					$.parentReload();
 				});
 			} else {

@@ -19,7 +19,7 @@ var setting = {view:{selectedMulti:false},data:{key:{title:"title"},simpleData:{
 	    for (var i = 0; i < nodes.length; i++) {
 	        tree.expandNode(nodes[i], true, false, false);
 	    }
-	}, null, null, "正在加载，请稍后...");
+	}, null, null, "Loading, please wait...");
 };loadTree();
 
 $('#btnExpand').click(function() {

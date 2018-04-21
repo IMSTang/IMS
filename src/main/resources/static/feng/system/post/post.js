@@ -6,43 +6,43 @@ $(function() {
         },
         {
             field: 'postId',
-            title: '岗位编号'
+            title: 'Post Id'
         },
         {
             field: 'postCode',
-            title: '岗位编码'
+            title: 'Post Code'
         },
         {
             field: 'postName',
-            title: '岗位名称'
+            title: 'Post Name'
         },
         {
             field: 'postSort',
-            title: '显示顺序'
+            title: 'Order'
         },
         {
             field: 'status',
-            title: '状态',
+            title: 'Status',
             align: 'center',
             formatter: function(value, row, index) {
                 if (value == 0) {
-                    return '<span class="label label-success">正常</span>';
+                    return '<span class="label label-success">Active</span>';
                 } else if (value == 1) {
-                    return '<span class="label label-danger">停用</span>';
+                    return '<span class="label label-danger">Disabled</span>';
                 }
             }
         },
         {
             field: 'createTime',
-            title: '创建时间'
+            title: 'Create Time'
         },
         {
-            title: '操作',
+            title: 'Action',
             align: 'center',
             formatter: function(value, row, index) {
             	var actions = [];
-				actions.push('<a class="btn btn-primary btn-sm" href="#" title="编辑" mce_href="#" onclick="edit(\'' + row.postId + '\')"><i class="fa fa-edit"></i></a> ');
-				actions.push('<a class="btn btn-warning btn-sm" href="#" title="删除" onclick="remove(\'' + row.postId + '\')"><i class="fa fa-remove"></i></a>');
+				actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.postId + '\')"><i class="fa fa-edit"></i></a> ');
+				actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.postId + '\')"><i class="fa fa-remove"></i></a>');
 				return actions.join('');
             }
         }];
@@ -53,18 +53,18 @@ $(function() {
 /*岗位管理-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("新增岗位", url, '800', '450');
+    layer_show("add Post", url, '800', '450');
 }
 
 /*岗位管理-修改*/
 function edit(postId) {
     var url = prefix + '/edit/' + postId;
-    layer_show("修改岗位", url, '800', '450');
+    layer_show("edit Post", url, '800', '450');
 }
 
 // 单条删除
 function remove(id) {
-	$.modalConfirm("确定要删除选中岗位吗？", function(r) {
+	$.modalConfirm("Do you want to remove this post?", function(r) {
 		_ajax(prefix + "/remove/" + id, "", "post", r);
     })
 }
@@ -73,10 +73,10 @@ function remove(id) {
 function batchRemove() {
 	var rows = $.getSelections("postId");
 	if (rows.length == 0) {
-		$.modalMsg("请选择要删除的数据", "warning");
+		$.modalMsg("Please select the data you want to remove", "warning");
 		return;
 	}
-	$.modalConfirm("确认要删除选中的" + rows.length + "条数据吗?", function(r) {
+	$.modalConfirm("Do you want to remove " + rows.length + " post?", function(r) {
 		_ajax(prefix + '/batchRemove', { "ids": rows }, "post", r);
 	});
 }

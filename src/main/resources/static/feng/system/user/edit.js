@@ -47,11 +47,11 @@ function update() {
 		},
 		async : false,
 		error : function(request) {
-			$.modalAlert("系统错误", "error");
+			$.modalAlert("System ERROR", "error");
 		},
 		success : function(data) {
 			if (data.code == 0) {
-				parent.layer.msg("修改成功,正在刷新数据请稍后……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+				parent.layer.msg("Updated successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
 					$.parentReload();
 				});
 			} else {
@@ -64,5 +64,5 @@ function update() {
 /*用户管理-修改-选择部门树*/
 function selectDeptTree() {
     var url = "/system/user/selectDeptTree";
-    layer_show("选择部门", url, '400', '410');
+    layer_show("Select Dept", url, '400', '410');
 }

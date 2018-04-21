@@ -37,11 +37,11 @@ function update() {
 		},
 		async : false,
 		error : function(request) {
-			$.modalAlert("系统错误", "error");
+			$.modalAlert("System ERROR", "error");
 		},
 		success : function(data) {
 			if (data.code == 0) {
-				parent.layer.msg('修改成功',{icon:1,time:1000});
+				parent.layer.msg('Updated successfully, on refreshing ……',{icon:1,time:1000});
 				$.modalClose();
 				parent.loading();
 			} else {

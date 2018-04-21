@@ -35,7 +35,7 @@ $("#form-user-add").validate({
 	},
 	messages: {
         "loginName": {
-            remote: "该用户已经存在"
+            remote: "The login name already exist"
         }
     },
 	submitHandler:function(form){
@@ -72,11 +72,11 @@ function add() {
 		},
 		async : false,
 		error : function(request) {
-			$.modalAlert("系统错误", "error");
+			$.modalAlert("System ERROR", "error");
 		},
 		success : function(data) {
 			if (data.code == 0) {
-				parent.layer.msg("新增成功,正在刷新数据请稍后……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+				parent.layer.msg("add successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
 					$.parentReload();
 				});
 			} else {
@@ -90,5 +90,5 @@ function add() {
 /*用户管理-修改-选择部门树*/
 function selectDeptTree() {
     var url = "/system/user/selectDeptTree";
-    layer_show("选择部门", url, '400', '410');
+    layer_show("Select Dept", url, '400', '410');
 }
