@@ -18,6 +18,8 @@ public class Vendor extends PageDomain
     /**  */
     private String vendorName;
     /**  */
+    private String productCategory;
+    /**  */
     private String firstName;
     /**  */
     private String lastName;

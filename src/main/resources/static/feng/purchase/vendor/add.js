@@ -33,6 +33,7 @@ $("#form-vendor-add").validate({
 
 function add() {
 	var vendorName = $("input[name='vendorName']").val();
+    var productCategory = $("input[name='productCategory']").val();
     var firstName = $("input[name='firstName']").val();
 	var lastName = $("input[name='lastName']").val();
     var middleName = $("input[name='middleName']").val();
@@ -52,6 +53,7 @@ function add() {
 		type : "POST",
 		url : "/purchase/vendor/save",
 		data : {
+            "productCategory": productCategory,
             "vendorName": vendorName,
             "firstName": firstName,
             "lastName": lastName,

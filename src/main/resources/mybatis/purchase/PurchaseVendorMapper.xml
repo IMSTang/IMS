@@ -7,6 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap type="Vendor" id="VendorResult">
 		<id     property="vendorId"        column="vendor_id"       />
 		<result property="vendorName"      column="vendor_name"     />
+		<result property="productCategory"      column="product_category"     />
 		<result property="firstName"      column="first_name"     />
 		<result property="lastName"      column="last_name"     />
 		<result property="middleName"      column="middle_name"     />
@@ -85,6 +86,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		update pur_vendor
  		<set>
 			<if test="vendorName != null and vendorName != ''">vendor_name = #{vendorName},</if>
+			<if test="productCategory != null and productCategory != ''">product_category = #{productCategory},</if>
 			<if test="firstName != null">first_name = #{firstName},</if>
 			<if test="lastName != null">last_name = #{lastName},</if>
 			<if test="middleName != null">middle_name = #{middleName},</if>
@@ -111,6 +113,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		insert into pur_vendor(
  			<if test="vendorId != null and vendorId != 0">vendor_id,</if>
  			<if test="vendorName != null and vendorName != ''">vendor_name,</if>
+			<if test="productCategory != null and productCategory != ''">product_category,</if>
  			<if test="firstName != null and firstName != ''">first_name,</if>
 			<if test="lastName != null and lastName != ''">last_name,</if>
 			<if test="middleName != null and middleName != ''">middle_name,</if>
@@ -131,6 +134,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		)values(
  			<if test="vendorId != null and vendorId != 0">#{vendorId},</if>
 			<if test="vendorName != null and vendorName != ''">#{vendorName},</if>
+			<if test="productCategory != null and productCategory != ''">#{productCategory},</if>
 			<if test="firstName != null and firstName != ''">#{firstName},</if>
 			<if test="lastName != null and lastName != ''">#{lastName},</if>
 			<if test="middleName != null and middleName != ''">#{middleName},</if>

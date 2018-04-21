@@ -14,6 +14,7 @@ $("#form-vendor-edit").validate({
 
 function edit() {
 	var vendorId = $("input[name='vendorId']").val();
+    var productCategory = $("input[name='productCategory']").val();
     var vendorName = $("input[name='vendorName']").val();
     var firstName = $("input[name='firstName']").val();
     var lastName = $("input[name='lastName']").val();
@@ -35,6 +36,7 @@ function edit() {
 		url : "/purchase/vendor/save",
 		data : {
 			"vendorId": vendorId,
+            "productCategory": productCategory,
             "vendorName": vendorName,
             "firstName": firstName,
             "lastName": lastName,

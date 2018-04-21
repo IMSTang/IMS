@@ -60,6 +60,7 @@ create table pur_vendor
 (
     vendor_id       int(11)         not null auto_increment    comment 'Vendor ID',
 	vendor_name     varchar(100)    not null                   comment 'Vendor Name',
+	product_category  varchar(100)  not null               comment 'product_category',
 	first_name     varchar(40)     null                   comment 'First Name',
 	last_name      varchar(40)     null                   comment 'Last Name',
 	middle_name     varchar(40)     null                   comment 'Middle Name',

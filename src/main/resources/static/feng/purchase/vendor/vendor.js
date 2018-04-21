@@ -9,6 +9,10 @@ $(function() {
             title: 'Vendor Id'
         },
         {
+            field: 'productCategory',
+            title: 'Product Category'
+        },
+        {
             field: 'vendorName',
             title: 'Vendor Name'
         },
@@ -45,13 +49,13 @@ $(function() {
 /*Vendor Management-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("add Vendor", url, '800', '600');
+    layer_show("add Vendor", url, '800', '620');
 }
 
 /*Vendor Management-修改*/
 function edit(vendorId) {
     var url = prefix + '/edit/' + vendorId;
-    layer_show("edit Vendor", url, '800', '600');
+    layer_show("edit Vendor", url, '800', '620');
 }
 
 // 单条删除
