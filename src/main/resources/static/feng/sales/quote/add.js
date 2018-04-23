@@ -117,7 +117,7 @@ function addElement(){
 
     var div = document.createElement('div');
     div.style.height = '34px';
-    div.style.padding= '0 10px 0 16px';
+    div.style.padding= '0 0 0 16px';
     div.id="div"+Element_index;
     var clearDiv =document.createElement("div");
     clearDiv.className = 'clear';
