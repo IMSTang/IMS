@@ -36,6 +36,26 @@
             <!--</if>-->
         </where>
     </select>
+
+
+    <insert id="insertQuote" parameterType="Quote" useGeneratedKeys="true" keyProperty="quoteId">
+    insert into sale_quote(
+        <if test="quoteDate != null ">quote_date,</if>
+        <if test="customerId != null ">customer_id,</if>
+        <if test="reminder != null ">reminder,</if>
+        <if test="createBy != null ">create_by,</if>
+        <if test="remark != null ">remark,</if>
+        create_time
+        )values(
+        <if test="quoteDate != null ">#{quoteDate},</if>
+        <if test="customerId != null ">#{customerId},</if>
+        <if test="reminder != null ">#{reminder},</if>
+        <if test="createBy != null ">#{createBy},</if>
+        <if test="remark != null ">#{remark},</if>
+        sysdate()
+        )
+
+    	</insert>
 <!--
     <select id="selectInquiryAll" resultMap="InquiryResult">
 		select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,

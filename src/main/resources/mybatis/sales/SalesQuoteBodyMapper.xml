@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.sales.quote.dao.IQuoteBodyDao">
+
+    <insert id="batchQuoteBody">
+        insert into sale_quote_body(quote_id, item_code,price,quantity) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.quoteId},#{item.itemCode},#{item.price},#{item.quantity})
+        </foreach>
+    </insert>
+
+</mapper>

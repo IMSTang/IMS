@@ -5,6 +5,8 @@ import com.feng.framework.web.page.PageDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * 报价实体类
  */
@@ -16,7 +18,7 @@ public class Quote extends PageDomain {
     /** 询价ID */
     private Long quoteId;
 
-    private  int reminder;
+    private  String reminder;
     private Long quoteBodyId;
     /**  */
     private String quoteDate;
@@ -45,5 +47,32 @@ public class Quote extends PageDomain {
     private String updateBy;
     /** 备注 */
     private String remark;
+    private List<QuoteBody> body;
 
+    public List<QuoteBody> getBody() {
+        return body;
+    }
+
+    @Override
+    public String toString() {
+        return "Quote{" +
+                "quoteId=" + quoteId +
+                ", reminder='" + reminder + '\'' +
+                ", quoteBodyId=" + quoteBodyId +
+                ", quoteDate='" + quoteDate + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", itemCode='" + itemCode + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", price='" + price + '\'' +
+                ", quantity='" + quantity + '\'' +
+                ", status=" + status +
+                ", createBy='" + createBy + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", updateBy='" + updateBy + '\'' +
+                ", remark='" + remark + '\'' +
+                ", body=" + body +
+                '}';
+    }
 }

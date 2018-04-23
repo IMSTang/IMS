@@ -9,4 +9,11 @@ import java.util.List;
 public interface IQuoteDao {
 
     public List<Quote> selectQuoteList(Quote quote);
+
+    /**
+     * 插入 quote
+     * @param quote
+     * @return
+     */
+    public int insertQuote(Quote quote);
 }

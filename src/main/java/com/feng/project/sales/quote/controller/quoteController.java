@@ -11,10 +11,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.feng.project.sales.quote.service.IQuoteService;
 
 import java.util.List;
@@ -61,6 +58,7 @@ public class quoteController extends BaseController {
         String date_today = DateUtils.dateTimeStr().substring(0,10);
         model.addAttribute("today", date_today);
         return prefix + "/add";
+
     }
 
 
@@ -70,12 +68,8 @@ public class quoteController extends BaseController {
     @ResponseBody
     public JSON save(Quote quote)
     {
-//        if (inquiryService.saveInquiry(inquiry) > 0)
-//        {
-//            return JSON.ok();
-//        }
-//        return JSON.error();
-    System.out.println("ok****************");
+
+        quoteService.insertQuote(quote);
     return JSON.ok();
     }
 

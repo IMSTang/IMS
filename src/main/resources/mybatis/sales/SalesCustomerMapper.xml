@@ -45,6 +45,7 @@
         <if test="searchValue != null and searchValue != ''">
             AND customer_name like CONCAT('%',#{searchValue},'%' )
         </if>
+        LIMIT 20
     </select>
 
 

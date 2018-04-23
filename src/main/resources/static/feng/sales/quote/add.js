@@ -1,39 +1,39 @@
 
 $("#customerName").autocomplete({
-        minLength: 0,
-        source: function (request, response) {
+    minLength: 2,
+    source: function (request, response) {
 
-            $.ajax({
-                url: "/sales/customer/search_name",
-                type: "get",
-                dataType: "json",
-                data: {"searchValue":  $("input[name='customerName']").val() },
+        $.ajax({
+            url: "/sales/customer/search_name",
+            type: "get",
+            dataType: "json",
+            data: {"searchValue":  $("input[name='customerName']").val() },
 
-                success: function (data) {
+            success: function (data) {
 
-                    response($.map(data, function (item) {
+                response($.map(data, function (item) {
 
-                        return {
-                            label: item.customerName,
-                            value: item.customerId
-                        }
-                    }));
-                }
-            });
-        },
-        focus: function (event, ui) {
+                    return {
+                        label: item.customerName,
+                        value: item.customerId
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
 
-            $("#customerName").val(ui.item.label);
-            $("#customerId").val(ui.item.value);
-            return false;
-        },
-        select: function (event, ui) {
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
 
-            $("#customerName").val(ui.item.label);
-            $("#customerId").val(ui.item.value);
-            return false;
-        }
-    });
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
+        return false;
+    }
+});
 
 
 
@@ -43,10 +43,10 @@ function autoInfomation(element1,element2,idElement,elementType){
 
     $(element1).autocomplete({
 
-        minLength: 0,
+        minLength: 2,
         source: function (request, response) {
 
-           var elementValue =  $(element1).val();
+            var elementValue =  $(element1).val();
 
             $.ajax({
                 url: "/product/production/search/"+elementValue+"/"+elementType,
@@ -61,12 +61,12 @@ function autoInfomation(element1,element2,idElement,elementType){
                         if(elementType == "code"){
 
 
-                        return {
+                            return {
 
-                            label: item.itemCode,
-                            value: item.itemName,
-                            PID:item.productionId
-                        }  }
+                                label: item.itemCode,
+                                value: item.itemName,
+                                PID:item.productionId
+                            }  }
                         else{
                             return {
 
@@ -138,7 +138,7 @@ function addElement(){
      * */
     var TName=document.createElement("input");
     TName.type="text";
-    TName.className = 'col-sm-4 outline';
+    TName.className = 'col-sm-5';
     TName.style.margin= '0 -1px';
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
@@ -149,7 +149,7 @@ function addElement(){
      */
     var TCode=document.createElement("input");
     TCode.type="text";
-    TCode.className = 'col-sm-3 outline';
+    TCode.className = 'col-sm-2';
     TCode.style.margin= '0 -1px';
     TCode.name="itemCode"+Element_index;
     TCode.id="itemCode"+Element_index;
@@ -170,7 +170,7 @@ function addElement(){
      */
     var TPrice=document.createElement("input");
     TPrice.type="text";
-    TPrice.className = 'col-sm-2 outline';
+    TPrice.className = 'col-sm-2';
     TPrice.style.margin= '0 -1px';
     TPrice.name="price"+Element_index;
     TPrice.id="price"+Element_index;
@@ -183,7 +183,7 @@ function addElement(){
      */
     var TQuantity=document.createElement("input");
     TQuantity.type="text";
-    TQuantity.className = 'col-sm-2 outline';
+    TQuantity.className = 'col-sm-2';
     TQuantity.style.margin= '0 -1px';
     TQuantity.name="quantity"+Element_index;
     TQuantity.id="quantity"+Element_index;
@@ -225,10 +225,10 @@ function delButton(divId) {
 
 
     var div = document.getElementById(divId);
-   var parentDiv =  document.getElementById('tableDiv');
+    var parentDiv =  document.getElementById('tableDiv');
 
     if( parentDiv.childElementCount>1){
-    parentDiv.removeChild(div);
+        parentDiv.removeChild(div);
     }
 
 }
@@ -251,46 +251,94 @@ $("#form-quote-add").validate({
 
 
 
+
 function add() {
-    var quoteId = $("input[name='quoteId']").val();
-    var quoteDate = $("input[name='quoteDate']").val();
-    var customerId = $("input[name='customerId']").val();
-    var customerName = $("input[name='customerName']").val();
+
+    var  quoteItem= new Object();
 
 
-    var items = new Array();
-    var parentDiv =  document.getElementById('tableDiv');
-    var inputs = parentDiv.getElementsByTagName('input');
-    for(  i=0;i<inputs.length;i++){
-        if(i%6==0){
-            continue;
-        }
-        alert(inputs[i].val())
-    }
 
-    /*
+    // quoteItem['items[' + 0 +'].itemCode']=222222;
+    // quoteItem['items[' + 1 +'].itemName']="aaaaa";
+    // quoteItem['items[' + 1 +'].itemCode']=1111111;
 
-    var itemCode = $("input[name='itemCode']").val();
-    var itemName = $("input[name='itemName']").val();
-    var price = $("input[name='price']").val();
-    var quantity = $("input[name='quantity']").val();
-    var remark = $("input[name='remark']").val();
+
+
+     var quoteId = $("input[name='quoteId']").val();
+     var quoteDate = $("input[name='quoteDate']").val();
+     var customerId = $("input[name='customerId']").val();
+     var customerName = $("input[name='customerName']").val();
+     var reminder = $("input[name='reminder']").val();
+     var remark = $("#remark").val();
+
+    quoteItem.quoteId=quoteId;
+    quoteItem.quoteDate=quoteDate;
+    quoteItem.customerId=customerId;
+    quoteItem.customerName=customerName;
+    quoteItem.remark=remark;
+    quoteItem.reminder=reminder;
+
+
+
+
+     var parentDiv =  document.getElementById('tableDiv');
+     //获取div个数
+     var divNum=  parentDiv.getElementsByTagName('div');
+
+    /**
+     * 循环取出 quoteBody 的 值
+     */
+
+
+var itemIndex=-1;
+  for(  i=0;i<divNum.length;i++){
+
+      //忽略 clear div
+      if(divNum[i].className == ""){
+          itemIndex++;
+      }
+         var inputs = divNum[i].getElementsByTagName('input');
+         var textValue=new Array();
+
+         for (j=0;j<inputs.length;j++){
+             //不获取按钮的值
+             if(inputs[j].value=="Remove"){
+
+                 // continue;
+             }
+
+             if((inputs[j].id).indexOf("itemName") >=0){
+                 quoteItem['body['+itemIndex+'].itemName']=inputs[j].value;
+
+             }
+             if((inputs[j].id).indexOf("itemCode") >=0){
+                 quoteItem['body['+itemIndex+'].itemCode']=inputs[j].value;
+
+             }
+             if((inputs[j].id).indexOf("price") >=0){
+                 quoteItem['body['+itemIndex+'].price']=inputs[j].value;
+
+             }
+             if((inputs[j].id).indexOf("quantity") >=0){
+                 quoteItem['body['+itemIndex+'].quantity']=inputs[j].value;
+
+             }
+
+         }
+
+     }
+
+
+
+
+
+
     $.ajax({
         cache : true,
         type : "POST",
         url : "/sales/quote/save",
-        data : {
-            "quoteId": quoteId,
-            "quoteDate": quoteDate,
-            "customerId": customerId,
-            "customerName": customerName,
-            "itemCode": itemCode,
-            "itemName": itemName,
-            "price": price,
-            "quantity": quantity,
-            "status": 0,
-            "remark": remark
-        },
+        dataType: "json",
+        data :quoteItem,
         async : false,
         error : function(request) {
             $.modalAlert("System ERROR", "error");
@@ -304,5 +352,5 @@ function add() {
                 $.modalAlert(data.msg, "error");
             }
         }
-    });*/
+    });
 }
