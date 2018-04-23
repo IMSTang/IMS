@@ -49,7 +49,7 @@ public class DeptController
     /**
      * 修改
      */
-    @Log(title = "系统管理", action = "部门管理-修改部门")
+    @Log(title = "System Management", action = "Department - edit")
     @RequiresPermissions("system:dept:edit")
     @GetMapping("/edit/{deptId}")
     public String edit(@PathVariable("deptId") Long deptId, Model model)
@@ -62,7 +62,7 @@ public class DeptController
     /**
      * 新增
      */
-    @Log(title = "系统管理", action = "部门管理-新增部门")
+    @Log(title = "System Management", action = "Department - add")
     @RequiresPermissions("system:dept:add")
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") Long parentId, Model model)
@@ -75,7 +75,7 @@ public class DeptController
     /**
      * 保存
      */
-    @Log(title = "系统管理", action = "部门管理-保存部门")
+    @Log(title = "System Management", action = "Department - save")
     @RequiresPermissions("system:dept:save")
     @PostMapping("/save")
     @ResponseBody
@@ -91,7 +91,7 @@ public class DeptController
     /**
      * 删除
      */
-    @Log(title = "系统管理", action = "部门管理-删除部门")
+    @Log(title = "System Management", action = "Department - delete")
     @RequiresPermissions("system:dept:remove")
     @GetMapping("/remove/{deptId}")
     @ResponseBody
@@ -99,12 +99,12 @@ public class DeptController
     {
         if (deptService.selectDeptCount(deptId) > 0)
         {
-            return JSON.error(1, "存在下级部门,不允许删除");
+            return JSON.error(1, "Has sub-department under this department,can not be deleted");
         }
 
         if (deptService.checkDeptExistUser(deptId))
         {
-            return JSON.error(1, "部门存在用户,不允许删除");
+            return JSON.error(1, "Has users under this department,can not be deleted");
         }
         if (deptService.deleteDeptById(deptId) > 0)
         {

@@ -52,7 +52,7 @@ public class PostController extends BaseController
     /**
      * 删除
      */
-    @Log(title = "系统管理", action = "岗位管理-删除岗位")
+    @Log(title = "System Management", action = "Post - delete Post")
     @RequiresPermissions("system:post:remove")
     @RequestMapping("/remove/{postId}")
     @ResponseBody
@@ -61,7 +61,7 @@ public class PostController extends BaseController
         Post post = postService.selectPostById(postId);
         if (post == null)
         {
-            return JSON.error("岗位不存在");
+            return JSON.error("Post does not exist");
         }
         if (postService.deletePostById(postId) > 0)
         {
@@ -71,7 +71,7 @@ public class PostController extends BaseController
     }
 
     @RequiresPermissions("system:post:batchRemove")
-    @Log(title = "系统管理", action = "岗位管理-批量删除")
+    @Log(title = "System Management", action = "Post - batch remove Post")
     @PostMapping("/batchRemove")
     @ResponseBody
     public JSON batchRemove(@RequestParam("ids[]") Long[] ids)
@@ -87,7 +87,7 @@ public class PostController extends BaseController
     /**
      * 新增岗位
      */
-    @Log(title = "系统管理", action = "岗位管理-新增岗位")
+    @Log(title = "System Management", action = "Post - add Post")
     @RequiresPermissions("system:post:add")
     @GetMapping("/add")
     public String add(Model model)
@@ -98,7 +98,7 @@ public class PostController extends BaseController
     /**
      * 修改岗位
      */
-    @Log(title = "系统管理", action = "岗位管理-修改岗位")
+    @Log(title = "System Management", action = "Post - edit Post")
     @RequiresPermissions("system:post:edit")
     @GetMapping("/edit/{postId}")
     public String edit(@PathVariable("postId") Long postId, Model model)
@@ -111,7 +111,7 @@ public class PostController extends BaseController
     /**
      * 保存岗位
      */
-    @Log(title = "系统管理", action = "岗位管理-保存岗位")
+    @Log(title = "System Management", action = "Post - save Post")
     @RequiresPermissions("system:post:save")
     @PostMapping("/save")
     @ResponseBody

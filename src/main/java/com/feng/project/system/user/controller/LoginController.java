@@ -41,7 +41,7 @@ public class LoginController extends BaseController
         }
         catch (AuthenticationException e)
         {
-            String msg = "用户或密码错误";
+            String msg = "Username or password is invalid";
             if (StringUtils.isNotEmpty(e.getMessage()))
             {
                 msg = e.getMessage();

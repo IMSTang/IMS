@@ -54,7 +54,7 @@ public class DictTypeController extends BaseController
     /**
      * 修改字典类型
      */
-    @Log(title = "系统管理", action = "字典管理-修改字典类型")
+    @Log(title = "System Management", action = "Dict Type - edit")
     @RequiresPermissions("system:dict:edit")
     @GetMapping("/edit/{dictId}")
     public String edit(@PathVariable("dictId") Long dictId, Model model)
@@ -67,7 +67,7 @@ public class DictTypeController extends BaseController
     /**
      * 新增字典类型
      */
-    @Log(title = "系统管理", action = "字典管理-新增字典类型")
+    @Log(title = "System Management", action = "Dict Type - add")
     @RequiresPermissions("system:dict:add")
     @GetMapping("/add")
     public String add()
@@ -78,7 +78,7 @@ public class DictTypeController extends BaseController
     /**
      * 保存字典类型
      */
-    @Log(title = "系统管理", action = "字典管理-保存字典类型")
+    @Log(title = "System Management", action = "Dict Type - save")
     @RequiresPermissions("system:dict:save")
     @PostMapping("/save")
     @ResponseBody
@@ -91,7 +91,7 @@ public class DictTypeController extends BaseController
         return JSON.error();
     }
 
-    @Log(title = "系统管理", action = "字典类型-批量删除")
+    @Log(title = "System Management", action = "Dict Type - batch remove")
     @RequiresPermissions("system:dict:batchRemove")
     @PostMapping("/batchRemove")
     @ResponseBody
@@ -108,7 +108,7 @@ public class DictTypeController extends BaseController
     /**
      * 查询字典详细
      */
-    @Log(title = "系统管理", action = "字典管理-查询字典数据")
+    @Log(title = "System Management", action = "Dict Type - get detail")
     @RequiresPermissions("system:dict:list")
     @GetMapping("/detail/{dictId}")
     public String detail(@PathVariable("dictId") Long dictId, Model model)

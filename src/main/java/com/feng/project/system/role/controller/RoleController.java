@@ -54,7 +54,7 @@ public class RoleController extends BaseController
      * 新增角色
      */
     @RequiresPermissions("system:role:add")
-    @Log(title = "系统管理", action = "角色管理-新增角色")
+    @Log(title = "System Management", action = "Roles - add Role")
     @GetMapping("/add")
     public String add(Model model)
     {
@@ -65,7 +65,7 @@ public class RoleController extends BaseController
      * 修改角色
      */
     @RequiresPermissions("system:role:edit")
-    @Log(title = "系统管理", action = "角色管理-修改角色")
+    @Log(title = "System Management", action = "Roles - edit Role")
     @GetMapping("/edit/{roleId}")
     public String edit(@PathVariable("roleId") Long roleId, Model model)
     {
@@ -78,7 +78,7 @@ public class RoleController extends BaseController
      * 保存角色
      */
     @RequiresPermissions("system:role:save")
-    @Log(title = "系统管理", action = "角色管理-保存角色")
+    @Log(title = "System Management", action = "Roles - save Role")
     @PostMapping("/save")
     @ResponseBody
     public JSON save(Role role)
@@ -91,7 +91,7 @@ public class RoleController extends BaseController
     }
 
     @RequiresPermissions("system:role:remove")
-    @Log(title = "系统管理", action = "角色管理-删除角色")
+    @Log(title = "System Management", action = "Roles - delete Role")
     @RequestMapping("/remove/{roleId}")
     @ResponseBody
     public JSON remove(@PathVariable("roleId") Long roleId)
@@ -99,7 +99,7 @@ public class RoleController extends BaseController
         Role role = roleService.selectRoleById(roleId);
         if (role == null)
         {
-            return JSON.error("角色不存在");
+            return JSON.error("Role does not exist");
         }
         if (roleService.deleteRoleById(roleId) > 0)
         {
@@ -109,7 +109,7 @@ public class RoleController extends BaseController
     }
 
     @RequiresPermissions("system:role:batchRemove")
-    @Log(title = "系统管理", action = "角色管理-批量删除")
+    @Log(title = "System Management", action = "Roles - batch remove Roles")
     @PostMapping("/batchRemove")
     @ResponseBody
     public JSON batchRemove(@RequestParam("ids[]") Long[] ids)

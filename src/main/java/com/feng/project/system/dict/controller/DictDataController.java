@@ -27,20 +27,21 @@ import com.feng.project.system.dict.service.IDictDataService;
 @RequestMapping("/system/dictData")
 public class DictDataController extends BaseController
 {
-    private String prefix = "system/dict";
+    private String prefix = "system/dictData";
 
     @Autowired
     private IDictDataService dictDataService;
 
-    @RequiresPermissions("system:dict:view")
+    @RequiresPermissions("system:dictdata:view")
     @GetMapping()
     public String dict()
     {
+        System.out.println("-----------------dictdata");
         return prefix + "/dictData";
     }
 
     @GetMapping("/list")
-    @RequiresPermissions("system:dict:list")
+    @RequiresPermissions("system:dictdata:list")
     @ResponseBody
     public TableDataInfo list(DictData dictData)
     {
@@ -52,8 +53,8 @@ public class DictDataController extends BaseController
     /**
      * 修改字典类型
      */
-    @Log(title = "系统管理", action = "字典管理-修改字典数据")
-    @RequiresPermissions("system:dict:edit")
+    @Log(title = "System Management", action = "Dict Data - edit Dict Data")
+    @RequiresPermissions("system:dictdata:edit")
     @GetMapping("/edit/{dictCode}")
     public String edit(@PathVariable("dictCode") Long dictCode, Model model)
     {
@@ -65,8 +66,8 @@ public class DictDataController extends BaseController
     /**
      * 新增字典类型
      */
-    @Log(title = "系统管理", action = "字典管理-新增字典数据")
-    @RequiresPermissions("system:dict:add")
+    @Log(title = "System Management", action = "Dict Data - add Dict Data")
+    @RequiresPermissions("system:dictdata:add")
     @GetMapping("/add/{dictType}")
     public String add(@PathVariable("dictType") String dictType, Model model)
     {
@@ -77,8 +78,8 @@ public class DictDataController extends BaseController
     /**
      * 保存字典类型
      */
-    @Log(title = "系统管理", action = "字典管理-保存字典数据")
-    @RequiresPermissions("system:dict:save")
+    @Log(title = "System Management", action = "Dict Data - save Dict Data")
+    @RequiresPermissions("system:dictdata:save")
     @PostMapping("/save")
     @ResponseBody
     public JSON save(DictData dict)
@@ -90,8 +91,8 @@ public class DictDataController extends BaseController
         return JSON.error();
     }
 
-    @Log(title = "系统管理", action = "字典类型-批量删除")
-    @RequiresPermissions("system:dict:batchRemove")
+    @Log(title = "System Management", action = "Dict Data - batch remove")
+    @RequiresPermissions("system:dictdata:batchRemove")
     @PostMapping("/batchRemove")
     @ResponseBody
     public JSON batchRemove(@RequestParam("ids[]") Long[] ids)
