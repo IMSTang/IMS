@@ -64,7 +64,7 @@ public class UserController extends BaseController
      * 修改用户
      */
     @RequiresPermissions("system:user:edit")
-    @Log(title = "系统管理", action = "用户管理-修改用户")
+    @Log(title = "System Management", action = "Users -修改用户")
     @GetMapping("/edit/{userId}")
     public String edit(@PathVariable("userId") Long userId, Model model)
     {
@@ -81,7 +81,7 @@ public class UserController extends BaseController
      * 新增用户
      */
     @RequiresPermissions("system:user:add")
-    @Log(title = "系统管理", action = "用户管理-新增用户")
+    @Log(title = "System Management", action = "Users - add User")
     @GetMapping("/add")
     public String add(Model model)
     {
@@ -93,7 +93,7 @@ public class UserController extends BaseController
     }
     
     @RequiresPermissions("system:user:resetPwd")
-    @Log(title = "系统管理", action = "用户管理-重置密码")
+    @Log(title = "System Management", action = "Users - to reset password")
     @GetMapping("/resetPwd/{userId}")
     public String resetPwd(@PathVariable("userId") Long userId, Model model)
     {
@@ -103,7 +103,7 @@ public class UserController extends BaseController
     }
     
     @RequiresPermissions("system:user:resetPwd")
-    @Log(title = "系统管理", action = "用户管理-重置密码")
+    @Log(title = "System Management", action = "Users - reset password")
     @PostMapping("/resetPwd")
     @ResponseBody
     public JSON resetPwd(User user)
@@ -117,7 +117,7 @@ public class UserController extends BaseController
     }
 
     @RequiresPermissions("system:user:remove")
-    @Log(title = "系统管理", action = "用户管理-删除用户")
+    @Log(title = "System Management", action = "Users - delete User")
     @RequestMapping("/remove/{userId}")
     @ResponseBody
     public JSON remove(@PathVariable("userId") Long userId)
@@ -125,7 +125,7 @@ public class UserController extends BaseController
         User user = userService.selectUserById(userId);
         if (user == null)
         {
-            return JSON.error("用户不存在");
+            return JSON.error("User does not exist");
         }
         if (userService.deleteUserById(userId) > 0)
         {
@@ -135,7 +135,7 @@ public class UserController extends BaseController
     }
 
     @RequiresPermissions("system:user:batchRemove")
-    @Log(title = "系统管理", action = "用户管理-批量删除")
+    @Log(title = "System Management", action = "Users - batch remove Users")
     @PostMapping("/batchRemove")
     @ResponseBody
     public JSON batchRemove(@RequestParam("ids[]") Long[] ids)
@@ -152,7 +152,7 @@ public class UserController extends BaseController
      * 保存
      */
     @RequiresPermissions("system:user:save")
-    @Log(title = "系统管理", action = "部门管理-保存部门")
+    @Log(title = "System Management", action = "Users - save User")
     @PostMapping("/save")
     @ResponseBody
     public JSON save(User user)

@@ -21,7 +21,7 @@ import com.feng.project.system.menu.service.IMenuService;
 import com.feng.project.system.role.domain.Role;
 
 /**
- * 角色信息
+ * Menu 信息
  * 
  * @author feng
  */
@@ -54,7 +54,7 @@ public class MenuController extends BaseController
     /**
      * 删除菜单
      */
-    @Log(title = "系统管理", action = "菜单管理-删除菜单")
+    @Log(title = "System Management", action = "Menus-删除菜单")
     @RequiresPermissions("system:menu:remove")
     @GetMapping("/remove/{menuId}")
     @ResponseBody
@@ -66,14 +66,14 @@ public class MenuController extends BaseController
         }
         else
         {
-            return JSON.error(1, "删除失败");
+            return JSON.error(1, "Delete ERROR");
         }
     }
 
     /**
      * 修改菜单
      */
-    @Log(title = "系统管理", action = "菜单管理-修改菜单")
+    @Log(title = "System Management", action = "Menus - edit Menu")
     @RequiresPermissions("system:menu:edit")
     @GetMapping("/edit/{menuId}")
     public String edit(@PathVariable("menuId") Long menuId, Model model)
@@ -86,7 +86,7 @@ public class MenuController extends BaseController
     /**
      * 新增
      */
-    @Log(title = "系统管理", action = "菜单管理-新增菜单")
+    @Log(title = "System Management", action = "Menus - add Menu")
     @RequiresPermissions("system:menu:add")
     @GetMapping("/add/{parentId}")
     public String add(@PathVariable("parentId") Long parentId, Model model)
@@ -99,7 +99,7 @@ public class MenuController extends BaseController
     /**
      * 保存菜单
      */
-    @Log(title = "系统管理", action = "菜单管理-保存菜单")
+    @Log(title = "System Management", action = "Menus - save Menu")
     @RequiresPermissions("system:menu:save")
     @PostMapping("/save")
     @ResponseBody
