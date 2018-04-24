@@ -6,19 +6,19 @@ $(function() {
         },
         {
             field: 'dictId',
-            title: '字典主键'
+            title: 'Dict Id'
         },
         {
             field: 'dictName',
-            title: '字典名称'
+            title: 'Dict Name'
         },
         {
             field: 'dictType',
-            title: '字典类型'
+            title: 'Dict Type'
         },
         {
             field: 'status',
-            title: '操作状态',
+            title: 'Status',
             align: 'center',
             formatter: function(value, row, index) {
                 if (value == 0) {
@@ -30,18 +30,18 @@ $(function() {
         },
         {
             field: 'remark',
-            title: '备注'
+            title: 'Remark'
         },
         {
             field: 'createTime',
-            title: '创建时间'
+            title: 'createTime'
         },
         {
-            title: '操作',
+            title: 'Action',
             align: 'center',
             formatter: function(value, row, index) {
             	var actions = [];
-            	actions.push('<a class="btn btn-primary btn-sm" href="#" title="编辑字典" mce_href="#" onclick="edit(\'' + row.dictId + '\')"><i class="fa fa-edit"></i></a> ');
+            	actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit Dict Type" mce_href="#" onclick="edit(\'' + row.dictId + '\')"><i class="fa fa-edit"></i></a> ');
             	actions.push('<a class="btn btn-warning btn-sm" href="#" title="字典数据" onclick="detail(\'' + row.dictId + '\')"><i class="fa fa-search"></i></a>');
             	return actions.join('');
             }
@@ -53,13 +53,13 @@ $(function() {
 /*字典管理-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("新增字典类型", url, '800', '350');
+    layer_show("新增字典类型", url, '800', '600');
 }
 
 /*角色管理-修改*/
 function edit(dictId) {
     var url = prefix + '/edit/' + dictId;
-    layer_show("修改字典类型", url, '800', '350');
+    layer_show("修改字典类型", url, '800', '600');
 }
 
 /*字典列表-详细*/

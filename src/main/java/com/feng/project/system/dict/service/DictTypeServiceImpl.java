@@ -41,6 +41,7 @@ public class DictTypeServiceImpl implements IDictTypeService
     @Override
     public DictType selectDictTypeById(Long dictId)
     {
+
         return dictTypeDao.selectDictTypeById(dictId);
     }
 

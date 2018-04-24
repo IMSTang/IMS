@@ -19,6 +19,8 @@ import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.system.dict.domain.DictType;
 import com.feng.project.system.dict.service.IDictTypeService;
+import com.feng.project.system.dict.domain.DictData;
+import com.feng.project.system.dict.service.IDictDataService;
 
 /**
  * 数据字典信息
@@ -33,6 +35,8 @@ public class DictTypeController extends BaseController
 
     @Autowired
     private IDictTypeService dictTypeService;
+    @Autowired
+    private IDictDataService dictDataService;
 
     @RequiresPermissions("system:dict:view")
     @GetMapping()
@@ -60,6 +64,8 @@ public class DictTypeController extends BaseController
     public String edit(@PathVariable("dictId") Long dictId, Model model)
     {
         DictType dict = dictTypeService.selectDictTypeById(dictId);
+        List<DictData> dictdatas= dictDataService.selectDictDataByTypeId(dictId);
+        model.addAttribute("dictdatas", dictdatas);
         model.addAttribute("dict", dict);
         return prefix + "/editDictType";
     }

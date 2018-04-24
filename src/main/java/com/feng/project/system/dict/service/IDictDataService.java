@@ -20,6 +20,13 @@ public interface IDictDataService
     public List<DictData> selectDictDataList(DictData dictData);
 
     /**
+     * 根据字典类型ID查询Data信息
+     *
+     * @param dictTypeId 字典TypeId
+     * @return 字典数据
+     */
+    public List<DictData> selectDictDataByTypeId(Long dictTypeId);
+    /**
      * 根据字典数据ID查询信息
      * 
      * @param dictCode 字典数据ID

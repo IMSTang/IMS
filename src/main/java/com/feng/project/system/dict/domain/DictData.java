@@ -21,8 +21,8 @@ public class DictData extends PageDomain
     private String dictLabel;
     /** 字典键值 */
     private String dictValue;
-    /** 字典类型 */
-    private String dictType;
+    /** 字典类型Id */
+    private Long dictTypeId;
     /** 状态（0正常 1禁用） */
     private int status;
     /** 创建者 */

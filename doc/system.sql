@@ -390,7 +390,7 @@ create table sys_dict_data
 	dict_sort        int(4)          default 0                  comment '字典排序',
 	dict_label       varchar(100)    default ''                 comment '字典标签',
 	dict_value       varchar(100)    default ''                 comment '字典键值',
-	dict_type        varchar(100)    default ''                 comment '字典类型',
+	dict_type_id        int(11) 		  default 0                 comment '字典类型',
     status 			 int(1) 		 default 0				    comment '状态（0正常 1禁用）',
     create_by        varchar(64)     default ''                 comment '创建者',
     create_time      timestamp       default current_timestamp  comment '创建时间',

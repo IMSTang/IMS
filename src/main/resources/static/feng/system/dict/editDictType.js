@@ -1,3 +1,102 @@
+
+var Element_index = 1;
+/**
+ * 默认界面上显示一行data
+ */
+// addElement();
+
+/**
+ * 添加一行data
+ */
+$("#add").click(addElement);
+function addElement(){
+    /**
+     * div
+     */
+    var div = document.createElement('div');
+    div.style.height = '34px';
+    div.style.padding= '0 10px 0 16px';
+    div.id="div"+Element_index;
+    var clearDiv =document.createElement("div");
+    clearDiv.className = 'clear';
+
+    /**
+     * dictCode
+     * */
+    var TId=document.createElement("input");
+    TId.type="hidden";
+    TId.name="dictCode"+Element_index;
+    TId.id="dictCode"+Element_index;
+
+    /**
+     * dictLabel
+     * */
+    var TdictLabel=document.createElement("input");
+    TdictLabel.type="text";
+    TdictLabel.className = 'col-sm-3 outline';
+    TdictLabel.style.margin= '0 -1px';
+    TdictLabel.name="dictLabel"+Element_index;
+    TdictLabel.id="dictLabel"+Element_index;
+
+    /**
+     * dictValue
+     */
+    var TdictValue=document.createElement("input");
+    TdictValue.type="text";
+    TdictValue.className = 'col-sm-3 outline';
+    TdictValue.style.margin= '0 -1px';
+    TdictValue.name="dictValue"+Element_index;
+    TdictValue.id="dictValue"+Element_index;
+
+    /**
+     * dictSort
+     */
+    var TdictSort=document.createElement("input");
+    TdictSort.type="text";
+    TdictSort.className = 'col-sm-2 outline';
+    TdictSort.style.margin= '0 -1px';
+    TdictSort.name="dictSort"+Element_index;
+    TdictSort.id="dictSort"+Element_index;
+
+    /**
+     * -
+     */
+    var TButton=document.createElement("input");
+    TButton.type="button";
+    TButton.className = 'col-sm-1';
+    TButton.style.margin= '0 0 0 3px';
+    TButton.style.height= '24px';
+    TButton.style.padding= '0';
+    TButton.text=Element_index;
+    TButton.value="Remove";
+    TButton.name="delButton";
+    TButton.id="delButton";
+    TButton.onclick=function () {//绑定点击事件
+        // var delId = "div"+Element_index;
+        delButton(div.id);
+    };
+
+    div.appendChild(TId);
+    div.appendChild(TdictLabel);
+    div.appendChild(TdictValue);
+    div.appendChild(TdictSort);
+    div.appendChild(TButton);
+    div.appendChild(clearDiv);
+    document.getElementById("tableDiv").appendChild(div);
+    Element_index++;
+}
+
+/***
+ * 删除一行data
+ */
+function delButton(divId) {
+    var div = document.getElementById(divId);
+    var parentDiv =  document.getElementById('tableDiv');
+    if( parentDiv.childElementCount>1){
+        parentDiv.removeChild(div);
+    }
+}
+
 $("#form-dict-edit").validate({
 	rules:{
 		dictName:{
@@ -27,7 +126,7 @@ $("#form-dict-edit").validate({
 	},
 	messages: {
         "dictType": {
-            remote: "该字典类型已经存在"
+            remote: "The Dict Type already exist"
         }
     },
 	submitHandler:function(form){
@@ -54,11 +153,11 @@ function update() {
 		},
 		async : false,
 		error : function(request) {
-			$.modalAlert("系统错误", "error");
+			$.modalAlert("System ERROR", "error");
 		},
 		success : function(data) {
 			if (data.code == 0) {
-				parent.layer.msg("修改成功,正在刷新数据请稍后……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+				parent.layer.msg("Updated successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
 					$.parentReload();
 				});
 			} else {

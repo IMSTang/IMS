@@ -33,6 +33,17 @@ public class DictDataServiceImpl implements IDictDataService
 
     /**
      * 根据字典数据ID查询信息
+     *
+     * @param dictCode 字典数据ID
+     * @return 字典数据
+     */
+    @Override
+    public List<DictData> selectDictDataByTypeId(Long dictTypeId)
+    {
+        return dictDao.selectDictDataByTypeId(dictTypeId);
+    }
+    /**
+     * 根据字典数据ID查询信息
      * 
      * @param dictCode 字典数据ID
      * @return 字典数据

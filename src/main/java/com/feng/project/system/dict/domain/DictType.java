@@ -4,6 +4,8 @@ import com.feng.framework.web.page.PageDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 /**
  * 字典类型对象 sys_dict_type
  * 
@@ -31,4 +33,6 @@ public class DictType extends PageDomain
     private String updateTime;
     /** 备注 */
     private String remark;
+    /** Body */
+    private List<DictData> dictData;
 }

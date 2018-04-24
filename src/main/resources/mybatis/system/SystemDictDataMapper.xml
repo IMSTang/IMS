@@ -28,7 +28,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
+	<select id="selectDictDataByTypeId" parameterType="Long" resultMap="DictDataResult">
+		select  *
+		from sys_dict_data
+		where dict_type_id = #{dictTypeId}
+	</select>
+
 	<select id="selectDictDataById" parameterType="Long" resultMap="DictDataResult">
 		select  *
 		from sys_dict_data

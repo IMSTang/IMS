@@ -129,7 +129,7 @@ create table sale_quote_body
 (
     quote_body_id       int(11)      not null auto_increment    comment 'Quote body ID',
 	quote_id     varchar(32)  not null                   comment 'Quote uuid',
-	item_code     varchar(10)     not null                       comment 'Item Code',
+	item_code     varchar(20)     not null                       comment 'Item Code',
 	price     	  float(10,2)     not null                   comment 'Price',
 	quantity      float(10,3)     not null                   comment 'Quantity',
 	primary key (quote_body_id)
