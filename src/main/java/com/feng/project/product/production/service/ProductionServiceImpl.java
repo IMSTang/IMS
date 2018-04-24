@@ -73,4 +73,13 @@ public class ProductionServiceImpl implements IProductionService {
         return null;
     }
 
+    @Override
+    public String checkItemCodeUnique(String itemCode) {
+        int count = productionDao.checkItemCodeUnique(itemCode);
+        if(count>0){
+            return "1";
+        }
+        return  "0";
+    }
+
 }

@@ -109,6 +109,20 @@ public class ProductionController extends BaseController{
         return psList;
     }
 
+    /**
+     * check ItemCode Name Unique
+     * @param production
+     * @return 1 exit,0 not exit
+     */
+    @PostMapping("/checkItemCodeUnique")
+    @ResponseBody
+    public String  checkNameUnique(Production production){
+        String flag="0";
+        if(production != null){
+            flag = productionService.checkItemCodeUnique(production.getItemCode());
+        }
+        return  flag;
 
+    }
 
 }

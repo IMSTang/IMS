@@ -29,4 +29,5 @@ public interface IProductionDao {
     public List<ProductionSimple> selectProductionSimpleByCode(String searchStr);
     public List<ProductionSimple> selectProductionSimpleByName(String searchStr);
 
+    public int checkItemCodeUnique(String itemCode);
 }
