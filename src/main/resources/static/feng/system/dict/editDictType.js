@@ -174,9 +174,17 @@ function update() {
                 dictItem['dictData['+itemIndex+'].dictCode']=inputs[j].value;
             }
             if((inputs[j].id).indexOf("dictLabel") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("Dict Label is empty", "error");
+                    return false;
+                }
                 dictItem['dictData['+itemIndex+'].dictLabel']=inputs[j].value;
             }
             if((inputs[j].id).indexOf("dictValue") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("Dict Value is empty", "error");
+                    return false;
+                }
                 dictItem['dictData['+itemIndex+'].dictValue']=inputs[j].value;
             }
             if((inputs[j].id).indexOf("dictSort") >=0){

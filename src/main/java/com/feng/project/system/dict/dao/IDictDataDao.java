@@ -1,6 +1,8 @@
 package com.feng.project.system.dict.dao;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 import com.feng.project.system.dict.domain.DictData;
 
@@ -43,6 +45,14 @@ public interface IDictDataDao
      * @return 结果
      */
     public int batchDeleteDictData(Long[] ids);
+
+    /**
+     * 批量删除字典数据
+     *
+     * @param ids 需要删除的数据
+     * @return 结果
+     */
+    public int batchDeleteDictDataOnType(Map<String, Object> param);
 
     /**
      * 新增字典数据信息

@@ -1,6 +1,9 @@
 package com.feng.project.system.dict.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.feng.project.system.dict.dao.IDictDataDao;
 import com.feng.project.system.dict.domain.DictData;
@@ -78,6 +81,22 @@ public class DictTypeServiceImpl implements IDictTypeService
         {
             dictType.setUpdateBy(ShiroUtils.getLoginName());
             result = dictTypeDao.updateDictType(dictType);
+            //批量删除不在body里的dictData
+            Map map=new HashMap<String, Object>();
+            map.put("dicTypeId", dictId);
+            List<String> list=new ArrayList<String>();
+            for (int i=0;i<dictType.getDictData().size();i++){
+                DictData data = dictType.getDictData().get(i);
+                Long dictCode = data.getDictCode();
+                if (StringUtils.isNotNull(dictCode))
+                {
+                    list.add(""+dictCode);
+                }
+            }
+            int size=list.size();
+            String[] array = (String[])list.toArray(new String[size]);
+            map.put("ids", array);
+            dictDataDao.batchDeleteDictDataOnType(map);
         }
         else
         {

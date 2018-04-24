@@ -41,13 +41,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from sys_dict_data
 		where dict_code = #{dictCode}
 	</select>
-	
- 	<delete id="batchDeleteDictData" parameterType="String">
- 		delete from sys_dict_data where dict_code in
- 		<foreach collection="array" item="dictCode" open="(" separator="," close=")">
- 			#{dictCode}
-        </foreach> 
- 	</delete>
+
+	<delete id="batchDeleteDictData" parameterType="String">
+		delete from sys_dict_data where dict_code in
+		<foreach collection="array" item="dictCode" open="(" separator="," close=")">
+			#{dictCode}
+		</foreach>
+	</delete>
+
+	<delete id="batchDeleteDictDataOnType" parameterType="java.util.HashMap">
+		delete from sys_dict_data where dict_type_id = #{dicTypeId} and dict_code not in
+		<foreach collection="ids" item="dictCode" open="(" separator="," close=")">
+			#{dictCode}
+		</foreach>
+	</delete>
  	
 	<update id="updateDictData" parameterType="DictData">
  		update sys_dict_data
