@@ -8,4 +8,19 @@ import java.util.List;
 @Mapper
 public interface IQuoteBodyDao {
    public int  batchQuoteBody(List<QuoteBody> quoteBodieList);
+
+   /**
+    * delete quoteBody by Id
+    * @param quoteBodyId
+    * @return
+    */
+   public  int deleteQuoteBodyById(Long quoteBodyId);
+
+
+   /**
+    *
+    * @param quoteId
+    * @return
+    */
+   public int checkQuoteUsed(Long quoteId);
 }

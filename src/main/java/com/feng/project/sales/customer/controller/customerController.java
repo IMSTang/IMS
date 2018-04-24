@@ -173,4 +173,16 @@ public class customerController extends BaseController{
         return  prefix+"/edit";
     }
 
+
+    @PostMapping("/checkNameExist")
+    @ResponseBody
+    public String  checkNameExist(String  name){
+        String flag="0";
+        if(name != null){
+            flag = customerService.checkNameUnique(name);
+        }
+        return  flag;
+
+    }
+
 }

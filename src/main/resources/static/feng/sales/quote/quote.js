@@ -4,9 +4,10 @@ $(function() {
     var columns = [{
         checkbox: true
     },
+
         // {
-        //     field: 'inquiryUUID',
-        //     title: 'Inquiry UUID'
+        //     field: 'quoteBodyId',
+        //     title: 'Quote Body  Id'
         // },
         {
             field: 'quoteId',
@@ -48,9 +49,11 @@ $(function() {
             title: 'Action',
             align: 'center',
             formatter: function(value, row, index) {
+
+
                 var actions = [];
-                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.quoteId + '\')"><i class="fa fa-edit"></i></a> ');
-                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.quoteId + '\')"><i class="fa fa-remove"></i></a>');
+                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.quoteId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
+                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' +  row.quoteBodyId +"','"+row.quoteId + '\')"><i class="fa fa-remove"></i></a>');
                 return actions.join('');
             }
         }];
@@ -65,6 +68,16 @@ function add() {
     var url = prefix + '/add';
     layer_show("add Quote", url, '800', '600');
 }
+
+
+
+// 单条删除
+function remove(quoteBodyId,quoteId) {
+
+    $.modalConfirm("Do you want to remove this Quote?", function(r) {
+        _ajax(prefix + "/remove/" + quoteBodyId+"/"+quoteId, "", "post", r);
+    })
+}
 /*
 /!*inquiry Management-修改*!/
 function edit(inquiryId) {
@@ -72,12 +85,7 @@ function edit(inquiryId) {
     layer_show("edit Inquiry", url, '800', '600');
 }
 
-// 单条删除
-function remove(id) {
-    $.modalConfirm("Do you want to remove this inquiry？", function(r) {
-        _ajax(prefix + "/remove/" + id, "", "post", r);
-    })
-}
+
 
 // 批量删除
 function batchRemove() {

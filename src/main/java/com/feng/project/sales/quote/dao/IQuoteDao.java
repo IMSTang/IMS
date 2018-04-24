@@ -16,4 +16,12 @@ public interface IQuoteDao {
      * @return
      */
     public int insertQuote(Quote quote);
+
+
+    /**
+     * delete quote by Id
+     * @param quoteId
+     * @return
+     */
+    public int deleteQuoteById(Long quoteId);
 }

@@ -19,10 +19,10 @@ insert into sys_menu values('116', 'editCustomer', '110', '6',  '#',  'F', '0', 
 
 insert into sys_menu values('121', 'addQuote', '120', '2',  '#',  'F', '0', 'sales:quote:add',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('122', 'deleteQuote', '120', '3',  '#',  'F', '0', 'sales:quote:batchRemove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('123', 'saveCustomer', '120', '4',  '#',  'F', '0', 'sales:quote:save',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('124', 'queryCustomer', '120', '1',  '#',  'F', '0', 'sales:quote:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('125', 'removeCustomer', '120', '5',  '#',  'F', '0', 'sales:quote:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('126', 'editCustomer', '120', '6',  '#',  'F', '0', 'sales:quote:edit',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('123', 'saveQuote', '120', '4',  '#',  'F', '0', 'sales:quote:save',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('124', 'queryQuote', '120', '1',  '#',  'F', '0', 'sales:quote:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('125', 'removeQuote', '120', '5',  '#',  'F', '0', 'sales:quote:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('126', 'editQuote', '120', '6',  '#',  'F', '0', 'sales:quote:edit',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- 将按钮权限赋予role
 insert into sys_role_menu values ('1', '100');

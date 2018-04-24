@@ -39,8 +39,9 @@ public class QuoteServiceImpl implements  IQuoteService{
         /**
          *
          */
-
-        insertQuoteBody(quote);
+        if(count >0) {
+            insertQuoteBody(quote);
+        }
         return count;
     }
 
@@ -58,4 +59,15 @@ public class QuoteServiceImpl implements  IQuoteService{
         }
     }
 
+
+    /**
+     * delete quote by Id
+     *
+     * @param quoteId
+     * @return
+     */
+    @Override
+    public int deleteQuoteById(Long quoteId) {
+        return quoteDao.deleteQuoteById(quoteId);
+    }
 }
