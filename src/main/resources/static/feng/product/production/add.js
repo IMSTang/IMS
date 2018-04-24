@@ -2,6 +2,21 @@ $("#form-production-add").validate({
 	rules:{
 		itemCode:{
 			required:true,
+            minlength: 1,
+            remote: {
+                url: "/product/production/checkItemCodeUnique",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#itemCode").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return true;
+                    else return false;
+                }
+            }
 		},
         safetyStock:{
             digits : true,

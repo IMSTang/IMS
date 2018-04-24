@@ -44,7 +44,9 @@
         where production_id = #{productionId}
     </delete>
 
-
+    <select id="checkItemCodeUnique" parameterType="String" resultType="int">
+		select count(*) from pro_production where item_code=#{itemCode} and status="0"
+	</select>
 
 
     <update id="batchDeleteProduction" parameterType="String">

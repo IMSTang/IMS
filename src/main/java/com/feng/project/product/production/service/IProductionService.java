@@ -11,6 +11,11 @@ public interface IProductionService {
     public int deleteProductionById(Long id);
     public  int saveProduction(Production production);
     public  int batchDeleteProduction(Long[] ids);
-
+    /**
+     * check ItemCode Unique
+     * @param itemCode
+     * @return flag
+     */
+    public  String checkItemCodeUnique(String itemCode);
     public List<ProductionSimple>  selectProductionSimpleList(String searchStr, String type);
 }
