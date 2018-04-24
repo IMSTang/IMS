@@ -46,7 +46,7 @@
 				<div class="clear"></div>
 				<!--<input id="a" name="a" class="form-control" type="text" th:value="${dict}">-->
 				<!--<input id="a2" name="a2" class="form-control" type="text" th:value="${dictdatas}">-->
-				<div class="form-group" style="margin-bottom: 0;" id="tableDiv">
+				<div class="form-group" style="max-height: 140px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="tableDiv">
 					<div style="height: 34px; padding: 0px 10px 0px 16px;" th:id = "'div'+${iterStat.index}" th:each="dictData,iterStat :${dictdatas}">
 						<input  type="hidden" name="dictCode" th:id = "'dictCode'+${iterStat.index}" th:value="${dictData.dictCode}">
 						<input  type="text" class="col-sm-4" name="dictLabel" th:id = "'dictLabel'+${iterStat.index}" th:value="${dictData.dictLabel}" style="margin: 0px -1px;">

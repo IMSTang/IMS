@@ -42,7 +42,7 @@ $(function() {
             formatter: function(value, row, index) {
             	var actions = [];
             	actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit Dict Type" mce_href="#" onclick="edit(\'' + row.dictId + '\')"><i class="fa fa-edit"></i></a> ');
-            	actions.push('<a class="btn btn-warning btn-sm" href="#" title="字典数据" onclick="detail(\'' + row.dictId + '\')"><i class="fa fa-search"></i></a>');
+            	actions.push('<a class="btn btn-warning btn-sm" href="#" title="Dict Type Detail" onclick="detail(\'' + row.dictId + '\')"><i class="fa fa-search"></i></a>');
             	return actions.join('');
             }
         }];
@@ -53,29 +53,29 @@ $(function() {
 /*字典管理-新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("新增字典类型", url, '800', '600');
+    layer_show("add Dict", url, '800', '600');
 }
 
 /*角色管理-修改*/
 function edit(dictId) {
     var url = prefix + '/edit/' + dictId;
-    layer_show("修改字典类型", url, '800', '600');
+    layer_show("edit Dict", url, '800', '600');
 }
 
 /*字典列表-详细*/
 function detail(dictId) {
 	var url = prefix + '/detail/' + dictId;
-	createMenuItem(url, "字典数据");
+	createMenuItem(url, "show Dict");
 }
 
 // 批量删除
 function batchRemove() {
 	var rows = $.getSelections("dictId");
 	if (rows.length == 0) {
-		$.modalMsg("请选择要删除的数据", "warning");
+		$.modalMsg("Please select the data you want to remove", "warning");
 		return;
 	}
-	$.modalConfirm("确认要删除选中的" + rows.length + "条数据吗?", function(r) {
+	$.modalConfirm("Do you want to remove " + rows.length + " dict?", function(r) {
 		_ajax(prefix + '/batchRemove', { "ids": rows }, "post", r);
 	});
 }

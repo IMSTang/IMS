@@ -76,16 +76,17 @@ public class DictDataServiceImpl implements IDictDataService
     public int saveDictData(DictData dictData)
     {
         Long dictCode = dictData.getDictCode();
-        if (StringUtils.isNotNull(dictCode))
-        {
-            dictData.setUpdateBy(ShiroUtils.getLoginName());
-            return dictDao.updateDictData(dictData);
-        }
-        else
-        {
-            dictData.setCreateBy(ShiroUtils.getLoginName());
-            return dictDao.insertDictData(dictData);
-        }
+//        if (StringUtils.isNotNull(dictCode))
+//        {
+//            dictData.setUpdateBy(ShiroUtils.getLoginName());
+//            return dictDao.updateDictData(dictData);
+//        }
+//        else
+//        {
+//            dictData.setCreateBy(ShiroUtils.getLoginName());
+//            return dictDao.insertDictData(dictData);
+//        }
+        return 1;
     }
 
 }

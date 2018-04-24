@@ -1,6 +1,9 @@
 package com.feng.project.system.dict.service;
 
 import java.util.List;
+
+import com.feng.project.system.dict.dao.IDictDataDao;
+import com.feng.project.system.dict.domain.DictData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.feng.common.constant.UserConstants;
@@ -19,6 +22,9 @@ public class DictTypeServiceImpl implements IDictTypeService
 {
     @Autowired
     private IDictTypeDao dictTypeDao;
+
+    @Autowired
+    private IDictDataDao dictDataDao;
 
     /**
      * 根据条件分页查询字典类型
@@ -67,16 +73,39 @@ public class DictTypeServiceImpl implements IDictTypeService
     public int saveDictType(DictType dictType)
     {
         Long dictId = dictType.getDictId();
+        int result;
         if (StringUtils.isNotNull(dictId))
         {
             dictType.setUpdateBy(ShiroUtils.getLoginName());
-            return dictTypeDao.updateDictType(dictType);
+            result = dictTypeDao.updateDictType(dictType);
         }
         else
         {
             dictType.setCreateBy(ShiroUtils.getLoginName());
-            return dictTypeDao.insertDictType(dictType);
+            result = dictTypeDao.insertDictType(dictType);
         }
+        updateDictData(dictType);
+        return result;
+    }
+
+    public  void updateDictData(DictType dictType){
+
+        for (int i=0;i<dictType.getDictData().size();i++){
+            DictData data = dictType.getDictData().get(i);
+            Long dictCode = data.getDictCode();
+            data.setDictTypeId(dictType.getDictId());
+            if (StringUtils.isNotNull(dictCode))
+            {
+                data.setUpdateBy(ShiroUtils.getLoginName());
+                dictDataDao.updateDictData(data);
+            }
+            else
+            {
+                data.setCreateBy(ShiroUtils.getLoginName());
+                dictDataDao.insertDictData(data);
+            }
+        }
+
     }
 
     /**
