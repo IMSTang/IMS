@@ -1,5 +1,5 @@
 
-var Element_index = 1;
+var Element_index = 101;
 /**
  * 默认界面上显示一行data
  */
@@ -10,6 +10,7 @@ var Element_index = 1;
  */
 $("#add").click(addElement);
 function addElement(){
+
     /**
      * div
      */
@@ -33,7 +34,7 @@ function addElement(){
      * */
     var TdictLabel=document.createElement("input");
     TdictLabel.type="text";
-    TdictLabel.className = 'col-sm-3 outline';
+    TdictLabel.className = 'col-sm-4 outline';
     TdictLabel.style.margin= '0 -1px';
     TdictLabel.name="dictLabel"+Element_index;
     TdictLabel.id="dictLabel"+Element_index;

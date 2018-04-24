@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<head th:include="include :: header">
-	<script type="text/javascript">
-        function delButton2() {
-            alert("divId");
-            var div = document.getElementById(divId);
-            var parentDiv =  document.getElementById('tableDiv');
-            if( parentDiv.childElementCount>1){
-                parentDiv.removeChild(div);
-            }
-        }
-	</script>
-</head>
+<head th:include="include :: header"></head>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-dict-edit">
@@ -51,20 +40,19 @@
 			<div style="border: 1px solid #ddd; border-bottom: 0; padding: 10px; background: #f2f2f2;">
 				<input class="btn btn-info" style="padding: 3px 6px; border-radius: 0;" type="button" value="Add Dict Data"  id="add"/></div>
 			<div style="border: 1px solid #ddd; padding: 10px;">
-				<div class="col-sm-3" style="padding: 0;">Label</div>
-				<div class="col-sm-4" style="padding: 0;">Value</div>
+				<div class="col-sm-4" style="padding: 0;">Label</div>
+				<div class="col-sm-3" style="padding: 0;">Value</div>
 				<div class="col-sm-2" style="padding: 0;">Order</div>
 				<div class="clear"></div>
 				<!--<input id="a" name="a" class="form-control" type="text" th:value="${dict}">-->
 				<!--<input id="a2" name="a2" class="form-control" type="text" th:value="${dictdatas}">-->
-				<div class="form-group" style="margin-bottom: 0;" id="tableDiv" th:each="dictData,iterStat :${dictdatas}">
-					<div  th:id = "'div'+${iterStat.index}">
-						<input  type="text" name="dictCode" th:id = "'dictCode'+${iterStat.index}" th:value="${dictData.dictCode}">
-						<input  type="text" name="dictLabel" th:id = "'dictLabel'+${iterStat.index}" th:value="${dictData.dictLabel}">
-						<input  type="text" name="dictValue" th:id = "'dictValue'+${iterStat.index}" th:value="${dictData.dictValue}">
-						<input  type="text" name="dictSort" th:id = "'dictSort'+${iterStat.index}" th:value="${dictData.dictSort}">
-						<!--<button  type="button" th:onclick="'javascript:alert(\'div'+${iterStat.index}+'\')'" > - </button>-->
-						<button  type="button" th:onclick="'delButton2()'" > - </button>
+				<div class="form-group" style="margin-bottom: 0;" id="tableDiv">
+					<div style="height: 34px; padding: 0px 10px 0px 16px;" th:id = "'div'+${iterStat.index}" th:each="dictData,iterStat :${dictdatas}">
+						<input  type="hidden" name="dictCode" th:id = "'dictCode'+${iterStat.index}" th:value="${dictData.dictCode}">
+						<input  type="text" class="col-sm-4" name="dictLabel" th:id = "'dictLabel'+${iterStat.index}" th:value="${dictData.dictLabel}" style="margin: 0px -1px;">
+						<input  type="text" class="col-sm-3" name="dictValue" th:id = "'dictValue'+${iterStat.index}" th:value="${dictData.dictValue}" style="margin: 0px -1px;">
+						<input  type="text" class="col-sm-2" name="dictSort" th:id = "'dictSort'+${iterStat.index}" th:value="${dictData.dictSort}" style="margin: 0px -1px;">
+						<button  type="button" class="col-sm-1" th:onclick="'javascript:delButton(\'div'+${iterStat.index}+'\');'" style="margin: 0px 0px 0px 3px; height: 24px; padding: 0px;">Remove</button>
 					</div>
 				</div>
 			</div>
