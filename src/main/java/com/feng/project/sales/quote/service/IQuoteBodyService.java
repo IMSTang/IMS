@@ -7,4 +7,6 @@ public interface IQuoteBodyService {
      * @return
      */
     public  int deleteQuoteBodyById(Long quoteBodyId,Long quoteId);
+
+    public  int  batchDeleteQuote(Long[] quoteBodyId,Long[] quoteId);
 }

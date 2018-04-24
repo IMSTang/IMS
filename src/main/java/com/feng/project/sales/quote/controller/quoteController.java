@@ -98,4 +98,19 @@ public class quoteController extends BaseController {
 
     }
 
+
+    @RequiresPermissions("sales:quote:batchRemove")
+    @Log(title = "Sales Management", action = "Quote - batchRemoveQuote")
+    @PostMapping("/batchRemove")
+    @ResponseBody
+    public  JSON batchRemove(@RequestParam("quoteBodyId[]")Long[] quoteBodyId,@RequestParam("quoteId[]")Long[] quoteId){
+        int rows = quoteBodyService.batchDeleteQuote(quoteBodyId,quoteId);
+        if(rows>0){
+
+            return  JSON.ok();
+        }
+        return  JSON.error();
+    }
+
+
 }

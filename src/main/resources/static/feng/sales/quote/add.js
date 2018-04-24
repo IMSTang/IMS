@@ -116,7 +116,7 @@ function addElement(){
      */
 
     var div = document.createElement('div');
-    div.style.height = '34px';
+    div.style.height = '45px';
     div.style.padding= '0 10px 0 16px';
     div.id="div"+Element_index;
     var clearDiv =document.createElement("div");
@@ -133,6 +133,18 @@ function addElement(){
 
 
 
+
+    /**
+     *item Code
+     */
+    var TCode=document.createElement("input");
+    TCode.type="text";
+    TCode.className = 'col-sm-2';
+    TCode.style.margin= '0 -1px';
+    TCode.name="itemCode"+Element_index;
+    TCode.id="itemCode"+Element_index;
+
+
     /**
      * item Name
      * */
@@ -144,15 +156,6 @@ function addElement(){
     TName.id="itemName"+Element_index;
 
 
-    /**
-     *item Code
-     */
-    var TCode=document.createElement("input");
-    TCode.type="text";
-    TCode.className = 'col-sm-2';
-    TCode.style.margin= '0 -1px';
-    TCode.name="itemCode"+Element_index;
-    TCode.id="itemCode"+Element_index;
 
     TCode.onclick=function () {//绑定点击事件
         autoInfomation(TCode,TName,TId,"code");
@@ -174,20 +177,18 @@ function addElement(){
     TPrice.style.margin= '0 -1px';
     TPrice.name="price"+Element_index;
     TPrice.id="price"+Element_index;
-
-
-
+    TPrice.required= "required";
 
     /***
      * quantity
      */
     var TQuantity=document.createElement("input");
-    TQuantity.type="text";
+    TQuantity.type="number";
     TQuantity.className = 'col-sm-2';
     TQuantity.style.margin= '0 -1px';
     TQuantity.name="quantity"+Element_index;
     TQuantity.id="quantity"+Element_index;
-
+    TQuantity.required= "required";
     /**
      * -
      */
@@ -206,16 +207,21 @@ function addElement(){
         delButton(div.id);
     };
 
+
+
     div.appendChild(TId);
     div.appendChild(TCode);
     div.appendChild(TName);
-    div.appendChild(TQuantity);
     div.appendChild(TPrice);
+    div.appendChild(TQuantity);
     div.appendChild(TButton);
     div.appendChild(clearDiv);
     document.getElementById("tableDiv").appendChild(div);
     Element_index++;
 }
+
+
+
 
 /***
  * 删除一套产品信息按钮
@@ -260,8 +266,11 @@ $("#form-quote-add").validate({
             required:true,
         },
         reminder:{
-            digits : true,
+            required: true,
+            number: true,
+            min: 0.01,
         },
+
     },
 
 
@@ -272,7 +281,17 @@ $("#form-quote-add").validate({
     },
     submitHandler:function(form){
         add();
+    },
+    errorPlacement: function(error, element) {
+        if (element.is(":input")){
+            error.appendTo(element.parent());
+        }else {
+            error.insertAfter(element);
+        }
     }
+
+
+
 });
 
 

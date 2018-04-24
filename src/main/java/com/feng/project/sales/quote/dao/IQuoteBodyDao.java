@@ -23,4 +23,6 @@ public interface IQuoteBodyDao {
     * @return
     */
    public int checkQuoteUsed(Long quoteId);
+
+   public int batchDeleteQuoteBody(Long[] quoteBodyIds);
 }
