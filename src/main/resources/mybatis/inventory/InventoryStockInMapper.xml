@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feng.project.inventory.instock.dao.IStockInDao" >
+    <resultMap id="BaseResultMap" type="com.feng.project.inventory.instock.domain.StockIn" >
+        <id column="sn"  property="sn" />
+        <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+        <result column="batch" jdbcType="VARCHAR" property="batch" />
+        <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
+        <result column="price_purchase"  property="pricePurchase" />
+        <result column="price_fob_ontario"  property="priceFobOntario" />
+        <result column="quantity"  property="quantity" />
+        <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
+        <result column="tpc" jdbcType="VARCHAR" property="tpc" />
+        <result column="vendor_id"  property="vendorId" />
+        <result column="customer_id"  property="customerId" />
+        <result column="status" property="status" />
+        <result column="stock_in_date" jdbcType="TIMESTAMP" property="stockInDate" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+    </resultMap>
+
+
+
+    <sql id="Base_Column_List" >
+        sn, item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity,
+    irradiation, tpc, vendor_id, customer_id, status, stock_in_date, create_by, create_time,
+    update_by, update_time, remark
+    </sql>
+
+
+
+    <select id="selectStockInList" parameterType="com.feng.project.inventory.instock.domain.StockIn"
+            resultMap="BaseResultMap">
+        SELECT *  FROM  inv_inventory_in
+        <where>
+            status = 0
+            <if test="searchValue != null and searchValue != ''">
+                AND (
+                (batch like CONCAT('%',#{searchValue},'%' ) )
+                OR (item_code like CONCAT('%',#{searchValue},'%' ) )
+                OR (position like CONCAT('%',#{searchValue},'%' ) )
+                )
+            </if>
+        </where>
+    </select>
+
+    <parameterMap type="java.util.HashMap" id="inStockParams">
+        <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="batch" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="warehouse" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="pricePurchase" jdbcType="DOUBLE" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="priceFobOntario" jdbcType="DOUBLE" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="quantity"  jdbcType="INTEGER"  javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="irradiation" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="tpc" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="customerId"  jdbcType="INTEGER"   javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="attachmentName" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="attachment" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="remark" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
+    </parameterMap>
+
+    <insert id="spStockIn" parameterMap="inStockParams"
+            statementType="CALLABLE">
+    <![CDATA[
+        {call  sp_stockIn( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,  ?, ?,? )}
+    ]]>
+</insert>
+
+
+
+
+
+</mapper>

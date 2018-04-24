@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+		<form class="form-horizontal m" id="form-inStock-add">
+
+			<input name="sn"  type="hidden" id="sn"/>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Item Code:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="itemCode" id="itemCode">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Batch:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="batch" id="batch">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Warehouse:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="warehouse" id="warehouse">
+				</div>
+				<label class="col-sm-2 control-label">Position:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="position" id="position">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Quantity:</label>
+				<div class="col-sm-8">
+					<input class="form-control" type="text" name="quantity" id="quantity">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Price Purchase:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="pricePurchase" id="pricePurchase">
+				</div>
+				<label class="col-sm-2 control-label">FOB Ontario:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="priceFobOntario" id="priceFobOntario">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Vendor Id:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="vendorId" id="vendorId">
+				</div>
+				<label class="col-sm-2 control-label">Customer Id:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="customerId" id="customerId">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Irradiation:</label>
+				<div class="col-sm-8">
+					<input id="irradiation" name="irradiation" class="form-control" type="text">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Tpc:</label>
+				<div class="col-sm-8">
+					<input id="tpc" name="tpc" class="form-control" type="text">
+				</div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Attachment Name :</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="attachmentName" id="attachmentName">
+				</div>
+				<label class="col-sm-2 control-label">Attachment:</label>
+				<div class="col-sm-3">
+					<input class="form-control" type="text" name="attachment" id="attachment">
+				</div>
+			</div>
+			
+			
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label">Remark:</label>
+				<div class="col-sm-8">
+					<input id="remark" name="remark" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="form-control-static col-sm-offset-9">
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">Close</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/feng/inventory/inStock/add.js">
+	</script>
+</body>
+</html>
