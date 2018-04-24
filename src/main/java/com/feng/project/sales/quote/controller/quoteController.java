@@ -7,6 +7,7 @@ import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.sales.quote.domain.Quote;
+import com.feng.project.sales.quote.service.IQuoteBodyService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,13 @@ public class quoteController extends BaseController {
 
     @Autowired
     private IQuoteService quoteService;
+
+    @Autowired
+    private IQuoteBodyService quoteBodyService;
+
+
+
+
     @RequiresPermissions("sales:quote:view")
     @GetMapping()
     public  String  quota(){
@@ -68,9 +76,26 @@ public class quoteController extends BaseController {
     @ResponseBody
     public JSON save(Quote quote)
     {
+         if(  quoteService.insertQuote(quote)>0){
+                return JSON.ok();
+         }
+        return  JSON.error();
+    }
 
-        quoteService.insertQuote(quote);
-    return JSON.ok();
+
+    @Log(title = "Sales Management", action = "Quote - remove Quote")
+    @RequiresPermissions("sales:quote:remove")
+    @RequestMapping("/remove/{quoteBodyId}/{quoteId}")
+    @ResponseBody
+    public JSON remove(@PathVariable("quoteBodyId") Long quoteBodyId,@PathVariable("quoteId") Long quoteId ){
+
+
+        if (  quoteBodyService.deleteQuoteBodyById(quoteBodyId, quoteId) > 0)
+        {
+            return JSON.ok();
+        }
+        return JSON.error();
+
     }
 
 }

@@ -117,7 +117,7 @@ function addElement(){
 
     var div = document.createElement('div');
     div.style.height = '34px';
-    div.style.padding= '0 0 0 16px';
+    div.style.padding= '0 10px 0 16px';
     div.id="div"+Element_index;
     var clearDiv =document.createElement("div");
     clearDiv.className = 'clear';
@@ -237,9 +237,38 @@ function delButton(divId) {
 
 $("#form-quote-add").validate({
     rules:{
+        customerName:{
+            required:true,
+            minlength: 2,
+            remote: {
+                url: "/sales/customer/checkNameExist",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#customerName").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
+        },
+
         itemCode:{
             required:true,
         },
+        reminder:{
+            digits : true,
+        },
+    },
+
+
+    messages: {
+        "customerName": {
+            remote: "customer not exist"
+        }
     },
     submitHandler:function(form){
         add();
@@ -256,20 +285,12 @@ function add() {
 
     var  quoteItem= new Object();
 
-
-
-    // quoteItem['items[' + 0 +'].itemCode']=222222;
-    // quoteItem['items[' + 1 +'].itemName']="aaaaa";
-    // quoteItem['items[' + 1 +'].itemCode']=1111111;
-
-
-
-     var quoteId = $("input[name='quoteId']").val();
-     var quoteDate = $("input[name='quoteDate']").val();
-     var customerId = $("input[name='customerId']").val();
-     var customerName = $("input[name='customerName']").val();
-     var reminder = $("input[name='reminder']").val();
-     var remark = $("#remark").val();
+    var quoteId = $("input[name='quoteId']").val();
+    var quoteDate = $("input[name='quoteDate']").val();
+    var customerId = $("input[name='customerId']").val();
+    var customerName = $("input[name='customerName']").val();
+    var reminder = $("input[name='reminder']").val();
+    var remark = $("#remark").val();
 
     quoteItem.quoteId=quoteId;
     quoteItem.quoteDate=quoteDate;
@@ -278,55 +299,52 @@ function add() {
     quoteItem.remark=remark;
     quoteItem.reminder=reminder;
 
-
-
-
-     var parentDiv =  document.getElementById('tableDiv');
-     //获取div个数
-     var divNum=  parentDiv.getElementsByTagName('div');
+    var parentDiv =  document.getElementById('tableDiv');
+    //获取div个数
+    var divNum=  parentDiv.getElementsByTagName('div');
 
     /**
      * 循环取出 quoteBody 的 值
      */
 
 
-var itemIndex=-1;
-  for(  i=0;i<divNum.length;i++){
+    var itemIndex=-1;
+    for(  i=0;i<divNum.length;i++){
 
-      //忽略 clear div
-      if(divNum[i].className == ""){
-          itemIndex++;
-      }
-         var inputs = divNum[i].getElementsByTagName('input');
-         var textValue=new Array();
+        //忽略 clear div
+        if(divNum[i].className == ""){
+            itemIndex++;
+        }
+        var inputs = divNum[i].getElementsByTagName('input');
+        var textValue=new Array();
 
-         for (j=0;j<inputs.length;j++){
-             //不获取按钮的值
-             if(inputs[j].value=="Remove"){
+        for (j=0;j<inputs.length;j++){
+            //不获取按钮的值
+            if(inputs[j].value=="Remove"){
 
-                 // continue;
-             }
+                // continue;
+            }
 
-             if((inputs[j].id).indexOf("itemName") >=0){
-                 quoteItem['body['+itemIndex+'].itemName']=inputs[j].value;
+            if((inputs[j].id).indexOf("itemName") >=0){
+                quoteItem['body['+itemIndex+'].itemName']=inputs[j].value;
 
-             }
-             if((inputs[j].id).indexOf("itemCode") >=0){
-                 quoteItem['body['+itemIndex+'].itemCode']=inputs[j].value;
+            }
+            if((inputs[j].id).indexOf("itemCode") >=0){
+                quoteItem['body['+itemIndex+'].itemCode']=inputs[j].value;
 
-             }
-             if((inputs[j].id).indexOf("price") >=0){
-                 quoteItem['body['+itemIndex+'].price']=inputs[j].value;
+            }
+            if((inputs[j].id).indexOf("price") >=0){
+                quoteItem['body['+itemIndex+'].price']=inputs[j].value;
 
-             }
-             if((inputs[j].id).indexOf("quantity") >=0){
-                 quoteItem['body['+itemIndex+'].quantity']=inputs[j].value;
+            }
+            if((inputs[j].id).indexOf("quantity") >=0){
+                quoteItem['body['+itemIndex+'].quantity']=inputs[j].value;
 
-             }
+            }
 
-         }
+        }
 
-     }
+    }
 
 
 

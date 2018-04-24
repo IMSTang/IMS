@@ -27,7 +27,7 @@
 
         select i.*,b.quote_body_id,b.item_code,b.price,b.quantity,
         (select v.customer_name from sale_customer v where v. customer_id = i. customer_id) as  customer_name,
-        (select item_name from pro_production p where p.item_code = b.item_code) as item_name
+        (select item_name from pro_production p where p.item_code = b.item_code and  p.status=0 ) as item_name
         from sale_quote i left join sale_quote_body b on i.quote_id = b.quote_id
         <where>
             i.status = 0
@@ -56,102 +56,110 @@
         )
 
     	</insert>
-<!--
-    <select id="selectInquiryAll" resultMap="InquiryResult">
-		select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
-		(select vendor_name from pur_vendor v where v.vendor_id = i.vendor_id) as vendor_name,
-		(select item_name from pro_production p where p.item_code = b.item_code) as item_name
-		from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id
-		where status = 0
-	</select>
 
-    <select id="selectInquiryById" parameterType="Long" resultMap="InquiryResult">
-		select *, concat_ws(', ',name_title,last_name,first_name) as contacts
-		from pur_inquiry v
-		where v.status = 0 and v.inquiry_id = #{inquiryId}
-	</select>
 
-    <delete id="deleteInquiryById" parameterType="Long">
-		update pur_inquiry set status = 1
-		where 1=1 and inquiry_id = #{inquiryId}
- 	</delete>
 
-    <update id="batchDeleteInquiry" parameterType="String">
-        update pur_inquiry set status = 1
-        where inquiry_id in
-        <foreach collection="array" item="inquiryId" open="(" separator="," close=")">
-            #{inquiryId}
-        </foreach>
-    </update>
 
-    <update id="updateInquiry" parameterType="Inquiry">
-        update pur_inquiry
-        <set>
-            <if test="inquiryName != null and inquiryName != ''">inquiry_name = #{inquiryName},</if>
-            <if test="firstName != null and firstName != ''">first_name = #{firstName},</if>
-            <if test="lastName != null and lastName != ''">last_name = #{lastName},</if>
-            <if test="middleName != null and middleName != ''">middle_name = #{middleName},</if>
-            <if test="nameTitle != null and nameTitle != ''">name_title = #{nameTitle},</if>
-            <if test="jobTitle != null and jobTitle != ''">job_title = #{jobTitle},</if>
-            <if test="mainPhone != null and mainPhone != ''">main_phone = #{mainPhone},</if>
-            <if test="workPhone != null and workPhone != ''">work_phone = #{workPhone},</if>
-            <if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
-            <if test="fax != null and fax != ''">fax = #{fax},</if>
-            <if test="mainMail != null and mainMail != ''">main_mail = #{mainMail},</if>
-            <if test="ccMail != null and ccMail != ''">cc_mail = #{ccMail},</if>
-            <if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from = #{addressShipFrom},</if>
-            <if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from = #{addressBillFrom},</if>
-            <if test="status !=null">status = #{status},</if>
-            <if test="remark != null and remark != ''">remark = #{remark},</if>
-            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
-            update_time = sysdate()
-        </set>
-        where 1=1
-        <if test="inquiryId != null">and inquiry_id = #{inquiryId}</if>
-    </update>
+    <update id="deleteQuoteById" parameterType="Long">
+        update   sale_quote set status="1"  where quote_id=#{quoteId}
+	</update>
 
-    <insert id="insertInquiry" parameterType="Inquiry" useGeneratedKeys="true" keyProperty="inquiryId">
-        insert into pur_inquiry(
-        <if test="inquiryId != null and inquiryId != 0">inquiry_id,</if>
-        <if test="inquiryName != null and inquiryName != ''">inquiry_name,</if>
-        <if test="firstName != null and firstName != ''">first_name,</if>
-        <if test="lastName != null and lastName != ''">last_name,</if>
-        <if test="middleName != null and middleName != ''">middle_name,</if>
-        <if test="nameTitle != null and nameTitle != ''">name_title,</if>
-        <if test="jobTitle != null and jobTitle != ''">job_title,</if>
-        <if test="mainPhone != null and mainPhone != ''">main_phone,</if>
-        <if test="workPhone != null and workPhone != ''">work_phone,</if>
-        <if test="mobile != null and mobile != ''">mobile,</if>
-        <if test="fax != null and fax != ''">fax,</if>
-        <if test="mainMail != null and mainMail != ''">main_mail,</if>
-        <if test="ccMail != null and ccMail != ''">cc_mail,</if>
-        <if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from,</if>
-        <if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from,</if>
-        <if test="status !=null">status,</if>
-        <if test="remark != null and remark != ''">remark,</if>
-        <if test="createBy != null and createBy != ''">create_by,</if>
-        create_time
-        )values(
-        <if test="inquiryId != null and inquiryId != 0">#{inquiryId},</if>
-        <if test="inquiryName != null and inquiryName != ''">#{inquiryName},</if>
-        <if test="firstName != null and firstName != ''">#{firstName},</if>
-        <if test="lastName != null and lastName != ''">#{lastName},</if>
-        <if test="middleName != null and middleName != ''">#{middleName},</if>
-        <if test="nameTitle != null and nameTitle != ''">#{nameTitle},</if>
-        <if test="jobTitle != null and jobTitle != ''">#{jobTitle},</if>
-        <if test="mainPhone != null and mainPhone != ''">#{mainPhone},</if>
-        <if test="workPhone != null and workPhone != ''">#{workPhone},</if>
-        <if test="mobile != null and mobile != ''">#{mobile},</if>
-        <if test="fax != null and fax != ''">#{fax},</if>
-        <if test="mainMail != null and mainMail != ''">#{mainMail},</if>
-        <if test="ccMail != null and ccMail != ''">#{ccMail},</if>
-        <if test="addressShipFrom != null and addressShipFrom != ''">#{addressShipFrom},</if>
-        <if test="addressBillFrom != null and addressBillFrom != ''">#{addressBillFrom},</if>
-        <if test="status !=null">status,</if>
-        <if test="remark != null and remark != ''">#{remark},</if>
-        <if test="createBy != null and createBy != ''">#{createBy},</if>
-        sysdate()
-        )
-    </insert>
--->
+    <!--
+        <select id="selectInquiryAll" resultMap="InquiryResult">
+            select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
+            (select vendor_name from pur_vendor v where v.vendor_id = i.vendor_id) as vendor_name,
+            (select item_name from pro_production p where p.item_code = b.item_code) as item_name
+            from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id
+            where status = 0
+        </select>
+
+        <select id="selectInquiryById" parameterType="Long" resultMap="InquiryResult">
+            select *, concat_ws(', ',name_title,last_name,first_name) as contacts
+            from pur_inquiry v
+            where v.status = 0 and v.inquiry_id = #{inquiryId}
+        </select>
+
+        <delete id="deleteInquiryById" parameterType="Long">
+            update pur_inquiry set status = 1
+            where 1=1 and inquiry_id = #{inquiryId}
+         </delete>
+
+        <update id="batchDeleteInquiry" parameterType="String">
+            update pur_inquiry set status = 1
+            where inquiry_id in
+            <foreach collection="array" item="inquiryId" open="(" separator="," close=")">
+                #{inquiryId}
+            </foreach>
+        </update>
+
+        <update id="updateInquiry" parameterType="Inquiry">
+            update pur_inquiry
+            <set>
+                <if test="inquiryName != null and inquiryName != ''">inquiry_name = #{inquiryName},</if>
+                <if test="firstName != null and firstName != ''">first_name = #{firstName},</if>
+                <if test="lastName != null and lastName != ''">last_name = #{lastName},</if>
+                <if test="middleName != null and middleName != ''">middle_name = #{middleName},</if>
+                <if test="nameTitle != null and nameTitle != ''">name_title = #{nameTitle},</if>
+                <if test="jobTitle != null and jobTitle != ''">job_title = #{jobTitle},</if>
+                <if test="mainPhone != null and mainPhone != ''">main_phone = #{mainPhone},</if>
+                <if test="workPhone != null and workPhone != ''">work_phone = #{workPhone},</if>
+                <if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
+                <if test="fax != null and fax != ''">fax = #{fax},</if>
+                <if test="mainMail != null and mainMail != ''">main_mail = #{mainMail},</if>
+                <if test="ccMail != null and ccMail != ''">cc_mail = #{ccMail},</if>
+                <if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from = #{addressShipFrom},</if>
+                <if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from = #{addressBillFrom},</if>
+                <if test="status !=null">status = #{status},</if>
+                <if test="remark != null and remark != ''">remark = #{remark},</if>
+                <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+                update_time = sysdate()
+            </set>
+            where 1=1
+            <if test="inquiryId != null">and inquiry_id = #{inquiryId}</if>
+        </update>
+
+        <insert id="insertInquiry" parameterType="Inquiry" useGeneratedKeys="true" keyProperty="inquiryId">
+            insert into pur_inquiry(
+            <if test="inquiryId != null and inquiryId != 0">inquiry_id,</if>
+            <if test="inquiryName != null and inquiryName != ''">inquiry_name,</if>
+            <if test="firstName != null and firstName != ''">first_name,</if>
+            <if test="lastName != null and lastName != ''">last_name,</if>
+            <if test="middleName != null and middleName != ''">middle_name,</if>
+            <if test="nameTitle != null and nameTitle != ''">name_title,</if>
+            <if test="jobTitle != null and jobTitle != ''">job_title,</if>
+            <if test="mainPhone != null and mainPhone != ''">main_phone,</if>
+            <if test="workPhone != null and workPhone != ''">work_phone,</if>
+            <if test="mobile != null and mobile != ''">mobile,</if>
+            <if test="fax != null and fax != ''">fax,</if>
+            <if test="mainMail != null and mainMail != ''">main_mail,</if>
+            <if test="ccMail != null and ccMail != ''">cc_mail,</if>
+            <if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from,</if>
+            <if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from,</if>
+            <if test="status !=null">status,</if>
+            <if test="remark != null and remark != ''">remark,</if>
+            <if test="createBy != null and createBy != ''">create_by,</if>
+            create_time
+            )values(
+            <if test="inquiryId != null and inquiryId != 0">#{inquiryId},</if>
+            <if test="inquiryName != null and inquiryName != ''">#{inquiryName},</if>
+            <if test="firstName != null and firstName != ''">#{firstName},</if>
+            <if test="lastName != null and lastName != ''">#{lastName},</if>
+            <if test="middleName != null and middleName != ''">#{middleName},</if>
+            <if test="nameTitle != null and nameTitle != ''">#{nameTitle},</if>
+            <if test="jobTitle != null and jobTitle != ''">#{jobTitle},</if>
+            <if test="mainPhone != null and mainPhone != ''">#{mainPhone},</if>
+            <if test="workPhone != null and workPhone != ''">#{workPhone},</if>
+            <if test="mobile != null and mobile != ''">#{mobile},</if>
+            <if test="fax != null and fax != ''">#{fax},</if>
+            <if test="mainMail != null and mainMail != ''">#{mainMail},</if>
+            <if test="ccMail != null and ccMail != ''">#{ccMail},</if>
+            <if test="addressShipFrom != null and addressShipFrom != ''">#{addressShipFrom},</if>
+            <if test="addressBillFrom != null and addressBillFrom != ''">#{addressBillFrom},</if>
+            <if test="status !=null">status,</if>
+            <if test="remark != null and remark != ''">#{remark},</if>
+            <if test="createBy != null and createBy != ''">#{createBy},</if>
+            sysdate()
+            )
+        </insert>
+    -->
 </mapper>

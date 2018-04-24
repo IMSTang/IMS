@@ -9,10 +9,7 @@ function loading() {
         {
             checkbox: true
         },
-        // {
-        //     field : 'customerId',
-        //     title : 'Customer ID'
-        // },
+
         {
             field : 'customerName',
             title : 'Customer Name'
@@ -21,84 +18,33 @@ function loading() {
             field: 'firstName',
             title: 'First Name'
         },
-       // {
-       //      field : 'status',
-       //      title : 'Status',
-       //      formatter : function(item, index) {
-       //          if (item.status == '0') {
-       //              return '<span class="label label-primary">aaa</span>';
-       //          } else if (item.status == '1') {
-       //              return '<span class="label label-danger">bbb</span>';
-       //          }
-       //      }
-       //  },
+
 
         {
             field : 'lastName',
             title : 'Last Name'
         },
-        // {
-        //     field : 'middleName',
-        //     title : 'Middle Name'
-        // },
+
         {
             field : 'nameTitle',
             title : 'Name Title'
         },
-        // {
-        //     field : 'jobTitle',
-        //     title : 'Job Title'
-        // },
+
         {
             field : 'mainPhone',
             title : 'Main phone'
         },
-        // {
-        //     field : 'workPhone',
-        //     title : 'Work Phone'
-        // },
-        // {
-        //     field : 'mobile',
-        //     title : 'Mobile'
-        // },
-        // {
-        //     field : 'fax',
-        //     title : 'Fax'
-        // },
+
         {
             field : 'mainMail',
             title : 'Main Mail'
         },
-        // {
-        //     field : 'ccMail',
-        //     title : 'CC Mail'
-        // },
+
         {
             field : 'addressShipTo',
             title : 'Address Ship To'
         },
-        // {
-        //     field : 'addressBillTo',
-        //     title : 'Address Bill To'
-        // },
 
-       //  {
-       //      field : 'createBy',
-       //      title : 'Create By'
-       //  },
-       //  {
-       //      field : 'createTime',
-       //      title : 'Create Time'
-       //  },
-       //  {
-       //      field : 'updateBy',
-       //      title : 'Update By'
-       //  },
-       // {
-       //      field : 'updateTime',
-       //      title : 'Update Time'
-       //
-       //  },
 
         {
             title : 'Action',

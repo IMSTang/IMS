@@ -146,10 +146,11 @@
 	</update>
 
 
+
+
     <select id="checkNameUnique" parameterType="String" resultType="int">
 		select count(*) from sale_customer where customer_name=#{customerName} and status="0"
 	</select>
-
 
 
 
