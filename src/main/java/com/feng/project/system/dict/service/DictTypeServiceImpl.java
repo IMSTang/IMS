@@ -55,6 +55,18 @@ public class DictTypeServiceImpl implements IDictTypeService
     }
 
     /**
+     * 根据字典类型ID 删除信息
+     *
+     * @param dictId 字典类型ID
+     * @return 字典类型
+     */
+    @Override
+    public int deleteDictTypeById(Long dictId)
+    {
+        return dictTypeDao.deleteDictTypeById(dictId);
+    }
+
+    /**
      * 批量删除字典类型
      * 
      * @param ids 需要删除的数据

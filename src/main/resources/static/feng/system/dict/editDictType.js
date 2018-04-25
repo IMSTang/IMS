@@ -1,4 +1,3 @@
-
 var Element_index = 101;
 /**
  * 默认界面上显示一行data
@@ -70,8 +69,8 @@ function addElement(){
     TButton.style.padding= '0';
     TButton.text=Element_index;
     TButton.value="Remove";
-    TButton.name="delButton";
-    TButton.id="delButton";
+    TButton.name="del";
+    TButton.id="del";
     TButton.onclick=function () {//绑定点击事件
         // var delId = "div"+Element_index;
         delButton(div.id);

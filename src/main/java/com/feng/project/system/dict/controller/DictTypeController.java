@@ -97,6 +97,27 @@ public class DictTypeController extends BaseController
         return JSON.error();
     }
 
+    /**
+     * 删除
+     */
+    @Log(title = "System Management", action = "Dict Type - delete")
+    @RequiresPermissions("system:dict:remove")
+    @RequestMapping("/remove/{dictId}")
+    @ResponseBody
+    public JSON remove(@PathVariable("dictId") Long dictId)
+    {
+        DictType dict = dictTypeService.selectDictTypeById(dictId);
+        if (dict == null)
+        {
+            return JSON.error("DictType does not exist");
+        }
+        if (dictTypeService.deleteDictTypeById(dictId) > 0)
+        {
+            return JSON.ok();
+        }
+        return JSON.error();
+    }
+
     @Log(title = "System Management", action = "Dict Type - batch remove")
     @RequiresPermissions("system:dict:batchRemove")
     @PostMapping("/batchRemove")

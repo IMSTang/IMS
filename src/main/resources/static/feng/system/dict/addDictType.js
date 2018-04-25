@@ -2,7 +2,7 @@ var Element_index = 101;
 /**
  * 默认界面上显示一行data
  */
-// addElement();
+addElement();
 
 /**
  * 添加一行data
@@ -69,8 +69,8 @@ function addElement(){
     TButton.style.padding= '0';
     TButton.text=Element_index;
     TButton.value="Remove";
-    TButton.name="delButton";
-    TButton.id="delButton";
+    TButton.name="del";
+    TButton.id="del";
     TButton.onclick=function () {//绑定点击事件
         // var delId = "div"+Element_index;
         delButton(div.id);
@@ -133,20 +133,67 @@ $("#form-dict-add").validate({
 });
 
 function add() {
+    var  dictItem = new Object();
+
 	var dictName = $("input[name='dictName']").val();
 	var dictType = $("input[name='dictType']").val();
 	var status = $("input[name='status']").is(':checked') == true ? 0 : 1;
 	var remark = $("input[name='remark']").val();
+
+    dictItem.dictName=dictName;
+    dictItem.dictType=dictType;
+    dictItem.status=status;
+    dictItem.remark=remark;
+
+    var parentDiv =  document.getElementById('tableDiv');
+    //获取div个数
+    var divNum=  parentDiv.getElementsByTagName('div');
+
+    /**
+     * 循环取出 Body 的 值
+     */
+    var itemIndex=-1;
+    for( i=0;i<divNum.length;i++){
+        //忽略 clear div
+        if(divNum[i].className != "clear"){
+            itemIndex++;
+        }
+        var inputs = divNum[i].getElementsByTagName('input');
+
+        for (j=0;j<inputs.length;j++){
+            //不获取按钮的值
+            if(inputs[j].value=="Remove"){
+                // continue;
+            }
+            // if((inputs[j].id).indexOf("dictCode") >=0){
+            //     dictItem['dictData['+itemIndex+'].dictCode']=inputs[j].value;
+            // }
+            if((inputs[j].id).indexOf("dictLabel") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("Dict Label is empty", "error");
+                    return false;
+                }
+                dictItem['dictData['+itemIndex+'].dictLabel']=inputs[j].value;
+            }
+            if((inputs[j].id).indexOf("dictValue") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("Dict Value is empty", "error");
+                    return false;
+                }
+                dictItem['dictData['+itemIndex+'].dictValue']=inputs[j].value;
+            }
+            if((inputs[j].id).indexOf("dictSort") >=0){
+                dictItem['dictData['+itemIndex+'].dictSort']=inputs[j].value;
+            }
+        }
+
+    }
+
 	$.ajax({
 		cache : true,
 		type : "POST",
 		url : "/system/dict/save",
-		data : {
-			"dictName": dictName,
-			"dictType": dictType,
-			"status": status,
-			"remark": remark
-		},
+		data : dictItem,
 		async : false,
 		error : function(request) {
 			$.modalAlert("System ERROR", "error");

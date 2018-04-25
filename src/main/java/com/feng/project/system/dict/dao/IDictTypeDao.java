@@ -31,6 +31,14 @@ public interface IDictTypeDao
     public DictType selectDictTypeById(Long dictId);
 
     /**
+     * 根据字典类型ID 删除信息
+     *
+     * @param dictId 字典类型ID
+     * @return 结果
+     */
+    public int deleteDictTypeById(Long dictId);
+
+    /**
      * 批量删除字典类型
      * 
      * @param ids 需要删除的数据

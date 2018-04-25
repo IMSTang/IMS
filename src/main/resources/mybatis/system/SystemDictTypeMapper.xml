@@ -19,8 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectDictTypeList" parameterType="DictType" resultMap="DictTypeResult">
 		select * from sys_dict_type
 		<where>
+			(status=0 or status=1)
 			<if test="searchValue != null and searchValue != ''">
-				AND dict_name = #{searchValue} OR dict_type = #{searchValue}
+				AND (dict_name = #{searchValue} OR dict_type = #{searchValue})
 			</if>
 		</where>
 	</select>
@@ -28,21 +29,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectDictTypeById" parameterType="Long" resultMap="DictTypeResult">
 		select  *
 		from sys_dict_type
-		where dict_id = #{dictId}
+		where dict_id = #{dictId} and (status=0 or status=1)
 	</select>
 	
 	<select id="checkDictTypeUnique" parameterType="String" resultMap="DictTypeResult">
 		select  *
 		from sys_dict_type
-		where dict_type = #{dictType}
+		where dict_type = #{dictType} and (status=0 or status=1)
 	</select>
-	
-	<delete id="batchDeleteDictType" parameterType="String">
- 		delete from sys_dict_type where dict_id in
- 		<foreach collection="array" item="dictId" open="(" separator="," close=")">
- 			#{dictId}
-        </foreach> 
- 	</delete>
+
+	<update id="deleteDictTypeById" parameterType="int">
+        update   sys_dict_type set status="-1"  where dict_id = #{dictId}
+	</update>
+
+	<update id="batchDeleteDictType" parameterType="String">
+		update sys_dict_type set status="-1"  where dict_id in
+		<foreach collection="array" item="dictId" open="(" separator="," close=")">
+			#{dictId}
+		</foreach>
+	</update>
 
  	<update id="updateDictType" parameterType="DictType">
  		update sys_dict_type
@@ -58,7 +63,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		<if test="dictId != null and dictId  != ''">and dict_id = #{dictId}</if>
 	</update>
  	
- 	<insert id="insertDictType" parameterType="DictType">
+ 	<insert id="insertDictType" parameterType="DictType" useGeneratedKeys="true" keyProperty="dictId">
  		insert into sys_dict_type(
  			<if test="dictName != null and dictName != ''">dict_name,</if>
  			<if test="dictType != null and dictType != ''">dict_type,</if>

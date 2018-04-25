@@ -42,8 +42,9 @@ $(function() {
             formatter: function(value, row, index) {
             	var actions = [];
             	actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit Dict Type" mce_href="#" onclick="edit(\'' + row.dictId + '\')"><i class="fa fa-edit"></i></a> ');
-            	actions.push('<a class="btn btn-warning btn-sm" href="#" title="Dict Type Detail" onclick="detail(\'' + row.dictId + '\')"><i class="fa fa-search"></i></a>');
-            	return actions.join('');
+            	// actions.push('<a class="btn btn-warning btn-sm" href="#" title="Dict Type Detail" onclick="detail(\'' + row.dictId + '\')"><i class="fa fa-search"></i></a>');
+                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.dictId + '\')"><i class="fa fa-remove"></i></a>');
+                return actions.join('');
             }
         }];
 	var url = prefix + "/list";
@@ -62,11 +63,18 @@ function edit(dictId) {
     layer_show("edit Dict", url, '800', '600');
 }
 
-/*字典列表-详细*/
-function detail(dictId) {
-	var url = prefix + '/detail/' + dictId;
-	createMenuItem(url, "show Dict");
+// 单条删除
+function remove(dictId) {
+    $.modalConfirm("Do you want to remove this dict?", function(r) {
+        _ajax(prefix + "/remove/" + dictId, "", "post", r);
+    })
 }
+
+// /*字典列表-详细*/
+// function detail(dictId) {
+// 	var url = prefix + '/detail/' + dictId;
+// 	createMenuItem(url, "show Dict");
+// }
 
 // 批量删除
 function batchRemove() {
