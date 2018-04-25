@@ -9,10 +9,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
 
@@ -64,6 +61,17 @@ import java.util.List;
             System.out.println("---------save-----------------");
             System.out.println("---------save---"+stockIn.getBatch()+"-----");
             stockInService.spStockIn(stockIn);
+                return JSON.ok();
+        }
+
+
+
+        @Log(title = "Inventory Management", action = "Inventory - remove inStock")
+        @RequiresPermissions("inventory:inStock:remove")
+        @RequestMapping("/remove/{id}")
+        @ResponseBody
+        public JSON remove(@PathVariable("id") int id){
+            stockInService.spStockInRemove(id);
                 return JSON.ok();
         }
 }

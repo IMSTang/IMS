@@ -1,9 +1,12 @@
 var prefix = "/inventory/inStock"
 
 $(function() {
-	var columns = [{
+	var columns = [
+	    /*
+	    {
             checkbox: true
         },
+        */
         {
             field: 'itemCode',
             title: 'Item Code'
@@ -27,7 +30,12 @@ $(function() {
             field: 'quantity',
             title: 'Quantity'
         },
-		
+
+        {
+            field: 'stockInDate',
+            title: 'Stock In Date'
+        },
+
         {
             title: 'Action',
             align: 'center',
@@ -50,9 +58,9 @@ function add() {
 
 
 // 单条删除
-function remove(productionId) {
-	$.modalConfirm("Do you want to remove this production?", function(r) {
-		_ajax(prefix + "/remove/" + productionId, "", "post", r);
+function remove(sn) {
+	$.modalConfirm("Do you want to remove this stock in record?", function(r) {
+		_ajax(prefix + "/remove/" + sn, "", "post", r);
     })
 }
 

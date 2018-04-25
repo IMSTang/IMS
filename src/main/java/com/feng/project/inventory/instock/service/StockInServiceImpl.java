@@ -72,4 +72,11 @@ public class StockInServiceImpl implements IStockInService {
         stockInDao.spStockIn(paramsMap);
     }
 
+    @Override
+    public void spStockInRemove(int sn) {
+        Map<String, Object> paramsMap =  new HashMap<String, Object>();
+        paramsMap.put("sn",sn);
+        stockInDao.spStockInRemove(paramsMap);
+    }
+
 }

@@ -15,7 +15,7 @@ public interface IStockInDao {
 
     public int spStockIn(Map<String, Object> paramsMap);
 
-
+    public int spStockInRemove(Map<String, Object> paramsMap);
     /*
     public List<Production> selectProductionAll(Production production);
     public List<Production> selectProductionList(Production production);

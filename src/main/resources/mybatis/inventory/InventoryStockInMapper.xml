@@ -81,6 +81,11 @@
                    mode="IN" />
     </parameterMap>
 
+    <parameterMap type="java.util.HashMap" id="inStockParamsRemove">
+        <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer"
+                   mode="IN" />
+    </parameterMap>
+
     <insert id="spStockIn" parameterMap="inStockParams"
             statementType="CALLABLE">
     <![CDATA[
@@ -88,7 +93,12 @@
     ]]>
 </insert>
 
-
+    <delete id="spStockInRemove" parameterMap="inStockParamsRemove"
+            statementType="CALLABLE">
+    <![CDATA[
+        {call  sp_stockInRemove(?)}
+    ]]>
+    </delete>
 
 
 
