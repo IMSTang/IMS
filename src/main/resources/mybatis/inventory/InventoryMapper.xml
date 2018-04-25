@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.feng.project.inventory.queryinventory.dao.IQueryInventoryDao" >
+    <resultMap id="QueryInventoryResult" type="QueryInventory" >
+        <id column="sn"  property="sn" />
+        <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+        <result column="batch" jdbcType="VARCHAR" property="batch" />
+        <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
+        <result column="price_purchase"  property="pricePurchase" />
+        <result column="price_fob_ontario"  property="priceFobOntario" />
+        <result column="quantity"  property="quantity" />
+        <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
+        <result column="tpc" jdbcType="VARCHAR" property="tpc" />
+        <result column="vendor_id"  property="vendorId" />
+        <result column="customer_id"  property="customerId" />
+        <result column="status" property="status" />
+        <result column="stock_in_date" jdbcType="TIMESTAMP" property="stockInDate" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
+        <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
+        <association property="customer"  column="customer_id" javaType="Customer" resultMap="customerResult"/>
+    </resultMap>
+
+    <resultMap id="prodResult" type="Production">
+        <id     property="productionId"   column="production_id" />
+        <result property="itemCode" column="item_code" />
+        <result property="itemName" column="item_name"     />
+        <result property="specification" column="specification" />
+    </resultMap>
+
+    <resultMap id="vendorResult" type="Vendor">
+        <id     property="vendorId"   column="vendor_id" />
+        <result property="vendorName" column="vendor_name" />
+    </resultMap>
+
+    <resultMap id="customerResult" type="Customer">
+        <id     property="customerId"   column="customer_id" />
+        <result property="customerName" column="customer_name" />
+    </resultMap>
+
+    <select id="selectQueryInventoryList" parameterType="QueryInventory" resultMap="QueryInventoryResult">
+        select i.* , p.production_id, p.item_code, p.item_name, p.specification , v.vendor_name, c.customer_name
+        from inv_inventory i left join pro_production p on p.item_code = i.item_code
+        left join pur_vendor v on v.vendor_id = i.vendor_id
+        left join sale_customer c on c.customer_id = i.customer_id
+        where i.status = 0
+        <where>
+            <if test="searchValue != null and searchValue != ''">
+                AND i.item_code = #{searchValue}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectQueryInventoryById" parameterType="Long" resultMap="QueryInventoryResult">
+		select i.* , p.production_id, p.item_code, p.item_name, p.specification , v.vendor_name, c.customer_name
+        from inv_inventory i left join pro_production p on p.item_code = i.item_code
+        left join pur_vendor v on v.vendor_id = i.vendor_id
+        left join sale_customer c on c.customer_id = i.customer_id
+        where i.status = 0 and sn = #{sn}
+	</select>
+
+</mapper>

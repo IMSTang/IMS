@@ -3,7 +3,7 @@ insert into sys_menu values('400', 'Inventory Management', '0', '7', '#', 'M', '
 -- 二级菜单
 insert into sys_menu values('410',   'In Stock', '400', '1', '/inventory/inStock',        'C', '0', 'inventory:inStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'In Stock');
 insert into sys_menu values('420',   'Out Stock', '400', '2', '/inventory/outStock',        'C', '0', 'inventory:outStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Out Stock');
-insert into sys_menu values('430',   'Inventory', '400', '3', '/inventory/inventory',        'C', '0', 'inventory:inventory:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory');
+insert into sys_menu values('430',   'Inventory', '400', '3', '/inventory/queryinventory',        'C', '0', 'inventory:queryinventory:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory');
 insert into sys_menu values('440',   'Resell Stock', '400', '4', '/inventory/resellStock',        'C', '0', 'inventory:resellStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'resell Stock');
 
 
@@ -20,7 +20,8 @@ insert into sys_menu values('424', 'Remove', '420', '4',  '#',  'F', '0', 'inven
 insert into sys_menu values('425', 'Save', '420', '5',  '#',  'F', '0', 'inventory:outStock:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
-insert into sys_menu values('431', 'Query', '430', '1',  '#',  'F', '0', 'inventory:inventory:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('431', 'Query', '430', '1',  '#',  'F', '0', 'inventory:queryinventory:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('432', 'Detail', '430', '1',  '#',  'F', '0', 'inventory:queryinventory:detail',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 insert into sys_menu values('441', 'Query', '440', '1',  '#',  'F', '0', 'inventory:resellStock:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('442', 'Add', '440', '2',  '#',  'F', '0', 'inventory:resellStock:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
@@ -34,7 +35,7 @@ create table inv_inventory_in
     sn int(11) unsigned NOT NULL AUTO_INCREMENT,
 	item_code     varchar(100)    not null                   comment 'Item Code',
   batch     varchar(100)    not null        ,
-  warehouse varchar(100)    not null        ,
+    warehouse varchar(100)    not null        ,
   position  varchar(100)    not null        ,
   price_purchase  double(16,2)  not null        ,
   price_fob_ontario  double(16,2)  not null        ,

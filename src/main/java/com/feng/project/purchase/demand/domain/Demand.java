@@ -47,7 +47,7 @@ public class Demand extends PageDomain
     private String specification;
     /**  */
     private String itemName;
-    /** 部门对象 */
+    /** 产品对象 */
     private Production production;
 
 }
