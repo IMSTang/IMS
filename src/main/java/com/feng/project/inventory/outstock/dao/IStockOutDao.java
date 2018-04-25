@@ -1,21 +1,23 @@
-package com.feng.project.inventory.instock.dao;
+package com.feng.project.inventory.outstock.dao;
 
-import com.feng.project.inventory.instock.domain.StockIn;
+import com.feng.project.inventory.outstock.domain.Inventory;
+import com.feng.project.inventory.outstock.domain.StockOut;
 import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 import java.util.Map;
 
 @Mapper
-public interface IStockInDao {
+public interface IStockOutDao {
 
 
-    public List<StockIn> selectStockInList(StockIn stockIn);
+    public List<StockOut> selectStockOutList(StockOut stockOut);
 
 
-    public int spStockIn(Map<String, Object> paramsMap);
+    public int spStockOut(Map<String, Object> paramsMap);
 
-    public int spStockInRemove(Map<String, Object> paramsMap);
+    public int spStockOutRemove(Map<String, Object> paramsMap);
 
+    public Inventory selectInventoryByInStockId(int id);
 
     /*
     public List<Production> selectProductionAll(Production production);

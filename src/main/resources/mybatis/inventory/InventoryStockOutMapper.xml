@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.feng.project.inventory.instock.dao.IStockInDao" >
-    <resultMap id="BaseResultMap" type="com.feng.project.inventory.instock.domain.StockIn" >
+<mapper namespace="com.feng.project.inventory.outstock.dao.IStockOutDao" >
+    <resultMap id="BaseResultMap" type="com.feng.project.inventory.outstock.domain.StockOut" >
         <id column="sn"  property="sn" />
         <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
         <result column="batch" jdbcType="VARCHAR" property="batch" />
@@ -24,6 +24,28 @@
     </resultMap>
 
 
+    <resultMap id="BaseResultMapInventory" type="com.feng.project.inventory.outstock.domain.Inventory" >
+        <id column="sn"  property="sn" />
+        <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+        <result column="batch" jdbcType="VARCHAR" property="batch" />
+        <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
+        <result column="price_purchase"  property="pricePurchase" />
+        <result column="price_fob_ontario"  property="priceFobOntario" />
+        <result column="quantity"  property="quantity" />
+        <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
+        <result column="tpc" jdbcType="VARCHAR" property="tpc" />
+        <result column="vendor_id"  property="vendorId" />
+        <result column="customer_id"  property="customerId" />
+        <result column="status" property="status" />
+        <result column="stock_in_date" jdbcType="TIMESTAMP" property="stockInDate" />
+        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+    </resultMap>
+
 
     <sql id="Base_Column_List" >
         sn, item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity,
@@ -33,9 +55,9 @@
 
 
 
-    <select id="selectStockInList" parameterType="com.feng.project.inventory.instock.domain.StockIn"
+    <select id="selectStockOutList" parameterType="com.feng.project.inventory.outstock.domain.StockOut"
             resultMap="BaseResultMap">
-        SELECT *  FROM  inv_inventory_in
+        SELECT *  FROM  inv_inventory_out
         <where>
             status = 0
             <if test="searchValue != null and searchValue != ''">
@@ -48,7 +70,9 @@
         </where>
     </select>
 
-    <parameterMap type="java.util.HashMap" id="inStockParams">
+    <parameterMap type="java.util.HashMap" id="outStockParams">
+        <parameter property="sn" jdbcType="INTEGER" javaType="java.lang.Integer"
+                   mode="IN" />
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="batch" jdbcType="VARCHAR" javaType="java.lang.String"
@@ -73,34 +97,35 @@
                    mode="IN" />
         <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
-        <parameter property="attachmentName" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="attachment" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
         <parameter property="remark" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
     </parameterMap>
 
-    <parameterMap type="java.util.HashMap" id="inStockParamsId">
+    <parameterMap type="java.util.HashMap" id="outStockParamsId">
         <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer"
                    mode="IN" />
     </parameterMap>
 
-    <insert id="spStockIn" parameterMap="inStockParams"
+    <insert id="spStockOut" parameterMap="outStockParams"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockIn( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,  ?, ?,? )}
+        {call  sp_stockOut(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,? )}
     ]]>
 </insert>
 
-    <delete id="spStockInRemove" parameterMap="inStockParamsId"
+    <delete id="spStockOutRemove" parameterMap="outStockParamsId"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockInRemove(?)}
+        {call  sp_stockOutRemove(?)}
     ]]>
     </delete>
 
 
-
+    <select id="selectInventoryByInStockId" parameterType="Integer" resultMap="BaseResultMapInventory">
+      	select i.*
+        from inv_inventory i left join inv_inventory_in inv_in
+        on ( i.item_code = inv_in.item_code  and i.batch=inv_in.batch  and i.warehouse=inv_in.warehouse and i.position=inv_in.position)
+        where i.status = 0 and inv_in.sn =#{sn}
+	</select>
 
 </mapper>
