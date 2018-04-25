@@ -37,4 +37,19 @@ public class QuoteBodyServiceImpl implements  IQuoteBodyService{
        }
         return count;
     }
+
+    @Override
+    public int batchDeleteQuote(Long[] quoteBodyId, Long[] quoteId) {
+        int result= quoteBodyDao.batchDeleteQuoteBody(quoteBodyId);
+
+//        if(result == (quoteBodyId.length-1)){
+            for (int i=0;i< quoteId.length;i++){
+                int quoteCount = quoteBodyDao.checkQuoteUsed(quoteId[i]);
+                if(quoteCount <=0){
+                    quoteDao.deleteQuoteById(quoteId[i]);
+                }
+            }
+//        }
+        return result;
+    }
 }

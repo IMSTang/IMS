@@ -19,4 +19,13 @@
 		select count(*) from sale_quote_body  where  quote_id=#{quoteId}
 	</select>
 
+
+
+    <update id="batchDeleteQuoteBody" parameterType="String">
+        delete from sale_quote_body where quote_body_id in
+        <foreach collection="array" item="quoteBodyId" open="(" separator="," close=")">
+            #{quoteBodyId}
+        </foreach>
+    </update>
+
 </mapper>

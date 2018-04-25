@@ -78,6 +78,21 @@ function remove(quoteBodyId,quoteId) {
         _ajax(prefix + "/remove/" + quoteBodyId+"/"+quoteId, "", "post", r);
     })
 }
+
+
+// 批量删除
+function batchRemove() {
+
+    var quoteBodyId = $.getSelections("quoteBodyId");
+    var quoteId = $.getSelections("quoteId");
+    if (quoteBodyId.length == 0) {
+        $.modalMsg("Please select the data you want to remove ", "warning");
+        return;
+    }
+    $.modalConfirm("Do you want to remove " + quoteBodyId.length + " Quote?", function(r) {
+        _ajax(prefix + '/batchRemove', { "quoteBodyId": quoteBodyId ,"quoteId":quoteId}, "post", r);
+    });
+}
 /*
 /!*inquiry Management-修改*!/
 function edit(inquiryId) {
@@ -87,15 +102,6 @@ function edit(inquiryId) {
 
 
 
-// 批量删除
-function batchRemove() {
-    var rows = $.getSelections("inquiryId");
-    if (rows.length == 0) {
-        $.modalMsg("Please select the data you want to remove ", "warning");
-        return;
-    }
-    $.modalConfirm("Do you want to remove " + rows.length + " Inquiry?", function(r) {
-        _ajax(prefix + '/batchRemove', { "ids": rows }, "post", r);
-    });
-}
+
+
 */
