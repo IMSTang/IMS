@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="updateTime"      column="update_time"   />
 		<result property="remark"          column="remark"        />
 		<association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
+		<association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
 	</resultMap>
 
 	<resultMap id="prodResult" type="Production">
@@ -29,23 +30,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="specification" column="specification" />
 	</resultMap>
 
+	<resultMap id="vendorResult" type="Vendor">
+		<id     property="vendorId"   column="vendor_id" />
+		<result property="vendorName" column="vendor_name" />
+	</resultMap>
+
 	<select id="selectDemandList" parameterType="String" resultMap="DemandResult">
-		select d.*, p.production_id, p.item_code, p.item_name, p.specification
-		from pur_product_demand d left join pro_production p on p.item_code = d.item_code where d.status = 0
+		select d.*, p.production_id, p.item_code, p.item_name, p.specification, v.vendor_name
+		from pur_product_demand d left join pro_production p on p.item_code = d.item_code
+			left join pur_vendor v on v.vendor_id = d.vendor_id
+			where d.status = 0
 		<if test="searchValue != null and searchValue != ''">
 			AND (vendor_name like CONCAT('%',#{searchValue},'%') or p.item_code like CONCAT('%',#{searchValue},'%')  or p.item_name like CONCAT('%',#{searchValue},'%'))
 		</if>
 	</select>
 
 	<select id="selectDemandAll" resultMap="DemandResult">
-		select d.*, p.production_id, p.item_code, p.item_name, p.specification
-		from pur_product_demand d left join pro_production p on p.item_code = d.item_code where d.status = 0
+		select d.*, p.production_id, p.item_code, p.item_name, p.specification, v.vendor_name
+		from pur_product_demand d left join pro_production p on p.item_code = d.item_code
+			left join pur_vendor v on v.vendor_id = d.vendor_id
+			where d.status = 0
 	</select>
 
 	<select id="selectDemandById" parameterType="Long" resultMap="DemandResult">
-		select d.*, p.production_id, p.item_code, p.item_name, p.specification
-		from pur_product_demand d left join pro_production p on p.item_code = d.item_code where d.status = 0
-		and d.demand_id = #{demandId}
+		select d.*, p.production_id, p.item_code, p.item_name, p.specification, v.vendor_name
+		from pur_product_demand d left join pro_production p on p.item_code = d.item_code
+			left join pur_vendor v on v.vendor_id = d.vendor_id
+			where d.status = 0 	and d.demand_id = #{demandId}
 	</select>
 	
 	<delete id="deleteDemandById" parameterType="Long">

@@ -5,11 +5,65 @@ $("#form-demand-add").validate({
         },
         vendorName:{
             required:true,
+            minlength: 1,
+            remote: {
+                url: "/purchase/vendor/checkNameUnique",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#vendorName").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
         },
         itemCode:{
             required:true,
+            minlength: 1,
+            remote: {
+                url: "/product/production/checkItemCodeUnique",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#itemCode").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
+        },
+        price:{
+            required: true,
+            number: true,
+            min: 0.01,
+        },
+        quantity:{
+            required: true,
+            number: true,
+            min: 0.01,
+        },
+        urgencyDegree:{
+            required:true,
         },
 	},
+    //重设提示信息
+    messages:{
+        vendorName: {
+            remote:"Not found this Vendor Name"
+        },
+        itemCode:{
+            required: "Required Item Code",
+            remote:"Not found this Item Code"
+        }
+
+    },
 	submitHandler:function(form){
 		add();
 	}

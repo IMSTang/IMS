@@ -2,6 +2,7 @@ package com.feng.project.purchase.demand.domain;
 
 import com.feng.framework.web.page.PageDomain;
 import com.feng.project.product.production.domain.Production;
+import com.feng.project.purchase.vendor.domain.Vendor;
 import com.feng.project.system.dept.domain.Dept;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -49,5 +50,7 @@ public class Demand extends PageDomain
     private String itemName;
     /** 产品对象 */
     private Production production;
+    /** Vendor对象 */
+    private Vendor vendor;
 
 }

@@ -17,7 +17,7 @@ $(function() {
         //     title: 'Vendor Id'
         // },
         {
-            field: 'vendorName',
+            field: 'vendor.vendorName',
             title: 'Vendor Name'
         },
         {
