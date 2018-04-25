@@ -1,6 +1,7 @@
 package com.feng.project.sales.quote.service;
 
 import com.feng.common.utils.security.ShiroUtils;
+import com.feng.project.product.production.dao.IProductionDao;
 import com.feng.project.sales.quote.dao.IQuoteBodyDao;
 import com.feng.project.sales.quote.dao.IQuoteDao;
 import com.feng.project.sales.quote.domain.Quote;
@@ -19,6 +20,9 @@ public class QuoteServiceImpl implements  IQuoteService{
     @Autowired
     private IQuoteBodyDao quoteBodyDao;
 
+    @Autowired
+    private IProductionDao productionDao;
+
     @Override
     public List<Quote> selectQuoteList(Quote quote) {
         return quoteDao.selectQuoteList(quote);
@@ -32,6 +36,15 @@ public class QuoteServiceImpl implements  IQuoteService{
      */
     @Override
     public int insertQuote(Quote quote) {
+        int ItemCodeNum=0;
+        for (int i=0;i<quote.getBody().size();i++){
+            System.out.println();
+            ItemCodeNum= productionDao.checkItemCodeUnique(quote.getBody().get(i).getItemCode());
+            if( ItemCodeNum<=0){
+
+                return -1;
+            }
+        }
         String loginName=ShiroUtils.getLoginName();
         quote.setCreateBy(loginName);
         int count = quoteDao.insertQuote(quote);
@@ -46,6 +59,7 @@ public class QuoteServiceImpl implements  IQuoteService{
     }
 
     public  void insertQuoteBody(Quote quote){
+
         List<QuoteBody> list = new ArrayList<QuoteBody>();
 
         for (int i=0;i<quote.getBody().size();i++){

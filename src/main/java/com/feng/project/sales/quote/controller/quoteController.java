@@ -76,9 +76,13 @@ public class quoteController extends BaseController {
     @ResponseBody
     public JSON save(Quote quote)
     {
-         if(  quoteService.insertQuote(quote)>0){
+        int  rows =  quoteService.insertQuote(quote);
+         if( rows>0){
                 return JSON.ok();
          }
+        if(rows<0){
+            return  JSON.error("Item code not exist!");
+        }
         return  JSON.error();
     }
 
@@ -109,6 +113,7 @@ public class quoteController extends BaseController {
 
             return  JSON.ok();
         }
+
         return  JSON.error();
     }
 

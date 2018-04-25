@@ -116,7 +116,7 @@ function addElement(){
      */
 
     var div = document.createElement('div');
-    div.style.height = '45px';
+    div.style.height = '32px';
     div.style.padding= '0 10px 0 16px';
     div.id="div"+Element_index;
     var clearDiv =document.createElement("div");
@@ -177,18 +177,18 @@ function addElement(){
     TPrice.style.margin= '0 -1px';
     TPrice.name="price"+Element_index;
     TPrice.id="price"+Element_index;
-    TPrice.required= "required";
+    // TPrice.required= "required";
 
     /***
      * quantity
      */
     var TQuantity=document.createElement("input");
-    TQuantity.type="number";
+    TQuantity.type="text";
     TQuantity.className = 'col-sm-2';
     TQuantity.style.margin= '0 -1px';
     TQuantity.name="quantity"+Element_index;
     TQuantity.id="quantity"+Element_index;
-    TQuantity.required= "required";
+    // TQuantity.required= "required";
     /**
      * -
      */
@@ -281,14 +281,15 @@ $("#form-quote-add").validate({
     },
     submitHandler:function(form){
         add();
-    },
-    errorPlacement: function(error, element) {
-        if (element.is(":input")){
-            error.appendTo(element.parent());
-        }else {
-            error.insertAfter(element);
-        }
     }
+    // ,
+    // errorPlacement: function(error, element) {
+    //     if (element.is(":input")){
+    //         error.appendTo(element.parent());
+    //     }else {
+    //         error.insertAfter(element);
+    //     }
+    // }
 
 
 
@@ -326,7 +327,8 @@ function add() {
      * 循环取出 quoteBody 的 值
      */
 
-
+    var f =/^\d+(\.\d+)?$/;
+    var I = /^[0-9]*[1-9][0-9]*$/;
     var itemIndex=-1;
     for(  i=0;i<divNum.length;i++){
 
@@ -345,18 +347,34 @@ function add() {
             }
 
             if((inputs[j].id).indexOf("itemName") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("itemName Label is empty", "error");
+                    return false;
+                }
                 quoteItem['body['+itemIndex+'].itemName']=inputs[j].value;
 
             }
             if((inputs[j].id).indexOf("itemCode") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("itemCode Label is empty", "error");
+                    return false;
+                }
                 quoteItem['body['+itemIndex+'].itemCode']=inputs[j].value;
 
             }
             if((inputs[j].id).indexOf("price") >=0){
+                if(!(f.test(inputs[j].value))){
+                    $.modalAlert("price data is Invalid", "error");
+                    return false;
+                }
                 quoteItem['body['+itemIndex+'].price']=inputs[j].value;
 
             }
             if((inputs[j].id).indexOf("quantity") >=0){
+                if(!(I.test(inputs[j].value))){
+                    $.modalAlert("quantity data is Invalid", "error");
+                    return false;
+                }
                 quoteItem['body['+itemIndex+'].quantity']=inputs[j].value;
 
             }
