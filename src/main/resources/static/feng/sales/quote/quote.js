@@ -52,8 +52,10 @@ $(function() {
 
 
                 var actions = [];
+                actions.push('<div style="width: 100px;">')
                 actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.quoteId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
                 actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' +  row.quoteBodyId +"','"+row.quoteId + '\')"><i class="fa fa-remove"></i></a>');
+                actions.push('</div>')
                 return actions.join('');
             }
         }];
