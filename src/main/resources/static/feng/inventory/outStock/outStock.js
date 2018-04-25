@@ -1,4 +1,4 @@
-var prefix = "/inventory/inStock"
+var prefix = "/inventory/outStock"
 
 $(function() {
 	var columns = [
@@ -33,7 +33,7 @@ $(function() {
 
         {
             field: 'stockInDate',
-            title: 'Stock In Date'
+            title: 'Stock Out Date'
         },
 
         {
@@ -41,7 +41,7 @@ $(function() {
             align: 'center',
             formatter: function(value, row, index) {
             	var actions = [];
-                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Stock out" mce_href="#" onclick="stockOut(\'' + row.sn + '\')"><i class="fa fa-share"></i></a> ');
+                actions.push('<a class="btn btn-primary btn-sm" href="#" title="ReSell Stock" mce_href="#" onclick="resellStock(\'' + row.sn + '\')"><i class="fa fa-reply"></i></a> ');
 
                 actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.sn + '\')"><i class="fa fa-remove"></i></a>');
 				return actions.join('');
@@ -66,9 +66,7 @@ function remove(sn) {
     })
 }
 
-function stockOut(sn) {
-  //  var url = prefix + '/edit/' + sn;
-
-    var url='/inventory/outStock/edit/'+sn;
+function resellStock(sn) {
+    var url = prefix + '/edit/' + sn;
     layer_show("edit item", url, '800', '600');
 }

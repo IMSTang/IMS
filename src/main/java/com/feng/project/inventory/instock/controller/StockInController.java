@@ -74,4 +74,7 @@ import java.util.List;
             stockInService.spStockInRemove(id);
                 return JSON.ok();
         }
-}
+
+
+
+    }
