@@ -6,7 +6,10 @@ import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
+import com.feng.project.sales.customer.dao.ICustomerDao;
+import com.feng.project.sales.customer.domain.Customer;
 import com.feng.project.sales.quote.domain.Quote;
+import com.feng.project.sales.quote.domain.QuoteBody;
 import com.feng.project.sales.quote.service.IQuoteBodyService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +31,8 @@ public class quoteController extends BaseController {
     @Autowired
     private IQuoteBodyService quoteBodyService;
 
-
+//    @Autowired
+//    private ICustomerDao customerDao;
 
 
     @RequiresPermissions("sales:quote:view")
@@ -76,6 +80,7 @@ public class quoteController extends BaseController {
     @ResponseBody
     public JSON save(Quote quote)
     {
+
         int  rows =  quoteService.insertQuote(quote);
          if( rows>0){
                 return JSON.ok();
@@ -117,5 +122,17 @@ public class quoteController extends BaseController {
         return  JSON.error();
     }
 
+    @Log(title = "Sales Management", action = "Quote - edit")
+    @RequiresPermissions("sales:quote:edit")
+    @GetMapping("/edit/{quoteId}")
+    public String edit(@PathVariable("quoteId") Long quoteId, Model model)
+    {
+            Quote quote = quoteService.selectQuoteById(quoteId);
+            List<QuoteBody> quoteBodies= quoteBodyService.selectBodyByQuoteId(quoteId);
+            for (int i=0;i<quoteBodies.size();i++)
+            model.addAttribute("quoteBodies", quoteBodies);
+            model.addAttribute("quote", quote);
+        return prefix + "/edit";
+    }
 
 }

@@ -336,8 +336,11 @@ function add() {
         if(divNum[i].className == ""){
             itemIndex++;
         }
+
+
+
         var inputs = divNum[i].getElementsByTagName('input');
-        var textValue=new Array();
+        // var textValue=new Array();
 
         for (j=0;j<inputs.length;j++){
             //不获取按钮的值

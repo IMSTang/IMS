@@ -93,15 +93,11 @@ function batchRemove() {
         _ajax(prefix + '/batchRemove', { "quoteBodyId": quoteBodyId ,"quoteId":quoteId}, "post", r);
     });
 }
-/*
+
 /!*inquiry Management-修改*!/
-function edit(inquiryId) {
-    var url = prefix + '/edit/' + inquiryId;
-    layer_show("edit Inquiry", url, '800', '600');
+function edit(quoteId) {
+    var url = prefix + '/edit/' + quoteId;
+    layer_show("edit Quote", url, '800', '600');
 }
 
 
-
-
-
-*/

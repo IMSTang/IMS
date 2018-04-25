@@ -4,6 +4,7 @@ import com.feng.project.sales.quote.domain.QuoteBody;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface IQuoteBodyDao {
@@ -25,4 +26,18 @@ public interface IQuoteBodyDao {
    public int checkQuoteUsed(Long quoteId);
 
    public int batchDeleteQuoteBody(Long[] quoteBodyIds);
+
+
+   /**
+    * get quoteBody by quoteId
+    * @param quoteId
+    * @return
+    */
+   public List<QuoteBody> selectBodyByQuoteId(Long quoteId);
+
+
+
+   public  int batchDeleteQuoteBodyOnType(Map<String, Object> param);
+
+   public int updateQuoteBody(QuoteBody quoteBody);
 }

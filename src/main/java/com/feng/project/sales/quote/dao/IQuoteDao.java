@@ -24,4 +24,20 @@ public interface IQuoteDao {
      * @return
      */
     public int deleteQuoteById(Long quoteId);
+
+
+    /**
+     * get quote by id
+     * @param quoteId
+     * @return
+     */
+    public Quote selectQuoteById(Long quoteId);
+
+
+    /**
+     * update quote
+     * @param quote
+     * @return
+     */
+    public int updateQuote(Quote quote);
 }

@@ -2,8 +2,11 @@ package com.feng.project.sales.quote.service;
 
 import com.feng.project.sales.quote.dao.IQuoteBodyDao;
 import com.feng.project.sales.quote.dao.IQuoteDao;
+import com.feng.project.sales.quote.domain.QuoteBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("quoteBodyService")
 public class QuoteBodyServiceImpl implements  IQuoteBodyService{
@@ -51,5 +54,16 @@ public class QuoteBodyServiceImpl implements  IQuoteBodyService{
             }
 //        }
         return result;
+    }
+
+    /**
+     * get quoteBody by quoteId
+     *
+     * @param quoteId
+     * @return
+     */
+    @Override
+    public List<QuoteBody> selectBodyByQuoteId(Long quoteId) {
+        return quoteBodyDao.selectBodyByQuoteId(quoteId);
     }
 }
