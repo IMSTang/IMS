@@ -1,5 +1,5 @@
 -- 一级菜单
-insert into sys_menu values('400', 'Inventory Management', '0', '7', '#', 'M', '0', '', 'fa fa-bars',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory Management');
+insert into sys_menu values('400', 'Inventory Management', '0', '20', '#', 'M', '0', '', 'fa fa-archive font12',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory Management');
 -- 二级菜单
 insert into sys_menu values('410',   'In Stock', '400', '1', '/inventory/inStock',        'C', '0', 'inventory:inStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'In Stock');
 insert into sys_menu values('420',   'Out Stock', '400', '2', '/inventory/outStock',        'C', '0', 'inventory:outStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Out Stock');

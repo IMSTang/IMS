@@ -1,5 +1,5 @@
 -- 一级菜单
-insert into sys_menu values('300', 'Product Management', '0', '6', '#', 'M', '0', '', 'fa fa-cubes',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Product Management');
+insert into sys_menu values('300', 'Product Management', '0', '10', '#', 'M', '0', '', 'fa fa-cubes font12',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Product Management');
 -- 二级菜单
 insert into sys_menu values('310',   'Production', '300', '1', '/product/production',        'C', '0', 'product:production:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Production');
 insert into sys_menu values('320',   'Production mapping', '300', '2', '/product/productionMapping',        'C', '0', 'product:productionMapping:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Production Mapping');

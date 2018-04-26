@@ -1,5 +1,5 @@
 -- 一级菜单
-insert into sys_menu values('200', 'Purchase Management', '0', '3', '#', 'M', '0', '', 'fa fa-credit-card font12',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase Management');
+insert into sys_menu values('200', 'Purchase Management', '0', '40', '#', 'M', '0', '', 'fa fa-credit-card font12',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Purchase Management');
 -- 二级菜单
 insert into sys_menu values('210',   'Vendor', '200', '1', '/purchase/vendor',        'C', '0', 'purchase:vendor:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Vendor');
 insert into sys_menu values('220',   'Inquiry', '200', '2', '/purchase/inquiry',        'C', '0', 'purchase:inquiry:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inquiry');
