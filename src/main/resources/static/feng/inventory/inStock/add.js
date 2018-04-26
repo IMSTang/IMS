@@ -1,23 +1,155 @@
 $("#form-inStock-add").validate({
 	rules:{
-		itemCode:{
-			required:true,
-		},
         pricePurchase:{
-            digits : true,
+            number: true,
+            min: 0.01,
         },
 		priceFobOntario:{
-            digits : true,
+            number: true,
+            min: 0.01,
         },
 		quantity:{
-            digits : true,
-        }
+            number: true,
+            min: 0.01,
+        },
+        itemCode:{
+            required:true,
+            minlength: 1,
+            remote: {
+                url: "/product/production/checkItemCodeUnique",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#itemCode").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
+        },
 	},
+
+    messages:{
+        itemCode:{
+            required: "Required Item Code",
+            remote:"Not found this Item Code"
+        }
+
+    },
+
+
 	submitHandler:function(form){
 		add();
 	}
 });
 
+//1. itemCode auto complete.
+
+$("#itemCode").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "code";
+        var elementValue =  $("#itemCode").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.itemCode,
+                        value: item.itemName,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#itemCode").val(ui.item.label);
+        $("#itemName").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#itemCode").val(ui.item.label);
+        $("#itemName").val(ui.item.value);
+        return false;
+    }
+});
+
+//2. itemName auto complete .
+$("#itemName").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "name";
+        var elementValue =  $("#itemName").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.itemName,
+                        value: item.itemCode,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.label);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.label);
+        return false;
+    }
+});
+
+// 3. vendor Name auto complete
+$("#vendorName").autocomplete({
+    minLength: 0,
+    source: function (request, response) {
+        $.ajax({
+            url: "/purchase/vendor/search_name",
+            type: "get",
+            dataType: "json",
+            data: {"inputStr":  $("input[name='vendorName']").val() },
+
+            success: function (data) {
+
+                response($.map(data, function (item) {
+
+                    return {
+                        label: item.vendorName,
+                        value: item.vendorId
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+
+        $("#vendorName").val(ui.item.label);
+        $("#vendorId").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+
+        $("#vendorName").val(ui.item.label);
+        $("#vendorId").val(ui.item.value);
+        return false;
+    }
+});
 
 		
 function add() {
@@ -31,8 +163,7 @@ var priceFobOntario  = $("input[name='priceFobOntario']").val();
 var quantity  = $("input[name='quantity']").val(); 
 var irradiation  = $("input[name='irradiation']").val(); 
 var tpc  = $("input[name='tpc']").val(); 
-var vendorId  = $("input[name='vendorId']").val(); 
-var customerId  = $("input[name='customerId']").val(); 
+var vendorId  = $("input[name='vendorId']").val();
 var remark  = $("input[name='remark']").val(); 
 var status  = $("input[name='status']").val(); 
 var stockInDate  = $("input[name='stockInDate']").val(); 
@@ -60,8 +191,7 @@ var attachment  = $("input[name='attachment']").val();
 "quantity": quantity, 
 "irradiation": irradiation, 
 "tpc": tpc, 
-"vendorId": vendorId, 
-"customerId": customerId, 
+"vendorId": vendorId,
 "remark": remark, 
 "status": status, 
 "stockInDate": stockInDate, 

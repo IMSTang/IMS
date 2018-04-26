@@ -1,6 +1,3 @@
-
-
-
 DROP PROCEDURE IF EXISTS sp_insert_inv_in;
 DELIMITER ;;
 CREATE  PROCEDURE sp_insert_inv_in(
@@ -14,16 +11,15 @@ IN  quantity   int(10) ,
 IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
-IN  customer_id    int(11)   ,
 IN  create_by   varchar(64),
-IN  remark 		  varchar(500) 	
+IN  remark 		  varchar(500)
 )
 
 BEGIN
 
 INSERT INTO inv_inventory_in
 (	item_code , batch     ,warehouse , position  , price_purchase ,price_fob_ontario   , quantity    ,irradiation      , tpc      ,
-  vendor_id   ,customer_id   ,status       ,stock_in_date ,
+  vendor_id    ,status       ,stock_in_date ,
   create_time, create_by,
   update_by,
 	update_time,
@@ -39,14 +35,13 @@ VALUES (
 	irradiation      ,
   tpc      ,
   vendor_id   ,
-  customer_id   ,
 	0      ,
 	sysdate() ,
   sysdate() ,
   create_by,
   create_by   ,
 	sysdate() ,
-  remark 		 
+  remark
 );
 END
 ;;
@@ -73,7 +68,7 @@ IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
 IN  customer_id    int(11)   ,
 IN  create_by   varchar(64),
-IN  remark 		  varchar(500) 	
+IN  remark 		  varchar(500)
 )
 
 BEGIN
@@ -103,7 +98,7 @@ VALUES (
   create_by,
   create_by   ,
 	sysdate() ,
-  remark 		 
+  remark
 );
 END
 ;;
@@ -124,11 +119,10 @@ IN  quantity   int(10) ,
 IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
-IN  customer_id    int(11)   ,
 IN  create_by   varchar(64),
 IN  attachment_name  varchar(100) ,
 IN  attachment     varchar(100)  ,
-IN  remark 		  varchar(500) 	
+IN  remark 		  varchar(500)
 )
 
 BEGIN
@@ -140,7 +134,7 @@ start transaction;
 
 
 call sp_insert_inv_in(item_code, batch, warehouse, position ,price_purchase  , price_fob_ontario ,
-quantity ,irradiation ,tpc  , vendor_id ,customer_id , create_by , remark 	 	);
+quantity ,irradiation ,tpc  , vendor_id ,create_by , remark 	 	);
 
 select max(sn) into sn1 from inv_inventory_in;
 
@@ -152,8 +146,8 @@ call sp_insert_inv_attachment(attachment_name,attachment,sn1,"INV_IN",create_by,
 
 
 call sp_insert_inv(item_code, batch, warehouse, position ,price_purchase  , price_fob_ontario ,
-quantity ,irradiation ,tpc  , vendor_id , customer_id , create_by , remark 	 	);
-commit; 
+quantity ,irradiation ,tpc  , vendor_id , null , create_by , remark 	 	);
+commit;
 
 select max(sn) into sn2 from inv_inventory;
 
@@ -161,7 +155,7 @@ SELECT concat('inv_inventory max id is :::: ', sn2);
 
 call sp_insert_inv_attachment(attachment_name,attachment,sn2,"INV",create_by, remark);
 
-commit; 
+commit;
 
 END
 ;;

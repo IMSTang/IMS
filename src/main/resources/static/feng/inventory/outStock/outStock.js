@@ -41,7 +41,9 @@ $(function() {
             align: 'center',
             formatter: function(value, row, index) {
             	var actions = [];
+            	/*
                 actions.push('<a class="btn btn-primary btn-sm" href="#" title="ReSell Stock" mce_href="#" onclick="resellStock(\'' + row.sn + '\')"><i class="fa fa-reply"></i></a> ');
+            	*/
 
                 actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.sn + '\')"><i class="fa fa-remove"></i></a>');
 				return actions.join('');
@@ -61,7 +63,7 @@ function add() {
 
 // 单条删除
 function remove(sn) {
-	$.modalConfirm("Do you want to remove this stock in record?", function(r) {
+	$.modalConfirm("Do you want to remove this stock out record?", function(r) {
 		_ajax(prefix + "/remove/" + sn, "", "post", r);
     })
 }

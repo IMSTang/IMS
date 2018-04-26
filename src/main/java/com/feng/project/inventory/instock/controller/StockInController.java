@@ -60,6 +60,7 @@ import java.util.List;
         public JSON  save(StockIn stockIn){
             System.out.println("---------save-----------------");
             System.out.println("---------save---"+stockIn.getBatch()+"-----");
+            System.out.println("---------save  vendorId---"+stockIn.getVendorId()+"-----");
             stockInService.spStockIn(stockIn);
                 return JSON.ok();
         }

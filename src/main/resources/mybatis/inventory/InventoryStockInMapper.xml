@@ -69,8 +69,6 @@
                    mode="IN" />
         <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"
                    mode="IN" />
-        <parameter property="customerId"  jdbcType="INTEGER"   javaType="java.lang.String"
-                   mode="IN" />
         <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="attachmentName" jdbcType="VARCHAR" javaType="java.lang.String"
@@ -89,7 +87,7 @@
     <insert id="spStockIn" parameterMap="inStockParams"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockIn( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,  ?, ?,? )}
+        {call  sp_stockIn( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?,? )}
     ]]>
 </insert>
 

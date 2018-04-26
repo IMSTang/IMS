@@ -3,13 +3,84 @@ $("#form-outStock-edit").validate({
         quantityStockOut:{
             required:true,
             number:true,
-        }
+        },
+        customerName:{
+            required:true,
+            minlength: 2,
+            remote: {
+                url: "/sales/customer/checkNameExist",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#customerName").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
+        },
+
+        itemCode:{
+            required:true,
+        },
+        reminder:{
+            required: true,
+            number: true,
+            min: 0.01,
+        },
 
     },
+
+    messages: {
+        "customerName": {
+            remote: "customer not exist"
+        }
+    },
+
     submitHandler:function(form){
         edit();
     }
 });
+
+$("#customerName").autocomplete({
+    minLength: 2,
+    source: function (request, response) {
+
+        $.ajax({
+            url: "/sales/customer/search_name",
+            type: "get",
+            dataType: "json",
+            data: {"searchValue":  $("input[name='customerName']").val() },
+
+            success: function (data) {
+
+                response($.map(data, function (item) {
+
+                    return {
+                        label: item.customerName,
+                        value: item.customerId
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
+        return false;
+    }
+});
+
 
 
 function edit() {

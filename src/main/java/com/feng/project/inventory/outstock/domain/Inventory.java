@@ -1,5 +1,7 @@
 package com.feng.project.inventory.outstock.domain;
 import com.feng.framework.web.page.PageDomain;
+import com.feng.project.product.production.domain.Production;
+import com.feng.project.purchase.vendor.domain.Vendor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,6 +28,10 @@ public class Inventory extends PageDomain {
         private String updateTime;
         private String remark;
         private String quantityStockOut;
+
+        private Production production;
+        /** Vendor对象 */
+        private Vendor vendor;
 
 
         public int getSn() {
@@ -187,5 +193,21 @@ public class Inventory extends PageDomain {
 
         public void setQuantityStockOut(String quantityStockOut) {
                 this.quantityStockOut = quantityStockOut;
+        }
+
+        public Production getProduction() {
+                return production;
+        }
+
+        public void setProduction(Production production) {
+                this.production = production;
+        }
+
+        public Vendor getVendor() {
+                return vendor;
+        }
+
+        public void setVendor(Vendor vendor) {
+                this.vendor = vendor;
         }
 }

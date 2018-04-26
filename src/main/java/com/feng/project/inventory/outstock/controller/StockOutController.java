@@ -81,7 +81,11 @@ import java.util.List;
             stockOut.setVendorId(inventory.getVendorId());
             stockOut.setSn(inventory.getSn());  // this is the sn from inventory table. use for the sp to generate stockout.
 
-
+                 int qInv=Integer.parseInt(inventory.getQuantity());
+                 int qOut=Integer.parseInt(inventory.getQuantityStockOut());
+            if(qOut>qInv) {
+                return JSON.error("StockOut Quantity should no more than Inventory Quantity!");
+            }
             stockOutService.spStockOut(stockOut);
                 return JSON.ok();
         }

@@ -62,11 +62,11 @@ public class StockInServiceImpl implements IStockInService {
         paramsMap.put("quantity",stockin.getQuantity() );
         paramsMap.put("irradiation",stockin.getIrradiation());
         paramsMap.put("vendorId",stockin.getVendorId());
-        paramsMap.put("customerId",stockin.getCustomerId());
         paramsMap.put("createBy",stockin.getCreateBy());
         paramsMap.put("attachmentName",stockin.getAttachment());
         paramsMap.put("attachment",stockin.getAttachment());
         paramsMap.put("remark",stockin.getRemark());
+        paramsMap.put("tpc",stockin.getTpc());
 
         System.out.println("stockin.getAttachment() ----------   "+stockin.getAttachment());
         stockInDao.spStockIn(paramsMap);

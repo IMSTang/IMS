@@ -44,8 +44,21 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
+        <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
     </resultMap>
 
+    <resultMap id="prodResult" type="Production">
+        <id     property="productionId"   column="production_id" />
+        <result property="itemCode" column="item_code" />
+        <result property="itemName" column="item_name"     />
+        <result property="specification" column="specification" />
+    </resultMap>
+
+    <resultMap id="vendorResult" type="Vendor">
+        <id     property="vendorId"   column="vendor_id" />
+        <result property="vendorName" column="vendor_name" />
+    </resultMap>
 
     <sql id="Base_Column_List" >
         sn, item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity,
@@ -122,10 +135,11 @@
 
 
     <select id="selectInventoryByInStockId" parameterType="Integer" resultMap="BaseResultMapInventory">
-      	select i.*
-        from inv_inventory i left join inv_inventory_in inv_in
-        on ( i.item_code = inv_in.item_code  and i.batch=inv_in.batch  and i.warehouse=inv_in.warehouse and i.position=inv_in.position)
-        where i.status = 0 and inv_in.sn =#{sn}
+     select i.*,  p.item_name, v.vendor_name
+from inv_inventory i left join inv_inventory_in inv_in on ( i.item_code = inv_in.item_code  and i.batch=inv_in.batch  and i.warehouse=inv_in.warehouse and i.position=inv_in.position)
+left join pro_production p   on p.item_code = i.item_code
+left join pur_vendor v  on v.vendor_id = i.vendor_id
+      where i.status = 0 and inv_in.sn =#{sn}
 	</select>
 
 </mapper>
