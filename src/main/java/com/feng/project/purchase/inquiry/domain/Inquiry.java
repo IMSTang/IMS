@@ -1,5 +1,6 @@
 package com.feng.project.purchase.inquiry.domain;
 
+
 import com.feng.framework.web.page.PageDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -7,16 +8,18 @@ import lombok.EqualsAndHashCode;
 import java.util.List;
 
 /**
- * 询价对象 pur_inquiry
- * pur_inquiry
- * @author feng
+ * 询价实体类
  */
+
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Inquiry extends PageDomain
-{
+public class Inquiry extends PageDomain {
+
     /** 询价ID */
     private Long inquiryId;
+
+    private  String reminder;
+    private Long inquiryBodyId;
     /**  */
     private String inquiryDate;
     /**  */
@@ -24,11 +27,8 @@ public class Inquiry extends PageDomain
     /**  */
     private String vendorName;
     /**  */
-    private String reminder;
-    /**  */
-    private Long inquiryBodyId;
-    /**  */
     private String itemCode;
+    /**  */
     /**  */
     private String itemName;
     /**  */
@@ -47,7 +47,32 @@ public class Inquiry extends PageDomain
     private String updateBy;
     /** 备注 */
     private String remark;
-    /** Body */
     private List<InquiryBody> body;
 
+    public List<InquiryBody> getBody() {
+        return body;
+    }
+
+    @Override
+    public String toString() {
+        return "Inquiry{" +
+                "inquiryId=" + inquiryId +
+                ", reminder='" + reminder + '\'' +
+                ", inquiryBodyId=" + inquiryBodyId +
+                ", inquiryDate='" + inquiryDate + '\'' +
+                ", vendorId='" + vendorId + '\'' +
+                ", vendorName='" + vendorName + '\'' +
+                ", itemCode='" + itemCode + '\'' +
+                ", itemName='" + itemName + '\'' +
+                ", price='" + price + '\'' +
+                ", quantity='" + quantity + '\'' +
+                ", status=" + status +
+                ", createBy='" + createBy + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", updateTime='" + updateTime + '\'' +
+                ", updateBy='" + updateBy + '\'' +
+                ", remark='" + remark + '\'' +
+                ", body=" + body +
+                '}';
+    }
 }

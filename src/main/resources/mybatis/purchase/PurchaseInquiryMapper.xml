@@ -1,136 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.feng.project.purchase.inquiry.dao.IInquiryDao">
 
-	<resultMap type="Inquiry" id="InquiryResult">
-		<id     property="inquiryId"        column="inquiry_id"       />
-		<result property="inquiryBodyId"      column="inquiry_body_id"     />
-		<result property="inquiryDate"      column="inquiry_date"     />
-		<result property="vendorName"      column="vendor_name"     />
-		<result property="vendorId"      column="vendor_id"     />
-		<result property="reminder"      column="reminder"     />
-		<result property="itemCode"      column="item_code"     />
-		<result property="itemName"      column="item_name"     />
-		<result property="price"      column="price"     />
-		<result property="quantity"      column="quantity"     />
-		<result property="status"        column="status"        />
-		<result property="createBy"      column="create_by"     />
-		<result property="createTime"    column="create_time"   />
-		<result property="updateBy"      column="update_by"     />
-		<result property="updateTime"    column="update_time"   />
-		<result property="remark"        column="remark"        />
-	</resultMap>
-	
-	<select id="selectInquiryList" parameterType="Inquiry" resultMap="InquiryResult">
-		select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
-		(select vendor_name from pur_vendor v where v.vendor_id = i.vendor_id) as vendor_name,
-		(select item_name from pro_production p where p.item_code = b.item_code) as item_name
-		from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id
-		<where>
-			i.status = 0
-			<!--<if test="searchValue != null and searchValue != ''">-->
-				<!--AND inquiry_name like CONCAT('%',#{searchValue},'%' )-->
-			<!--</if>-->
-		</where>
-	</select>
-	
-	<select id="selectInquiryAll" resultMap="InquiryResult">
-		select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
-		(select vendor_name from pur_vendor v where v.vendor_id = i.vendor_id) as vendor_name,
-		(select item_name from pro_production p where p.item_code = b.item_code) as item_name
-		from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id
-		where status = 0
-	</select>
+    <resultMap type="Inquiry" id="InquiryResult">
+        <id     property="inquiryId"        column="inquiry_id"       />
+        <result property="inquiryDate"      column="inquiry_date"     />
+        <result property="vendorId"      column="vendor_id"     />
+        <result property="reminder"      column="reminder"     />
+        <result property="status"        column="status"        />
+        <result property="createBy"      column="create_by"     />
+        <result property="createTime"    column="create_time"   />
+        <result property="updateBy"      column="update_by"     />
+        <result property="updateTime"    column="update_time"   />
+        <result property="remark"        column="remark"        />
+        <result property="inquiryBodyId"      column="inquiry_body_id"     />
+        <result property="itemCode"      column="item_code"     />
+        <result property="price"      column="price"     />
+        <result property="quantity"      column="quantity"     />
+        <result property="itemName"      column="item_name"     />
+        <result property="vendorName"      column="vendor_name"     />
+    </resultMap>
 
-	<select id="selectInquiryById" parameterType="Long" resultMap="InquiryResult">
-		select *, concat_ws(', ',name_title,last_name,first_name) as contacts
-		from pur_inquiry v
-		where v.status = 0 and v.inquiry_id = #{inquiryId}
-	</select>
-	
-	<delete id="deleteInquiryById" parameterType="Long">
-		update pur_inquiry set status = 1
-		where 1=1 and inquiry_id = #{inquiryId}
- 	</delete>
- 	
- 	<update id="batchDeleteInquiry" parameterType="String">
-		update pur_inquiry set status = 1
-		where inquiry_id in
- 		<foreach collection="array" item="inquiryId" open="(" separator="," close=")">
- 			#{inquiryId}
-        </foreach> 
- 	</update>
- 	
- 	<update id="updateInquiry" parameterType="Inquiry">
- 		update pur_inquiry
- 		<set>
-			<if test="inquiryName != null and inquiryName != ''">inquiry_name = #{inquiryName},</if>
-			<if test="firstName != null and firstName != ''">first_name = #{firstName},</if>
-			<if test="lastName != null and lastName != ''">last_name = #{lastName},</if>
-			<if test="middleName != null and middleName != ''">middle_name = #{middleName},</if>
-			<if test="nameTitle != null and nameTitle != ''">name_title = #{nameTitle},</if>
-			<if test="jobTitle != null and jobTitle != ''">job_title = #{jobTitle},</if>
-			<if test="mainPhone != null and mainPhone != ''">main_phone = #{mainPhone},</if>
-			<if test="workPhone != null and workPhone != ''">work_phone = #{workPhone},</if>
-			<if test="mobile != null and mobile != ''">mobile = #{mobile},</if>
-			<if test="fax != null and fax != ''">fax = #{fax},</if>
-			<if test="mainMail != null and mainMail != ''">main_mail = #{mainMail},</if>
-			<if test="ccMail != null and ccMail != ''">cc_mail = #{ccMail},</if>
-			<if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from = #{addressShipFrom},</if>
-			<if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from = #{addressBillFrom},</if>
- 			<if test="status !=null">status = #{status},</if>
- 			<if test="remark != null and remark != ''">remark = #{remark},</if>
- 			<if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
- 			update_time = sysdate()
- 		</set>
- 		where 1=1
- 		<if test="inquiryId != null">and inquiry_id = #{inquiryId}</if>
+    <select id="selectInquiryList" parameterType="Inquiry" resultMap="InquiryResult">
+
+        select * from (select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
+        (select v.vendor_name from pur_vendor v where v. vendor_id = i. vendor_id) as vendor_name,
+        (select item_name from pro_production p where p.item_code = b.item_code and p.status=0 ) as item_name
+        from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id  where   i.status = 0
+        ) tt
+        <where>
+            <if test="searchValue != null and searchValue != ''">
+                tt.item_name like CONCAT('%',#{searchValue},'%' )
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insertInquiry" parameterType="Inquiry" useGeneratedKeys="true" keyProperty="inquiryId">
+    insert into pur_inquiry(
+        <if test="inquiryDate != null ">inquiry_date,</if>
+        <if test="vendorId != null ">vendor_id,</if>
+        <if test="reminder != null ">reminder,</if>
+        <if test="createBy != null ">create_by,</if>
+        <if test="remark != null ">remark,</if>
+        create_time
+        )values(
+        <if test="inquiryDate != null ">#{inquiryDate},</if>
+        <if test="vendorId != null ">#{vendorId},</if>
+        <if test="reminder != null ">#{reminder},</if>
+        <if test="createBy != null ">#{createBy},</if>
+        <if test="remark != null ">#{remark},</if>
+        sysdate()
+        )
+
+    	</insert>
+
+
+    <select id="selectInquiryById" parameterType="Long" resultMap="InquiryResult">
+            SELECT *
+            FROM pur_inquiry, pur_vendor
+            WHERE pur_inquiry.vendor_id = pur_vendor.vendor_id and  inquiry_id=#{inquiryId}
+        </select>
+
+    <update id="deleteInquiryById" parameterType="Long">
+        update   pur_inquiry set status="1"  where inquiry_id=#{inquiryId}
 	</update>
- 	
- 	<insert id="insertInquiry" parameterType="Inquiry" useGeneratedKeys="true" keyProperty="inquiryId">
- 		insert into pur_inquiry(
- 			<if test="inquiryId != null and inquiryId != 0">inquiry_id,</if>
- 			<if test="inquiryName != null and inquiryName != ''">inquiry_name,</if>
- 			<if test="firstName != null and firstName != ''">first_name,</if>
-			<if test="lastName != null and lastName != ''">last_name,</if>
-			<if test="middleName != null and middleName != ''">middle_name,</if>
-			<if test="nameTitle != null and nameTitle != ''">name_title,</if>
-			<if test="jobTitle != null and jobTitle != ''">job_title,</if>
-			<if test="mainPhone != null and mainPhone != ''">main_phone,</if>
-			<if test="workPhone != null and workPhone != ''">work_phone,</if>
-			<if test="mobile != null and mobile != ''">mobile,</if>
-			<if test="fax != null and fax != ''">fax,</if>
-			<if test="mainMail != null and mainMail != ''">main_mail,</if>
-			<if test="ccMail != null and ccMail != ''">cc_mail,</if>
-			<if test="addressShipFrom != null and addressShipFrom != ''">address_ship_from,</if>
-			<if test="addressBillFrom != null and addressBillFrom != ''">address_bill_from,</if>
- 			<if test="status !=null">status,</if>
- 			<if test="remark != null and remark != ''">remark,</if>
- 			<if test="createBy != null and createBy != ''">create_by,</if>
- 			create_time
- 		)values(
- 			<if test="inquiryId != null and inquiryId != 0">#{inquiryId},</if>
-			<if test="inquiryName != null and inquiryName != ''">#{inquiryName},</if>
-			<if test="firstName != null and firstName != ''">#{firstName},</if>
-			<if test="lastName != null and lastName != ''">#{lastName},</if>
-			<if test="middleName != null and middleName != ''">#{middleName},</if>
-			<if test="nameTitle != null and nameTitle != ''">#{nameTitle},</if>
-			<if test="jobTitle != null and jobTitle != ''">#{jobTitle},</if>
-			<if test="mainPhone != null and mainPhone != ''">#{mainPhone},</if>
-			<if test="workPhone != null and workPhone != ''">#{workPhone},</if>
-			<if test="mobile != null and mobile != ''">#{mobile},</if>
-			<if test="fax != null and fax != ''">#{fax},</if>
-			<if test="mainMail != null and mainMail != ''">#{mainMail},</if>
-			<if test="ccMail != null and ccMail != ''">#{ccMail},</if>
-			<if test="addressShipFrom != null and addressShipFrom != ''">#{addressShipFrom},</if>
-			<if test="addressBillFrom != null and addressBillFrom != ''">#{addressBillFrom},</if>
- 			<if test="status !=null">status,</if>
- 			<if test="remark != null and remark != ''">#{remark},</if>
- 			<if test="createBy != null and createBy != ''">#{createBy},</if>
- 			sysdate()
- 		)
-	</insert>
 
-</mapper> 
+    <update id="updateInquiry" parameterType="Inquiry">
+        update pur_inquiry
+        <set>
+            <if test="vendorId != null">vendor_id = #{vendorId},</if>
+            <if test="reminder != null ">reminder = #{reminder},</if>
+            <if test="inquiryDate != null ">inquiry_date = #{inquiryDate},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            update_by = #{updateBy},
+            update_time = sysdate()
+        </set>
+          where  inquiry_id=#{inquiryId}
+    </update>
+</mapper>

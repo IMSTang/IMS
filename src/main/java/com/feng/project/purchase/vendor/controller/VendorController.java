@@ -52,7 +52,7 @@ public class VendorController extends BaseController
     @ResponseBody
     public List<VendorIdName> search_name(HttpServletRequest request, HttpServletResponse response)
     {
-        String vName = request.getParameter("inputStr");
+        String vName = request.getParameter("searchValue");
         List<VendorIdName> list = vendorService.selectVendorIdName(vName);
 
         System.out.println(list);

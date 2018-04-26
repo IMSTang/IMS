@@ -23,7 +23,7 @@ public class Demand extends PageDomain
     /**  */
     private String vendorId;
     /**  */
-    private String vendorName;
+//    private String vendorName;
     /**  */
     private String itemCode;
     /**  */

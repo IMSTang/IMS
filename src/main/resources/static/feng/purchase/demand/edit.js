@@ -2,6 +2,7 @@ $("#form-demand-edit").validate({
 	rules:{
         demandDate:{
             required:true,
+            dateISO:true,
         },
         vendorName:{
             required:true,
@@ -143,7 +144,7 @@ $("#vendorName").autocomplete({
             url: "/purchase/vendor/search_name",
             type: "get",
             dataType: "json",
-            data: {"inputStr":  $("input[name='vendorName']").val() },
+            data: {"searchValue":  $("input[name='vendorName']").val() },
             success: function (data) {
                 response($.map(data, function (item) {
                     return {
@@ -170,7 +171,6 @@ function edit() {
 	var demandId = $("input[name='demandId']").val();
     var demandDate = $("input[name='demandDate']").val();
     var vendorId = $("input[name='vendorId']").val();
-    var vendorName = $("input[name='vendorName']").val();
     var itemCode = $("input[name='itemCode']").val();
     var price = $("input[name='price']").val();
     var quantity = $("input[name='quantity']").val();
@@ -184,7 +184,6 @@ function edit() {
 			"demandId": demandId,
             "demandDate": demandDate,
             "vendorId": vendorId,
-            "vendorName": vendorName,
             "itemCode": itemCode,
             "price": price,
             "quantity": quantity,

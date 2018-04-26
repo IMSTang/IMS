@@ -3,97 +3,68 @@
 <meta charset="utf-8">
 <head th:include="include :: header"></head>
 <body class="white-bg">
-	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
-		<form class="form-horizontal m" id="form-inquiry-edit">
-			<input name="inquiryUUID"  type="hidden" id="inquiryUUID" th:value="${inquiry.inquiryUUID}"/>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Vendor Name:</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="vendorName" id="vendorName" th:value="${vendor.vendorName}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">FULL Name:</label>
-				<div class="col-sm-1" style="padding-right: 0px; padding-left: 15px;">
-					<input class="form-control" type="text" name="nameTitle" id="nameTitle" th:value="${vendor.nameTitle}" style="padding: 5px 5px; ">
-				</div>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="firstName" id="firstName" th:value="${vendor.firstName}">
-				</div>
-				<div class="col-sm-1" style="padding-right: 5px; padding-left: 5px;">
-					<input class="form-control" type="text" name="middleName" id="middleName" th:value="${vendor.middleName}">
-				</div>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="lastName" id="lastName" th:value="${vendor.lastName}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Job Title:</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="jobTitle" id="jobTitle" th:value="${vendor.jobTitle}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Main Phone:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="mainPhone" id="mainPhone" th:value="${vendor.mainPhone}">
-				</div>
-				<label class="col-sm-2 control-label">Work Phone:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="workPhone" id="workPhone" th:value="${vendor.workPhone}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Mobile:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="mobile" id="mobile" th:value="${vendor.mobile}">
-				</div>
-				<label class="col-sm-2 control-label">Fax:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="fax" id="fax" th:value="${vendor.fax}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Main Mail:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="mainMail" id="mainMail" th:value="${vendor.mainMail}">
-				</div>
-				<label class="col-sm-2 control-label">CC Mail:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="ccMail" id="ccMail" th:value="${vendor.ccMail}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Address Ship From:</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="addressShipFrom" id="addressShipFrom" th:value="${vendor.addressShipFrom}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Address Bill From:</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="addressBillFrom" id="addressBillFrom" th:value="${vendor.addressBillFrom}">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Remark:</label>
-				<div class="col-sm-8">
-					<textarea id="remark" name="remark" rows="3" class="form-control" type="text" th:value="${vendor.remark}"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<div class="form-control-static col-sm-offset-9">
-					<button type="submit" class="btn btn-primary">Submit</button>
-					<button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">Close</button>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div th:include="include::footer"></div>
-	<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
-	<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
-	<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
-	<script type="text/javascript" src="/feng/purchase/inquiry/edit.js">
-	</script>
+<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+    <form class="form-horizontal m" id="form-inquiry-edit">
+        <input id="inquiryId" name="inquiryId"  type="hidden" th:value="${inquiry.inquiryId}" />
+        <input name="vendorId"  type="hidden" id="vendorId"  th:value="${inquiry.vendorId}"/>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">Inquiry Date:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="inquiryDate" id="inquiryDate" th:value="${inquiry.inquiryDate}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label ">Vendor Name:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="vendorName" id="vendorName" th:value="${inquiry.vendorName}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Reminder:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" name="reminder" id="reminder" th:value="${inquiry.reminder}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Remark:</label>
+            <div class="col-sm-8">
+                <input id="remark" name="remark" class="form-control" type="text" th:value="${inquiry.remark}">
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-bottom: 0; padding: 10px; background: #f2f2f2;">
+            <input class="btn btn-info" style="padding: 3px 6px; border-radius: 0;" type="button" value="Add Inquiry Data"  id="add"/></div>
+        <div style="border: 1px solid #ddd; padding: 10px;">
+            <div class="col-sm-2" style="padding: 0;">Item Code</div>
+            <div class="col-sm-5" style="padding: 0;">Item Name</div>
+            <div class="col-sm-2" style="padding: 0;">Price</div>
+            <div class="col-sm-2" style="padding: 0;">Quantity(KG)</div>
+            <div class="clear"></div>
+            <div class="form-group" style="max-height: 140px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="tableDiv">
+                <div style="height: 34px; padding: 0px 10px 0px 16px;" th:id = "'div'+${iterStat.index}" th:each="inquiryData,iterStat :${inquiryBodies}">
+                    <input  type="hidden" name="itemId" th:id = "'itemId'+${iterStat.index}" th:value="${inquiryData.inquiryBodyId}">
+                    <input  type="text" class="col-sm-2" name="itemCode" th:id = "'itemCode'+${iterStat.index}" th:value="${inquiryData.itemCode}" style="margin: 0px -1px;">
+                    <input  type="text" class="col-sm-5" name="itemName" th:id = "'itemName'+${iterStat.index}" th:value="${inquiryData.itemName}" style="margin: 0px -1px;">
+                    <input  type="text" class="col-sm-2" name="price" th:id = "'price'+${iterStat.index}" th:value="${inquiryData.price}" style="margin: 0px -1px;">
+                    <input  type="text" class="col-sm-2" name="quantity" th:id = "'quantity'+${iterStat.index}" th:value="${inquiryData.quantity}" style="margin: 0px -1px;">
+                    <button  type="button" class="col-sm-1" th:onclick="'javascript:delButton(\'div'+${iterStat.index}+'\');'" style="margin: 0px 0px 0px 3px; height: 24px; padding: 0px;">Remove</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-control-static col-sm-offset-9">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">Close</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
+<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
+<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
+<script type="text/javascript" src="/feng/purchase/inquiry/edit.js"/>
+
 </body>
 </html>
