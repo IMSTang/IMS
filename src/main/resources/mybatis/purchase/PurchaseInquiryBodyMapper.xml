@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.purchase.inquiry.dao.IInquiryBodyDao">
+
+    <resultMap type="InquiryBody" id="InquiryBodyResult">
+        <id     property="inquiryBodyId"        column="inquiry_body_id"   />
+        <result property="inquiryId"      column="inquiry_id"     />
+        <result property="itemCode"      column="item_code"     />
+        <result property="price"      column="price" />
+        <result property="quantity"      column="quantity"     />
+        <result property="itemName"      column="item_name"     />
+    </resultMap>
+
+
+
+
+    <insert id="batchInquiryBody">
+        insert into pur_inquiry_body(inquiry_id, item_code,price,quantity) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.inquiryId},#{item.itemCode},#{item.price},#{item.quantity})
+        </foreach>
+    </insert>
+
+    <delete id="deleteInquiryBodyById" parameterType="Long">
+		delete from pur_inquiry_body where inquiry_body_id = #{inquiryBodyId}
+ 	</delete>
+
+    <select id="checkInquiryUsed" parameterType="Long" resultType="int">
+		select count(*) from pur_inquiry_body  where  inquiry_id=#{inquiryId}
+	</select>
+
+    <!--<select id="checkInquiryUsed" parameterType="Long" resultType="int">-->
+		<!--select count(*) from pur_inquiry_body  where  inquiry_id=#{inquiryId}-->
+	<!--</select>-->
+
+    <select id="selectBodyByInquiryId" parameterType="Long" resultMap="InquiryBodyResult">
+		select pur_inquiry_body.* ,pro_production.item_name
+        from pur_inquiry_body,pro_production
+        where pur_inquiry_body.item_code =pro_production.item_code and inquiry_id=#{inquiryId}
+	</select>
+
+
+    <update id="batchDeleteInquiryBody" parameterType="String">
+        delete from pur_inquiry_body where inquiry_body_id in
+        <foreach collection="array" item="inquiryBodyId" open="(" separator="," close=")">
+            #{inquiryBodyId}
+        </foreach>
+    </update>
+
+
+    <delete id="batchDeleteInquiryBodyOnType" parameterType="java.util.HashMap">
+        delete from pur_inquiry_body where inquiry_id=#{inquiryId} and inquiry_body_id  not in
+        <foreach collection="ids" item="inquiryBodyId" open="(" separator="," close=")">
+            #{inquiryBodyId}
+        </foreach>
+    </delete>
+
+
+
+    <update id="updateInquiryBody" parameterType="InquiryBody">
+        update pur_inquiry_body
+        <set>
+            <if test="itemCode != null ">item_code = #{itemCode},</if>
+            <if test="price != null ">price = #{price},</if>
+            <if test="quantity != null ">quantity = #{quantity}</if>
+        </set>
+        where inquiry_body_id = #{inquiryBodyId}
+    </update>
+
+</mapper>
