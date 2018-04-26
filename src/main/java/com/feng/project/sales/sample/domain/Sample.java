@@ -1,4 +1,4 @@
-package com.feng.project.purchase.inquiry.domain;
+package com.feng.project.sales.sample.domain;
 
 
 import com.feng.framework.web.page.PageDomain;
@@ -8,24 +8,24 @@ import lombok.EqualsAndHashCode;
 import java.util.List;
 
 /**
- * 询价实体类
+ * 报价实体类
  */
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class Inquiry extends PageDomain {
+public class Sample extends PageDomain {
 
     /** 询价ID */
-    private Long inquiryId;
+    private Long sampleId;
 
     private  String reminder;
-    private Long inquiryBodyId;
+    private Long sampleBodyId;
     /**  */
-    private String inquiryDate;
+    private String sampleDate;
     /**  */
-    private String vendorId;
+    private String customerId;
     /**  */
-    private String vendorName;
+    private String customerName;
     /**  */
     private String itemCode;
     /**  */
@@ -47,21 +47,21 @@ public class Inquiry extends PageDomain {
     private String updateBy;
     /** 备注 */
     private String remark;
-    private List<InquiryBody> body;
+    private List<SampleBody> body;
 
-    public List<InquiryBody> getBody() {
+    public List<SampleBody> getBody() {
         return body;
     }
 
     @Override
     public String toString() {
-        return "Inquiry{" +
-                "inquiryId=" + inquiryId +
+        return "Sample{" +
+                "sampleId=" + sampleId +
                 ", reminder='" + reminder + '\'' +
-                ", inquiryBodyId=" + inquiryBodyId +
-                ", inquiryDate='" + inquiryDate + '\'' +
-                ", vendorId='" + vendorId + '\'' +
-                ", vendorName='" + vendorName + '\'' +
+                ", sampleBodyId=" + sampleBodyId +
+                ", sampleDate='" + sampleDate + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", customerName='" + customerName + '\'' +
                 ", itemCode='" + itemCode + '\'' +
                 ", itemName='" + itemName + '\'' +
                 ", price='" + price + '\'' +

@@ -1,21 +1,21 @@
-var Element_index = 101;
 
-$("#vendorName").autocomplete({
+$("#customerName").autocomplete({
     minLength: 2,
     source: function (request, response) {
+
         $.ajax({
-            url: "/purchase/vendor/search_name",
+            url: "/sales/customer/search_name",
             type: "get",
             dataType: "json",
-            data: {"searchValue":  $("input[name='vendorName']").val() },
+            data: {"searchValue":  $("input[name='customerName']").val() },
 
             success: function (data) {
 
                 response($.map(data, function (item) {
 
                     return {
-                        label: item.vendorName,
-                        value: item.vendorId
+                        label: item.customerName,
+                        value: item.customerId
                     }
                 }));
             }
@@ -23,18 +23,17 @@ $("#vendorName").autocomplete({
     },
     focus: function (event, ui) {
 
-        $("#vendorName").val(ui.item.label);
-        $("#vendorId").val(ui.item.value);
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
         return false;
     },
     select: function (event, ui) {
 
-        $("#vendorName").val(ui.item.label);
-        $("#vendorId").val(ui.item.value);
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
         return false;
     }
 });
-
 
 function autoInfomation(element1,element2,idElement,elementType){
 
@@ -94,6 +93,11 @@ function autoInfomation(element1,element2,idElement,elementType){
     });
 }
 
+var Element_index = 1;
+/**
+ * 默认界面上显示一套商品信息
+ */
+addElement();
 
 /**
  * 添加一套输入产品信息按钮
@@ -141,11 +145,10 @@ function addElement(){
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
 
-
-
     TCode.onclick=function () {//绑定点击事件
         autoInfomation(TCode,TName,TId,"code");
     };
+
 
     TName.onclick=function () {//绑定点击事件
         autoInfomation(TName,TCode,TId,"name");
@@ -183,8 +186,8 @@ function addElement(){
     TButton.style.padding= '0';
     TButton.text=Element_index;
     TButton.value="Remove";
-    TButton.name="del";
-    TButton.id="del";
+    TButton.name="delButton";
+    TButton.id="delButton";
     TButton.onclick=function () {//绑定点击事件
         // var delId = "div"+Element_index;
         delButton(div.id);
@@ -214,20 +217,18 @@ function delButton(divId) {
     }
 
 }
-
-
-$("#form-inquiry-edit").validate({
+$("#form-sample-add").validate({
     rules:{
-        vendorName:{
+        customerName:{
             required:true,
             minlength: 2,
             remote: {
-                url: "/purchase/vendor/checkNameUnique",
+                url: "/sales/customer/checkNameExist",
                 type: "post",
                 dataType: "text",
                 data: {
                     name : function() {
-                        return $.trim($("#vendorName").val());
+                        return $.trim($("#customerName").val());
                     }
                 },
                 dataFilter: function(data, type) {
@@ -236,7 +237,6 @@ $("#form-inquiry-edit").validate({
                 }
             }
         },
-
         itemCode:{
             required:true,
         },
@@ -245,137 +245,125 @@ $("#form-inquiry-edit").validate({
             number: true,
             min: 0.01,
         },
-        inquiryDate:{
+        sampleDate:{
             required:true,
             dateISO:true
         },
+
     },
 
-
     messages: {
-        "vendorName": {
-            remote: "vendor not exist"
+        "customerName": {
+            remote: "customer not exist"
         }
     },
     submitHandler:function(form){
-        update();
+        add();
     }
 
 });
 
-function update() {
+function add() {
 
-        var  inquiryItem= new Object();
+    var  sampleItem= new Object();
 
-        var inquiryId = $("input[name='inquiryId']").val();
-        var inquiryDate = $("input[name='inquiryDate']").val();
-        var vendorId = $("input[name='vendorId']").val();
-        var vendorName = $("input[name='vendorName']").val();
-        var reminder = $("input[name='reminder']").val();
-        var remark = $("#remark").val();
+    var sampleId = $("input[name='sampleId']").val();
+    var sampleDate = $("input[name='sampleDate']").val();
+    var customerId = $("input[name='customerId']").val();
+    var customerName = $("input[name='customerName']").val();
+    var reminder = $("input[name='reminder']").val();
+    var remark = $("#remark").val();
 
-        inquiryItem.inquiryId=inquiryId;
-        inquiryItem.inquiryDate=inquiryDate;
-        inquiryItem.vendorId=vendorId;
-        inquiryItem.vendorName=vendorName;
-        inquiryItem.remark=remark;
-        inquiryItem.reminder=reminder;
+    sampleItem.sampleId=sampleId;
+    sampleItem.sampleDate=sampleDate;
+    sampleItem.customerId=customerId;
+    sampleItem.customerName=customerName;
+    sampleItem.remark=remark;
+    sampleItem.reminder=reminder;
 
-        var parentDiv =  document.getElementById('tableDiv');
-        //获取div个数
-        var divNum=  parentDiv.getElementsByTagName('div');
+    var parentDiv =  document.getElementById('tableDiv');
+    //获取div个数
+    var divNum=  parentDiv.getElementsByTagName('div');
 
-        /**
-         * 循环取出 inquiryBody 的 值
-         */
+    /**
+     * 循环取出 sampleBody 的 值
+     */
 
-        var f =/^\d+(\.\d+)?$/;
-        var I = /^[0-9]*[1-9][0-9]*$/;
-        var itemIndex=-1;
+    var f =/^\d+(\.\d+)?$/;
+    var I = /^[0-9]*[1-9][0-9]*$/;
+    var itemIndex=-1;
+    for(  i=0;i<divNum.length;i++){
 
-        for(  i=0;i<divNum.length;i++){
+        //忽略 clear div
+        if(divNum[i].className == ""){
+            itemIndex++;
+        }
 
-            //忽略 clear div
-            if(divNum[i].className == ""){
-                itemIndex++;
+        var inputs = divNum[i].getElementsByTagName('input');
+        // var textValue=new Array();
+
+        for (j=0;j<inputs.length;j++){
+            //不获取按钮的值
+            if(inputs[j].value=="Remove"){
+
+                // continue;
             }
 
-
-
-            var inputs = divNum[i].getElementsByTagName('input');
-            // var textValue=new Array();
-
-            for (j=0;j<inputs.length;j++){
-                //不获取按钮的值
-                if(inputs[j].value=="Remove"){
-
-                    // continue;
+            if((inputs[j].id).indexOf("itemName") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("item Name  is empty", "error");
+                    return false;
                 }
+                sampleItem['body['+itemIndex+'].itemName']=inputs[j].value;
 
-
-                if((inputs[j].id).indexOf("itemId") >=0){
-
-                    inquiryItem['body['+itemIndex+'].inquiryBodyId']=inputs[j].value;
-
+            }
+            if((inputs[j].id).indexOf("itemCode") >=0){
+                if(inputs[j].value==""){
+                    $.modalAlert("item Code   is empty", "error");
+                    return false;
                 }
+                sampleItem['body['+itemIndex+'].itemCode']=inputs[j].value;
 
-                if((inputs[j].id).indexOf("itemName") >=0){
-                    if(inputs[j].value==""){
-                        $.modalAlert("item Name  is empty", "error");
-                        return false;
-                    }
-                    inquiryItem['body['+itemIndex+'].itemName']=inputs[j].value;
-
+            }
+            if((inputs[j].id).indexOf("price") >=0){
+                if(!(f.test(inputs[j].value))){
+                    $.modalAlert("price data is Invalid", "error");
+                    return false;
                 }
-                if((inputs[j].id).indexOf("itemCode") >=0){
-                    if(inputs[j].value==""){
-                        $.modalAlert("item Code   is empty", "error");
-                        return false;
-                    }
-                    inquiryItem['body['+itemIndex+'].itemCode']=inputs[j].value;
+                sampleItem['body['+itemIndex+'].price']=inputs[j].value;
 
+            }
+            if((inputs[j].id).indexOf("quantity") >=0){
+                if(!(I.test(inputs[j].value))){
+                    $.modalAlert("quantity data is Invalid", "error");
+                    return false;
                 }
-                if((inputs[j].id).indexOf("price") >=0){
-                    if(!(f.test(inputs[j].value))){
-                        $.modalAlert("price data is Invalid", "error");
-                        return false;
-                    }
-                    inquiryItem['body['+itemIndex+'].price']=inputs[j].value;
-
-                }
-                if((inputs[j].id).indexOf("quantity") >=0){
-                    if(!(f.test(inputs[j].value))){
-                        $.modalAlert("quantity data is Invalid", "error");
-                        return false;
-                    }
-                    inquiryItem['body['+itemIndex+'].quantity']=inputs[j].value;
-
-                }
+                sampleItem['body['+itemIndex+'].quantity']=inputs[j].value;
 
             }
 
         }
 
-
-        $.ajax({
-            cache : true,
-            type : "POST",
-            url : "/purchase/inquiry/save",
-            dataType: "json",
-            data :inquiryItem,
-            async : false,
-            error : function(request) {
-                $.modalAlert("System ERROR", "error");
-            },
-            success : function(data) {
-                if (data.code == 0) {
-                    parent.layer.msg("Added successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
-                        window.parent.location.reload();
-                    });
-                } else {
-                    $.modalAlert(data.msg, "error");
-                }
-            }
-        });
     }
 
+    $.ajax({
+        cache : true,
+        type : "POST",
+        url : "/sales/sample/save",
+        dataType: "json",
+        data :sampleItem,
+        async : false,
+        error : function(request) {
+            $.modalAlert("System ERROR", "error");
+        },
+        success : function(data) {
+            if (data.code == 0) {
+                parent.layer.msg("Added successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+                    window.parent.location.reload();
+                });
+            } else {
+                $.modalAlert(data.msg, "error");
+            }
+        }
+    });
+}

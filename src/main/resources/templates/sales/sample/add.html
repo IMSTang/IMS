@@ -4,20 +4,20 @@
 <head th:include="include :: header"></head>
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-    <form class="form-horizontal m" id="form-inquiry-add">
-        <input name="inquiryId"  type="hidden" id="inquiryId"/>
+    <form class="form-horizontal m" id="form-sample-add">
+        <input name="sampleId"  type="hidden" id="sampleId"/>
         <div class="form-group">
-            <label class="col-sm-3">Inquiry Date:</label>
+            <label class="col-sm-3">Sample Date:</label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" name="inquiryDate" id="inquiryDate" th:value="${today}">
+                <input class="form-control" type="text" name="sampleDate" id="sampleDate" th:value="${today}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3">Vendor Name:</label>
+            <label class="col-sm-3">Customer Name:</label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" name="vendorName" id="vendorName" >
+                <input class="form-control" type="text" name="customerName" id="customerName" >
             </div>
-            <input name="vendorId"  type="hidden" id="vendorId"/>
+            <input name="customerId"  type="hidden" id="customerId"/>
         </div>
         <div class="form-group">
             <label class="col-sm-3">Reminder:</label>
@@ -61,7 +61,7 @@
 <script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
 <link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
 <script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
-<script type="text/javascript" src="/feng/purchase/inquiry/add.js"></script>
+<script type="text/javascript" src="/feng/sales/sample/add.js"></script>
 
 </body>
 </html>

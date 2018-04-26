@@ -2,12 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.feng.project.purchase.inquiry.dao.IInquiryDao">
+<mapper namespace="com.feng.project.sales.sample.dao.ISampleDao">
 
-    <resultMap type="Inquiry" id="InquiryResult">
-        <id     property="inquiryId"        column="inquiry_id"       />
-        <result property="inquiryDate"      column="inquiry_date"     />
-        <result property="vendorId"      column="vendor_id"     />
+    <resultMap type="Sample" id="SampleResult">
+        <id     property="sampleId"        column="sample_id"       />
+        <result property="sampleDate"      column="sample_date"     />
+        <result property="customerId"      column="customer_id"     />
         <result property="reminder"      column="reminder"     />
         <result property="status"        column="status"        />
         <result property="createBy"      column="create_by"     />
@@ -15,20 +15,20 @@
         <result property="updateBy"      column="update_by"     />
         <result property="updateTime"    column="update_time"   />
         <result property="remark"        column="remark"        />
-        <result property="inquiryBodyId"      column="inquiry_body_id"     />
+        <result property="sampleBodyId"      column="sample_body_id"     />
         <result property="itemCode"      column="item_code"     />
         <result property="price"      column="price"     />
         <result property="quantity"      column="quantity"     />
         <result property="itemName"      column="item_name"     />
-        <result property="vendorName"      column="vendor_name"     />
+        <result property="customerName"      column="customer_name"     />
     </resultMap>
 
-    <select id="selectInquiryList" parameterType="Inquiry" resultMap="InquiryResult">
+    <select id="selectSampleList" parameterType="Sample" resultMap="SampleResult">
 
-        select * from (select i.*,b.inquiry_body_id,b.item_code,b.price,b.quantity,
-        (select v.vendor_name from pur_vendor v where v. vendor_id = i. vendor_id) as vendor_name,
+        select * from (select i.*,b.sample_body_id,b.item_code,b.price,b.quantity,
+        (select v.customer_name from sale_customer v where v. customer_id = i. customer_id) as customer_name,
         (select item_name from pro_production p where p.item_code = b.item_code and p.status=0 ) as item_name
-        from pur_inquiry i left join pur_inquiry_body b on i.inquiry_id = b.inquiry_id  where   i.status = 0
+        from sale_sample i left join sale_sample_body b on i.sample_id = b.sample_id  where   i.status = 0
         ) tt
         <where>
             <if test="searchValue != null and searchValue != ''">
@@ -38,17 +38,17 @@
     </select>
 
 
-    <insert id="insertInquiry" parameterType="Inquiry" useGeneratedKeys="true" keyProperty="inquiryId">
-    insert into pur_inquiry(
-        <if test="inquiryDate != null ">inquiry_date,</if>
-        <if test="vendorId != null ">vendor_id,</if>
+    <insert id="insertSample" parameterType="Sample" useGeneratedKeys="true" keyProperty="sampleId">
+    insert into sale_sample(
+        <if test="sampleDate != null ">sample_date,</if>
+        <if test="customerId != null ">customer_id,</if>
         <if test="reminder != null ">reminder,</if>
         <if test="createBy != null ">create_by,</if>
         <if test="remark != null ">remark,</if>
         create_time
         )values(
-        <if test="inquiryDate != null ">#{inquiryDate},</if>
-        <if test="vendorId != null ">#{vendorId},</if>
+        <if test="sampleDate != null ">#{sampleDate},</if>
+        <if test="customerId != null ">#{customerId},</if>
         <if test="reminder != null ">#{reminder},</if>
         <if test="createBy != null ">#{createBy},</if>
         <if test="remark != null ">#{remark},</if>
@@ -58,26 +58,26 @@
     	</insert>
 
 
-    <select id="selectInquiryById" parameterType="Long" resultMap="InquiryResult">
+    <select id="selectSampleById" parameterType="Long" resultMap="SampleResult">
             SELECT *
-            FROM pur_inquiry, pur_vendor
-            WHERE pur_inquiry.vendor_id = pur_vendor.vendor_id and  inquiry_id=#{inquiryId}
+            FROM sale_sample, sale_customer
+            WHERE sale_sample.customer_id = sale_customer.customer_id and  sample_id=#{sampleId}
         </select>
 
-    <update id="deleteInquiryById" parameterType="Long">
-        update   pur_inquiry set status="1"  where inquiry_id=#{inquiryId}
+    <update id="deleteSampleById" parameterType="Long">
+        update   sale_sample set status="1"  where sample_id=#{sampleId}
 	</update>
 
-    <update id="updateInquiry" parameterType="Inquiry">
-        update pur_inquiry
+    <update id="updateSample" parameterType="Sample">
+        update sale_sample
         <set>
-            <if test="vendorId != null">vendor_id = #{vendorId},</if>
+            <if test="customerId != null">customer_id = #{customerId},</if>
             <if test="reminder != null ">reminder = #{reminder},</if>
-            <if test="inquiryDate != null ">inquiry_date = #{inquiryDate},</if>
+            <if test="sampleDate != null ">sample_date = #{sampleDate},</if>
             <if test="remark != null and remark != ''">remark = #{remark},</if>
             update_by = #{updateBy},
             update_time = sysdate()
         </set>
-          where  inquiry_id=#{inquiryId}
+          where  sample_id=#{sampleId}
     </update>
 </mapper>

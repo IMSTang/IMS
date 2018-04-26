@@ -1,4 +1,4 @@
-var prefix = "/sales/quote"
+var prefix = "/sales/sample"
 
 $(function() {
     var columns = [{
@@ -6,12 +6,12 @@ $(function() {
     },
 
         {
-            field: 'quoteId',
-            title: 'Quote Id'
+            field: 'sampleId',
+            title: 'Sample Id'
         },
         {
-            field: 'quoteDate',
-            title: 'Quote Date'
+            field: 'sampleDate',
+            title: 'Sample Date'
         },
         {
             field: 'customerName',
@@ -49,8 +49,8 @@ $(function() {
 
                 var actions = [];
                 actions.push('<div style="width: 100px;">')
-                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.quoteId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
-                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' +  row.quoteBodyId +"','"+row.quoteId + '\')"><i class="fa fa-remove"></i></a>');
+                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.sampleId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
+                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' +  row.sampleBodyId +"','"+row.sampleId + '\')"><i class="fa fa-remove"></i></a>');
                 actions.push('</div>')
                 return actions.join('');
             }
@@ -62,14 +62,14 @@ $(function() {
 // /!*inquiry Management-新增*!/
 function add() {
     var url = prefix + '/add';
-    layer_show("add Quote", url, '800', '600');
+    layer_show("add Sample", url, '800', '600');
 }
 
 // 单条删除
-function remove(quoteBodyId,quoteId) {
+function remove(sampleBodyId,sampleId) {
 
-    $.modalConfirm("Do you want to remove this Quote?", function(r) {
-        _ajax(prefix + "/remove/" + quoteBodyId+"/"+quoteId, "", "post", r);
+    $.modalConfirm("Do you want to remove this Sample?", function(r) {
+        _ajax(prefix + "/remove/" + sampleBodyId+"/"+sampleId, "", "post", r);
     })
 }
 
@@ -77,21 +77,21 @@ function remove(quoteBodyId,quoteId) {
 // 批量删除
 function batchRemove() {
 
-    var quoteBodyId = $.getSelections("quoteBodyId");
-    var quoteId = $.getSelections("quoteId");
-    if (quoteBodyId.length == 0) {
+    var sampleBodyId = $.getSelections("sampleBodyId");
+    var sampleId = $.getSelections("sampleId");
+    if (sampleBodyId.length == 0) {
         $.modalMsg("Please select the data you want to remove ", "warning");
         return;
     }
-    $.modalConfirm("Do you want to remove " + quoteBodyId.length + " Quote?", function(r) {
-        _ajax(prefix + '/batchRemove', { "quoteBodyId": quoteBodyId ,"quoteId":quoteId}, "post", r);
+    $.modalConfirm("Do you want to remove " + sampleBodyId.length + " Sample?", function(r) {
+        _ajax(prefix + '/batchRemove', { "sampleBodyId": sampleBodyId ,"sampleId":sampleId}, "post", r);
     });
 }
 
 /!*inquiry Management-修改*!/
-function edit(quoteId) {
-    var url = prefix + '/edit/' + quoteId;
-    layer_show("edit Quote", url, '800', '600');
+function edit(sampleId) {
+    var url = prefix + '/edit/' + sampleId;
+    layer_show("edit Sample", url, '800', '600');
 }
 
 

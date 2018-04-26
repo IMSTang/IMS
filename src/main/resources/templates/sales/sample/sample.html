@@ -6,18 +6,18 @@
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
     <div class="btn-group hidden-xs" id="tableToolbar" role="group">
-        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:add()'" shiro:hasPermission="purchase:inquiry:add">
+        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:add()'" shiro:hasPermission="sales:sample:add">
             <i class="glyphicon glyphicon-plus"></i>
         </button>
-        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="purchase:inquiry:batchRemove">
+        <button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="sales:sample:batchRemove">
             <i class="glyphicon glyphicon-trash"></i>
         </button>
     </div>
     <table class="bootstrap-table" data-mobile-responsive="true"
-           data-sort-name="inquiry_id" data-sort-order="asc">
+           data-sort-name="sample_id" data-sort-order="asc">
     </table>
 </div>
 <div th:include="include :: footer"></div>
-<script type="text/javascript" src="/feng/purchase/inquiry/inquiry.js"></script>
+<script type="text/javascript" src="/feng/sales/sample/sample.js"></script>
 </body>
 </html>

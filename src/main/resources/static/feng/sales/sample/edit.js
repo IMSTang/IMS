@@ -1,21 +1,21 @@
 var Element_index = 101;
 
-$("#vendorName").autocomplete({
+$("#customerName").autocomplete({
     minLength: 2,
     source: function (request, response) {
         $.ajax({
-            url: "/purchase/vendor/search_name",
+            url: "/sales/customer/search_name",
             type: "get",
             dataType: "json",
-            data: {"searchValue":  $("input[name='vendorName']").val() },
+            data: {"searchValue":  $("input[name='customerName']").val() },
 
             success: function (data) {
 
                 response($.map(data, function (item) {
 
                     return {
-                        label: item.vendorName,
-                        value: item.vendorId
+                        label: item.customerName,
+                        value: item.customerId
                     }
                 }));
             }
@@ -23,14 +23,14 @@ $("#vendorName").autocomplete({
     },
     focus: function (event, ui) {
 
-        $("#vendorName").val(ui.item.label);
-        $("#vendorId").val(ui.item.value);
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
         return false;
     },
     select: function (event, ui) {
 
-        $("#vendorName").val(ui.item.label);
-        $("#vendorId").val(ui.item.value);
+        $("#customerName").val(ui.item.label);
+        $("#customerId").val(ui.item.value);
         return false;
     }
 });
@@ -216,18 +216,18 @@ function delButton(divId) {
 }
 
 
-$("#form-inquiry-edit").validate({
+$("#form-sample-edit").validate({
     rules:{
-        vendorName:{
+        customerName:{
             required:true,
             minlength: 2,
             remote: {
-                url: "/purchase/vendor/checkNameUnique",
+                url: "/sales/customer/checkNameExist",
                 type: "post",
                 dataType: "text",
                 data: {
                     name : function() {
-                        return $.trim($("#vendorName").val());
+                        return $.trim($("#customerName").val());
                     }
                 },
                 dataFilter: function(data, type) {
@@ -245,7 +245,7 @@ $("#form-inquiry-edit").validate({
             number: true,
             min: 0.01,
         },
-        inquiryDate:{
+        sampleDate:{
             required:true,
             dateISO:true
         },
@@ -253,8 +253,8 @@ $("#form-inquiry-edit").validate({
 
 
     messages: {
-        "vendorName": {
-            remote: "vendor not exist"
+        "customerName": {
+            remote: "customer not exist"
         }
     },
     submitHandler:function(form){
@@ -265,28 +265,28 @@ $("#form-inquiry-edit").validate({
 
 function update() {
 
-        var  inquiryItem= new Object();
+        var  sampleItem= new Object();
 
-        var inquiryId = $("input[name='inquiryId']").val();
-        var inquiryDate = $("input[name='inquiryDate']").val();
-        var vendorId = $("input[name='vendorId']").val();
-        var vendorName = $("input[name='vendorName']").val();
+        var sampleId = $("input[name='sampleId']").val();
+        var sampleDate = $("input[name='sampleDate']").val();
+        var customerId = $("input[name='customerId']").val();
+        var customerName = $("input[name='customerName']").val();
         var reminder = $("input[name='reminder']").val();
         var remark = $("#remark").val();
 
-        inquiryItem.inquiryId=inquiryId;
-        inquiryItem.inquiryDate=inquiryDate;
-        inquiryItem.vendorId=vendorId;
-        inquiryItem.vendorName=vendorName;
-        inquiryItem.remark=remark;
-        inquiryItem.reminder=reminder;
+        sampleItem.sampleId=sampleId;
+        sampleItem.sampleDate=sampleDate;
+        sampleItem.customerId=customerId;
+        sampleItem.customerName=customerName;
+        sampleItem.remark=remark;
+        sampleItem.reminder=reminder;
 
         var parentDiv =  document.getElementById('tableDiv');
         //获取div个数
         var divNum=  parentDiv.getElementsByTagName('div');
 
         /**
-         * 循环取出 inquiryBody 的 值
+         * 循环取出 sampleBody 的 值
          */
 
         var f =/^\d+(\.\d+)?$/;
@@ -315,7 +315,7 @@ function update() {
 
                 if((inputs[j].id).indexOf("itemId") >=0){
 
-                    inquiryItem['body['+itemIndex+'].inquiryBodyId']=inputs[j].value;
+                    sampleItem['body['+itemIndex+'].sampleBodyId']=inputs[j].value;
 
                 }
 
@@ -324,7 +324,7 @@ function update() {
                         $.modalAlert("item Name  is empty", "error");
                         return false;
                     }
-                    inquiryItem['body['+itemIndex+'].itemName']=inputs[j].value;
+                    sampleItem['body['+itemIndex+'].itemName']=inputs[j].value;
 
                 }
                 if((inputs[j].id).indexOf("itemCode") >=0){
@@ -332,7 +332,7 @@ function update() {
                         $.modalAlert("item Code   is empty", "error");
                         return false;
                     }
-                    inquiryItem['body['+itemIndex+'].itemCode']=inputs[j].value;
+                    sampleItem['body['+itemIndex+'].itemCode']=inputs[j].value;
 
                 }
                 if((inputs[j].id).indexOf("price") >=0){
@@ -340,7 +340,7 @@ function update() {
                         $.modalAlert("price data is Invalid", "error");
                         return false;
                     }
-                    inquiryItem['body['+itemIndex+'].price']=inputs[j].value;
+                    sampleItem['body['+itemIndex+'].price']=inputs[j].value;
 
                 }
                 if((inputs[j].id).indexOf("quantity") >=0){
@@ -348,7 +348,7 @@ function update() {
                         $.modalAlert("quantity data is Invalid", "error");
                         return false;
                     }
-                    inquiryItem['body['+itemIndex+'].quantity']=inputs[j].value;
+                    sampleItem['body['+itemIndex+'].quantity']=inputs[j].value;
 
                 }
 
@@ -360,9 +360,9 @@ function update() {
         $.ajax({
             cache : true,
             type : "POST",
-            url : "/purchase/inquiry/save",
+            url : "/sales/sample/save",
             dataType: "json",
-            data :inquiryItem,
+            data :sampleItem,
             async : false,
             error : function(request) {
                 $.modalAlert("System ERROR", "error");
