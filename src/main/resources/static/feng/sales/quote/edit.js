@@ -62,14 +62,14 @@ function autoInfomation(element1,element2,idElement,elementType){
 
                                 label: item.itemCode,
                                 value: item.itemName,
-                                PID:item.productionId
+                                // PID:item.productionId
                             }  }
                         else{
                             return {
 
                                 label: item.itemName,
                                 value: item.itemCode,
-                                PID:item.productionId
+                                // PID:item.productionId
                             }
 
                         }
@@ -82,13 +82,13 @@ function autoInfomation(element1,element2,idElement,elementType){
 
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
-            $(idElement).val(ui.item.PID);
+            // $(idElement).val(ui.item.PID);
             return false;
         },
         select: function (event, ui) {
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
-            $(idElement).val(ui.item.PID);
+            // $(idElement).val(ui.item.PID);
             return false;
         }
     });
@@ -114,11 +114,13 @@ function addElement(){
 
     /**
      * item Name ID
+     *hidden
      * */
     var TId=document.createElement("input");
     TId.type="hidden";
     TId.name="itemId"+Element_index;
     TId.id="itemId"+Element_index;
+
 
 
     /**
@@ -306,6 +308,10 @@ function update() {
             // var textValue=new Array();
 
             for (j=0;j<inputs.length;j++){
+
+
+
+
                 //不获取按钮的值
                 if(inputs[j].value=="Remove"){
 

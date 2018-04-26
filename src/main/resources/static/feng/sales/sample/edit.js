@@ -62,14 +62,14 @@ function autoInfomation(element1,element2,idElement,elementType){
 
                                 label: item.itemCode,
                                 value: item.itemName,
-                                PID:item.productionId
+                                // PID:item.productionId
                             }  }
                         else{
                             return {
 
                                 label: item.itemName,
                                 value: item.itemCode,
-                                PID:item.productionId
+                                // PID:item.productionId
                             }
 
                         }
@@ -82,13 +82,13 @@ function autoInfomation(element1,element2,idElement,elementType){
 
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
-            $(idElement).val(ui.item.PID);
+            // $(idElement).val(ui.item.PID);
             return false;
         },
         select: function (event, ui) {
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
-            $(idElement).val(ui.item.PID);
+            // $(idElement).val(ui.item.PID);
             return false;
         }
     });

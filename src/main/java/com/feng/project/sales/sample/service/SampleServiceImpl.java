@@ -82,6 +82,14 @@ public class SampleServiceImpl implements  ISampleService{
                 if(StringUtils.isNotNull(sampleBodyId)){
                     count = sampleBodyDao.updateSampleBody(sampleBody);
                 }
+                else {
+                    List<SampleBody> list1 = new ArrayList<SampleBody>();
+                    sampleBody.setSampleId(sampleId);
+                    list1.add(sampleBody);
+                    count = sampleBodyDao.batchSampleBody(list1);
+                }
+
+
             }
         }else {
             //insert

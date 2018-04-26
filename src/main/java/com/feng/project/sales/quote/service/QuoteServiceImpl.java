@@ -82,6 +82,12 @@ public class QuoteServiceImpl implements  IQuoteService{
                 if(StringUtils.isNotNull(quoteBodyId)){
                     count = quoteBodyDao.updateQuoteBody(quoteBody);
                 }
+                else {
+                    List<QuoteBody> list1 = new ArrayList<QuoteBody>();
+                    quoteBody.setQuoteId(quoteId);
+                    list1.add(quoteBody);
+                    count = quoteBodyDao.batchQuoteBody(list1);
+                }
             }
         }else {
             //insert
