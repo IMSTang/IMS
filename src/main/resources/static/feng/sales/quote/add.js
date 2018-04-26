@@ -35,10 +35,6 @@ $("#customerName").autocomplete({
     }
 });
 
-
-
-
-
 function autoInfomation(element1,element2,idElement,elementType){
 
     $(element1).autocomplete({
@@ -97,9 +93,6 @@ function autoInfomation(element1,element2,idElement,elementType){
     });
 }
 
-
-
-
 var Element_index = 1;
 /**
  * 默认界面上显示一套商品信息
@@ -132,8 +125,6 @@ function addElement(){
     TId.id="itemId"+Element_index;
 
 
-
-
     /**
      *item Code
      */
@@ -143,7 +134,6 @@ function addElement(){
     TCode.style.margin= '0 -1px';
     TCode.name="itemCode"+Element_index;
     TCode.id="itemCode"+Element_index;
-
 
     /**
      * item Name
@@ -155,8 +145,6 @@ function addElement(){
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
 
-
-
     TCode.onclick=function () {//绑定点击事件
         autoInfomation(TCode,TName,TId,"code");
     };
@@ -165,8 +153,6 @@ function addElement(){
     TName.onclick=function () {//绑定点击事件
         autoInfomation(TName,TCode,TId,"name");
     };
-
-
 
     /**
      * price
@@ -207,8 +193,6 @@ function addElement(){
         delButton(div.id);
     };
 
-
-
     div.appendChild(TId);
     div.appendChild(TCode);
     div.appendChild(TName);
@@ -220,16 +204,11 @@ function addElement(){
     Element_index++;
 }
 
-
-
-
 /***
  * 删除一套产品信息按钮
  */
 
 function delButton(divId) {
-
-
     var div = document.getElementById(divId);
     var parentDiv =  document.getElementById('tableDiv');
 
@@ -238,9 +217,6 @@ function delButton(divId) {
     }
 
 }
-
-
-
 $("#form-quote-add").validate({
     rules:{
         customerName:{
@@ -261,7 +237,6 @@ $("#form-quote-add").validate({
                 }
             }
         },
-
         itemCode:{
             required:true,
         },
@@ -270,9 +245,12 @@ $("#form-quote-add").validate({
             number: true,
             min: 0.01,
         },
+        quoteDate:{
+            required:true,
+            dateISO:true
+        },
 
     },
-
 
     messages: {
         "customerName": {
@@ -282,24 +260,8 @@ $("#form-quote-add").validate({
     submitHandler:function(form){
         add();
     }
-    // ,
-    // errorPlacement: function(error, element) {
-    //     if (element.is(":input")){
-    //         error.appendTo(element.parent());
-    //     }else {
-    //         error.insertAfter(element);
-    //     }
-    // }
-
-
 
 });
-
-
-
-
-
-
 
 function add() {
 
@@ -337,8 +299,6 @@ function add() {
             itemIndex++;
         }
 
-
-
         var inputs = divNum[i].getElementsByTagName('input');
         // var textValue=new Array();
 
@@ -351,7 +311,7 @@ function add() {
 
             if((inputs[j].id).indexOf("itemName") >=0){
                 if(inputs[j].value==""){
-                    $.modalAlert("itemName Label is empty", "error");
+                    $.modalAlert("item Name  is empty", "error");
                     return false;
                 }
                 quoteItem['body['+itemIndex+'].itemName']=inputs[j].value;
@@ -359,7 +319,7 @@ function add() {
             }
             if((inputs[j].id).indexOf("itemCode") >=0){
                 if(inputs[j].value==""){
-                    $.modalAlert("itemCode Label is empty", "error");
+                    $.modalAlert("item Code   is empty", "error");
                     return false;
                 }
                 quoteItem['body['+itemIndex+'].itemCode']=inputs[j].value;
@@ -385,11 +345,6 @@ function add() {
         }
 
     }
-
-
-
-
-
 
     $.ajax({
         cache : true,

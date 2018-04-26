@@ -37,7 +37,7 @@ public class quoteController extends BaseController {
 
     @RequiresPermissions("sales:quote:view")
     @GetMapping()
-    public  String  quota(){
+    public  String  quote(){
         return prefix +"/quote";
     }
 
@@ -52,6 +52,7 @@ public class quoteController extends BaseController {
     @ResponseBody
     public TableDataInfo list(Quote quote)
     {
+
         setPageInfo(quote);
         List<Quote> list = quoteService.selectQuoteList(quote);
         return getDataTable(list);
@@ -134,5 +135,7 @@ public class quoteController extends BaseController {
             model.addAttribute("quote", quote);
         return prefix + "/edit";
     }
+
+
 
 }

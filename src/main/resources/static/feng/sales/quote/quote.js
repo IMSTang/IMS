@@ -5,10 +5,6 @@ $(function() {
         checkbox: true
     },
 
-        // {
-        //     field: 'quoteBodyId',
-        //     title: 'Quote Body  Id'
-        // },
         {
             field: 'quoteId',
             title: 'Quote Id'
@@ -35,7 +31,7 @@ $(function() {
         },
         {
             field: 'quantity',
-            title: 'Quantity'
+            title: 'Quantity(KG)'
         },
         {
             field: 'createBy',
@@ -63,15 +59,11 @@ $(function() {
     $.initTable(columns, url);
 });
 
-
-
 // /!*inquiry Management-新增*!/
 function add() {
     var url = prefix + '/add';
     layer_show("add Quote", url, '800', '600');
 }
-
-
 
 // 单条删除
 function remove(quoteBodyId,quoteId) {

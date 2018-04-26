@@ -25,15 +25,15 @@
 
     <select id="selectQuoteList" parameterType="Quote" resultMap="QuoteResult">
 
-        select i.*,b.quote_body_id,b.item_code,b.price,b.quantity,
-        (select v.customer_name from sale_customer v where v. customer_id = i. customer_id) as  customer_name,
-        (select item_name from pro_production p where p.item_code = b.item_code and  p.status=0 ) as item_name
-        from sale_quote i left join sale_quote_body b on i.quote_id = b.quote_id
+        select * from (select i.*,b.quote_body_id,b.item_code,b.price,b.quantity,
+        (select v.customer_name from sale_customer v where v. customer_id = i. customer_id) as customer_name,
+        (select item_name from pro_production p where p.item_code = b.item_code and p.status=0 ) as item_name
+        from sale_quote i left join sale_quote_body b on i.quote_id = b.quote_id  where   i.status = 0
+        ) tt
         <where>
-            i.status = 0
-            <!--<if test="searchValue != null and searchValue != ''">-->
-            <!--AND inquiry_name like CONCAT('%',#{searchValue},'%' )-->
-            <!--</if>-->
+            <if test="searchValue != null and searchValue != ''">
+                tt.item_name like CONCAT('%',#{searchValue},'%' )
+            </if>
         </where>
     </select>
 
@@ -73,6 +73,7 @@
         <set>
             <if test="customerId != null">customer_id = #{customerId},</if>
             <if test="reminder != null ">reminder = #{reminder},</if>
+            <if test="quoteDate != null ">quote_date = #{quoteDate},</if>
             <if test="remark != null and remark != ''">remark = #{remark},</if>
             update_by = #{updateBy},
             update_time = sysdate()

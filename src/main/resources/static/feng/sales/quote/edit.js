@@ -36,9 +36,6 @@ $("#customerName").autocomplete({
 });
 
 
-
-
-
 function autoInfomation(element1,element2,idElement,elementType){
 
     $(element1).autocomplete({
@@ -98,11 +95,6 @@ function autoInfomation(element1,element2,idElement,elementType){
 }
 
 
-
-
-// var Element_index = 1;
-
-
 /**
  * 添加一套输入产品信息按钮
  */
@@ -129,8 +121,6 @@ function addElement(){
     TId.id="itemId"+Element_index;
 
 
-
-
     /**
      *item Code
      */
@@ -140,7 +130,6 @@ function addElement(){
     TCode.style.margin= '0 -1px';
     TCode.name="itemCode"+Element_index;
     TCode.id="itemCode"+Element_index;
-
 
     /**
      * item Name
@@ -158,12 +147,9 @@ function addElement(){
         autoInfomation(TCode,TName,TId,"code");
     };
 
-
     TName.onclick=function () {//绑定点击事件
         autoInfomation(TName,TCode,TId,"name");
     };
-
-
 
     /**
      * price
@@ -197,14 +183,12 @@ function addElement(){
     TButton.style.padding= '0';
     TButton.text=Element_index;
     TButton.value="Remove";
-    TButton.name="delButton";
-    TButton.id="delButton";
+    TButton.name="del";
+    TButton.id="del";
     TButton.onclick=function () {//绑定点击事件
         // var delId = "div"+Element_index;
         delButton(div.id);
     };
-
-
 
     div.appendChild(TId);
     div.appendChild(TCode);
@@ -216,9 +200,6 @@ function addElement(){
     document.getElementById("tableDiv").appendChild(div);
     Element_index++;
 }
-
-
-
 
 /***
  * 删除一套产品信息按钮
@@ -233,7 +214,6 @@ function delButton(divId) {
     }
 
 }
-
 
 
 $("#form-quote-edit").validate({
@@ -265,7 +245,10 @@ $("#form-quote-edit").validate({
             number: true,
             min: 0.01,
         },
-
+        quoteDate:{
+            required:true,
+            dateISO:true
+        },
     },
 
 
@@ -279,8 +262,6 @@ $("#form-quote-edit").validate({
     }
 
 });
-
-
 
 function update() {
 
@@ -340,7 +321,7 @@ function update() {
 
                 if((inputs[j].id).indexOf("itemName") >=0){
                     if(inputs[j].value==""){
-                        $.modalAlert("itemName Label is empty", "error");
+                        $.modalAlert("item Name  is empty", "error");
                         return false;
                     }
                     quoteItem['body['+itemIndex+'].itemName']=inputs[j].value;
@@ -348,7 +329,7 @@ function update() {
                 }
                 if((inputs[j].id).indexOf("itemCode") >=0){
                     if(inputs[j].value==""){
-                        $.modalAlert("itemCode Label is empty", "error");
+                        $.modalAlert("item Code   is empty", "error");
                         return false;
                     }
                     quoteItem['body['+itemIndex+'].itemCode']=inputs[j].value;
@@ -374,10 +355,6 @@ function update() {
             }
 
         }
-
-
-
-
 
 
         $.ajax({
