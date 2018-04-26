@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.sales.sample.dao.ISampleDao">
+
+    <resultMap type="Sample" id="SampleResult">
+        <id     property="sampleId"        column="sample_id"       />
+        <result property="sampleDate"      column="sample_date"     />
+        <result property="customerId"      column="customer_id"     />
+        <result property="reminder"      column="reminder"     />
+        <result property="status"        column="status"        />
+        <result property="createBy"      column="create_by"     />
+        <result property="createTime"    column="create_time"   />
+        <result property="updateBy"      column="update_by"     />
+        <result property="updateTime"    column="update_time"   />
+        <result property="remark"        column="remark"        />
+        <result property="sampleBodyId"      column="sample_body_id"     />
+        <result property="itemCode"      column="item_code"     />
+        <result property="price"      column="price"     />
+        <result property="quantity"      column="quantity"     />
+        <result property="itemName"      column="item_name"     />
+        <result property="customerName"      column="customer_name"     />
+    </resultMap>
+
+    <select id="selectSampleList" parameterType="Sample" resultMap="SampleResult">
+
+        select * from (select i.*,b.sample_body_id,b.item_code,b.price,b.quantity,
+        (select v.customer_name from sale_customer v where v. customer_id = i. customer_id) as customer_name,
+        (select item_name from pro_production p where p.item_code = b.item_code and p.status=0 ) as item_name
+        from sale_sample i left join sale_sample_body b on i.sample_id = b.sample_id  where   i.status = 0
+        ) tt
+        <where>
+            <if test="searchValue != null and searchValue != ''">
+                tt.item_name like CONCAT('%',#{searchValue},'%' )
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insertSample" parameterType="Sample" useGeneratedKeys="true" keyProperty="sampleId">
+    insert into sale_sample(
+        <if test="sampleDate != null ">sample_date,</if>
+        <if test="customerId != null ">customer_id,</if>
+        <if test="reminder != null ">reminder,</if>
+        <if test="createBy != null ">create_by,</if>
+        <if test="remark != null ">remark,</if>
+        create_time
+        )values(
+        <if test="sampleDate != null ">#{sampleDate},</if>
+        <if test="customerId != null ">#{customerId},</if>
+        <if test="reminder != null ">#{reminder},</if>
+        <if test="createBy != null ">#{createBy},</if>
+        <if test="remark != null ">#{remark},</if>
+        sysdate()
+        )
+
+    	</insert>
+
+
+    <select id="selectSampleById" parameterType="Long" resultMap="SampleResult">
+            SELECT *
+            FROM sale_sample, sale_customer
+            WHERE sale_sample.customer_id = sale_customer.customer_id and  sample_id=#{sampleId}
+        </select>
+
+    <update id="deleteSampleById" parameterType="Long">
+        update   sale_sample set status="1"  where sample_id=#{sampleId}
+	</update>
+
+    <update id="updateSample" parameterType="Sample">
+        update sale_sample
+        <set>
+            <if test="customerId != null">customer_id = #{customerId},</if>
+            <if test="reminder != null ">reminder = #{reminder},</if>
+            <if test="sampleDate != null ">sample_date = #{sampleDate},</if>
+            <if test="remark != null and remark != ''">remark = #{remark},</if>
+            update_by = #{updateBy},
+            update_time = sysdate()
+        </set>
+          where  sample_id=#{sampleId}
+    </update>
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.sales.sample.dao.ISampleBodyDao">
+
+    <resultMap type="SampleBody" id="SampleBodyResult">
+        <id     property="sampleBodyId"        column="sample_body_id"   />
+        <result property="sampleId"      column="sample_id"     />
+        <result property="itemCode"      column="item_code"     />
+        <result property="price"      column="price" />
+        <result property="quantity"      column="quantity"     />
+        <result property="itemName"      column="item_name"     />
+    </resultMap>
+
+
+
+
+    <insert id="batchSampleBody">
+        insert into sale_sample_body(sample_id, item_code,price,quantity) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            (#{item.sampleId},#{item.itemCode},#{item.price},#{item.quantity})
+        </foreach>
+    </insert>
+
+    <delete id="deleteSampleBodyById" parameterType="Long">
+		delete from sale_sample_body where sample_body_id = #{sampleBodyId}
+ 	</delete>
+
+    <select id="checkSampleUsed" parameterType="Long" resultType="int">
+		select count(*) from sale_sample_body  where  sample_id=#{sampleId}
+	</select>
+
+    <!--<select id="checkSampleUsed" parameterType="Long" resultType="int">-->
+		<!--select count(*) from sale_sample_body  where  sample_id=#{sampleId}-->
+	<!--</select>-->
+
+    <select id="selectBodyBySampleId" parameterType="Long" resultMap="SampleBodyResult">
+		select sale_sample_body.* ,pro_production.item_name
+        from sale_sample_body,pro_production
+        where sale_sample_body.item_code =pro_production.item_code and sample_id=#{sampleId}
+	</select>
+
+
+    <update id="batchDeleteSampleBody" parameterType="String">
+        delete from sale_sample_body where sample_body_id in
+        <foreach collection="array" item="sampleBodyId" open="(" separator="," close=")">
+            #{sampleBodyId}
+        </foreach>
+    </update>
+
+
+    <delete id="batchDeleteSampleBodyOnType" parameterType="java.util.HashMap">
+        delete from sale_sample_body where sample_id=#{sampleId} and sample_body_id  not in
+        <foreach collection="ids" item="sampleBodyId" open="(" separator="," close=")">
+            #{sampleBodyId}
+        </foreach>
+    </delete>
+
+
+
+    <update id="updateSampleBody" parameterType="SampleBody">
+        update sale_sample_body
+        <set>
+            <if test="itemCode != null ">item_code = #{itemCode},</if>
+            <if test="price != null ">price = #{price},</if>
+            <if test="quantity != null ">quantity = #{quantity}</if>
+        </set>
+        where sample_body_id = #{sampleBodyId}
+    </update>
+
+</mapper>

@@ -22,7 +22,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/sales/quote")
-public class quoteController extends BaseController {
+public class QuoteController extends BaseController {
     private String prefix = "/sales/quote";
 
     @Autowired

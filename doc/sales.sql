@@ -6,6 +6,7 @@ insert into sys_menu values('100', 'Sales Management', '0', '30', '#', 'M', '0',
 -- 二级菜单
 insert into sys_menu values('110',   'Customer', '100', '1', '/sales/customer',        'C', '0', 'sales:customer:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Customer');
 insert into sys_menu values('120',   'Quote', '100', '2', '/sales/quote',        'C', '0', 'sales:quote:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Quote');
+insert into sys_menu values('130',   'Sample', '100', '2', '/sales/sample',        'C', '0', 'sales:sample:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Sample');
 
 
 -- 用户按钮
@@ -23,6 +24,16 @@ insert into sys_menu values('123', 'saveQuote', '120', '4',  '#',  'F', '0', 'sa
 insert into sys_menu values('124', 'queryQuote', '120', '1',  '#',  'F', '0', 'sales:quote:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('125', 'removeQuote', '120', '5',  '#',  'F', '0', 'sales:quote:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('126', 'editQuote', '120', '6',  '#',  'F', '0', 'sales:quote:edit',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+
+
+
+
+insert into sys_menu values('131', 'addSample', '130', '2',  '#',  'F', '0', 'sales:sample:add',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('132', 'deleteSample', '130', '3',  '#',  'F', '0', 'sales:sample:batchRemove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('133', 'saveSample', '130', '4',  '#',  'F', '0', 'sales:sample:save',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('134', 'querySample', '130', '1',  '#',  'F', '0', 'sales:sample:list',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('135', 'removeSample', '130', '5',  '#',  'F', '0', 'sales:sample:remove',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('136', 'editSample', '130', '6',  '#',  'F', '0', 'sales:sample:edit',   '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- 将按钮权限赋予role
 insert into sys_role_menu values ('1', '100');
@@ -42,6 +53,15 @@ insert into sys_role_menu values ('1', '124');
 insert into sys_role_menu values ('1', '125');
 insert into sys_role_menu values ('1', '126');
 
+
+
+insert into sys_role_menu values ('1', '130');
+insert into sys_role_menu values ('1', '131');
+insert into sys_role_menu values ('1', '132');
+insert into sys_role_menu values ('1', '133');
+insert into sys_role_menu values ('1', '134');
+insert into sys_role_menu values ('1', '135');
+insert into sys_role_menu values ('1', '136');
 /*
 Navicat MySQL Data Transfer
 
@@ -109,7 +129,7 @@ drop table if exists sale_quote;
 create table sale_quote
 (
     quote_id       int(11)      not null auto_increment    comment 'Quote ID',
-    quote_date     timestamp    not null                   comment 'Quote Date',
+    quote_date     varchar(10) DEFAULT NULL                comment 'Quote Date',
 	customer_id        int(11)      not null                   comment 'Customer Id',
 	reminder         int(10)      default 3                  comment 'Reminder',
 	status        int(1)           default 0                   comment '状态（0正常 1停用）',
@@ -137,3 +157,80 @@ create table sale_quote_body
 
 
 
+
+INSERT INTO `sale_quote` VALUES ('1', '2018-04-19 15:34:41', '3', '21', '0', 'admin', '2018-04-18 16:52:21', '', '2018-04-18 16:52:21', 'ad');
+INSERT INTO `sale_quote` VALUES ('2', '2018-04-18 17:04:57', '1', '12', '0', 'admin', '2018-04-18 16:53:28', '', '2018-04-18 16:53:28', '12');
+INSERT INTO `sale_quote` VALUES ('19', '2018-04-23 00:00:00', '22', '1', '0', 'admin', '2018-04-23 21:42:42', '', '2018-04-23 21:42:42', 'as');
+INSERT INTO `sale_quote` VALUES ('21', '2018-04-24 14:44:55', '1', '3', '1', 'admin', '2018-04-24 13:46:43', '', '2018-04-24 13:46:43', '');
+INSERT INTO `sale_quote` VALUES ('22', '2018-04-24 00:00:00', '23', '3', '0', 'admin', '2018-04-24 09:24:57', '', '2018-04-24 09:24:57', '12');
+INSERT INTO `sale_quote` VALUES ('23', '2018-04-24 14:49:27', '22', '3', '1', 'admin', '2018-04-24 14:49:08', '', '2018-04-24 14:49:08', '123');
+INSERT INTO `sale_quote` VALUES ('24', '2018-04-24 00:00:00', '22', '3', '0', 'admin', '2018-04-24 17:07:47', '', '2018-04-24 17:07:47', 'aaa');
+
+
+INSERT INTO `sale_quote_body` VALUES ('1', '1', 'ASP101', '12.00', '121.000');
+INSERT INTO `sale_quote_body` VALUES ('2', '2', 'EE101', '1212.00', '11.000');
+INSERT INTO `sale_quote_body` VALUES ('8', '19', 'ASP101', '1.00', '1.000');
+INSERT INTO `sale_quote_body` VALUES ('9', '19', 'EE101', '1.00', '1.000');
+INSERT INTO `sale_quote_body` VALUES ('14', '22', 'DeE101', '2.00', '1.000');
+INSERT INTO `sale_quote_body` VALUES ('15', '22', 'EE101', '3.00', '2.000');
+INSERT INTO `sale_quote_body` VALUES ('18', '24', 'DeE101', '1.00', '2.000');
+INSERT INTO `sale_quote_body` VALUES ('19', '24', 'EE(GW41(41)', '4.00', '3.000');
+
+
+
+
+
+-- ----------------------------
+-- sample table
+-- ----------------------------
+
+drop table if exists sale_sample;
+create table sale_sample
+(
+    sample_id       int(11)      not null auto_increment    comment 'Sample ID',
+    sample_date    varchar(10)  DEFAULT NULL                  comment 'Sample Date',
+	customer_id        int(11)      not null                   comment 'Customer Id',
+	reminder         int(10)      default 3                  comment 'Reminder',
+	status        int(1)           default 0                   comment '状态（0正常 1停用）',
+    create_by     varchar(64)     default ''                 comment '创建者',
+    create_time   timestamp       default current_timestamp  comment '创建时间',
+    update_by     varchar(64) 	  default ''			     comment '更新者',
+	update_time   timestamp       default current_timestamp  comment '更新时间',
+    remark 		  varchar(500) 	  default '' 				 comment '备注',
+	primary key (sample_id)
+) engine=innodb default charset=utf8;
+
+-- ----------------------------
+-- 220、询价子表
+-- ----------------------------
+drop table if exists sale_sample_body;
+create table sale_sample_body
+(
+    sample_body_id       int(11)      not null auto_increment    comment 'Sample body ID',
+	sample_id     varchar(32)  not null                   comment 'Sample uuid',
+	item_code     varchar(20)     not null                       comment 'Item Code',
+	price     	  float(10,2)     not null                   comment 'Price',
+	quantity      float(10,3)     not null                   comment 'Quantity',
+	primary key (sample_body_id)
+) engine=innodb default charset=utf8;
+
+
+
+
+INSERT INTO `sale_sample` VALUES ('1', '2018-04-19 15:34:41', '3', '21', '0', 'admin', '2018-04-18 16:52:21', '', '2018-04-18 16:52:21', 'ad');
+INSERT INTO `sale_sample` VALUES ('2', '2018-04-18 17:04:57', '1', '12', '0', 'admin', '2018-04-18 16:53:28', '', '2018-04-18 16:53:28', '12');
+INSERT INTO `sale_sample` VALUES ('19', '2018-04-23 00:00:00', '22', '1', '0', 'admin', '2018-04-23 21:42:42', '', '2018-04-23 21:42:42', 'as');
+INSERT INTO `sale_sample` VALUES ('21', '2018-04-24 14:44:55', '1', '3', '1', 'admin', '2018-04-24 13:46:43', '', '2018-04-24 13:46:43', '');
+INSERT INTO `sale_sample` VALUES ('22', '2018-04-24 00:00:00', '23', '3', '0', 'admin', '2018-04-24 09:24:57', '', '2018-04-24 09:24:57', '12');
+INSERT INTO `sale_sample` VALUES ('23', '2018-04-24 14:49:27', '22', '3', '1', 'admin', '2018-04-24 14:49:08', '', '2018-04-24 14:49:08', '123');
+INSERT INTO `sale_sample` VALUES ('24', '2018-04-24 00:00:00', '22', '3', '0', 'admin', '2018-04-24 17:07:47', '', '2018-04-24 17:07:47', 'aaa');
+
+
+INSERT INTO `sale_sample_body` VALUES ('1', '1', 'ASP101', '12.00', '121.000');
+INSERT INTO `sale_sample_body` VALUES ('2', '2', 'EE101', '1212.00', '11.000');
+INSERT INTO `sale_sample_body` VALUES ('8', '19', 'ASP101', '1.00', '1.000');
+INSERT INTO `sale_sample_body` VALUES ('9', '19', 'EE101', '1.00', '1.000');
+INSERT INTO `sale_sample_body` VALUES ('14', '22', 'DeE101', '2.00', '1.000');
+INSERT INTO `sale_sample_body` VALUES ('15', '22', 'EE101', '3.00', '2.000');
+INSERT INTO `sale_sample_body` VALUES ('18', '24', 'DeE101', '1.00', '2.000');
+INSERT INTO `sale_sample_body` VALUES ('19', '24', 'EE(GW41(41)', '4.00', '3.000');
