@@ -48,10 +48,10 @@
         from inv_inventory i left join pro_production p on p.item_code = i.item_code
         left join pur_vendor v on v.vendor_id = i.vendor_id
         left join sale_customer c on c.customer_id = i.customer_id
-        where i.status = 0
         <where>
+            i.status = 0
             <if test="searchValue != null and searchValue != ''">
-                AND i.item_code = #{searchValue}
+                AND (i.item_code like CONCAT('%',#{searchValue},'%' ) or i.batch like CONCAT('%',#{searchValue},'%' ) or p.item_name like CONCAT('%',#{searchValue},'%' ))
             </if>
         </where>
     </select>

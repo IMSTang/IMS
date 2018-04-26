@@ -193,8 +193,9 @@ insert into sys_menu values('45', '批量删除', '8', '4',  '#',  'F', '0', 'sy
 insert into sys_menu values('46', '字典查询', '10', '1', '#',  'F', '0', 'system:dict:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('47', '字典新增', '10', '2', '#',  'F', '0', 'system:dict:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('48', '字典修改', '10', '3', '#',  'F', '0', 'system:dict:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('49', '批量删除', '10', '4', '#',  'F', '0', 'system:dict:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('49', '批量删除', '10', '6', '#',  'F', '0', 'system:dict:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('50', '字典保存', '10', '5', '#',  'F', '0', 'system:dict:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('71', '字典删除', '10', '4', '#',  'F', '0', 'system:dict:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 -- 字典Data按钮
 insert into sys_menu values('66', '字典查询', '16', '1', '#',  'F', '0', 'system:dictdata:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');

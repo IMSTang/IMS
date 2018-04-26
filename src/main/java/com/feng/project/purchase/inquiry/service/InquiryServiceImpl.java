@@ -82,6 +82,12 @@ public class InquiryServiceImpl implements  IInquiryService{
                 if(StringUtils.isNotNull(inquiryBodyId)){
                     count = inquiryBodyDao.updateInquiryBody(inquiryBody);
                 }
+                else {
+                    List<InquiryBody> list1 = new ArrayList<InquiryBody>();
+                    inquiryBody.setInquiryId(inquiryId);
+                    list1.add(inquiryBody);
+                    count = inquiryBodyDao.batchInquiryBody(list1);
+                }
             }
         }else {
             //insert
