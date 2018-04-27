@@ -7,6 +7,11 @@ import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.purchase.vendor.domain.Vendor;
 import com.feng.project.purchase.vendor.domain.VendorIdName;
 import com.feng.project.purchase.vendor.service.IVendorService;
+import com.feng.project.system.dict.domain.DictData;
+import com.feng.project.system.dict.domain.SelectedDictData;
+import com.feng.project.system.dict.service.IDictDataService;
+import com.feng.project.system.dict.service.IDictTypeService;
+import com.feng.project.system.dict.domain.DictType;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +36,12 @@ public class VendorController extends BaseController
 
     @Autowired
     private IVendorService vendorService;
+
+    @Autowired
+    private IDictDataService dictDataService;
+
+    @Autowired
+    private IDictTypeService dictTypeService;
 
     @RequiresPermissions("purchase:vendor:view")
     @GetMapping()
@@ -115,6 +127,17 @@ public class VendorController extends BaseController
     @GetMapping("/add")
     public String add(Model model)
     {
+        DictType dictType = dictTypeService.selectDictTypeByType("ProductCategory");
+        List<DictData> dictDataCategory = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+        List<SelectedDictData> listProductCategory = new ArrayList<SelectedDictData>();
+        for(DictData cate: dictDataCategory)
+        {
+            SelectedDictData data1 = new SelectedDictData();
+            data1.setDictLabel(cate.getDictLabel());
+            data1.setDictValue(cate.getDictValue());
+            listProductCategory.add(data1);
+        }
+        model.addAttribute("listProductCategory", listProductCategory);
         return prefix + "/add";
     }
 
@@ -126,7 +149,26 @@ public class VendorController extends BaseController
     public String edit(@PathVariable("vendorId") Long vendorId, Model model)
     {
         Vendor vendor = vendorService.selectVendorById(vendorId);
+        String productCategory = vendor.getProductCategory();
+        String[] arrayProductCategory = productCategory.split(",");
+        DictType dictType = dictTypeService.selectDictTypeByType("ProductCategory");
+        List<DictData> dictDataCategory = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+        List<SelectedDictData> listProductCategory = new ArrayList<SelectedDictData>();
+        for(DictData cate: dictDataCategory)
+        {
+            SelectedDictData data1 = new SelectedDictData();
+            data1.setDictLabel(cate.getDictLabel());
+            data1.setDictValue(cate.getDictValue());
+            for(String strCate: arrayProductCategory){
+                if(data1.getDictLabel().equals(strCate)){
+                    data1.setFlag(true);
+                    break;
+                }
+            }
+            listProductCategory.add(data1);
+        }
         model.addAttribute("vendor", vendor);
+        model.addAttribute("listProductCategory", listProductCategory);
         return prefix + "/edit";
     }
 

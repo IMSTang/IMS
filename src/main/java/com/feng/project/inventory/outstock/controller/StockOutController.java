@@ -3,8 +3,6 @@ package com.feng.project.inventory.outstock.controller;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.page.TableDataInfo;
-import com.feng.project.inventory.instock.domain.StockIn;
-import com.feng.project.inventory.instock.service.IStockInService;
 import com.feng.project.inventory.outstock.domain.Inventory;
 import com.feng.project.inventory.outstock.domain.StockOut;
 import com.feng.project.inventory.outstock.service.IStockOutService;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
-import com.feng.framework.web.page.TableDataInfo;
 
 import java.util.List;
 
@@ -46,17 +43,21 @@ import java.util.List;
             return getDataTable(stockOutList);
         }
 
-
-        /*
         @Log(title = "Inventory Management", action = "Inventory - outStock")
         @RequiresPermissions("inventory:outStock:add")
         @GetMapping("/add")
         public  String  add(Model model){
             return prefix +"/add";
         }
-*/
 
-
+        @RequiresPermissions("inventory:outStock:detail")
+        @GetMapping("/detail/{sn}")
+        public String detail(@PathVariable("sn") Long sn, Model model)
+        {
+            StockOut stockOut = stockOutService.selectStockOutById(sn);
+            model.addAttribute("stockOut", stockOut);
+            return prefix + "/detail";
+        }
 
         @RequiresPermissions("inventory:outStock:save")
         @Log(title = "Inventory Management", action = "Inventory - save outStock")

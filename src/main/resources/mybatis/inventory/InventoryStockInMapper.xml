@@ -21,8 +21,22 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
+        <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
     </resultMap>
 
+    <resultMap id="prodResult" type="Production">
+        <id     property="productionId"   column="production_id" />
+        <result property="itemCode" column="item_code" />
+        <result property="itemName" column="item_name"     />
+        <result property="itemNameCn" column="item_name_cn"     />
+        <result property="specification" column="specification" />
+    </resultMap>
+
+    <resultMap id="vendorResult" type="Vendor">
+        <id     property="vendorId"   column="vendor_id" />
+        <result property="vendorName" column="vendor_name" />
+    </resultMap>
 
 
     <sql id="Base_Column_List" >
@@ -33,20 +47,25 @@
 
 
 
-    <select id="selectStockInList" parameterType="com.feng.project.inventory.instock.domain.StockIn"
-            resultMap="BaseResultMap">
-        SELECT *  FROM  inv_inventory_in
+    <select id="selectStockInList" parameterType="com.feng.project.inventory.instock.domain.StockIn" resultMap="BaseResultMap">
+        select i.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name
+        from inv_inventory_in i left join pro_production p on p.item_code = i.item_code
+        left join pur_vendor v on v.vendor_id = i.vendor_id
         <where>
-            status = 0
+            i.status = 0
             <if test="searchValue != null and searchValue != ''">
-                AND (
-                (batch like CONCAT('%',#{searchValue},'%' ) )
-                OR (item_code like CONCAT('%',#{searchValue},'%' ) )
-                OR (position like CONCAT('%',#{searchValue},'%' ) )
-                )
+                AND (i.item_code like CONCAT('%',#{searchValue},'%' ) or i.batch like CONCAT('%',#{searchValue},'%' )
+                or p.item_name like CONCAT('%',#{searchValue},'%' ) or i.position = #{searchValue})
             </if>
         </where>
     </select>
+
+    <select id="selectStockInById" parameterType="Long" resultMap="BaseResultMap">
+		select i.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name
+        from inv_inventory_in i left join pro_production p on p.item_code = i.item_code
+        left join pur_vendor v on v.vendor_id = i.vendor_id
+        where i.status = 0 and i.sn = #{sn}
+	</select>
 
     <parameterMap type="java.util.HashMap" id="inStockParams">
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"

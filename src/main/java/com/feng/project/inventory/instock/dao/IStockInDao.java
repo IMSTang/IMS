@@ -16,6 +16,13 @@ public interface IStockInDao {
 
     public int spStockInRemove(Map<String, Object> paramsMap);
 
+    /**
+     * 查询入库单详细
+     *
+     * @param sn
+     * @return 入库单对象
+     */
+    public StockIn selectStockInById(Long sn);
 
     /*
     public List<Production> selectProductionAll(Production production);

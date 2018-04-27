@@ -7,6 +7,11 @@ import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.purchase.demand.domain.Demand;
 import com.feng.project.purchase.demand.service.IDemandService;
+import com.feng.project.system.dict.domain.DictData;
+import com.feng.project.system.dict.domain.DictType;
+import com.feng.project.system.dict.domain.SelectedDictData;
+import com.feng.project.system.dict.service.IDictDataService;
+import com.feng.project.system.dict.service.IDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,6 +36,12 @@ public class DemandController extends BaseController
 
     @Autowired
     private IDemandService demandService;
+
+    @Autowired
+    private IDictDataService dictDataService;
+
+    @Autowired
+    private IDictTypeService dictTypeService;
 
     @RequiresPermissions("purchase:demand:view")
     @GetMapping()
@@ -90,6 +102,18 @@ public class DemandController extends BaseController
     @GetMapping("/add")
     public String add(Model model)
     {
+        DictType dictType = dictTypeService.selectDictTypeByType("UrgencyDegree");
+        List<DictData> dictDataDegree = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+        List<SelectedDictData> listUrgencyDegree = new ArrayList<SelectedDictData>();
+        for(DictData cate: dictDataDegree)
+        {
+            SelectedDictData data1 = new SelectedDictData();
+            data1.setDictLabel(cate.getDictLabel());
+            data1.setDictValue(cate.getDictValue());
+            listUrgencyDegree.add(data1);
+        }
+        model.addAttribute("listUrgencyDegree", listUrgencyDegree);
+
         String date_today = DateUtils.dateTimeStr().substring(0,10);
         model.addAttribute("today", date_today);
         return prefix + "/add";
@@ -103,6 +127,23 @@ public class DemandController extends BaseController
     public String edit(@PathVariable("demandId") Long demandId, Model model)
     {
         Demand demand = demandService.selectDemandById(demandId);
+
+        String urgencyDegree = demand.getUrgencyDegree();
+        DictType dictType = dictTypeService.selectDictTypeByType("UrgencyDegree");
+        List<DictData> dictDataCategory = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+        List<SelectedDictData> listUrgencyDegree = new ArrayList<SelectedDictData>();
+        for(DictData cate: dictDataCategory)
+        {
+            SelectedDictData data1 = new SelectedDictData();
+            data1.setDictLabel(cate.getDictLabel());
+            data1.setDictValue(cate.getDictValue());
+
+            if(data1.getDictLabel().equals(urgencyDegree)){
+                data1.setFlag(true);
+            }
+            listUrgencyDegree.add(data1);
+        }
+        model.addAttribute("listUrgencyDegree", listUrgencyDegree);
         model.addAttribute("demand", demand);
         return prefix + "/edit";
     }

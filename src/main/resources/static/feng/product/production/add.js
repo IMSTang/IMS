@@ -19,6 +19,7 @@ $("#form-production-add").validate({
             }
 		},
         safetyStock:{
+            required:true,
             digits : true,
         }
 	},

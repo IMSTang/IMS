@@ -50,8 +50,19 @@ public class DictTypeServiceImpl implements IDictTypeService
     @Override
     public DictType selectDictTypeById(Long dictId)
     {
-
         return dictTypeDao.selectDictTypeById(dictId);
+    }
+
+    /**
+     * 根据字典类型Type查询信息
+     *
+     * @param dictType 字典类型Type
+     * @return 字典类型
+     */
+    @Override
+    public DictType selectDictTypeByType(String dictType)
+    {
+        return dictTypeDao.selectDictTypeByType(dictType);
     }
 
     /**

@@ -27,6 +27,14 @@ public interface IDictTypeService
     public DictType selectDictTypeById(Long dictId);
 
     /**
+     * 根据字典类型Type查询信息
+     *
+     * @param dictType 字典类型Type
+     * @return 字典类型
+     */
+    public DictType selectDictTypeByType(String dictType);
+
+    /**
      * 删除字典类型
      *
      * @param dictId 需要删除的数据

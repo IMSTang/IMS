@@ -5,6 +5,7 @@ $("#form-vendor-edit").validate({
         },
         mainMail:{
             required:true,
+            email:true
         },
 	},
 	submitHandler:function(form){
@@ -14,7 +15,7 @@ $("#form-vendor-edit").validate({
 
 function edit() {
 	var vendorId = $("input[name='vendorId']").val();
-    var productCategory = $("input[name='productCategory']").val();
+    var productCategory = $("#productCategory").val() + "";
     var vendorName = $("input[name='vendorName']").val();
     var firstName = $("input[name='firstName']").val();
     var lastName = $("input[name='lastName']").val();
@@ -29,7 +30,7 @@ function edit() {
     var ccMail = $("input[name='ccMail']").val();
     var addressShipFrom = $("input[name='addressShipFrom']").val();
     var addressBillFrom = $("input[name='addressBillFrom']").val();
-    var remark = $("input[name='remark']").val();
+    var remark = $("#remark").val();
 	$.ajax({
 		cache : true,
 		type : "POST",

@@ -1,5 +1,7 @@
 package com.feng.project.inventory.instock.domain;
 import com.feng.framework.web.page.PageDomain;
+import com.feng.project.product.production.domain.Production;
+import com.feng.project.purchase.vendor.domain.Vendor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -27,6 +29,10 @@ public class StockIn  extends PageDomain {
         private String remark;
         private String attachmentName;
         private String attachment;
+        /** 产品对象 */
+        private Production production;
+        /** Vendor对象 */
+        private Vendor vendor;
 
         public int getSn() {
                 return sn;

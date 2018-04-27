@@ -33,7 +33,7 @@ $("#form-vendor-add").validate({
 
 function add() {
 	var vendorName = $("input[name='vendorName']").val();
-    var productCategory = $("input[name='productCategory']").val();
+    var productCategory = $("#productCategory").val() + "";
     var firstName = $("input[name='firstName']").val();
 	var lastName = $("input[name='lastName']").val();
     var middleName = $("input[name='middleName']").val();
@@ -47,7 +47,7 @@ function add() {
     var ccMail = $("input[name='ccMail']").val();
     var addressShipFrom = $("input[name='addressShipFrom']").val();
     var addressBillFrom = $("input[name='addressBillFrom']").val();
-	var remark = $("input[name='remark']").val();
+	var remark = $("#remark").val();
 	$.ajax({
 		cache : true,
 		type : "POST",

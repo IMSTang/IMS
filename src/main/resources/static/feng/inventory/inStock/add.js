@@ -123,7 +123,7 @@ $("#vendorName").autocomplete({
             url: "/purchase/vendor/search_name",
             type: "get",
             dataType: "json",
-            data: {"inputStr":  $("input[name='vendorName']").val() },
+            data: {"searchValue":  $("input[name='vendorName']").val() },
 
             success: function (data) {
 
@@ -164,7 +164,7 @@ var quantity  = $("input[name='quantity']").val();
 var irradiation  = $("input[name='irradiation']").val(); 
 var tpc  = $("input[name='tpc']").val(); 
 var vendorId  = $("input[name='vendorId']").val();
-var remark  = $("input[name='remark']").val(); 
+var remark  = $("#remark").val();
 var status  = $("input[name='status']").val(); 
 var stockInDate  = $("input[name='stockInDate']").val(); 
 var createBy  = $("input[name='createBy']").val(); 

@@ -1,5 +1,6 @@
 package com.feng.project.inventory.outstock.dao;
 
+import com.feng.project.inventory.instock.domain.StockIn;
 import com.feng.project.inventory.outstock.domain.Inventory;
 import com.feng.project.inventory.outstock.domain.StockOut;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,6 +19,15 @@ public interface IStockOutDao {
     public int spStockOutRemove(Map<String, Object> paramsMap);
 
     public Inventory selectInventoryByInStockId(int id);
+
+    /**
+     * 查询出库单详细
+     *
+     * @param sn
+     * @return 出库单对象
+     */
+    public StockOut selectStockOutById(Long sn);
+
 
     /*
     public List<Production> selectProductionAll(Production production);

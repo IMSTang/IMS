@@ -12,6 +12,7 @@ insert into sys_menu values('412', 'Add', '410', '2',  '#',  'F', '0', 'inventor
 insert into sys_menu values('413', 'Edit', '410', '3',  '#',  'F', '0', 'inventory:inStock:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('414', 'Remove', '410', '4',  '#',  'F', '0', 'inventory:inStock:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('415', 'Save', '410', '5',  '#',  'F', '0', 'inventory:inStock:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('416', 'Detail', '410', '3',  '#',  'F', '0', 'inventory:inStock:detail',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 insert into sys_menu values('421', 'Query', '420', '1',  '#',  'F', '0', 'inventory:outStock:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('422', 'Add', '420', '2',  '#',  'F', '0', 'inventory:outStock:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');

@@ -31,6 +31,14 @@ public interface IDictTypeDao
     public DictType selectDictTypeById(Long dictId);
 
     /**
+     * 根据字典类型Type查询信息
+     *
+     * @param dictType 字典类型Type
+     * @return 字典类型
+     */
+    public DictType selectDictTypeByType(String dictType);
+
+    /**
      * 根据字典类型ID 删除信息
      *
      * @param dictId 字典类型ID

@@ -31,6 +31,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from sys_dict_type
 		where dict_id = #{dictId} and (status=0 or status=1)
 	</select>
+
+	<select id="selectDictTypeByType" parameterType="String" resultMap="DictTypeResult">
+		select  *
+		from sys_dict_type
+		where dict_type = #{dictType} and status=0
+	</select>
 	
 	<select id="checkDictTypeUnique" parameterType="String" resultMap="DictTypeResult">
 		select  *

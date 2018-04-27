@@ -11,6 +11,8 @@
 		}
 	</style>
 </head>
+<link href="/ajax/libs/select/select2.css" rel="stylesheet">
+<link href="/feng/css/feng.css?v=1.0.8" rel="stylesheet"/>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
 		<form class="form-horizontal m" id="form-demand-add">
@@ -63,7 +65,11 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Urgency Degree:</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="urgencyDegree" id="urgencyDegree">
+					<select id="urgencyDegree" name="urgencyDegree" class="form-control select2-hidden-accessible">
+						<option value="">--Urgency or not--</option>
+						<option th:each="cate:${listUrgencyDegree}" th:value="${cate.dictLabel}" th:text="${cate.dictLabel}"></option>
+					</select>
+					<!--<input class="form-control" type="text" name="urgencyDegree" id="urgencyDegree">-->
 				</div>
 				<!--<label class="col-sm-2 control-label">Create By:</label>-->
 				<!--<div class="col-sm-3">-->
@@ -88,7 +94,7 @@
 	<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
 	<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
 	<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
-	<script type="text/javascript" src="/feng/purchase/demand/add.js">
-	</script>
+	<script type="text/javascript" src="/feng/purchase/demand/add.js"></script>
+	<script src="/ajax/libs/select/select2.js"></script>
 </body>
 </html>

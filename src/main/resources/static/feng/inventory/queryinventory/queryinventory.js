@@ -17,6 +17,10 @@ $(function() {
             title: 'Item Name'
         },
         {
+            field: 'production.itemNameCn',
+            title: 'Item Name CN'
+        },
+        {
             field: 'batch',
             title: 'Batch'
         },
@@ -54,7 +58,7 @@ $(function() {
 	$.initTable(columns, url);
 });
 
-/*操作日志-详细*/
+/*库存-详细*/
 function detail(id) {
     var url = prefix + '/detail/' + id;
     layer_show("Inventory Detail", url, '800', '500');

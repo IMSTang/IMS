@@ -23,13 +23,13 @@
         <result column="remark" jdbcType="VARCHAR" property="remark" />
         <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
         <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
-        <association property="customer"  column="customer_id" javaType="Customer" resultMap="customerResult"/>
     </resultMap>
 
     <resultMap id="prodResult" type="Production">
         <id     property="productionId"   column="production_id" />
         <result property="itemCode" column="item_code" />
         <result property="itemName" column="item_name"     />
+        <result property="itemNameCn" column="item_name_cn"     />
         <result property="specification" column="specification" />
     </resultMap>
 
@@ -38,29 +38,29 @@
         <result property="vendorName" column="vendor_name" />
     </resultMap>
 
-    <resultMap id="customerResult" type="Customer">
-        <id     property="customerId"   column="customer_id" />
-        <result property="customerName" column="customer_name" />
-    </resultMap>
+    <!--<association property="customer"  column="customer_id" javaType="Customer" resultMap="customerResult"/>-->
+    <!--<resultMap id="customerResult" type="Customer">-->
+        <!--<id     property="customerId"   column="customer_id" />-->
+        <!--<result property="customerName" column="customer_name" />-->
+    <!--</resultMap>-->
 
     <select id="selectQueryInventoryList" parameterType="QueryInventory" resultMap="QueryInventoryResult">
-        select i.* , p.production_id, p.item_code, p.item_name, p.specification , v.vendor_name, c.customer_name
+        select i.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name
         from inv_inventory i left join pro_production p on p.item_code = i.item_code
         left join pur_vendor v on v.vendor_id = i.vendor_id
-        left join sale_customer c on c.customer_id = i.customer_id
         <where>
             i.status = 0
             <if test="searchValue != null and searchValue != ''">
-                AND (i.item_code like CONCAT('%',#{searchValue},'%' ) or i.batch like CONCAT('%',#{searchValue},'%' ) or p.item_name like CONCAT('%',#{searchValue},'%' ))
+                AND (i.item_code like CONCAT('%',#{searchValue},'%' ) or i.batch like CONCAT('%',#{searchValue},'%' )
+                  or p.item_name like CONCAT('%',#{searchValue},'%' ) or p.item_name_cn like CONCAT('%',#{searchValue},'%' ))
             </if>
         </where>
     </select>
 
     <select id="selectQueryInventoryById" parameterType="Long" resultMap="QueryInventoryResult">
-		select i.* , p.production_id, p.item_code, p.item_name, p.specification , v.vendor_name, c.customer_name
+		select i.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name
         from inv_inventory i left join pro_production p on p.item_code = i.item_code
         left join pur_vendor v on v.vendor_id = i.vendor_id
-        left join sale_customer c on c.customer_id = i.customer_id
         where i.status = 0 and sn = #{sn}
 	</select>
 

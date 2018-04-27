@@ -14,6 +14,8 @@ public interface IStockOutService {
 
     public List<StockOut> selectStockOutList(StockOut stockout);
 
+    public StockOut selectStockOutById(Long sn);
+
     public void spStockOut(StockOut stockout);
 
     public void spStockOutRemove(int sn);

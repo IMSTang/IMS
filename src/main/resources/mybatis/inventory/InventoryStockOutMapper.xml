@@ -21,6 +21,9 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
+        <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
+        <association property="customer"  column="customer_id" javaType="Customer" resultMap="customerResult"/>
     </resultMap>
 
 
@@ -44,20 +47,24 @@
         <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
         <result column="remark" jdbcType="VARCHAR" property="remark" />
-        <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
-        <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
     </resultMap>
 
     <resultMap id="prodResult" type="Production">
         <id     property="productionId"   column="production_id" />
         <result property="itemCode" column="item_code" />
         <result property="itemName" column="item_name"     />
+        <result property="itemNameCn" column="item_name_cn"     />
         <result property="specification" column="specification" />
     </resultMap>
 
     <resultMap id="vendorResult" type="Vendor">
         <id     property="vendorId"   column="vendor_id" />
         <result property="vendorName" column="vendor_name" />
+    </resultMap>
+
+    <resultMap id="customerResult" type="Customer">
+    <id     property="customerId"   column="customer_id" />
+    <result property="customerName" column="customer_name" />
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -67,21 +74,27 @@
     </sql>
 
 
-
-    <select id="selectStockOutList" parameterType="com.feng.project.inventory.outstock.domain.StockOut"
-            resultMap="BaseResultMap">
-        SELECT *  FROM  inv_inventory_out
+    <select id="selectStockOutList" parameterType="com.feng.project.inventory.outstock.domain.StockOut" resultMap="BaseResultMap">
+        select o.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name, c.customer_name
+        from inv_inventory_out o left join pro_production p on p.item_code = o.item_code
+        left join pur_vendor v on v.vendor_id = o.vendor_id
+        left join sale_customer c on c.customer_id = o.customer_id
         <where>
-            status = 0
+            o.status = 0
             <if test="searchValue != null and searchValue != ''">
-                AND (
-                (batch like CONCAT('%',#{searchValue},'%' ) )
-                OR (item_code like CONCAT('%',#{searchValue},'%' ) )
-                OR (position like CONCAT('%',#{searchValue},'%' ) )
-                )
+                AND (o.item_code like CONCAT('%',#{searchValue},'%' ) or o.batch like CONCAT('%',#{searchValue},'%' )
+                or p.item_name like CONCAT('%',#{searchValue},'%' ) or p.item_name_cn like CONCAT('%',#{searchValue},'%' ) )
             </if>
         </where>
     </select>
+
+    <select id="selectStockOutById" parameterType="Long" resultMap="BaseResultMap">
+		select o.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name, c.customer_name
+        from inv_inventory_out o left join pro_production p on p.item_code = o.item_code
+        left join pur_vendor v on v.vendor_id = o.vendor_id
+        left join sale_customer c on c.customer_id = o.customer_id
+        where o.status = 0 and o.sn = #{sn}
+	</select>
 
     <parameterMap type="java.util.HashMap" id="outStockParams">
         <parameter property="sn" jdbcType="INTEGER" javaType="java.lang.Integer"

@@ -8,6 +8,7 @@ $("#form-production-edit").validate({
         },
 
         safetyStock:{
+            required:true,
             digits : true,
         }
 	},

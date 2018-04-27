@@ -1,5 +1,8 @@
 package com.feng.project.inventory.outstock.domain;
 import com.feng.framework.web.page.PageDomain;
+import com.feng.project.product.production.domain.Production;
+import com.feng.project.purchase.vendor.domain.Vendor;
+import com.feng.project.sales.customer.domain.Customer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -26,6 +29,12 @@ public class StockOut  extends PageDomain {
         private String updateTime;
         private String remark;
 
+        /** 产品对象 */
+        private Production production;
+        /** Vendor对象 */
+        private Vendor vendor;
+        /** Vendor对象 */
+        private Customer customer;
 
 
         public int getSn() {

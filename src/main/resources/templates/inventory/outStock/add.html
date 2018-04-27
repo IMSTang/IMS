@@ -1,106 +1,107 @@
 <!DOCTYPE html>
 <html>
 <meta charset="utf-8">
-<head th:include="include :: header"></head>
+<head th:include="include :: header">
+	<style>
+		.ui-autocomplete {
+			max-height: 50px; //默认最大高度150像素
+		overflow-y: auto; //添加滚动条
+			/* prevent horizontal scrollbar */
+		overflow-x: hidden;
+		}
+	</style>
+</head>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
-		<form class="form-horizontal m" id="form-inStock-add">
+		<form class="form-horizontal m" id="form-outStock-add">
 
 			<input name="sn"  type="hidden" id="sn"/>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Item Code:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 control-label">Item Code:</label>
+				<div class="col-sm-2">
 					<input class="form-control" type="text" name="itemCode" id="itemCode">
 				</div>
-			</div>
-			
-			
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Batch:</label>
-				<div class="col-sm-8">
-					<input class="form-control" type="text" name="batch" id="batch">
+				<label class="col-sm-2 control-label">Item Name:</label>
+				<div class="col-sm-6">
+					<input class="form-control" type="text" name="itemName" id="itemName">
 				</div>
 			</div>
 			
-			
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Warehouse:</label>
-				<div class="col-sm-3">
+				<label class="col-sm-2 control-label">Batch:</label>
+				<div class="col-sm-2">
+					<input class="form-control" type="text" name="batch" id="batch">
+					<!--<select id="batch" name="batch" class="form-control select2-hidden-accessible">-->
+						<!--<option value="">&#45;&#45;Select a batch&#45;&#45;</option>-->
+					<!--</select>-->
+				</div>
+				<label class="col-sm-2 control-label">Warehouse:</label>
+				<div class="col-sm-2">
 					<input class="form-control" type="text" name="warehouse" id="warehouse">
 				</div>
 				<label class="col-sm-2 control-label">Position:</label>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<input class="form-control" type="text" name="position" id="position">
 				</div>
 			</div>
 			
 			
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Quantity:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 control-label">Quantity:</label>
+				<div class="col-sm-2">
 					<input class="form-control" type="text" name="quantity" id="quantity">
 				</div>
-			</div>
-			
-			
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Price Purchase:</label>
-				<div class="col-sm-3">
+				<label class="col-sm-2 control-label">Price Purchase:</label>
+				<div class="col-sm-2">
 					<input class="form-control" type="text" name="pricePurchase" id="pricePurchase">
 				</div>
 				<label class="col-sm-2 control-label">FOB Ontario:</label>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<input class="form-control" type="text" name="priceFobOntario" id="priceFobOntario">
 				</div>
 			</div>
 			
 			
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Vendor Id:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="vendorId" id="vendorId">
+				<label class="col-sm-2 control-label">Vendor Name:</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" name="vendorName" id="vendorName">
 				</div>
-				<label class="col-sm-2 control-label">Customer Id:</label>
-				<div class="col-sm-3">
-					<input class="form-control" type="text" name="customerId" id="customerId">
-				</div>
+				<input name="vendorId"  type="hidden" id="vendorId"/>
+
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Irradiation:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 control-label">Irradiation:</label>
+				<div class="col-sm-6">
 					<input id="irradiation" name="irradiation" class="form-control" type="text">
 				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Tpc:</label>
-				<div class="col-sm-8">
+				<label class="col-sm-2 control-label">Tpc:</label>
+				<div class="col-sm-2">
 					<input id="tpc" name="tpc" class="form-control" type="text">
 				</div>
 			</div>
-			
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Remark:</label>
+				<div class="col-sm-10">
+					<textarea id="remark" name="remark" rows="3" class="form-control" type="text"></textarea>
+				</div>
+			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Attachment Name :</label>
-				<div class="col-sm-3">
+				<label class="col-sm-2 control-label">Attachment Name :</label>
+				<div class="col-sm-4">
 					<input class="form-control" type="text" name="attachmentName" id="attachmentName">
 				</div>
 				<label class="col-sm-2 control-label">Attachment:</label>
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<input class="form-control" type="text" name="attachment" id="attachment">
 				</div>
 			</div>
 			
-			
-			
-			<div class="form-group">
-				<label class="col-sm-3 control-label">Remark:</label>
-				<div class="col-sm-8">
-					<input id="remark" name="remark" class="form-control" type="text">
-				</div>
-			</div>
+
 			<div class="form-group">
 				<div class="form-control-static col-sm-offset-9">
 					<button type="submit" class="btn btn-primary">Submit</button>
@@ -110,6 +111,9 @@
 		</form>
 	</div>
 	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
+	<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
+	<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
 	<script type="text/javascript" src="/feng/inventory/outStock/add.js">
 	</script>
 </body>

@@ -43,6 +43,14 @@ import java.util.List;
             return getDataTable(stockInList);
         }
 
+        @RequiresPermissions("inventory:inStock:detail")
+        @GetMapping("/detail/{sn}")
+        public String detail(@PathVariable("sn") Long sn, Model model)
+        {
+            StockIn stockIn = stockInService.selectStockInById(sn);
+            model.addAttribute("stockIn", stockIn);
+            return prefix + "/detail";
+        }
 
         @Log(title = "Inventory Management", action = "Inventory - inStock")
         @RequiresPermissions("inventory:inStock:add")

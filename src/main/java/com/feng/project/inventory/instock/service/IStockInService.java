@@ -13,8 +13,9 @@ public interface IStockInService {
 
     public List<StockIn> selectStockInList(StockIn stockin);
 
-    public void spStockIn(StockIn stockin);
+    public StockIn selectStockInById(Long sn);
 
+    public void spStockIn(StockIn stockin);
 
     public void spStockInRemove(int sn);
 }

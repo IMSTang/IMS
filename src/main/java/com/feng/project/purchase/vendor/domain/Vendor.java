@@ -1,8 +1,11 @@
 package com.feng.project.purchase.vendor.domain;
 
 import com.feng.framework.web.page.PageDomain;
+import com.feng.project.system.dict.domain.SelectedDictData;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import java.util.List;
 
 /**
  * 供应商对象 pur_vendor

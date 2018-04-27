@@ -177,8 +177,8 @@ function add() {
     var itemCode = $("input[name='itemCode']").val();
     var price = $("input[name='price']").val();
     var quantity = $("input[name='quantity']").val();
-    var urgencyDegree = $("input[name='urgencyDegree']").val();
-	var remark = $("input[name='remark']").val();
+    var urgencyDegree = $("#urgencyDegree").val();
+	var remark = $("#remark").val();
 	$.ajax({
 		cache : true,
 		type : "POST",

@@ -42,8 +42,6 @@ public class QueryInventory extends PageDomain
     private Production production;
     /** Vendor对象 */
     private Vendor vendor;
-    /** Vendor对象 */
-    private Customer customer;
 
 //    private String itemName;
 //    private String vendorName;

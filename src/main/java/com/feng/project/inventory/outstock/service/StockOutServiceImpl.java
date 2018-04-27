@@ -24,6 +24,9 @@ public class StockOutServiceImpl implements IStockOutService {
     }
 
     @Override
+    public StockOut selectStockOutById(Long sn)  { return stockOutDao.selectStockOutById(sn); }
+
+    @Override
     public void spStockOut(StockOut stockout) {
         Map<String, Object> paramsMap =  new HashMap<String, Object>();
         stockout.setCreateBy(ShiroUtils.getLoginName());

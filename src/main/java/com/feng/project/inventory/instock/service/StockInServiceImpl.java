@@ -32,6 +32,9 @@ public class StockInServiceImpl implements IStockInService {
     }
 
     @Override
+    public StockIn selectStockInById(Long sn)  { return stockInDao.selectStockInById(sn); }
+
+    @Override
     public void spStockIn(StockIn stockin) {
         Map<String, Object> paramsMap =  new HashMap<String, Object>();
         stockin.setCreateBy(ShiroUtils.getLoginName());

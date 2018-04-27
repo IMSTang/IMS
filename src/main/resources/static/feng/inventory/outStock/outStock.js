@@ -12,6 +12,14 @@ $(function() {
             title: 'Item Code'
         },
         {
+            field: 'production.itemName',
+            title: 'Item Name'
+        },
+        {
+            field: 'production.itemNameCn',
+            title: 'Item Name CN'
+        },
+        {
             field: 'batch',
             title: 'Batch'
         },
@@ -29,6 +37,10 @@ $(function() {
 		{
             field: 'quantity',
             title: 'Quantity'
+        },
+        {
+            field: 'customer.customerName',
+            title: 'Customer Name'
         },
 
         {
@@ -56,7 +68,7 @@ $(function() {
 /*新增*/
 function add() {
     var url = prefix + '/add';
-    layer_show("add Item", url, '800', '600');
+    layer_show("add Item", url, '980', '600');
 }
 
 
@@ -70,5 +82,5 @@ function remove(sn) {
 
 function resellStock(sn) {
     var url = prefix + '/edit/' + sn;
-    layer_show("edit item", url, '800', '600');
+    layer_show("edit item", url, '980', '600');
 }
