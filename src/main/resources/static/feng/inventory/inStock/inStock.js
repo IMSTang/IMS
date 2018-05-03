@@ -52,11 +52,11 @@ $(function() {
             align: 'center',
             formatter: function(value, row, index) {
             	var actions = [];
-                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Detail" onclick="detail(\'' + row.sn + '\')"><i class="fa fa-search"></i></a>');
-
+            	actions.push('<div style="width: 120px;">');
+                actions.push('<a class="btn btn-warning btn-sm" href="#" title="Detail" onclick="detail(\'' + row.sn + '\')"><i class="fa fa-search"></i></a> ');
                 actions.push('<a class="btn btn-primary btn-sm" href="#" title="Stock out" mce_href="#" onclick="stockOut(\'' + row.sn + '\')"><i class="fa fa-share"></i></a> ');
-
                 actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" onclick="remove(\'' + row.sn + '\')"><i class="fa fa-remove"></i></a>');
+                actions.push('</div>');
 				return actions.join('');
             }
         }];
