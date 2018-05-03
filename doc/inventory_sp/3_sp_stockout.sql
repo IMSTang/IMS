@@ -6,8 +6,6 @@ IN  item_code  varchar(100) ,
 IN  batch     varchar(100)  ,
 IN  warehouse varchar(100)  ,
 IN  position  varchar(100) ,
-IN  price_purchase  double(16,2)   ,
-IN  price_fob_ontario  double(16,2) ,
 IN  quantity   int(10) ,
 IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
@@ -20,7 +18,7 @@ IN  remark 		  varchar(500)
 BEGIN
 
 INSERT INTO inv_inventory_out
-(	item_code , batch     ,warehouse , position  , price_purchase ,price_fob_ontario   , quantity    ,irradiation      , tpc      ,
+(	item_code , batch     ,warehouse , position  ,  quantity    ,irradiation      , tpc      ,
   vendor_id   ,customer_id   ,status       ,stock_in_date ,
   create_time, create_by,
   update_by,
@@ -31,8 +29,6 @@ VALUES (
   batch     ,
   warehouse ,
   position  ,
-  price_purchase ,
-  price_fob_ontario   ,
   quantity    ,
 	irradiation      ,
   tpc      ,

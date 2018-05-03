@@ -64,33 +64,24 @@
         where i.status = 0 and sn = #{sn}
 	</select>
 
-
-    <resultMap id="QueryProductResult" type="QueryProduct" >
+    <resultMap id="QueryInventoryBatchResult" type="QueryInventory" >
         <id column="sn"  property="sn" />
         <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+        <result column="batch" jdbcType="VARCHAR" property="batch" />
+        <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
+        <result column="position" jdbcType="VARCHAR" property="position" />
         <result column="quantity"  property="quantity" />
-        <association property="production"    column="item_code" javaType="Production" resultMap="productionResult"/>
+        <result column="vendor_id"  property="vendorId" />
+        <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
     </resultMap>
 
-    <resultMap id="productionResult" type="Production">
-        <id     property="productionId"   column="production_id" />
-        <result property="itemCode" column="item_code" />
-        <result property="itemName" column="item_name"     />
-        <result property="itemNameCN" column="item_name_cn"     />
-        <result property="productCategory" column="product_category"     />
-        <result property="specification" column="specification" />
-        <result property="safetyStock" column="safety_stock" />
-    </resultMap>
-
-    <select id="selectQueryProductList" parameterType="QueryProduct" resultMap="QueryProductResult">
-        select p.product_category,ii.item_code,p.item_name,p.item_name_cn,p.specification,p.safety_stock,ii.sum_quantity,ii.price_purchase,ii.price_fob_ontario
-        from pro_production p LEFT JOIN
-        (select item_code,sum(quantity) as sum_quantity,max(price_purchase) as price_purchase,max(price_fob_ontario) as price_fob_ontario from inv_inventory group by item_code) ii
-        on ii.item_code=p.item_code
-        where p.status = 0 and p.safety_stock>0
+    <select id="selectQueryInventoryListByBatch" resultMap="QueryInventoryBatchResult">
+        select i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.vendor_id, v.vendor_name
+        from inv_inventory i left join pur_vendor v on v.vendor_id = i.vendor_id
         <where>
-            <if test="searchValue != null and searchValue != ''">
-                AND p.item_code = #{searchValue}
+            i.status = 0
+            <if test="itemCode != null and itemCode != ''">
+                AND i.item_code = #{itemCode} AND i.batch like CONCAT('%',#{batch},'%' )
             </if>
         </where>
     </select>

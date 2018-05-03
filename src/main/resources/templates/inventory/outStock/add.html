@@ -31,7 +31,7 @@
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Batch:</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="batch" id="batch">
+					<input class="form-control" type="text" name="batch" id="batch" autocomplete="on" >
 					<!--<select id="batch" name="batch" class="form-control select2-hidden-accessible">-->
 						<!--<option value="">&#45;&#45;Select a batch&#45;&#45;</option>-->
 					<!--</select>-->
@@ -45,43 +45,49 @@
 					<input class="form-control" type="text" name="position" id="position">
 				</div>
 			</div>
-			
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Quantity:</label>
-				<div class="col-sm-2">
-					<input class="form-control" type="text" name="quantity" id="quantity">
-				</div>
-				<label class="col-sm-2 control-label">Price Purchase:</label>
-				<div class="col-sm-2">
-					<input class="form-control" type="text" name="pricePurchase" id="pricePurchase">
-				</div>
-				<label class="col-sm-2 control-label">FOB Ontario:</label>
-				<div class="col-sm-2">
-					<input class="form-control" type="text" name="priceFobOntario" id="priceFobOntario">
-				</div>
-			</div>
-			
-			
+
+
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Vendor Name:</label>
 				<div class="col-sm-10">
 					<input class="form-control" type="text" name="vendorName" id="vendorName">
 				</div>
 				<input name="vendorId"  type="hidden" id="vendorId"/>
+				<input name="inventorySn"  type="hidden" id="inventorySn"/>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Stock Quantity(KG):</label>
+				<div class="col-sm-2">
+					<input class="form-control" type="text" name="StockQuantity" id="StockQuantity" readonly="true">
+				</div>
+
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">&nbsp;</label>
 
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Irradiation:</label>
-				<div class="col-sm-6">
-					<input id="irradiation" name="irradiation" class="form-control" type="text">
-				</div>
-				<label class="col-sm-2 control-label">Tpc:</label>
+				<label class="col-sm-2 control-label">Out Quantity(KG):</label>
 				<div class="col-sm-2">
-					<input id="tpc" name="tpc" class="form-control" type="text">
+					<input class="form-control" type="text" name="quantity" id="quantity">
 				</div>
+
 			</div>
+			
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Customer Name:</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" name="customerName" id="customerName">
+				</div>
+				<input name="customerId"  type="hidden" id="customerId"/>
+
+			</div>
+			
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Remark:</label>

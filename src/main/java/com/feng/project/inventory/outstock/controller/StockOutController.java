@@ -74,12 +74,9 @@ import java.util.List;
             stockOut.setWarehouse(inventory.getWarehouse());
             stockOut.setPosition(inventory.getPosition());
             stockOut.setCustomerId(inventory.getCustomerId());   // this is user may input;
-            stockOut.setIrradiation(inventory.getIrradiation());
-            stockOut.setPriceFobOntario(inventory.getPriceFobOntario());
-            stockOut.setPricePurchase(inventory.getPricePurchase());
+
             stockOut.setQuantity(inventory.getQuantityStockOut());  /// this is the user input stockout quantity;
-            stockOut.setTpc(inventory.getTpc());
-            stockOut.setVendorId(inventory.getVendorId());
+
             stockOut.setSn(inventory.getSn());  // this is the sn from inventory table. use for the sp to generate stockout.
 
                  int qInv=Integer.parseInt(inventory.getQuantity());

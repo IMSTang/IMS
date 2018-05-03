@@ -35,11 +35,7 @@ public class StockOutServiceImpl implements IStockOutService {
         paramsMap.put("batch",stockout.getBatch() );
         paramsMap.put("warehouse",stockout.getWarehouse() );
         paramsMap.put("position",stockout.getPosition() );
-        paramsMap.put("pricePurchase",stockout.getPricePurchase() );
-        paramsMap.put("priceFobOntario",stockout.getPriceFobOntario() );
         paramsMap.put("quantity",stockout.getQuantity() );
-        paramsMap.put("irradiation",stockout.getIrradiation());
-        paramsMap.put("vendorId",stockout.getVendorId());
         paramsMap.put("customerId",stockout.getCustomerId());
         paramsMap.put("createBy",stockout.getCreateBy());
         paramsMap.put("remark",stockout.getRemark());

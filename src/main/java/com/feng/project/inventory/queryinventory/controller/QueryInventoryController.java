@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -44,6 +46,18 @@ public class QueryInventoryController extends BaseController
         return getDataTable(list);
     }
 
+
+    @GetMapping("/search_batch")
+    @ResponseBody
+    public List<QueryInventory> search_batch(HttpServletRequest request, HttpServletResponse response)
+    {
+        String batch = request.getParameter("batchValue");
+        String itemCode = request.getParameter("itemCode");
+        List<QueryInventory> list = queryInventoryService.selectQueryInventoryListByBatch(batch,itemCode);
+
+        System.out.println(list);
+        return list;
+    }
 
     @RequiresPermissions("inventory:queryinventory:detail")
     @GetMapping("/detail/{sn}")

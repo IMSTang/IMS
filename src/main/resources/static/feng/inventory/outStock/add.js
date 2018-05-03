@@ -152,6 +152,61 @@ $("#customerName").autocomplete({
 });
 
 
+// 3. Batch auto complete
+$("#batch").autocomplete({
+    minLength: 0,
+    source: function (request, response) {
+        $.ajax({
+            url: "/inventory/queryinventory/search_batch",
+            type: "get",
+            dataType: "json",
+            data: {
+                "itemCode":  $("input[name='itemCode']").val(),
+                "batchValue":  $("input[name='batch']").val()
+            },
+
+            success: function (data) {
+
+                response($.map(data, function (item) {
+
+                    return {
+                        label: item.batch,
+                        value: item.batch,
+                        warehouse: item.warehouse,
+                        position: item.position,
+                        quantity: item.quantity,
+                        vendorId: item.vendorId,
+                        vendorName: item.vendorId,
+                        inventorySn: item.sn,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+
+        $("#batch").val(ui.item.label);
+        $("#warehouse").val(ui.item.warehouse);
+        $("#position").val(ui.item.position);
+        $("#StockQuantity").val(ui.item.quantity);
+        $("#vendorName").val(ui.item.vendorName);
+        $("#vendorId").val(ui.item.vendorId);
+        $("#inventorySn").val(ui.item.inventorySn);
+        return false;
+    },
+    select: function (event, ui) {
+
+        $("#batch").val(ui.item.label);
+        $("#warehouse").val(ui.item.warehouse);
+        $("#position").val(ui.item.position);
+        $("#StockQuantity").val(ui.item.quantity);
+        $("#vendorName").val(ui.item.vendorName);
+        $("#vendorId").val(ui.item.vendorId);
+        $("#inventorySn").val(ui.item.inventorySn);
+        return false;
+    }
+});
+
 function add() {
 
     var itemCode  = $("input[name='itemCode']").val();
@@ -159,6 +214,7 @@ function add() {
     var warehouse  = $("input[name='warehouse']").val();
     var position  = $("input[name='position']").val();
     var quantity  = $("input[name='quantity']").val();
+    var vendorId  = $("input[name='vendorId']").val();
     var customerId  = $("input[name='customerId']").val();
     var remark  = $("#remark").val();
     var stockOutDate  = $("input[name='stockOutDate']").val();
@@ -175,6 +231,7 @@ function add() {
             "position": position,
             "quantity": quantity,
             "customerId": customerId,
+            "vendorId": vendorId,
             "remark": remark,
             "status": 0,
             "stockOutDate": stockOutDate
