@@ -26,9 +26,9 @@ function loading() {
 			title : 'Status',
 			formatter : function(item, index) {
 				if (item.status == '0') {
-					return '<span class="label label-primary">Active</span>';
+					return '<div style="text-align: center;"><span class="label label-primary">Active</span></div>';
 				} else if (item.status == '1') {
-					return '<span class="label label-danger">Disabled</span>';
+					return '<div style="text-align: center;"><span class="label label-danger">Disabled</span></div>';
 				}
 			}
         },
@@ -44,9 +44,11 @@ function loading() {
 			formatter : function(row, index) {
 				if(row.parentId != 0) {
 					var actions = [];
+					actions.push('<div style="text-align: center;">');
 					actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.deptId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
 					actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="add(\'' + row.deptId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
 					actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' + row.deptId + '\')"><i class="fa fa-remove"></i></a>');
+					actions.push('</div>');
 					return actions.join('');
 				} else {
 					return "";

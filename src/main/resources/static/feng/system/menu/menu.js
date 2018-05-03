@@ -32,13 +32,13 @@ function loading() {
 			valign : 'middle',
 			formatter : function(item, index) {
 				if (item.menuType == 'M') {
-					return '<span class="label label-primary">Floder</span>';
+					return '<div style="text-align: center;"><span class="label label-primary">Floder</span></div>';
 				}
 				if (item.menuType == 'C') {
-					return '<span class="label label-success">Menu</span>';
+					return '<div style="text-align: center;"><span class="label label-success">Menu</span></div>';
 				}
 				if (item.menuType == 'F') {
-					return '<span class="label label-warning">Action</span>';
+					return '<div style="text-align: center;"><span class="label label-warning">Action</span></div>';
 				}
 			}
 		},
@@ -51,9 +51,11 @@ function loading() {
 			align : 'center',
 			formatter : function(row, index) {
 				var actions = [];
+                actions.push('<div style="text-align: center;">');
 				actions.push('<a class="btn btn-primary btn-sm" href="#" title="Edit" mce_href="#" onclick="edit(\'' + row.menuId + '\')"><i class="fa fa-edit"></i></a>&nbsp;');
 				actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="add(\'' + row.menuId + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
 				actions.push('<a class="btn btn-warning btn-sm" href="#" title="Remove" mce_href="#" onclick="remove(\'' + row.menuId + '\')"><i class="fa fa-remove"></i></a>');
+                actions.push('</div>');
 				return actions.join('');
 			}
         }];
