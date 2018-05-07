@@ -12,18 +12,15 @@ IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
 IN  create_by   varchar(64),
-IN  remark 		  varchar(500)
+IN  remark 		  varchar(500),
+OUT  out_new_sn     int(11)
 )
 
 BEGIN
 
 INSERT INTO inv_inventory_in
-(	item_code , batch     ,warehouse , position  , price_purchase ,price_fob_ontario   , quantity    ,irradiation      , tpc      ,
-  vendor_id    ,status       ,stock_in_date ,
-  create_time, create_by,
-  update_by,
-	update_time,
-  remark 		 )
+(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc, vendor_id, status, stock_in_date,
+  create_time, create_by, update_by,	update_time, remark )
 VALUES (
   item_code ,
   batch     ,
@@ -43,6 +40,9 @@ VALUES (
 	sysdate() ,
   remark
 );
+
+set out_new_sn=LAST_INSERT_ID();
+
 END
 ;;
 DELIMITER ;
@@ -67,19 +67,16 @@ IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
 IN  customer_id    int(11)   ,
-IN  create_by   varchar(64),
-IN  remark 		  varchar(500)
+IN  create_by   varchar(64) ,
+IN  remark 		  varchar(500) ,
+OUT  out_new_sn     int(11)
 )
 
 BEGIN
 
 INSERT INTO inv_inventory
-(	item_code , batch     ,warehouse , position  , price_purchase ,price_fob_ontario   , quantity    ,irradiation      , tpc      ,
-  vendor_id   ,customer_id   ,status       ,stock_in_date ,
-  create_time, create_by,
-  update_by,
-	update_time,
-  remark 		 )
+(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc, vendor_id, customer_id, status ,stock_in_date ,
+  create_time, create_by, update_by,	update_time, remark )
 VALUES (
   item_code ,
   batch     ,
@@ -100,6 +97,9 @@ VALUES (
 	sysdate() ,
   remark
 );
+
+set out_new_sn=LAST_INSERT_ID();
+
 END
 ;;
 DELIMITER ;
@@ -122,46 +122,35 @@ IN  vendor_id     int(11)   ,
 IN  create_by   varchar(64),
 IN  attachment_name  varchar(100) ,
 IN  attachment     varchar(100)  ,
-IN  remark 		  varchar(500)
+IN  remark 		  varchar(500),
+OUT var_result VARCHAR(10)
 )
 
 BEGIN
 
-
-declare sn1 INT default 0;
-declare sn2 INT default 0;
+declare sn_inv_in INT default 0;
+declare sn_inv INT default 0;
 start transaction;
 
+call sp_insert_inv_in(item_code, batch, warehouse, position,price_purchase, price_fob_ontario, quantity,irradiation ,tpc, vendor_id,create_by, remark, sn_inv_in);
 
-call sp_insert_inv_in(item_code, batch, warehouse, position ,price_purchase  , price_fob_ontario ,
-quantity ,irradiation ,tpc  , vendor_id ,create_by , remark 	 	);
+-- select max(sn) into sn1 from inv_inventory_in;
+-- SELECT concat('inv_inventory_in max id is --- ', sn_inv_in);
 
-select max(sn) into sn1 from inv_inventory_in;
+call sp_insert_inv_attachment(attachment_name, attachment, sn_inv_in, "INV_IN", create_by, remark);
 
-SELECT concat('inv_inventory_in max id is --- ', sn1);
+call sp_insert_inv(item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc, vendor_id, null, create_by, remark, sn_inv);
 
-call sp_insert_inv_attachment(attachment_name,attachment,sn1,"INV_IN",create_by, remark);
+-- select max(sn) into sn2 from inv_inventory;
+-- SELECT concat('inv_inventory max id is :::: ', sn_inv);
 
-
-
-
-call sp_insert_inv(item_code, batch, warehouse, position ,price_purchase  , price_fob_ontario ,
-quantity ,irradiation ,tpc  , vendor_id , null , create_by , remark 	 	);
-commit;
-
-select max(sn) into sn2 from inv_inventory;
-
-SELECT concat('inv_inventory max id is :::: ', sn2);
-
-call sp_insert_inv_attachment(attachment_name,attachment,sn2,"INV",create_by, remark);
+call sp_insert_inv_attachment(attachment_name,attachment,sn_inv_in,"INV",create_by, remark);
 
 commit;
+
+  select '1' into var_result from dual;
 
 END
 ;;
 DELIMITER ;
-
-
-
-
 

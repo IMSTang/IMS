@@ -80,8 +80,13 @@ import java.util.List;
         @RequestMapping("/remove/{id}")
         @ResponseBody
         public JSON remove(@PathVariable("id") int id){
-            stockInService.spStockInRemove(id);
+
+            if(stockInService.spStockInRemove(id).equals("1")){
                 return JSON.ok();
+            }else{
+                return JSON.error("This batch has been output, cannot remove.");
+            }
+
         }
 
 

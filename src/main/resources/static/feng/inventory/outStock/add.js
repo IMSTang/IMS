@@ -1,13 +1,5 @@
 $("#form-outStock-add").validate({
     rules:{
-        pricePurchase:{
-            number: true,
-            min: 0.01,
-        },
-        priceFobOntario:{
-            number: true,
-            min: 0.01,
-        },
         quantity:{
             number: true,
             min: 0.01,
@@ -29,6 +21,10 @@ $("#form-outStock-add").validate({
                     else return true;
                 }
             }
+        },
+        stockoutDate:{
+            required:true,
+            dateISO:true
         },
     },
 
@@ -154,7 +150,6 @@ $("#customerName").autocomplete({
 
 // 3. Batch auto complete
 $("#batch").autocomplete({
-    minLength: 0,
     source: function (request, response) {
         $.ajax({
             url: "/inventory/queryinventory/search_batch",
@@ -176,7 +171,7 @@ $("#batch").autocomplete({
                         position: item.position,
                         quantity: item.quantity,
                         vendorId: item.vendorId,
-                        vendorName: item.vendorId,
+                        vendorName: item.sn,
                         inventorySn: item.sn,
                     }
                 }));
@@ -207,6 +202,14 @@ $("#batch").autocomplete({
     }
 });
 
+//后续替换 jquery 校验，保持风格一致
+$("#quantity").on("blur",function(){
+    if(parseFloat($("#quantity").val())>parseFloat($("#StockQuantity").val())){
+        alert("The output quantity must not exceed the stock quantity.");
+        return  $(this).val("");
+    }
+});
+
 function add() {
 
     var itemCode  = $("input[name='itemCode']").val();
@@ -214,10 +217,13 @@ function add() {
     var warehouse  = $("input[name='warehouse']").val();
     var position  = $("input[name='position']").val();
     var quantity  = $("input[name='quantity']").val();
+    var irradiation  = $("input[name='irradiation']").val();
+    var tpc  = $("input[name='tpc']").val();
     var vendorId  = $("input[name='vendorId']").val();
     var customerId  = $("input[name='customerId']").val();
     var remark  = $("#remark").val();
-    var stockOutDate  = $("input[name='stockOutDate']").val();
+    var stockoutDate  = $("input[name='stockoutDate']").val();
+    var inventorySn  = $("input[name='inventorySn']").val();
 
 
     $.ajax({
@@ -225,16 +231,19 @@ function add() {
         type : "POST",
         url : "/inventory/outStock/save",
         data : {
+            "inventorySn": inventorySn,
             "itemCode": itemCode,
             "batch": batch,
             "warehouse": warehouse,
             "position": position,
             "quantity": quantity,
-            "customerId": customerId,
+            "irradiation": irradiation,
+            "tpc": tpc,
             "vendorId": vendorId,
+            "customerId": customerId,
             "remark": remark,
             "status": 0,
-            "stockOutDate": stockOutDate
+            "stockoutDate": stockoutDate
 
         },
         async : false,

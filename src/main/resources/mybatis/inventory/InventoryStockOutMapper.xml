@@ -4,18 +4,17 @@
     <resultMap id="BaseResultMap" type="com.feng.project.inventory.outstock.domain.StockOut" >
         <id column="sn"  property="sn" />
         <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+        <result column="inventory_sn" property="inventorySn" />
         <result column="batch" jdbcType="VARCHAR" property="batch" />
         <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
         <result column="position" jdbcType="VARCHAR" property="position" />
-        <result column="price_purchase"  property="pricePurchase" />
-        <result column="price_fob_ontario"  property="priceFobOntario" />
         <result column="quantity"  property="quantity" />
         <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
         <result column="tpc" jdbcType="VARCHAR" property="tpc" />
         <result column="vendor_id"  property="vendorId" />
         <result column="customer_id"  property="customerId" />
         <result column="status" property="status" />
-        <result column="stock_in_date" jdbcType="TIMESTAMP" property="stockInDate" />
+        <result column="stockout_date" property="stockoutDate" />
         <result column="create_by" jdbcType="VARCHAR" property="createBy" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
@@ -33,8 +32,6 @@
         <result column="batch" jdbcType="VARCHAR" property="batch" />
         <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
         <result column="position" jdbcType="VARCHAR" property="position" />
-        <result column="price_purchase"  property="pricePurchase" />
-        <result column="price_fob_ontario"  property="priceFobOntario" />
         <result column="quantity"  property="quantity" />
         <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
         <result column="tpc" jdbcType="VARCHAR" property="tpc" />
@@ -68,8 +65,8 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        sn, item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity,
-    irradiation, tpc, vendor_id, customer_id, status, stock_in_date, create_by, create_time,
+        sn, item_code, batch, warehouse, position, quantity,
+    irradiation, tpc, vendor_id, customer_id, status, stockout_date, create_by, create_time,
     update_by, update_time, remark
     </sql>
 
@@ -97,7 +94,7 @@
 	</select>
 
     <parameterMap type="java.util.HashMap" id="outStockParams">
-        <parameter property="sn" jdbcType="INTEGER" javaType="java.lang.Integer"
+        <parameter property="inventory_sn" jdbcType="INTEGER" javaType="java.lang.Integer"
                    mode="IN" />
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
@@ -106,10 +103,6 @@
         <parameter property="warehouse" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="pricePurchase" jdbcType="DOUBLE" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="priceFobOntario" jdbcType="DOUBLE" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="quantity"  jdbcType="INTEGER"  javaType="java.lang.String"
                    mode="IN" />
@@ -120,6 +113,8 @@
         <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"
                    mode="IN" />
         <parameter property="customerId"  jdbcType="INTEGER"   javaType="java.lang.String"
+                   mode="IN" />
+        <parameter property="stockoutDate" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
@@ -135,7 +130,7 @@
     <insert id="spStockOut" parameterMap="outStockParams"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockOut(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?,? )}
+        {call  sp_stockOut(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )}
     ]]>
 </insert>
 

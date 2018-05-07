@@ -17,5 +17,5 @@ public interface IStockInService {
 
     public void spStockIn(StockIn stockin);
 
-    public void spStockInRemove(int sn);
+    public String spStockInRemove(int sn);
 }

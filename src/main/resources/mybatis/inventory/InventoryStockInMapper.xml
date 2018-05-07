@@ -68,52 +68,39 @@
 	</select>
 
     <parameterMap type="java.util.HashMap" id="inStockParams">
-        <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="batch" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="warehouse" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="pricePurchase" jdbcType="DOUBLE" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="priceFobOntario" jdbcType="DOUBLE" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="quantity"  jdbcType="INTEGER"  javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="irradiation" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="tpc" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="attachmentName" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="attachment" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="remark" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
+        <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="batch" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="warehouse" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="pricePurchase" jdbcType="DOUBLE" javaType="java.lang.String" mode="IN" />
+        <parameter property="priceFobOntario" jdbcType="DOUBLE" javaType="java.lang.String" mode="IN" />
+        <parameter property="quantity"  jdbcType="INTEGER"  javaType="java.lang.String"  mode="IN" />
+        <parameter property="irradiation" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="tpc" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"  mode="IN" />
+        <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="attachmentName" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="attachment" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="remark" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="result"  jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
     </parameterMap>
 
     <parameterMap type="java.util.HashMap" id="inStockParamsId">
-        <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer"
-                   mode="IN" />
+        <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer" mode="IN" />
+        <parameter property="result"  jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
     </parameterMap>
 
     <insert id="spStockIn" parameterMap="inStockParams"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockIn( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?, ?,? )}
+        {call  sp_stockIn( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )}
     ]]>
 </insert>
 
     <delete id="spStockInRemove" parameterMap="inStockParamsId"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockInRemove(?)}
+        {call  sp_stockInRemove(?, ?)}
     ]]>
     </delete>
 

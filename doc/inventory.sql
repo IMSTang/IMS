@@ -19,6 +19,7 @@ insert into sys_menu values('422', 'Add', '420', '2',  '#',  'F', '0', 'inventor
 insert into sys_menu values('423', 'Edit', '420', '3',  '#',  'F', '0', 'inventory:outStock:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('424', 'Remove', '420', '4',  '#',  'F', '0', 'inventory:outStock:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('425', 'Save', '420', '5',  '#',  'F', '0', 'inventory:outStock:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
+insert into sys_menu values('426', 'Detail', '420', '3',  '#',  'F', '0', 'inventory:outStock:detail',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
 
 insert into sys_menu values('431', 'Query', '430', '1',  '#',  'F', '0', 'inventory:queryinventory:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
@@ -62,18 +63,17 @@ create table inv_inventory_out
 (
    sn int(11) unsigned NOT NULL AUTO_INCREMENT,
 	item_code     varchar(100)    not null                   comment 'Item Code',
+  inventory_sn     int(11)    not null  ,
   batch     varchar(100)    not null        ,
   warehouse varchar(100)    not null        ,
   position  varchar(100)    not null        ,
-  price_purchase  double(16,2)  not null        ,
-  price_fob_ontario  double(16,2)  not null        ,
   quantity   int(10)  not null ,
 	irradiation     varchar(100)     null  ,
   tpc     varchar(100)     null  ,
   vendor_id     int(11)    not null  ,
   customer_id    int(11)     null  ,
 	status        int(1)          not null                   comment '状态（0正常 1停用）',
-	stock_in_date  timestamp       default current_timestamp  comment '创建时间',
+	stockout_date  varchar(10)     default ''        comment '出库时间',
     create_by     varchar(64)     default ''                 comment '创建者',
     create_time   timestamp       default current_timestamp  comment '创建时间',
     update_by     varchar(64) 	  default ''			     comment '更新者',

@@ -27,7 +27,7 @@ public class Inventory extends PageDomain {
         private String updateBy;
         private String updateTime;
         private String remark;
-        private String quantityStockOut;
+//        private String quantityStockOut;
 
         private Production production;
         /** Vendor对象 */
@@ -187,13 +187,13 @@ public class Inventory extends PageDomain {
         }
 
 
-        public String getQuantityStockOut() {
-                return quantityStockOut;
-        }
-
-        public void setQuantityStockOut(String quantityStockOut) {
-                this.quantityStockOut = quantityStockOut;
-        }
+//        public String getQuantityStockOut() {
+//                return quantityStockOut;
+//        }
+//
+//        public void setQuantityStockOut(String quantityStockOut) {
+//                this.quantityStockOut = quantityStockOut;
+//        }
 
         public Production getProduction() {
                 return production;

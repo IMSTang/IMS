@@ -29,15 +29,19 @@ public class StockOutServiceImpl implements IStockOutService {
     @Override
     public void spStockOut(StockOut stockout) {
         Map<String, Object> paramsMap =  new HashMap<String, Object>();
-        stockout.setCreateBy(ShiroUtils.getLoginName());
-        paramsMap.put("sn",stockout.getSn() );
+
+        paramsMap.put("inventory_sn",stockout.getInventorySn() );
         paramsMap.put("itemCode",stockout.getItemCode() );
         paramsMap.put("batch",stockout.getBatch() );
         paramsMap.put("warehouse",stockout.getWarehouse() );
         paramsMap.put("position",stockout.getPosition() );
         paramsMap.put("quantity",stockout.getQuantity() );
+        paramsMap.put("irradiation",stockout.getIrradiation() );
+        paramsMap.put("tpc",stockout.getTpc() );
+        paramsMap.put("vendorId",stockout.getVendorId());
         paramsMap.put("customerId",stockout.getCustomerId());
-        paramsMap.put("createBy",stockout.getCreateBy());
+        paramsMap.put("stockoutDate",stockout.getStockoutDate());
+        paramsMap.put("createBy",ShiroUtils.getLoginName());
         paramsMap.put("remark",stockout.getRemark());
         stockOutDao.spStockOut(paramsMap);
     }

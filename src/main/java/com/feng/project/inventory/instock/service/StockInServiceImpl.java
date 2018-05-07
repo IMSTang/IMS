@@ -64,22 +64,29 @@ public class StockInServiceImpl implements IStockInService {
         paramsMap.put("priceFobOntario",stockin.getPriceFobOntario() );
         paramsMap.put("quantity",stockin.getQuantity() );
         paramsMap.put("irradiation",stockin.getIrradiation());
+        paramsMap.put("tpc",stockin.getTpc());
         paramsMap.put("vendorId",stockin.getVendorId());
         paramsMap.put("createBy",stockin.getCreateBy());
         paramsMap.put("attachmentName",stockin.getAttachment());
         paramsMap.put("attachment",stockin.getAttachment());
         paramsMap.put("remark",stockin.getRemark());
-        paramsMap.put("tpc",stockin.getTpc());
+        paramsMap.put("result","");
 
         System.out.println("stockin.getAttachment() ----------   "+stockin.getAttachment());
         stockInDao.spStockIn(paramsMap);
+
+        System.out.println("stockin.spStockIn result ----------   "+paramsMap.get("result").toString());
     }
 
     @Override
-    public void spStockInRemove(int sn) {
+    public String spStockInRemove(int sn) {
         Map<String, Object> paramsMap =  new HashMap<String, Object>();
+        String result = "-1";
         paramsMap.put("sn",sn);
+        paramsMap.put("result",result);
         stockInDao.spStockInRemove(paramsMap);
+
+        return paramsMap.get("result").toString();
     }
 
 }

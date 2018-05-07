@@ -76,7 +76,7 @@
     </resultMap>
 
     <select id="selectQueryInventoryListByBatch" resultMap="QueryInventoryBatchResult">
-        select i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.vendor_id, v.vendor_name
+        select i.sn, i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.vendor_id, v.vendor_name
         from inv_inventory i left join pur_vendor v on v.vendor_id = i.vendor_id
         <where>
             i.status = 0

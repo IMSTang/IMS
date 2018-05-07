@@ -1,5 +1,6 @@
 package com.feng.project.inventory.outstock.controller;
 
+import com.feng.common.utils.DateUtils;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.page.TableDataInfo;
@@ -47,6 +48,8 @@ import java.util.List;
         @RequiresPermissions("inventory:outStock:add")
         @GetMapping("/add")
         public  String  add(Model model){
+            String date_today = DateUtils.dateTimeStr().substring(0,10);
+            model.addAttribute("today", date_today);
             return prefix +"/add";
         }
 
@@ -63,27 +66,8 @@ import java.util.List;
         @Log(title = "Inventory Management", action = "Inventory - save outStock")
         @PostMapping("/save")
         @ResponseBody
-        public JSON  save(Inventory inventory){
-
+        public JSON  save(StockOut stockOut){
             System.out.println("--------------save----------");
-            System.out.println("--------------save--- inventory.getQuantityStockOut()-------"+inventory.getQuantityStockOut());
-
-            StockOut stockOut =new StockOut();
-            stockOut.setItemCode(inventory.getItemCode());
-            stockOut.setBatch(inventory.getBatch());
-            stockOut.setWarehouse(inventory.getWarehouse());
-            stockOut.setPosition(inventory.getPosition());
-            stockOut.setCustomerId(inventory.getCustomerId());   // this is user may input;
-
-            stockOut.setQuantity(inventory.getQuantityStockOut());  /// this is the user input stockout quantity;
-
-            stockOut.setSn(inventory.getSn());  // this is the sn from inventory table. use for the sp to generate stockout.
-
-                 int qInv=Integer.parseInt(inventory.getQuantity());
-                 int qOut=Integer.parseInt(inventory.getQuantityStockOut());
-            if(qOut>qInv) {
-                return JSON.error("StockOut Quantity should no more than Inventory Quantity!");
-            }
             stockOutService.spStockOut(stockOut);
                 return JSON.ok();
         }
