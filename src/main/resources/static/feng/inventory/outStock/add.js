@@ -4,6 +4,24 @@ $("#form-outStock-add").validate({
             number: true,
             min: 0.01,
         },
+        customerName:{
+            required:true,
+            minlength: 2,
+            remote: {
+                url: "/sales/customer/checkNameExist",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#customerName").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
+        },
         itemCode:{
             required:true,
             minlength: 1,
@@ -22,20 +40,44 @@ $("#form-outStock-add").validate({
                 }
             }
         },
+        batch:{
+            required:true,
+            minlength: 1,
+            remote: {
+                url: "/inventory/queryinventory/checkItemBatchUnique",
+                type: "post",
+                dataType: "json",
+                data: {
+                    "itemCode" : function() {
+                        return $.trim($("#itemCode").val());
+                    },
+                    "batch" : function() {
+                        return $.trim($("#batch").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
+        },
         stockoutDate:{
             required:true,
             dateISO:true
-        },
+        }
     },
-
     messages:{
         itemCode:{
             required: "Required Item Code",
             remote:"Not found this Item Code"
+        },
+        "customerName": {
+            required: "Required customer",
+            remote: "customer not exist"
         }
 
     },
-
+    onkeyup:false,
 
     submitHandler:function(form){
         add();
@@ -75,6 +117,8 @@ $("#itemCode").autocomplete({
         $("#itemName").val(ui.item.value);
         return false;
     }
+}).focus(function () {
+    $(this).autocomplete("search");
 });
 
 //2. itemName auto complete .
@@ -150,6 +194,7 @@ $("#customerName").autocomplete({
 
 // 3. Batch auto complete
 $("#batch").autocomplete({
+    minLength: 0,
     source: function (request, response) {
         $.ajax({
             url: "/inventory/queryinventory/search_batch",
@@ -165,7 +210,7 @@ $("#batch").autocomplete({
                 response($.map(data, function (item) {
 
                     return {
-                        label: item.batch,
+                        label: item.batch +"  -  "+item.warehouse +"  -  "+item.position,
                         value: item.batch,
                         warehouse: item.warehouse,
                         position: item.position,
@@ -180,7 +225,7 @@ $("#batch").autocomplete({
     },
     focus: function (event, ui) {
 
-        $("#batch").val(ui.item.label);
+        $("#batch").val(ui.item.value);
         $("#warehouse").val(ui.item.warehouse);
         $("#position").val(ui.item.position);
         $("#StockQuantity").val(ui.item.quantity);
@@ -191,7 +236,7 @@ $("#batch").autocomplete({
     },
     select: function (event, ui) {
 
-        $("#batch").val(ui.item.label);
+        $("#batch").val(ui.item.value);
         $("#warehouse").val(ui.item.warehouse);
         $("#position").val(ui.item.position);
         $("#StockQuantity").val(ui.item.quantity);
@@ -200,6 +245,8 @@ $("#batch").autocomplete({
         $("#inventorySn").val(ui.item.inventorySn);
         return false;
     }
+}).focus(function () {
+    $(this).autocomplete("search");
 });
 
 //后续替换 jquery 校验，保持风格一致

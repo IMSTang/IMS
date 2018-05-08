@@ -31,7 +31,7 @@ $(function() {
         },
         {
             field: 'quantity',
-            title: 'Quantity(KG)'
+            title: 'Quantity(g)'
         },
         {
             field: 'createBy',

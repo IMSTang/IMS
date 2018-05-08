@@ -5,6 +5,11 @@ import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.inventory.instock.domain.StockIn;
 import com.feng.project.inventory.instock.service.IStockInService;
+import com.feng.project.system.dict.domain.DictData;
+import com.feng.project.system.dict.domain.DictType;
+import com.feng.project.system.dict.domain.SelectedDictData;
+import com.feng.project.system.dict.service.IDictDataService;
+import com.feng.project.system.dict.service.IDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,6 +37,12 @@ import java.util.List;
         }
         @Autowired
         private IStockInService stockInService;
+
+        @Autowired
+        private IDictDataService dictDataService;
+
+        @Autowired
+        private IDictTypeService dictTypeService;
 
 
         @RequiresPermissions("inventory:inStock:list")
@@ -56,6 +68,18 @@ import java.util.List;
         @RequiresPermissions("inventory:inStock:add")
         @GetMapping("/add")
         public  String  add(Model model){
+            DictType dictType = dictTypeService.selectDictTypeByType("Warehouse");
+            List<DictData> dictDataDegree = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+            List<SelectedDictData> listWarehouse = new ArrayList<SelectedDictData>();
+            for(DictData cate: dictDataDegree)
+            {
+                SelectedDictData data1 = new SelectedDictData();
+                data1.setDictLabel(cate.getDictLabel());
+                data1.setDictValue(cate.getDictValue());
+                listWarehouse.add(data1);
+            }
+            model.addAttribute("listWarehouse", listWarehouse);
+
             return prefix +"/add";
         }
 

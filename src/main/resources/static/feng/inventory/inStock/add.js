@@ -156,7 +156,7 @@ function add() {
 	
 var itemCode  = $("input[name='itemCode']").val(); 
 var batch  = $("input[name='batch']").val(); 
-var warehouse  = $("input[name='warehouse']").val(); 
+var warehouse  = $("#warehouse").val();
 var position  = $("input[name='position']").val(); 
 var pricePurchase  = $("input[name='pricePurchase']").val(); 
 var priceFobOntario  = $("input[name='priceFobOntario']").val(); 

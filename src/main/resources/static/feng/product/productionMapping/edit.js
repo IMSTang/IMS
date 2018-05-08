@@ -17,6 +17,147 @@ $("#form-productionMapping-edit").validate({
 	}
 });
 
+
+//1. itemCode auto complete.
+
+$("#itemCode").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "code";
+        var elementValue =  $("#itemCode").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.itemCode,
+                        value: item.itemName,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#itemCode").val(ui.item.label);
+        $("#itemName").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#itemCode").val(ui.item.label);
+        $("#itemName").val(ui.item.value);
+        return false;
+    }
+});
+
+//2. itemName auto complete .
+$("#itemName").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "name";
+        var elementValue =  $("#itemName").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.itemName,
+                        value: item.itemCode,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.label);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.label);
+        return false;
+    }
+});
+
+
+//3. newItemCode auto complete.
+
+$("#newItemCode").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "code";
+        var elementValue =  $("#newItemCode").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.newItemCode,
+                        value: item.newItemName,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#newItemCode").val(ui.item.label);
+        $("#newItemName").val(ui.item.value);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#newItemCode").val(ui.item.label);
+        $("#newItemName").val(ui.item.value);
+        return false;
+    }
+});
+
+//4. newItemName auto complete .
+$("#newItemName").autocomplete({
+    minLength: 2,
+    max: 10,
+    source: function (request, response) {
+        var elementType =  "name";
+        var elementValue =  $("#newItemName").val();
+        $.ajax({
+            url: "/product/production/search/"+elementValue+"/"+elementType,
+            type: "get",
+            dataType: "json",
+            data: {   },
+            success: function (data) {
+                response($.map(data, function (item) {
+                    return {
+                        label: item.newItemName,
+                        value: item.newItemCode,
+                    }
+                }));
+            }
+        });
+    },
+    focus: function (event, ui) {
+        $("#newItemCode").val(ui.item.value);
+        $("#newItemName").val(ui.item.label);
+        return false;
+    },
+    select: function (event, ui) {
+        $("#newItemCode").val(ui.item.value);
+        $("#newItemName").val(ui.item.label);
+        return false;
+    }
+});
+
+
 function edit() {
     var id  = $("input[name='id']").val();
     var itemCode  = $("input[name='itemCode']").val();

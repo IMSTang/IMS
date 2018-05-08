@@ -55,7 +55,7 @@ public class QueryInventoryController extends BaseController
         String itemCode = request.getParameter("itemCode");
         List<QueryInventory> list = queryInventoryService.selectQueryInventoryListByBatch(batch,itemCode);
 
-        System.out.println(list);
+//        System.out.println(list);
         return list;
     }
 
@@ -66,5 +66,22 @@ public class QueryInventoryController extends BaseController
         QueryInventory queryInventory = queryInventoryService.selectQueryInventoryById(sn);
         model.addAttribute("queryInventory", queryInventory);
         return prefix + "/detail";
+    }
+
+    /**
+     * check ItemCode + Batch Unique
+     * @param inventory
+     * @return 1 exit,0 not exit
+     */
+    @PostMapping("/checkItemBatchUnique")
+    @ResponseBody
+    public String  checkItemBatchUnique(QueryInventory inventory){
+        String flag="0";
+
+        if(inventory != null){
+            flag = queryInventoryService.checkItemBatchUnique(inventory.getItemCode(),inventory.getBatch());
+        }
+        return  flag;
+
     }
 }

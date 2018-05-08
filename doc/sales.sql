@@ -210,7 +210,7 @@ create table sale_sample_body
 	sample_id     varchar(32)  not null                   comment 'Sample uuid',
 	item_code     varchar(20)     not null                       comment 'Item Code',
 	price     	  float(10,2)     not null                   comment 'Price',
-	quantity      float(10,3)     not null                   comment 'Quantity',
+	quantity      float(10,0)     not null                   comment 'Quantity(g)',
 	primary key (sample_body_id)
 ) engine=innodb default charset=utf8;
 

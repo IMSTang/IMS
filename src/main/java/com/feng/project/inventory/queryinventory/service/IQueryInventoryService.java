@@ -29,4 +29,12 @@ public interface IQueryInventoryService
      * @return 库存对象
      */
     public QueryInventory selectQueryInventoryById(Long sn);
+
+    /**
+     * check ItemCode Batch Unique
+     * @param itemCode
+     * @param batch
+     * @return flag
+     */
+    public  String checkItemBatchUnique(String itemCode, String batch);
 }

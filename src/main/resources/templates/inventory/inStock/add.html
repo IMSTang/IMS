@@ -35,7 +35,11 @@
 				</div>
 				<label class="col-sm-2 control-label">Warehouse:</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="warehouse" id="warehouse">
+					<select id="warehouse" name="warehouse" class="form-control select2-hidden-accessible">
+						<option value="">-select one-</option>
+						<option th:each="cate:${listWarehouse}" th:value="${cate.dictLabel}" th:text="${cate.dictLabel}"></option>
+					</select>
+					<!--<input class="form-control" type="text" name="warehouse" id="warehouse">-->
 				</div>
 				<label class="col-sm-2 control-label">Position:</label>
 				<div class="col-sm-2">
@@ -45,7 +49,7 @@
 			
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Quantity:</label>
+				<label class="col-sm-2 control-label">Quantity(KG):</label>
 				<div class="col-sm-2">
 					<input class="form-control" type="text" name="quantity" id="quantity">
 				</div>

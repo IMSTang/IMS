@@ -48,4 +48,14 @@ public class QueryInventoryServiceImpl implements IQueryInventoryService
     {
         return queryInventoryDao.selectQueryInventoryById(sn);
     }
+
+
+    @Override
+    public String checkItemBatchUnique(String itemCode, String batch) {
+        int count = queryInventoryDao.checkItemBatchUnique(itemCode, batch);
+        if(count>0){
+            return "1";
+        }
+        return  "0";
+    }
 }

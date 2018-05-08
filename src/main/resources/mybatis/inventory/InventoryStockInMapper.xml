@@ -55,7 +55,7 @@
             i.status = 0
             <if test="searchValue != null and searchValue != ''">
                 AND (i.item_code like CONCAT('%',#{searchValue},'%' ) or i.batch like CONCAT('%',#{searchValue},'%' )
-                or p.item_name like CONCAT('%',#{searchValue},'%' ) or i.position = #{searchValue})
+                or p.item_name like CONCAT('%',#{searchValue},'%' ) or p.item_name_cn like CONCAT('%',#{searchValue},'%' ))
             </if>
         </where>
     </select>

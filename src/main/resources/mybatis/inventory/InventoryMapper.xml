@@ -86,4 +86,8 @@
         </where>
     </select>
 
+    <select id="checkItemBatchUnique" parameterType="QueryInventory" resultType="int">
+		select count(*) from inv_inventory i where i.status = 0 and i.item_code=#{itemCode} and i.batch=#{batch}
+	</select>
+
 </mapper>

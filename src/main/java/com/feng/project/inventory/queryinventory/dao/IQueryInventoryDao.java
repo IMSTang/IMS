@@ -32,4 +32,6 @@ public interface IQueryInventoryDao
      * @return 库存对象
      */
     public QueryInventory selectQueryInventoryById(Long sn);
+
+    public int checkItemBatchUnique(@Param("itemCode")String itemCode, @Param("batch")String batch);
 }

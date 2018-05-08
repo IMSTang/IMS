@@ -248,7 +248,7 @@ $("#form-quote-add").validate({
         quoteDate:{
             required:true,
             dateISO:true
-        },
+        }
 
     },
 

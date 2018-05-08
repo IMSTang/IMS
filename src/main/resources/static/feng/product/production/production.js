@@ -5,6 +5,10 @@ $(function() {
             checkbox: true
         },
         {
+            field: 'productCategory',
+            title: 'Category'
+        },
+        {
             field: 'itemCode',
             title: 'Item Code'
         },
@@ -21,6 +25,11 @@ $(function() {
 		{
             field: 'specification',
             title: 'specification'
+        },
+
+        {
+            field: 'safetyStock',
+            title: 'Safety Stock(KG)'
         },
 		
 		{

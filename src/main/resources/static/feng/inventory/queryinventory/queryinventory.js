@@ -34,7 +34,7 @@ $(function() {
         },
         {
             field: 'quantity',
-            title: 'Quantity'
+            title: 'Quantity(KG)'
         },
         {
             field: 'vendor.vendorName',

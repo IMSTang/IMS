@@ -379,7 +379,12 @@ create table sys_dict_type
 	unique (dict_type)
 ) engine=innodb auto_increment=100 default charset=utf8;
 
-
+-- ----------------------------
+-- Records of sys_dict_type
+-- ----------------------------
+INSERT INTO `sys_dict_type` VALUES ('10', 'ProductCategory', 'ProductCategory', '0', 'admin', '2018-04-21 21:38:12', 'admin', '2018-04-26 18:50:14', 'set order');
+INSERT INTO `sys_dict_type` VALUES ('20', 'Warehouse', 'Warehouse', '0', 'admin', '2018-04-24 21:35:29', 'admin', '2018-04-26 18:42:07', '');
+INSERT INTO `sys_dict_type` VALUES ('30', 'UrgencyDegree', 'UrgencyDegree', '0', 'admin', '2018-04-26 18:41:51', '', '2018-04-26 18:41:51', 'Urgency Degree(A,B,C)');
 
 -- ----------------------------
 -- 11、字典数据表
@@ -400,6 +405,19 @@ create table sys_dict_data
     remark 	         varchar(500) 	 default '' 				comment '备注',
 	primary key (dict_code)
 ) engine=innodb auto_increment=100 default charset=utf8;
+
+-- ----------------------------
+-- Records of sys_dict_data
+-- ----------------------------
+INSERT INTO `sys_dict_data` VALUES ('101', '10', 'Amino_acids', 'Amino_acids', '10', '0', 'admin', '2018-04-21 21:39:12', 'admin', '2018-04-26 18:50:14', '');
+INSERT INTO `sys_dict_data` VALUES ('102', '20', 'Plant_Extracts', 'Plant_Extracts1', '10', '0', 'admin', '2018-04-21 21:39:19', 'admin', '2018-04-26 18:50:14', '');
+INSERT INTO `sys_dict_data` VALUES ('103', '30', 'Minerals', 'Minerals', '10', '0', 'admin', '2018-04-21 21:39:34', 'admin', '2018-04-26 18:50:14', '');
+INSERT INTO `sys_dict_data` VALUES ('104', '40', 'Orotein_Powder', 'Orotein_Powder', '10', '0', 'admin', '2018-04-21 21:39:48', 'admin', '2018-04-26 18:50:14', '');
+INSERT INTO `sys_dict_data` VALUES ('201', '1', 'Ontario, CA', 'Ontario, CA', '20', '0', 'admin', '2018-04-24 21:35:30', 'admin', '2018-04-26 18:42:07', '');
+INSERT INTO `sys_dict_data` VALUES ('202', '2', "Xi\'an, China", "Xi\'an, China", '20', '0', 'admin', '2018-04-24 21:35:30', 'admin', '2018-04-26 18:42:07', '');
+INSERT INTO `sys_dict_data` VALUES ('301', '10', 'A', 'A', '30', '0', 'admin', '2018-04-26 18:41:51', 'admin', '2018-04-26 18:41:51', '');
+INSERT INTO `sys_dict_data` VALUES ('302', '20', 'B', 'B', '30', '0', 'admin', '2018-04-26 18:41:51', 'admin', '2018-04-26 18:41:51', '');
+INSERT INTO `sys_dict_data` VALUES ('303', '30', 'C', 'C', '30', '0', 'admin', '2018-04-26 18:41:51', 'admin', '2018-04-26 18:41:51', '');
 
 -- ----------------------------
 -- 12、系统访问记录
