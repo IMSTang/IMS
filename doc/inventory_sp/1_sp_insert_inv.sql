@@ -18,38 +18,16 @@ OUT  out_new_sn     int(11)
 
 BEGIN
 
-INSERT INTO inv_inventory_in
-(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc, vendor_id, status, stock_in_date,
-  create_time, create_by, update_by,	update_time, remark )
-VALUES (
-  item_code ,
-  batch     ,
-  warehouse ,
-  position  ,
-  price_purchase ,
-  price_fob_ontario   ,
-  quantity    ,
-	irradiation      ,
-  tpc      ,
-  vendor_id   ,
-	0      ,
-	sysdate() ,
-  sysdate() ,
-  create_by,
-  create_by   ,
-	sysdate() ,
-  remark
-);
+INSERT INTO inv_inventory_in(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc,
+                                vendor_id, status, stock_in_date, create_time, create_by, update_by,	update_time, remark )
+        VALUES ( item_code , batch , warehouse , position , price_purchase , price_fob_ontario , quantity ,	irradiation , tpc ,
+                  vendor_id ,	0 , sysdate() , sysdate() , create_by ,  create_by , sysdate() , remark );
 
 set out_new_sn=LAST_INSERT_ID();
 
 END
 ;;
 DELIMITER ;
-
-
-
-
 
 
 
@@ -62,7 +40,7 @@ IN  warehouse varchar(100)  ,
 IN  position  varchar(100) ,
 IN  price_purchase  double(16,2)   ,
 IN  price_fob_ontario  double(16,2) ,
-IN  quantity   int(10) ,
+IN  var_quantity   int(10) ,
 IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
@@ -74,31 +52,21 @@ OUT  out_new_sn     int(11)
 
 BEGIN
 
-INSERT INTO inv_inventory
-(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc, vendor_id, customer_id, status ,stock_in_date ,
-  create_time, create_by, update_by,	update_time, remark )
-VALUES (
-  item_code ,
-  batch     ,
-  warehouse ,
-  position  ,
-  price_purchase ,
-  price_fob_ontario   ,
-  quantity    ,
-	irradiation      ,
-  tpc      ,
-  vendor_id   ,
-  customer_id   ,
-	0      ,
-	sysdate() ,
-  sysdate() ,
-  create_by,
-  create_by   ,
-	sysdate() ,
-  remark
-);
+declare inv_sn int;
+select max(i.sn) into inv_sn
+from inv_inventory i where i.item_code=item_code and i.batch=batch and i.warehouse=warehouse and i.position=position;
+IF (inv_sn is null ) THEN
+			INSERT INTO inv_inventory(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc,
+                          vendor_id, customer_id, status ,stock_in_date , create_time, create_by, update_by,	update_time, remark )
+        VALUES ( item_code , batch , warehouse , position  , price_purchase , price_fob_ontario , quantity , irradiation , tpc ,
+                          vendor_id , customer_id ,	0 ,	sysdate() , sysdate() , create_by , create_by ,	sysdate() , remark );
 
-set out_new_sn=LAST_INSERT_ID();
+      set out_new_sn=LAST_INSERT_ID();
+ELSE
+	  update inv_inventory i set i.quantity=i.quantity+var_quantity, i.update_by=create_by, i.update_time=SYSDATE()
+        where i.sn=inv_sn
+END IF;
+
 
 END
 ;;

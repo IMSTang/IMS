@@ -82,7 +82,7 @@
             i.status = 0
             <if test="itemCode != null and itemCode != ''">
                 AND i.item_code = #{itemCode} AND i.batch like CONCAT('%',#{batch},'%' )
-            </if>
+            </if>#{batch}
         </where>
     </select>
 

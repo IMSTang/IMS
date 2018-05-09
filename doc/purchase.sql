@@ -128,10 +128,9 @@ create table pur_product_demand
 (
     demand_id       int(11)      not null auto_increment    comment 'demand ID',
     demand_date     varchar(10) not null               comment 'demand Date',
-	vendor_id        int(11)      not null                   comment 'Vendor Id',
-	vendor_name   varchar(100)    not null                   comment 'Vendor Name',
+	vendor_id        int(11)      null                   comment 'Vendor Id',
 	item_code     varchar(10)     not null                   comment 'Item Code',
-	price     	  float(10,2)     not null                   comment 'Price',
+	price     	  float(10,2)     null                   comment 'Price',
 	quantity      float(10,3)     not null                   comment 'Quantity',
 	urgency_degree  varchar(20)   not null                   comment 'Urgency degree',
 	status        int(1)          default 0                   comment '状态（0正常 1停用）',

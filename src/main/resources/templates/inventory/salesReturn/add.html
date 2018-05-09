@@ -13,9 +13,16 @@
 </head>
 <body class="white-bg">
 	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
-		<form class="form-horizontal m" id="form-outStock-add">
-
+		<form class="form-horizontal m" id="form-salesReturn-add">
 			<input name="sn"  type="hidden" id="sn"/>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">Customer Name:</label>
+				<div class="col-sm-10">
+					<input class="form-control" type="text" name="customerName" id="customerName">
+				</div>
+				<input name="customerId"  type="hidden" id="customerId"/>
+			</div>
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Item Code:</label>
@@ -24,28 +31,24 @@
 				</div>
 				<label class="col-sm-2 control-label">Item Name:</label>
 				<div class="col-sm-6">
-					<input class="form-control" type="text" name="itemName" id="itemName">
+					<input class="form-control" type="text" name="itemName" id="itemName" readonly="true">
 				</div>
 			</div>
 			
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Batch:</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="batch" id="batch" autocomplete="on" >
-					<!--<select id="batch" name="batch" class="form-control select2-hidden-accessible">-->
-						<!--<option value="">&#45;&#45;Select a batch&#45;&#45;</option>-->
-					<!--</select>-->
+					<input class="form-control" type="text" name="batch" id="batch" readonly="true">
 				</div>
-				<label class="col-sm-2 control-label">Warehouse:</label>
+				<label class="col-sm-2 control-label">Out Warehouse:</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="warehouse" id="warehouse" readonly="true">
+					<input class="form-control" type="text" name="outWarehouse" id="outWarehouse" readonly="true">
 				</div>
-				<label class="col-sm-2 control-label">Position:</label>
+				<label class="col-sm-2 control-label">Out Position:</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="position" id="position" readonly="true">
+					<input class="form-control" type="text" name="outPosition" id="outPosition" readonly="true">
 				</div>
 			</div>
-
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Vendor Name:</label>
@@ -56,42 +59,40 @@
 				<input name="inventorySn"  type="hidden" id="inventorySn"/>
 			</div>
 
-
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Stock Quantity(KG):</label>
+				<label class="col-sm-2 control-label">Out Quantity(KG):</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="StockQuantity" id="StockQuantity" readonly="true">
+					<input class="form-control" type="text" name="outQuantity" id="outQuantity" readonly="true">
+				</div>
+				<label class="col-sm-2 control-label">&nbsp;</label>
+				<div class="col-sm-2">
+					&nbsp;
+				</div>
+				<label class="col-sm-2 control-label">Date:</label>
+				<div class="col-sm-2">
+					<input class="form-control" type="text" name="returnDate" id="returnDate" th:value="${today}">
 				</div>
 
 			</div>
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">&nbsp;</label>
-
 			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-2 control-label">Out Quantity(KG):</label>
+				<label class="col-sm-2 control-label">Return Quantity(KG):</label>
 				<div class="col-sm-2">
 					<input class="form-control" type="text" name="quantity" id="quantity">
 				</div>
-				<label class="col-sm-2 control-label">Date:</label>
+				<label class="col-sm-2 control-label">Warehouse:</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="stockoutDate" id="stockoutDate" th:value="${today}">
+					<input class="form-control" type="text" name="warehouse" id="warehouse">
 				</div>
-
-			</div>
-			
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Customer Name:</label>
-				<div class="col-sm-10">
-					<input class="form-control" type="text" name="customerName" id="customerName">
+				<label class="col-sm-2 control-label">Position:</label>
+				<div class="col-sm-2">
+					<input class="form-control" type="text" name="position" id="position">
 				</div>
-				<input name="customerId"  type="hidden" id="customerId"/>
-
 			</div>
-			
 
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Remark:</label>
@@ -99,18 +100,6 @@
 					<textarea id="remark" name="remark" rows="3" class="form-control" type="text"></textarea>
 				</div>
 			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-2 control-label">Attachment Name :</label>
-				<div class="col-sm-4">
-					<input class="form-control" type="text" name="attachmentName" id="attachmentName">
-				</div>
-				<label class="col-sm-2 control-label">Attachment:</label>
-				<div class="col-sm-4">
-					<input class="form-control" type="text" name="attachment" id="attachment">
-				</div>
-			</div>
-			
 
 			<div class="form-group">
 				<div class="form-control-static col-sm-offset-9">
@@ -124,7 +113,7 @@
 	<script type="text/javascript" src="/js/plugins/autoComplete/jquery.autocomplete.min.js"></script>
 	<link rel="stylesheet" href="/js/plugins/autoComplete/jquery-ui.css">
 	<script  type="text/javascript" src="/js/plugins/autoComplete/jquery-ui.js"></script>
-	<script type="text/javascript" src="/feng/inventory/outStock/add.js">
+	<script type="text/javascript" src="/feng/inventory/salesReturn/add.js">
 	</script>
 </body>
 </html>

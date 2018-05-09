@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.feng.project.inventory.outstock.dao.IStockOutDao" >
-    <resultMap id="BaseResultMap" type="com.feng.project.inventory.outstock.domain.StockOut" >
+<mapper namespace="com.feng.project.inventory.salesreturn.dao.ISalesReturnDao" >
+    <resultMap id="BaseResultMap" type="com.feng.project.inventory.salesreturn.domain.SalesReturn" >
         <id column="sn"  property="sn" />
         <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
         <result column="inventory_sn" property="inventorySn" />
@@ -14,7 +14,7 @@
         <result column="vendor_id"  property="vendorId" />
         <result column="customer_id"  property="customerId" />
         <result column="status" property="status" />
-        <result column="stockout_date" property="stockoutDate" />
+        <result column="return_date" property="returnDate" />
         <result column="create_by" jdbcType="VARCHAR" property="createBy" />
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
         <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
@@ -23,27 +23,6 @@
         <association property="production"    column="item_code" javaType="Production" resultMap="prodResult"/>
         <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
         <association property="customer"  column="customer_id" javaType="Customer" resultMap="customerResult"/>
-    </resultMap>
-
-
-    <resultMap id="BaseResultMapInventory" type="com.feng.project.inventory.outstock.domain.Inventory" >
-        <id column="sn"  property="sn" />
-        <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
-        <result column="batch" jdbcType="VARCHAR" property="batch" />
-        <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
-        <result column="position" jdbcType="VARCHAR" property="position" />
-        <result column="quantity"  property="quantity" />
-        <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
-        <result column="tpc" jdbcType="VARCHAR" property="tpc" />
-        <result column="vendor_id"  property="vendorId" />
-        <result column="customer_id"  property="customerId" />
-        <result column="status" property="status" />
-        <result column="stock_in_date" jdbcType="TIMESTAMP" property="stockInDate" />
-        <result column="create_by" jdbcType="VARCHAR" property="createBy" />
-        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-        <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
-        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-        <result column="remark" jdbcType="VARCHAR" property="remark" />
     </resultMap>
 
     <resultMap id="prodResult" type="Production">
@@ -66,12 +45,12 @@
 
     <sql id="Base_Column_List" >
         sn, item_code, batch, warehouse, position, quantity,
-    irradiation, tpc, vendor_id, customer_id, status, stockout_date, create_by, create_time,
+    irradiation, tpc, vendor_id, customer_id, status, return_date, create_by, create_time,
     update_by, update_time, remark
     </sql>
 
 
-    <select id="selectStockOutList" parameterType="com.feng.project.inventory.outstock.domain.StockOut" resultMap="BaseResultMap">
+    <select id="selectSalesReturnList" parameterType="com.feng.project.inventory.salesreturn.domain.SalesReturn" resultMap="BaseResultMap">
         select o.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name, c.customer_name
         from inv_inventory_out o left join pro_production p on p.item_code = o.item_code
         left join pur_vendor v on v.vendor_id = o.vendor_id
@@ -85,7 +64,7 @@
         </where>
     </select>
 
-    <select id="selectStockOutById" parameterType="Long" resultMap="BaseResultMap">
+    <select id="selectSalesReturnById" parameterType="Long" resultMap="BaseResultMap">
 		select o.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name, c.customer_name
         from inv_inventory_out o left join pro_production p on p.item_code = o.item_code
         left join pur_vendor v on v.vendor_id = o.vendor_id
@@ -93,7 +72,7 @@
         where o.status = 0 and o.sn = #{sn}
 	</select>
 
-    <parameterMap type="java.util.HashMap" id="outStockParams">
+    <parameterMap type="java.util.HashMap" id="salesReturnParams">
         <parameter property="inventory_sn" jdbcType="INTEGER" javaType="java.lang.Integer"
                    mode="IN" />
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
@@ -114,7 +93,7 @@
                    mode="IN" />
         <parameter property="customerId"  jdbcType="INTEGER"   javaType="java.lang.String"
                    mode="IN" />
-        <parameter property="stockoutDate" jdbcType="VARCHAR" javaType="java.lang.String"
+        <parameter property="returnDate" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
@@ -122,40 +101,24 @@
                    mode="IN" />
     </parameterMap>
 
-    <parameterMap type="java.util.HashMap" id="outStockParamsId">
+    <parameterMap type="java.util.HashMap" id="salesReturnParamsId">
         <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer"
                    mode="IN" />
     </parameterMap>
 
-    <insert id="spStockOut" parameterMap="outStockParams"
+    <insert id="spSalesReturn" parameterMap="salesReturnParams"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockOut(?, ?, ?, ?, ?,     ?, ?, ?, ?, ?,     ?, ?, ? )}
+        {call  sp_salesReturn(?, ?, ?, ?, ?,     ?, ?, ?, ?, ?,     ? )}
     ]]>
 </insert>
 
-    <delete id="spStockOutRemove" parameterMap="outStockParamsId"
+    <delete id="spSalesReturnRemove" parameterMap="salesReturnParamsId"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_stockOutRemove(?)}
+        {call  sp_salesReturnRemove(?)}
     ]]>
     </delete>
 
-
-    <select id="search_by_customer_itemcode" resultMap="BaseResultMap">
-        select o.* , p.production_id, p.item_name, v.vendor_name
-        from inv_inventory_out o
-        left join pro_production p on p.item_code = o.item_code
-        left join pur_vendor v on v.vendor_id = o.vendor_id
-        <where>
-            o.status = 0
-            <if test="customerId != null and customerId != ''">
-                AND o.customer_id = #{customerId}
-            </if>
-            <if test="itemCode != null and itemCode != ''">
-                AND o.item_code like CONCAT('%',#{itemCode},'%' )
-            </if>
-        </where>
-    </select>
 
 </mapper>

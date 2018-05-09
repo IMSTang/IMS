@@ -26,4 +26,12 @@ public interface IQueryProductService
      * @return 库存对象
      */
     public QueryProduct selectQueryProductById(Long sn);
+
+    /**
+     * 批量增加product Demand信息
+     *
+     * @param itemCodes 需要增加的itemCode 数组
+     * @return 结果
+     */
+    public int batchDemand(String[] arrayItemCode);
 }

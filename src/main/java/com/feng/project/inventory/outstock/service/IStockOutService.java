@@ -21,4 +21,6 @@ public interface IStockOutService {
     public void spStockOutRemove(int sn);
 
     public Inventory selectInventoryByInStockId(int sn);
+
+    public List<StockOut> search_by_customer_itemcode(String customerId, String itemCode);
 }

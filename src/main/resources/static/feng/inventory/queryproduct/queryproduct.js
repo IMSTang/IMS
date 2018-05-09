@@ -2,40 +2,44 @@ var prefix = "/inventory/queryproduct"
 
 $(function() {
 		var columns = [
-		 //    {
-        //     checkbox: true
-        // },
+		    {
+            checkbox: true
+        },
         {
-            field: 'production.productCategory',
+            field: 'productCategory',
             title: 'Category'
         },
         {
-            field: 'production.itemCode',
+            field: 'itemCode',
             title: 'Item Code'
         },
         {
-            field: 'production.itemName',
+            field: 'itemName',
             title: 'Item Name'
         },
         {
-            field: 'production.itemNameCn',
+            field: 'itemNameCn',
             title: 'Item Name CN'
         },
         {
-            field: 'production.safetyStock',
+            field: 'safetyStock',
             title: 'Safety Stock'
         },
         {
-            field: 'sumQuantity',
+            field: 'sumInventory.sumQuantity',
             title: 'Quantity'
         },
         {
-            field: 'pricePurchase',
+            field: 'sumInventory.pricePurchase',
             title: 'Price Purchase'
         },
         {
-            field: 'priceFobOntario',
+            field: 'sumInventory.priceFobOntario',
             title: 'Price FOB Ontario'
+        },
+        {
+            field: 'latestDemandDate',
+            title: 'Latest Demand Date'
         },
 
         {
@@ -44,7 +48,7 @@ $(function() {
             formatter: function(value, row, index) {
             	var actions = [];
             	// actions.push('<a class="btn btn-warning btn-sm" href="#" title="Detail" onclick="detail(\'' + row.sn + '\')"><i class="fa fa-search"></i></a>');
-                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="alert(\'add to Replenishment \\n TBD: item code =' + row.production.itemCode + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
+                actions.push('<a class="btn btn-primary btn-sm" href="#" title="Add" mce_href="#" onclick="addDemand(\'' + row.itemCode + '\')"><i class="fa fa-plus"></i></a>&nbsp;');
             	return actions.join('');
             }
         }];
@@ -52,9 +56,24 @@ $(function() {
 	$.initTable(columns, url);
 });
 
-/*操作日志-详细*/
-function detail(id) {
-    var url = prefix + '/detail/' + id;
-    layer_show("Inventory Detail", url, '800', '500');
+/*增加备货需求*/
+function addDemand(item_code) {
+    var rows = new Array(1);
+    rows[0] = item_code;
+    $.modalConfirm("Do you want to add the production to demand list?", function(r) {
+        _ajax(prefix + '/batchDemand', { "arrayItemCode": rows }, "post", r);
+    });
 }
 
+// 批量增加备货需求
+function batchDemand() {
+    var rows = $.getSelections("itemCode");
+
+    if (rows.length == 0) {
+        $.modalMsg("Please select the production to add to demand list", "warning");
+        return;
+    }
+    $.modalConfirm("Do you want to add " + rows.length + " items to demand list?", function(r) {
+        _ajax(prefix + '/batchDemand', { "arrayItemCode": rows }, "post", r);
+    });
+}

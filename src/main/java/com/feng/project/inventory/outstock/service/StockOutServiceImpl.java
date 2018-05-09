@@ -58,4 +58,10 @@ public class StockOutServiceImpl implements IStockOutService {
         return stockOutDao.selectInventoryByInStockId(sn);
     }
 
+    @Override
+    public List<StockOut> search_by_customer_itemcode(String customerId, String itemCode)
+    {
+        return stockOutDao.search_by_customer_itemcode(customerId, itemCode);
+    }
+
 }

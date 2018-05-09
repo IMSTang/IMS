@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+	<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+	<form class="form-horizontal m" id="form-salesReturn-detail">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Item Code:</label>
+			<div class="col-sm-2 form-control-static" th:text="${salesReturn.itemCode}">
+			</div>
+			<label class="col-sm-2 control-label">Item Name:</label>
+			<div class="col-sm-4 form-control-static" th:text="${salesReturn.production.itemName}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Item Name CN:</label>
+			<div class="col-sm-8 form-control-static" th:text="${salesReturn.production.itemNameCn}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Batch:</label>
+			<div class="col-sm-2 form-control-static" th:text="${salesReturn.batch}">
+			</div>
+			<label class="col-sm-2 control-label">Warehouse:</label>
+			<div class="col-sm-2 form-control-static" th:text="${salesReturn.warehouse}">
+			</div>
+			<label class="col-sm-2 control-label">Position:</label>
+			<div class="col-sm-1 form-control-static" th:text="${salesReturn.position}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Quantity(KG):</label>
+			<div class="col-sm-2 form-control-static" th:text="${salesReturn.quantity}">
+			</div>
+			<label class="col-sm-2 control-label">Date:</label>
+			<div class="col-sm-2 form-control-static" th:text="${salesReturn.returnDate}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Customer Name:</label>
+			<div class="form-control-static" th:text="${salesReturn.customer.customerName}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Remark:</label>
+			<div class="form-control-static" th:text="${salesReturn.remark}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Irradiation:</label>
+			<div class="form-control-static" th:text="${salesReturn.irradiation}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">TPC:</label>
+			<div class="form-control-static" th:text="${salesReturn.tpc}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Vendor Name:</label>
+			<div class="form-control-static" th:text="${salesReturn.vendor.vendorName}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Attachment:</label>
+			<div class="form-control-static" >
+				<a href="https://jhdingredients.com/wp-content/uploads/2017/12/JHD_COA-of-African-Mango-Seeds-Extract-4-1_FZMGZ-170914.pdf" target="_blank" data-slimstat="3">
+					JHD_COA-of-African-Mango-Seeds-Extract-4-1_FZMGZ-170914.pdf</a>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-control-static col-sm-offset-9">
+				<button th:onclick="'javascript:layer_close()'" class="btn btn-danger" type="button">Close</button>
+			</div>
+		</div>
+	</form>
+    </div>
+    <div th:include="include :: footer"></div>
+</body>
+</html>

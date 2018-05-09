@@ -1,5 +1,6 @@
 package com.feng.project.inventory.queryproduct.service;
 
+import com.feng.common.utils.security.ShiroUtils;
 import com.feng.project.inventory.queryproduct.dao.IQueryProductDao;
 import com.feng.project.inventory.queryproduct.domain.QueryProduct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,17 @@ public class QueryProductServiceImpl implements IQueryProductService
     public QueryProduct selectQueryProductById(Long sn)
     {
         return queryProductDao.selectQueryProductById(sn);
+    }
+
+    /**
+     * 批量增加product Demand信息
+     *
+     * @param itemCodes 需要增加的itemCode 数组
+     * @return 结果
+     */
+    @Override
+    public int batchDemand(String[] arrayItemCode)
+    {
+        return queryProductDao.batchDemand(ShiroUtils.getLoginName(), arrayItemCode);
     }
 }

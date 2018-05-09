@@ -2,15 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.feng.project.inventory.queryproduct.dao.IQueryProductDao" >
     <resultMap id="QueryProductResult" type="QueryProduct" >
-        <id column="sn"  property="sn" />
-        <!--<result jdbcType="VARCHAR" property="itemCode" column="item_code" />-->
-        <result  property="sumQuantity" column="sum_quantity" />
-        <result  property="pricePurchase" column="price_purchase" />
-        <result  property="priceFobOntario" column="price_fob_ontario" />
-        <association property="production"    column="item_code" javaType="Production" resultMap="productionResult"/>
-    </resultMap>
-
-    <resultMap id="productionResult" type="Production">
         <id     property="productionId"   column="production_id" />
         <result property="itemCode" column="item_code" />
         <result property="itemName" column="item_name"     />
@@ -18,13 +9,24 @@
         <result property="productCategory" column="product_category"     />
         <result property="specification" column="specification" />
         <result property="safetyStock" column="safety_stock" />
+        <result property="latestDemandDate" column="latest_demand_date" />
+        <association property="sumInventory"    column="item_code" javaType="SumInventory" resultMap="sumInventoryResult"/>
+    </resultMap>
+
+    <resultMap id="sumInventoryResult" type="SumInventory">
+        <result  property="itemCode" column="item_code" />
+        <result  property="sumQuantity" column="sum_quantity" />
+        <result  property="pricePurchase" column="price_purchase" />
+        <result  property="priceFobOntario" column="price_fob_ontario" />
     </resultMap>
 
     <select id="selectQueryProductList" parameterType="QueryProduct" resultMap="QueryProductResult">
-        select p.product_category,p.item_code,p.item_name,p.item_name_cn,p.specification,p.safety_stock,ii.sum_quantity,ii.price_purchase,ii.price_fob_ontario
-        from pro_production p LEFT JOIN
-        (select item_code,sum(quantity) as sum_quantity,max(price_purchase) as price_purchase,max(price_fob_ontario) as price_fob_ontario from inv_inventory group by item_code) ii
-        on ii.item_code=p.item_code
+        select p.product_category,p.item_code,p.item_name,p.item_name_cn,p.specification,p.safety_stock,
+                ii.item_code,ii.sum_quantity,ii.price_purchase,ii.price_fob_ontario,
+                (select max(d.demand_date) from pur_product_demand d where d.item_code=p.item_code) as latest_demand_date
+        from pro_production p
+        LEFT JOIN (select item_code,sum(quantity) as sum_quantity,max(price_purchase) as price_purchase,max(price_fob_ontario) as price_fob_ontario from inv_inventory group by item_code) ii
+              on ii.item_code=p.item_code
         <where>
             p.status = 0 and (p.safety_stock>0 or sum_quantity>0)
             <if test="searchValue != null and searchValue != ''">
@@ -33,4 +35,13 @@
         </where>
     </select>
 
+
+    <insert id="batchDemand" >
+        insert into pur_product_demand(demand_date,item_code,quantity,urgency_degree,status,create_by)
+        select CONCAT(curdate(),''),item_code,IFNULL(safety_stock,0)*5,'B',0,#{createBy} from pro_production
+        where item_code in
+        <foreach collection="arrayItemCode" item="itemCode" open="(" separator="," close=")">
+            #{itemCode}
+        </foreach>
+    </insert>
 </mapper>

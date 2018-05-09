@@ -42,7 +42,15 @@ $(function() {
         },
         {
             field: 'status',
-            title: 'Status'
+            title: 'Status',
+            align: 'center',
+            formatter: function(value, row, index) {
+                if (value == '0') {
+                    return '<span class="label label-info">ToDo</span>';
+                } else if (value == '1') {
+                    return '<span class="label label-warning">Done</span>';
+                }
+            }
         },
         {
             field: 'createBy',

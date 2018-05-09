@@ -14,12 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 
-    @Controller
-    @RequestMapping("/inventory/outStock")
-    public class StockOutController extends BaseController {
+@Controller
+@RequestMapping("/inventory/outStock")
+public class StockOutController extends BaseController {
         private String prefix = "/inventory/outStock";
 
 
@@ -99,4 +102,19 @@ import java.util.List;
             return prefix + "/edit";
         }
 
+    @GetMapping("/search_by_customer_itemcode")
+    @ResponseBody
+    public List<StockOut> search_by_customer_itemcode(HttpServletRequest request, HttpServletResponse response)
+    {
+        String customerId = request.getParameter("customerId");
+        String itemCode = request.getParameter("itemCode");
+
+        if(customerId ==null || customerId==""){
+            return new ArrayList<StockOut>();
+        }
+        List<StockOut> list = stockOutService.search_by_customer_itemcode(customerId,itemCode);
+
+        return list;
     }
+
+}

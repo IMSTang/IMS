@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,6 +54,10 @@ public class QueryInventoryController extends BaseController
     {
         String batch = request.getParameter("batchValue");
         String itemCode = request.getParameter("itemCode");
+
+        if(itemCode ==null || itemCode==""){
+            return new ArrayList<QueryInventory>();
+        }
         List<QueryInventory> list = queryInventoryService.selectQueryInventoryListByBatch(batch,itemCode);
 
 //        System.out.println(list);

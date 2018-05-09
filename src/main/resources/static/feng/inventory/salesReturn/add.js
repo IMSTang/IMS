@@ -1,5 +1,16 @@
-$("#form-outStock-add").validate({
+$("#form-salesReturn-add").validate({
     rules:{
+        quantity:{
+            number: true,
+            quantityLimit: true,
+            min: 0.01,
+        },
+        warehouse: {
+            required: true,
+        },
+        position: {
+            required: true,
+        },
         customerName:{
             required:true,
             minlength: 2,
@@ -17,11 +28,6 @@ $("#form-outStock-add").validate({
                     else return true;
                 }
             }
-        },
-        quantity:{
-            number: true,
-            quantityLimit: true,
-            min: 0.01,
         },
         itemCode:{
             required:true,
@@ -41,28 +47,7 @@ $("#form-outStock-add").validate({
                 }
             }
         },
-        batch:{
-            required:true,
-            minlength: 1,
-            remote: {
-                url: "/inventory/queryinventory/checkItemBatchUnique",
-                type: "post",
-                dataType: "json",
-                data: {
-                    "itemCode" : function() {
-                        return $.trim($("#itemCode").val());
-                    },
-                    "batch" : function() {
-                        return $.trim($("#batch").val());
-                    }
-                },
-                dataFilter: function(data, type) {
-                    if (data == "0") return false;
-                    else return true;
-                }
-            }
-        },
-        stockoutDate:{
+        returnDate:{
             required:true,
             dateISO:true
         }
@@ -85,98 +70,15 @@ $("#form-outStock-add").validate({
     }
 });
 
-// //后续替换 jquery 校验，保持风格一致
-// $("#quantity").on("blur",function(){
-//     if(parseFloat($("#quantity").val())>parseFloat($("#StockQuantity").val())){
-//         alert("The output quantity must not exceed the stock quantity.");
-//         return  $(this).val("");
-//     }
-// });
-//校验出库数量 不能大于 库存量
 jQuery.validator.addMethod("quantityLimit", function(value, element) {
     var returnVal = false;
-    var stockQuantity = $("#StockQuantity").val();
-    var quantity = $("#quantity").val();
-    if(parseFloat(quantity)<=parseFloat(stockQuantity)){
+    var outQuantity = $("#outQuantity").val();
+    var returnQuantity = $("#quantity").val();
+    if(parseFloat(returnQuantity)<=parseFloat(outQuantity)){
         returnVal = true;
     }
     return returnVal;
-},"Greater than stock quantity.");
-
-//1. itemCode auto complete.
-
-$("#itemCode").autocomplete({
-    minLength: 2,
-    max: 10,
-    source: function (request, response) {
-        var elementType =  "code";
-        var elementValue =  $("#itemCode").val();
-        $.ajax({
-            url: "/product/production/search/"+elementValue+"/"+elementType,
-            type: "get",
-            dataType: "json",
-            data: {   },
-            success: function (data) {
-                response($.map(data, function (item) {
-                    return {
-                        label: item.itemCode,
-                        value: item.itemName,
-                    }
-                }));
-            }
-        });
-    },
-    focus: function (event, ui) {
-        $("#itemCode").val(ui.item.label);
-        $("#itemName").val(ui.item.value);
-        cleanBatch();
-        return false;
-    },
-    select: function (event, ui) {
-        $("#itemCode").val(ui.item.label);
-        $("#itemName").val(ui.item.value);
-        cleanBatch();
-        return false;
-    }
-}).focus(function () {
-    $(this).autocomplete("search");
-});
-
-//2. itemName auto complete .
-$("#itemName").autocomplete({
-    minLength: 2,
-    max: 10,
-    source: function (request, response) {
-        var elementType =  "name";
-        var elementValue =  $("#itemName").val();
-        $.ajax({
-            url: "/product/production/search/"+elementValue+"/"+elementType,
-            type: "get",
-            dataType: "json",
-            data: {   },
-            success: function (data) {
-                response($.map(data, function (item) {
-                    return {
-                        label: item.itemName,
-                        value: item.itemCode,
-                    }
-                }));
-            }
-        });
-    },
-    focus: function (event, ui) {
-        $("#itemCode").val(ui.item.value);
-        $("#itemName").val(ui.item.label);
-        cleanBatch();
-        return false;
-    },
-    select: function (event, ui) {
-        $("#itemCode").val(ui.item.value);
-        $("#itemName").val(ui.item.label);
-        cleanBatch();
-        return false;
-    }
-});
+},"Greater than out quantity.");
 
 // 3. customer Name auto complete
 $("#customerName").autocomplete({
@@ -203,27 +105,29 @@ $("#customerName").autocomplete({
     focus: function (event, ui) {
         $("#customerName").val(ui.item.label);
         $("#customerId").val(ui.item.value);
+        cleanStockOutInfo();
         return false;
     },
     select: function (event, ui) {
         $("#customerName").val(ui.item.label);
         $("#customerId").val(ui.item.value);
+        cleanStockOutInfo();
         return false;
     }
 });
 
 
-// 3. Batch auto complete
-$("#batch").autocomplete({
+// 3. itemCode auto complete
+$("#itemCode").autocomplete({
     minLength: 0,
     source: function (request, response) {
         $.ajax({
-            url: "/inventory/queryinventory/search_batch",
+            url: "/inventory/outStock/search_by_customer_itemcode",
             type: "get",
             dataType: "json",
             data: {
                 "itemCode":  $("input[name='itemCode']").val(),
-                "batchValue":  $("input[name='batch']").val()
+                "customerId":  $("input[name='customerId']").val()
             },
 
             success: function (data) {
@@ -231,14 +135,16 @@ $("#batch").autocomplete({
                 response($.map(data, function (item) {
 
                     return {
-                        label: item.batch +"  -  "+item.warehouse +"  -  "+item.position,
-                        value: item.batch,
+                        label: item.itemCode +"  -  "+item.batch +"  -  "+item.production.itemName +"  ( "+item.stockoutDate +" )",
+                        value: item.itemCode,
+                        itemName: item.production.itemName,
+                        batch: item.batch,
                         warehouse: item.warehouse,
                         position: item.position,
                         quantity: item.quantity,
                         vendorId: item.vendorId,
                         vendorName: item.vendor.vendorName,
-                        inventorySn: item.sn,
+                        stockOutSn: item.sn,
                     }
                 }));
             }
@@ -246,39 +152,58 @@ $("#batch").autocomplete({
     },
     focus: function (event, ui) {
 
-        $("#batch").val(ui.item.value);
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.itemName);
+        $("#batch").val(ui.item.batch);
+        $("#outWarehouse").val(ui.item.warehouse);
+        $("#outPosition").val(ui.item.position);
         $("#warehouse").val(ui.item.warehouse);
         $("#position").val(ui.item.position);
-        $("#StockQuantity").val(ui.item.quantity);
+        $("#outQuantity").val(ui.item.quantity);
         $("#vendorName").val(ui.item.vendorName);
         $("#vendorId").val(ui.item.vendorId);
-        $("#inventorySn").val(ui.item.inventorySn);
+        $("#stockOutSn").val(ui.item.stockOutSn);
         return false;
     },
     select: function (event, ui) {
 
-        $("#batch").val(ui.item.value);
+        $("#itemCode").val(ui.item.value);
+        $("#itemName").val(ui.item.itemName);
+        $("#batch").val(ui.item.batch);
+        $("#outWarehouse").val(ui.item.warehouse);
+        $("#outPosition").val(ui.item.position);
         $("#warehouse").val(ui.item.warehouse);
         $("#position").val(ui.item.position);
-        $("#StockQuantity").val(ui.item.quantity);
+        $("#outQuantity").val(ui.item.quantity);
         $("#vendorName").val(ui.item.vendorName);
         $("#vendorId").val(ui.item.vendorId);
-        $("#inventorySn").val(ui.item.inventorySn);
+        $("#stockOutSn").val(ui.item.stockOutSn);
         return false;
     }
 }).focus(function () {
     $(this).autocomplete("search");
 });
 
+//后续替换 jquery 校验，保持风格一致
+$("#quantity").on("blur",function(){
+    if(parseFloat($("#quantity").val())>parseFloat($("#StockQuantity").val())){
+        alert("The output quantity must not exceed the stock quantity.");
+        return  $(this).val("");
+    }
+});
 
-function cleanBatch() {
-    $("#batch").val("");
+function cleanStockOutInfo() {
+    $("#itemCode").val();
+    $("#itemName").val();
+    $("#batch").val();
+    $("#outWarehouse").val();
+    $("#outPosition").val();
     $("#warehouse").val("");
     $("#position").val("");
-    $("#StockQuantity").val("");
+    $("#outQuantity").val("");
     $("#vendorName").val("");
     $("#vendorId").val("");
-    $("#inventorySn").val("");
+    $("#stockOutSn").val("");
 }
 
 function add() {
@@ -288,33 +213,31 @@ function add() {
     var warehouse  = $("input[name='warehouse']").val();
     var position  = $("input[name='position']").val();
     var quantity  = $("input[name='quantity']").val();
-    var irradiation  = $("input[name='irradiation']").val();
-    var tpc  = $("input[name='tpc']").val();
+    // var irradiation  = $("input[name='irradiation']").val();
+    // var tpc  = $("input[name='tpc']").val();
     var vendorId  = $("input[name='vendorId']").val();
     var customerId  = $("input[name='customerId']").val();
     var remark  = $("#remark").val();
-    var stockoutDate  = $("input[name='stockoutDate']").val();
-    var inventorySn  = $("input[name='inventorySn']").val();
+    var returnDate  = $("input[name='returnDate']").val();
+    var stockOutSn  = $("input[name='stockOutSn']").val();
 
 
     $.ajax({
         cache : true,
         type : "POST",
-        url : "/inventory/outStock/save",
+        url : "/inventory/salesReturn/save",
         data : {
-            "inventorySn": inventorySn,
+            "stockOutSn": stockOutSn,
             "itemCode": itemCode,
             "batch": batch,
             "warehouse": warehouse,
             "position": position,
             "quantity": quantity,
-            "irradiation": irradiation,
-            "tpc": tpc,
             "vendorId": vendorId,
             "customerId": customerId,
             "remark": remark,
             "status": 0,
-            "stockoutDate": stockoutDate
+            "returnDate": returnDate
 
         },
         async : false,

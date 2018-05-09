@@ -4,6 +4,8 @@ import com.feng.project.inventory.instock.domain.StockIn;
 import com.feng.project.inventory.outstock.domain.Inventory;
 import com.feng.project.inventory.outstock.domain.StockOut;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +22,8 @@ public interface IStockOutDao {
 
     public Inventory selectInventoryByInStockId(int id);
 
+    public List<StockOut> search_by_customer_itemcode(@Param("customerId")String customerId, @Param("itemCode")String itemCode);
+
     /**
      * 查询出库单详细
      *
@@ -27,26 +31,6 @@ public interface IStockOutDao {
      * @return 出库单对象
      */
     public StockOut selectStockOutById(Long sn);
-
-
-    /*
-    public List<Production> selectProductionAll(Production production);
-    public List<Production> selectProductionList(Production production);
-
-    public int deleteByPrimaryKey(Long id);
-
-    public int batchDeleteProduction(Long[] id);
-
-    public int insert(Production record);
-
-    public int insertSelective(Production record);
-
-    public Production selectByPrimaryKey(Long id);
-
-    public int updateByPrimaryKeySelective(Production record);
-
-    public int updateByPrimaryKey(Production record);
-*/
 
 
 }

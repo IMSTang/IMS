@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select d.*, p.production_id, p.item_code, p.item_name, p.specification, v.vendor_name
 		from pur_product_demand d left join pro_production p on p.item_code = d.item_code
 			left join pur_vendor v on v.vendor_id = d.vendor_id
-			where d.status = 0
+			where d.status >= 0
 		<if test="searchValue != null and searchValue != ''">
 			AND (vendor_name like CONCAT('%',#{searchValue},'%') or p.item_code like CONCAT('%',#{searchValue},'%')  or p.item_name like CONCAT('%',#{searchValue},'%'))
 		</if>
@@ -48,23 +48,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select d.*, p.production_id, p.item_code, p.item_name, p.specification, v.vendor_name
 		from pur_product_demand d left join pro_production p on p.item_code = d.item_code
 			left join pur_vendor v on v.vendor_id = d.vendor_id
-			where d.status = 0
+			where d.status >= 0
 	</select>
 
 	<select id="selectDemandById" parameterType="Long" resultMap="DemandResult">
 		select d.*, p.production_id, p.item_code, p.item_name, p.specification, v.vendor_name
 		from pur_product_demand d left join pro_production p on p.item_code = d.item_code
 			left join pur_vendor v on v.vendor_id = d.vendor_id
-			where d.status = 0 	and d.demand_id = #{demandId}
+			where d.status >= 0 	and d.demand_id = #{demandId}
 	</select>
 	
 	<delete id="deleteDemandById" parameterType="Long">
-		update pur_product_demand set status = 1
+		update pur_product_demand set status = -1
 		where 1=1 and demand_id = #{demandId}
  	</delete>
  	
  	<update id="batchDeleteDemand" parameterType="String">
-		update pur_product_demand set status = 1
+		update pur_product_demand set status = -1
 		where demand_id in
  		<foreach collection="array" item="demandId" open="(" separator="," close=")">
  			#{demandId}

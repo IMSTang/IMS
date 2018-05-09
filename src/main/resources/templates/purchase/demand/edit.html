@@ -13,11 +13,18 @@
 				<div class="col-sm-3">
 					<input class="form-control" type="text" name="demandDate" id="demandDate" th:value="${demand.demandDate}">
 				</div>
+				<label class="col-sm-2 control-label">Status:</label>
+				<div class="col-sm-3">
+					<select id="status" name="status" class="form-control select2-hidden-accessible" >
+						<option th:selected="${demand.status==0}" value="0">ToDo</option>
+						<option th:selected="${demand.status==1}" value="1">Done</option>
+					</select>
+				</div>
 			</div>
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Vendor Name:</label>
 				<div class="col-sm-8">
-					<input class="form-control" type="text" name="vendorName" id="vendorName" th:value="${demand.vendor.vendorName}">
+					<input class="form-control" type="text" name="vendorName" id="vendorName" th:value="${demand.vendor} ? ${demand.vendor.vendorName} : ''">
 				</div>
 				<input name="vendorId"  type="hidden" id="vendorId" th:value="${demand.vendorId}"/>
 			</div>

@@ -1,4 +1,4 @@
-	package com.feng.project.inventory.queryproduct.domain;
+package com.feng.project.inventory.queryproduct.domain;
 
 import com.feng.framework.web.page.PageDomain;
 import com.feng.project.product.production.domain.Production;
@@ -14,16 +14,19 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class QueryProduct extends PageDomain
 {
-//    private String productCategory;
+    private  Long  productionId;
     private String itemCode;
-//	private String itemName;
-//	private String itemNameCn;
-//	private String specification;
-//	private String safetyStock;
-    private String sumQuantity;
-    private String pricePurchase;
-    private String priceFobOntario;
+    private String itemName;
+    private String itemNameCn;
+    private String productCategory;
+    private String specification;
+    private String specificationCn;
+//    private String testMethod;
+//    private String placeOfOrigin;
+//    private String efficiency;
+    private String safetyStock;
+    private String latestDemandDate;
 
-    /** 产品对象 */
-    private Production production;
+    private SumInventory sumInventory;
+
 }

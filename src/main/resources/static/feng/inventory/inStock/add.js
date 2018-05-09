@@ -8,9 +8,33 @@ $("#form-inStock-add").validate({
             number: true,
             min: 0.01,
         },
+        warehouse: {
+            required: true,
+        },
+        position: {
+            required: true,
+        },
 		quantity:{
             number: true,
             min: 0.01,
+        },
+        vendorName:{
+            required:true,
+            minlength: 2,
+            remote: {
+                url: "/purchase/vendor/checkNameUnique",
+                type: "post",
+                dataType: "text",
+                data: {
+                    name : function() {
+                        return $.trim($("#vendorName").val());
+                    }
+                },
+                dataFilter: function(data, type) {
+                    if (data == "0") return false;
+                    else return true;
+                }
+            }
         },
         itemCode:{
             required:true,
@@ -36,6 +60,10 @@ $("#form-inStock-add").validate({
         itemCode:{
             required: "Required Item Code",
             remote:"Not found this Item Code"
+        },
+        vendorName: {
+            required: "Required vendor",
+            remote: "vendor not exist"
         }
 
     },
