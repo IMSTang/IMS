@@ -201,48 +201,51 @@ var updateBy  = $("input[name='updateBy']").val();
 var updateTime  = $("input[name='updateTime']").val(); 
 
 var attachmentName  = $("input[name='attachmentName']").val(); 
-var attachment  = $("input[name='attachment']").val(); 
-	
-	
-	
-	$.ajax({
-		cache : true,
-		type : "POST",
-		url : "/inventory/inStock/save",
-		data : {
-"itemCode": itemCode, 
-"batch": batch, 
-"warehouse": warehouse, 
-"position": position, 
-"pricePurchase": pricePurchase, 
-"priceFobOntario": priceFobOntario, 
-"quantity": quantity, 
-"irradiation": irradiation, 
-"tpc": tpc, 
-"vendorId": vendorId,
-"remark": remark, 
-"status": status, 
-"stockInDate": stockInDate, 
-"createBy": createBy, 
-"createTime": createTime, 
-"updateBy": updateBy, 
-"updateTime": updateTime,
-"attachmentName": attachmentName, 
-"attachment": attachment
+var attachment  = $("input[name='attachment']").val();
 
-		},
-		async : false,
-		error : function(request) {
-			$.modalAlert("System ERROR", "error");
-		},
-		success : function(data) {
-			if (data.code == 0) {
-				parent.layer.msg("Added successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
-					window.parent.location.reload();
-				});
-			} else {
-				$.modalAlert(data.msg, "error");
-			}
-		}
-	});
+
+
+    var formData = new FormData($("#form-inStock-add")[0]);
+    var StockIn = new Object();
+    StockIn.itemCode= itemCode;
+    StockIn.batch= batch;
+    StockIn.warehouse= warehouse;
+    StockIn.position= position;
+    StockIn.pricePurchase= pricePurchase;
+    StockIn.priceFobOntario= priceFobOntario;
+    StockIn.quantity= quantity;
+    StockIn.irradiation= irradiation;
+    StockIn.tpc= tpc;
+    StockIn.vendorId= vendorId;
+    StockIn.remark= remark;
+    StockIn.status= status;
+    StockIn.stockInDate= stockInDate;
+    StockIn.createBy= createBy;
+    StockIn.createTime= createTime;
+    StockIn.updateBy= updateBy;
+    StockIn.updateTime= updateTime;
+
+
+    formData.append("StockIn",JSON.stringify(StockIn));
+    $.ajax({
+        cache : true,
+        processData: false,
+        contentType: false,
+        type : "POST",
+        url : "/inventory/inStock/save/",
+        data :  formData,
+        async : false,
+        error : function(request) {
+            $.modalAlert("System ERROR", "error");
+        },
+        success : function(data) {
+            if (data.code == 0) {
+                parent.layer.msg("Added successfully, on refreshing ……",{icon:1,time: 500,shade: [0.1,'#fff']},function(){
+                    window.parent.location.reload();
+                });
+            } else {
+                $.modalAlert(data.msg, "error");
+            }
+        }
+    });
 }

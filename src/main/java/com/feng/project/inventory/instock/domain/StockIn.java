@@ -201,4 +201,6 @@ public class StockIn  extends PageDomain {
         public void setAttachment(String attachment) {
                 this.attachment = attachment;
         }
+
+
 }

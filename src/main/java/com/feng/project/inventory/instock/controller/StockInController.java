@@ -1,5 +1,7 @@
 package com.feng.project.inventory.instock.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.feng.common.utils.UploadFileUtils;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.page.TableDataInfo;
@@ -17,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
 import com.feng.framework.web.page.TableDataInfo;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,11 +92,13 @@ import java.util.List;
         @Log(title = "Inventory Management", action = "Inventory - save inStock")
         @PostMapping("/save")
         @ResponseBody
-        public JSON  save(StockIn stockIn){
-            System.out.println("---------save-----------------");
-            System.out.println("---------save---"+stockIn.getBatch()+"-----");
-            System.out.println("---------save  vendorId---"+stockIn.getVendorId()+"-----");
-            stockInService.spStockIn(stockIn);
+        public JSON  save(MultipartHttpServletRequest file, @RequestParam("StockIn") String stockIn){
+
+
+            JSONObject jsStr = JSONObject.parseObject(stockIn);
+            StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
+            UploadFileUtils.saveFile(file);
+//            stockInService.spStockIn(stockIn);
                 return JSON.ok();
         }
 
