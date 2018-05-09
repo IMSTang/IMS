@@ -16,7 +16,7 @@ $("#form-inStock-add").validate({
         },
 		quantity:{
             number: true,
-            min: 0.01,
+            min: 0.001,
         },
         vendorName:{
             required:true,

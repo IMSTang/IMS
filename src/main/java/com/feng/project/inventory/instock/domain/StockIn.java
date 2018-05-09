@@ -13,9 +13,9 @@ public class StockIn  extends PageDomain {
         private String batch;
         private String warehouse;
         private String position;
-        private String pricePurchase;
-        private String priceFobOntario;
-        private String quantity;
+        private Double pricePurchase;
+        private Double priceFobOntario;
+        private Double quantity;
         private String irradiation;
         private String tpc;
         private String vendorId;
@@ -74,27 +74,27 @@ public class StockIn  extends PageDomain {
                 this.position = position;
         }
 
-        public String getPricePurchase() {
+        public Double getPricePurchase() {
                 return pricePurchase;
         }
 
-        public void setPricePurchase(String pricePurchase) {
+        public void setPricePurchase(Double pricePurchase) {
                 this.pricePurchase = pricePurchase;
         }
 
-        public String getPriceFobOntario() {
+        public Double getPriceFobOntario() {
                 return priceFobOntario;
         }
 
-        public void setPriceFobOntario(String priceFobOntario) {
+        public void setPriceFobOntario(Double priceFobOntario) {
                 this.priceFobOntario = priceFobOntario;
         }
 
-        public String getQuantity() {
+        public Double getQuantity() {
                 return quantity;
         }
 
-        public void setQuantity(String quantity) {
+        public void setQuantity(Double quantity) {
                 this.quantity = quantity;
         }
 

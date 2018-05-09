@@ -23,9 +23,9 @@ public class QueryInventory extends PageDomain
     private String batch;
     private String warehouse;
     private String position;
-    private String pricePurchase;
-    private String priceFobOntario;
-    private String quantity;
+    private Double pricePurchase;
+    private Double priceFobOntario;
+    private Double quantity;
     private String irradiation;
     private String tpc;
     private String vendorId;

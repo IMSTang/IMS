@@ -17,33 +17,14 @@ IN  remark 		  varchar(500)
 
 BEGIN
 
-INSERT INTO inv_sales_return
-(	item_code , stockout_sn , batch ,warehouse , position ,  quantity ,
-  vendor_id ,customer_id  ,status ,return_date ,
-  create_time, create_by, update_by, update_time, remark )
-VALUES (
-  item_code ,
-  stockout_sn ,
-  batch     ,
-  warehouse ,
-  position  ,
-  quantity    ,
-  vendor_id   ,
-  customer_id   ,
-	0      ,
-	return_date ,
-  sysdate() ,
-  create_by,
-  create_by   ,
-	sysdate() ,
-  remark
-);
+INSERT INTO inv_sales_return ( item_code , stockout_sn , batch , warehouse , position , quantity ,
+                                 vendor_id ,customer_id  ,status ,return_date , create_time, create_by, update_by, update_time, remark )
+              VALUES ( item_code , stockout_sn , batch , warehouse , position , quantity ,
+                        vendor_id , customer_id ,	0 ,	return_date , sysdate() , create_by , create_by , sysdate() , remark );
+
 END
 ;;
 DELIMITER ;
-
-
-
 
 
 DROP PROCEDURE IF EXISTS sp_salesReturn;
@@ -78,7 +59,7 @@ start transaction;
 update inv_inventory  set quantity=res_quantity   where sn = tmp_inventory_sn;
 
 call sp_insert_sales_return(item_code, stockout_sn, batch, warehouse, position ,
-var_quantity , vendor_id , customer_id , return_date , create_by , remark );
+                            var_quantity , vendor_id , customer_id , return_date , create_by , remark );
 
 
 commit;
@@ -86,8 +67,6 @@ commit;
 END
 ;;
 DELIMITER ;
-
-
 
 
 
@@ -110,10 +89,9 @@ declare inventory_quantity INT default 0;
 select stockout_sn, quantity into tmp_stockout_sn, tmp_quantity from inv_sales_return where sn=var_sn;
 
 select i.sn, i.quantity into tmp_inventory_sn, inventory_quantity from inv_inventory i 
-	where sn=(select inventory_sn from inv_inventory_out where sn=tmp_stockout_sn)
+	where sn=(select inventory_sn from inv_inventory_out where sn=tmp_stockout_sn);
 
-set res_quantity =inventory_quantity - tmp_quantity;
-
+set res_quantity = inventory_quantity - tmp_quantity;
 
 start transaction;
 

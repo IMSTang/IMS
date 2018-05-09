@@ -45,7 +45,7 @@ drop table if exists pro_production;
 create table pro_production
 (
   production_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  item_code       varchar(100)        not null     comment 'item_code',
+  item_code       varchar(20)        not null     comment 'item_code',
 	item_name       varchar(100)    not null                   comment 'item_name',
 	item_name_cn     varchar(100)     null                   comment 'item_name_cn',
 	product_category      varchar(100)     null                   comment 'product_category',

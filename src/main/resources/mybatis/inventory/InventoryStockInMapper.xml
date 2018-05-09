@@ -72,9 +72,9 @@
         <parameter property="batch" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="warehouse" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
-        <parameter property="pricePurchase" jdbcType="DOUBLE" javaType="java.lang.String" mode="IN" />
-        <parameter property="priceFobOntario" jdbcType="DOUBLE" javaType="java.lang.String" mode="IN" />
-        <parameter property="quantity"  jdbcType="INTEGER"  javaType="java.lang.String"  mode="IN" />
+        <parameter property="pricePurchase" jdbcType="DOUBLE" javaType="java.lang.Double" mode="IN" />
+        <parameter property="priceFobOntario" jdbcType="DOUBLE" javaType="java.lang.Double" mode="IN" />
+        <parameter property="quantity"  jdbcType="DOUBLE"  javaType="java.lang.Double"  mode="IN" />
         <parameter property="irradiation" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="tpc" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"  mode="IN" />

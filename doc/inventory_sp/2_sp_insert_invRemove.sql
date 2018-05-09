@@ -11,32 +11,36 @@ declare tmp_item_code VARCHAR(100);
 declare tmp_batch VARCHAR(100);
 declare tmp_warehouse VARCHAR(100);
 declare tmp_position VARCHAR(100);
-declare tmp_out int(11);
+declare tmp_in_quantity double(16,3);
+declare tmp_inventory_quantity double(16,3);
+declare tmp_new_quantity double(16,3);
+declare inv_sn int;
 
-select item_code into tmp_item_code  from inv_inventory_in where sn=var_sn;
-select batch into tmp_batch from inv_inventory_in where sn=var_sn;
-select warehouse into tmp_warehouse  from inv_inventory_in where sn=var_sn;
-select position into tmp_position  from inv_inventory_in where sn=var_sn;
+select item_code , batch , warehouse , position , quantity into tmp_item_code, tmp_batch, tmp_warehouse, tmp_position , tmp_in_quantity from inv_inventory_in where sn=var_sn ;
 
-select count(*) into tmp_out from inv_inventory_out
-    where inventory_sn in ( select sn from inv_inventory where item_code=tmp_item_code and batch=tmp_batch  and warehouse=tmp_warehouse and position =tmp_position ) ;
+select max(i.sn) into inv_sn
+    from inv_inventory i where i.status=0 and i.item_code=item_code and i.batch=batch and i.warehouse=warehouse and i.position=position;
 
-if tmp_out>0 then
+select i.quantity into tmp_inventory_quantity from inv_inventory i where i.sn=inv_sn ;
+
+set tmp_new_quantity = tmp_inventory_quantity - tmp_in_quantity ;
+
+IF(tmp_new_quantity < 0) then
 
   select '-100' into var_result from dual;
 
-else
+ELSE
   start transaction;
 
   update inv_inventory_in  set status=1 where sn=var_sn;
 
-  update inv_inventory set status=1 where item_code=tmp_item_code and batch=tmp_batch  and warehouse=tmp_warehouse and position =tmp_position;
+  update inv_inventory i set i.quantity = tmp_new_quantity where i.sn=inv_sn ;
 
   commit;
 
   select '1' into var_result from dual;
 
-end if;
+END IF;
 
 END
 ;;

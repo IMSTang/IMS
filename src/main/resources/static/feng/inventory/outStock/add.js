@@ -21,7 +21,7 @@ $("#form-outStock-add").validate({
         quantity:{
             number: true,
             quantityLimit: true,
-            min: 0.01,
+            min: 0.001,
         },
         itemCode:{
             required:true,

@@ -10,8 +10,8 @@ public class SumInventory extends PageDomain {
 
     private String  itemCode;
 
-    private String sumQuantity;
-    private String pricePurchase;
-    private String priceFobOntario;
+    private Double sumQuantity;
+    private Double pricePurchase;
+    private Double priceFobOntario;
 
 }

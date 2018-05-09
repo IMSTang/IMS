@@ -3,7 +3,7 @@ $("#form-salesReturn-add").validate({
         quantity:{
             number: true,
             quantityLimit: true,
-            min: 0.01,
+            min: 0.001,
         },
         warehouse: {
             required: true,

@@ -1,11 +1,17 @@
 package com.feng.project.product.production.controller;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.feng.project.product.production.domain.Production;
 import com.feng.project.product.production.domain.ProductionSimple;
 import com.feng.project.product.production.service.IProductionService;
+import com.feng.project.system.dict.domain.DictData;
+import com.feng.project.system.dict.domain.DictType;
+import com.feng.project.system.dict.domain.SelectedDictData;
+import com.feng.project.system.dict.service.IDictDataService;
+import com.feng.project.system.dict.service.IDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +39,12 @@ public class ProductionController extends BaseController{
     }
     @Autowired
     private IProductionService productionService;
+
+    @Autowired
+    private IDictDataService dictDataService;
+
+    @Autowired
+    private IDictTypeService dictTypeService;
 
 
     @RequiresPermissions("product:production:list")
@@ -62,6 +74,18 @@ public class ProductionController extends BaseController{
     @RequiresPermissions("product:production:add")
     @GetMapping("/add")
     public  String  add(Model model){
+
+        DictType dictType = dictTypeService.selectDictTypeByType("ProductCategory");
+        List<DictData> dictDataCategory = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+        List<SelectedDictData> listProductCategory = new ArrayList<SelectedDictData>();
+        for(DictData cate: dictDataCategory)
+        {
+            SelectedDictData data1 = new SelectedDictData();
+            data1.setDictLabel(cate.getDictLabel());
+            data1.setDictValue(cate.getDictValue());
+            listProductCategory.add(data1);
+        }
+        model.addAttribute("listProductCategory", listProductCategory);
         return prefix +"/add";
     }
 
@@ -96,6 +120,25 @@ public class ProductionController extends BaseController{
     public String edit(@PathVariable("productionId") Long productionId, Model model)
     {
         Production production = productionService.selectProductionById(productionId);
+        String productCategory = production.getProductCategory();
+
+        DictType dictType = dictTypeService.selectDictTypeByType("ProductCategory");
+        List<DictData> dictDataCategory = dictDataService.selectDictDataByTypeId(dictType.getDictId());
+        List<SelectedDictData> listProductCategory = new ArrayList<SelectedDictData>();
+        for(DictData cate: dictDataCategory)
+        {
+            SelectedDictData data1 = new SelectedDictData();
+            data1.setDictLabel(cate.getDictLabel());
+            data1.setDictValue(cate.getDictValue());
+
+            if(data1.getDictLabel().equals(productCategory)){
+                data1.setFlag(true);
+            }else{
+                data1.setFlag(false);
+            }
+            listProductCategory.add(data1);
+        }
+        model.addAttribute("listProductCategory", listProductCategory);
         model.addAttribute("production", production);
         return prefix + "/edit";
     }

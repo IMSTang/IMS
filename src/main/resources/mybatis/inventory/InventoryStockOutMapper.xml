@@ -104,7 +104,7 @@
                    mode="IN" />
         <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
-        <parameter property="quantity"  jdbcType="INTEGER"  javaType="java.lang.String"
+        <parameter property="quantity"  jdbcType="DOUBLE"  javaType="java.lang.Double"
                    mode="IN" />
         <parameter property="irradiation" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />

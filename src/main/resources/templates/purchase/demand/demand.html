@@ -9,6 +9,9 @@
 			<button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:add()'" shiro:hasPermission="purchase:demand:add">
                 <i class="glyphicon glyphicon-plus"></i>
             </button>
+			<button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchDone()'" shiro:hasPermission="purchase:demand:batchDone">
+				<i class="glyphicon glyphicon-bookmark"></i>
+			</button>
 			<button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="purchase:demand:batchRemove">
 	            <i class="glyphicon glyphicon-trash"></i>
 	        </button>

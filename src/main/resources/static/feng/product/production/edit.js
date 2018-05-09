@@ -26,8 +26,8 @@ function edit() {
 var productionId  = $("input[name='productionId']").val();
 var itemCode  = $("input[name='itemCode']").val();
 var itemName  = $("input[name='itemName']").val(); 
-var itemNameCn  = $("input[name='itemNameCn']").val(); 
-var productCategory  = $("input[name='productCategory']").val(); 
+var itemNameCn  = $("input[name='itemNameCn']").val();
+var productCategory = $("#productCategory").val() + "";
 var specification  = $("input[name='specification']").val(); 
 var specificationCn  = $("input[name='specificationCn']").val(); 
 var testMethod  = $("input[name='testMethod']").val(); 

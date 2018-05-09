@@ -48,7 +48,11 @@
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Product Category:</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="productCategory" id="productCategory"  th:value="${production.productCategory}" >
+					<select id="productCategory" name="productCategory" class="form-control select2-hidden-accessible">
+						<option value="">--choose one--</option>
+						<option th:each="cate:${listProductCategory}" th:value="${cate.dictLabel}" th:text="${cate.dictLabel}" th:selected="${cate.flag}"></option>
+					</select>
+					<!-- <input class="form-control" type="text" name="productCategory" id="productCategory"  th:value="${production.productCategory}" >-->
 				</div>
 				<label class="col-sm-2 control-label">Test Method:</label>
 				<div class="col-sm-3">
