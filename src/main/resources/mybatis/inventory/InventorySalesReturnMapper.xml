@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="com.feng.project.inventory.salesreturn.domain.SalesReturn" >
         <id column="sn"  property="sn" />
         <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
-        <result column="inventory_sn" property="inventorySn" />
+        <result column="stockout_sn" property="stockoutSn" />
         <result column="batch" jdbcType="VARCHAR" property="batch" />
         <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
         <result column="position" jdbcType="VARCHAR" property="position" />
@@ -44,7 +44,7 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        sn, item_code, batch, warehouse, position, quantity,
+        sn, stockout_sn, item_code, batch, warehouse, position, quantity,
     irradiation, tpc, vendor_id, customer_id, status, return_date, create_by, create_time,
     update_by, update_time, remark
     </sql>
@@ -73,7 +73,7 @@
 	</select>
 
     <parameterMap type="java.util.HashMap" id="salesReturnParams">
-        <parameter property="inventory_sn" jdbcType="INTEGER" javaType="java.lang.Integer"
+        <parameter property="stockout_sn" jdbcType="INTEGER" javaType="java.lang.Integer"
                    mode="IN" />
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
