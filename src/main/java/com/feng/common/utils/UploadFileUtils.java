@@ -4,18 +4,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class UploadFileUtils {
 
     /**
      * 保存上传的文件
      */
-    public static  List<String>  saveFile(MultipartHttpServletRequest files) {
+    public static  Map  saveFile(MultipartHttpServletRequest files) {
 
-        List<String> names = new ArrayList<String>();
+        Map names = new HashMap();
+//        List<String[]> names = new ArrayList<String[]>();
     String path = System.getProperty("user.dir") + "/uploadFile";
         Iterator<String> iter = files.getFileNames();
         while (iter.hasNext()) {
@@ -26,10 +25,11 @@ public class UploadFileUtils {
                 if (file != null) {
                     //取得当前上传文件的文件名称
                     String fileName = file.getOriginalFilename();
-                    names.add(fileName);
+                    String newName= UUIDUtils.getUUID()+fileName;
+                    names.put(newName,fileName);
                     //如果名称不为“”,说明该文件存在，否则说明该文件不存在
                     if (fileName.trim() != null) {
-                        File dest = new File(path + "/" + fileName);
+                        File dest = new File(path + "/" + newName);
                         if (!dest.getParentFile().exists()) { //判断文件父目录是否存在
                             dest.getParentFile().mkdir();
                         }

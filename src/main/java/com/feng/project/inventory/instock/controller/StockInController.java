@@ -23,9 +23,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
-    @Controller
+@Controller
     @RequestMapping("/inventory/inStock")
     public class StockInController extends BaseController {
         private String prefix = "/inventory/inStock";
@@ -97,11 +98,13 @@ import java.util.List;
 
             JSONObject jsStr = JSONObject.parseObject(stockIn);
             StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
-            List<String> names=UploadFileUtils.saveFile(file);
+           Map<String,String> names=UploadFileUtils.saveFile(file);
             List<Attachment> attachments=null;
-            for(String name:names){
-                attachments.add(new Attachment(name,name));
+
+            for (Map.Entry<String,String>  entry : names.entrySet()) {
+                attachments.add(new Attachment(entry.getValue(),entry.getKey()));
             }
+
             SI.setAttachmentList(attachments);
             stockInService.spStockIn(SI);
             return JSON.ok();

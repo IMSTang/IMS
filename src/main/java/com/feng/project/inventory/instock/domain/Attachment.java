@@ -3,7 +3,9 @@ package com.feng.project.inventory.instock.domain;
 public class Attachment {
     private Long id;
     private int inventory_sn;
+    //OriginalFilename
     private String attachmentName;
+    //saved file name
     private String attachment;
 
 
