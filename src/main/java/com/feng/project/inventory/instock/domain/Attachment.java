@@ -2,8 +2,10 @@ package com.feng.project.inventory.instock.domain;
 
 public class Attachment {
     private Long id;
+    private int inventory_sn;
     private String attachmentName;
     private String attachment;
+
 
     public Attachment(String attachmentName, String attachment) {
         this.attachmentName = attachmentName;
