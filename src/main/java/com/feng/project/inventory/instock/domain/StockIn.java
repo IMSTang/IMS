@@ -29,7 +29,7 @@ public class StockIn  extends PageDomain {
         private String updateBy;
         private String updateTime;
         private String remark;
-        private List<attachment> attachmentList;
+        private List<Attachment> attachmentList;
         /** 产品对象 */
         private Production production;
         /** Vendor对象 */
@@ -187,11 +187,11 @@ public class StockIn  extends PageDomain {
                 this.remark = remark;
         }
 
-        public List<attachment> getAttachmentList() {
+        public List<Attachment> getAttachmentList() {
                 return attachmentList;
         }
 
-        public void setAttachmentList(List<attachment> attachmentList) {
+        public void setAttachmentList(List<Attachment> attachmentList) {
                 this.attachmentList = attachmentList;
         }
 

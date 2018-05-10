@@ -1,11 +1,11 @@
 package com.feng.project.inventory.instock.domain;
 
-public class attachment {
+public class Attachment {
     private Long id;
     private String attachmentName;
     private String attachment;
 
-    public attachment(String attachmentName, String attachment) {
+    public Attachment(String attachmentName, String attachment) {
         this.attachmentName = attachmentName;
         this.attachment = attachment;
     }
