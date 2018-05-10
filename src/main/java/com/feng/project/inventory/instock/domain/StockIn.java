@@ -5,6 +5,8 @@ import com.feng.project.purchase.vendor.domain.Vendor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.List;
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class StockIn  extends PageDomain {
@@ -27,8 +29,7 @@ public class StockIn  extends PageDomain {
         private String updateBy;
         private String updateTime;
         private String remark;
-        private String attachmentName;
-        private String attachment;
+        private List<attachment> attachmentList;
         /** 产品对象 */
         private Production production;
         /** Vendor对象 */
@@ -186,21 +187,27 @@ public class StockIn  extends PageDomain {
                 this.remark = remark;
         }
 
-        public String getAttachmentName() {
-                return attachmentName;
+        public List<attachment> getAttachmentList() {
+                return attachmentList;
         }
 
-        public void setAttachmentName(String attachmentName) {
-                this.attachmentName = attachmentName;
+        public void setAttachmentList(List<attachment> attachmentList) {
+                this.attachmentList = attachmentList;
         }
 
-        public String getAttachment() {
-                return attachment;
+        public Production getProduction() {
+                return production;
         }
 
-        public void setAttachment(String attachment) {
-                this.attachment = attachment;
+        public void setProduction(Production production) {
+                this.production = production;
         }
 
+        public Vendor getVendor() {
+                return vendor;
+        }
 
+        public void setVendor(Vendor vendor) {
+                this.vendor = vendor;
+        }
 }

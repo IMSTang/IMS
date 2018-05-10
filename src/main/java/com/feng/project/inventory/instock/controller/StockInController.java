@@ -18,7 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
-import com.feng.framework.web.page.TableDataInfo;
+import com.feng.project.inventory.instock.domain.attachment;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.ArrayList;
@@ -97,9 +97,14 @@ import java.util.List;
 
             JSONObject jsStr = JSONObject.parseObject(stockIn);
             StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
-            UploadFileUtils.saveFile(file);
-//            stockInService.spStockIn(stockIn);
-                return JSON.ok();
+            List<String> names=UploadFileUtils.saveFile(file);
+            List<attachment> attachments=null;
+            for(String name:names){
+                attachments.add(new attachment(name,name));
+            }
+            SI.setAttachmentList(attachments);
+            stockInService.spStockIn(SI);
+            return JSON.ok();
         }
 
 
