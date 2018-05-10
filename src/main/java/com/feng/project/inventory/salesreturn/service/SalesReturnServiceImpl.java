@@ -29,7 +29,7 @@ public class SalesReturnServiceImpl implements ISalesReturnService {
     public void spSalesReturn(SalesReturn salesreturn) {
         Map<String, Object> paramsMap =  new HashMap<String, Object>();
 
-        paramsMap.put("stockOutSn",salesreturn.getStockOutSn() );
+        paramsMap.put("stockoutSn",salesreturn.getStockoutSn() );
         paramsMap.put("itemCode",salesreturn.getItemCode() );
         paramsMap.put("batch",salesreturn.getBatch() );
         paramsMap.put("warehouse",salesreturn.getWarehouse() );

@@ -9,8 +9,6 @@
         <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
         <result column="position" jdbcType="VARCHAR" property="position" />
         <result column="quantity"  property="quantity" />
-        <result column="irradiation" jdbcType="VARCHAR" property="irradiation" />
-        <result column="tpc" jdbcType="VARCHAR" property="tpc" />
         <result column="vendor_id"  property="vendorId" />
         <result column="customer_id"  property="customerId" />
         <result column="status" property="status" />
@@ -52,7 +50,7 @@
 
     <select id="selectSalesReturnList" parameterType="com.feng.project.inventory.salesreturn.domain.SalesReturn" resultMap="BaseResultMap">
         select o.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name, c.customer_name
-        from inv_inventory_out o left join pro_production p on p.item_code = o.item_code
+        from inv_sales_return o left join pro_production p on p.item_code = o.item_code
         left join pur_vendor v on v.vendor_id = o.vendor_id
         left join sale_customer c on c.customer_id = o.customer_id
         <where>
@@ -66,14 +64,14 @@
 
     <select id="selectSalesReturnById" parameterType="Long" resultMap="BaseResultMap">
 		select o.* , p.production_id, p.item_code, p.item_name, p.item_name_cn, p.specification , v.vendor_name, c.customer_name
-        from inv_inventory_out o left join pro_production p on p.item_code = o.item_code
+        from inv_sales_return o left join pro_production p on p.item_code = o.item_code
         left join pur_vendor v on v.vendor_id = o.vendor_id
         left join sale_customer c on c.customer_id = o.customer_id
         where o.status = 0 and o.sn = #{sn}
 	</select>
 
     <parameterMap type="java.util.HashMap" id="salesReturnParams">
-        <parameter property="stockout_sn" jdbcType="INTEGER" javaType="java.lang.Integer"
+        <parameter property="stockoutSn" jdbcType="INTEGER" javaType="java.lang.Integer"
                    mode="IN" />
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
@@ -84,10 +82,6 @@
         <parameter property="position" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="quantity"  jdbcType="DOUBLE"  javaType="java.lang.Double"
-                   mode="IN" />
-        <parameter property="irradiation" jdbcType="VARCHAR" javaType="java.lang.String"
-                   mode="IN" />
-        <parameter property="tpc" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
         <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"
                    mode="IN" />

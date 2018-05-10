@@ -32,7 +32,12 @@ public class ProductionServiceImpl implements IProductionService {
 
     @Override
     public int deleteProductionById(Long id) {
-        return productionDao.deleteByPrimaryKey(id);
+
+        if(productionDao.checkItemCodeIsUsed(id) == 0) {
+            return productionDao.deleteByPrimaryKey(id);
+        }else {
+            return -100;
+        }
     }
 
     @Override

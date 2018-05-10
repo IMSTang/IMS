@@ -60,7 +60,7 @@ $(function() {
 function addDemand(item_code) {
     var rows = new Array(1);
     rows[0] = item_code;
-    $.modalConfirm("Do you want to add the production to demand list?", function(r) {
+    $.modalConfirm("Do you want to add the production to <BR>demand list?", function(r) {
         _ajax(prefix + '/batchDemand', { "arrayItemCode": rows }, "post", r);
     });
 }
@@ -70,10 +70,10 @@ function batchDemand() {
     var rows = $.getSelections("itemCode");
 
     if (rows.length == 0) {
-        $.modalMsg("Please select the production to add to demand list", "warning");
+        $.modalMsg("Please select the production to add to <BR>demand list", "warning");
         return;
     }
-    $.modalConfirm("Do you want to add " + rows.length + " items to demand list?", function(r) {
+    $.modalConfirm("Do you want to add " + rows.length + " items to <BR>demand list?", function(r) {
         _ajax(prefix + '/batchDemand', { "arrayItemCode": rows }, "post", r);
     });
 }

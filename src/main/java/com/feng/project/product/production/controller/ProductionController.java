@@ -66,7 +66,7 @@ public class ProductionController extends BaseController{
         {
             return JSON.ok();
         }
-        return JSON.error();
+        return JSON.error("The production is used.");
 
     }
 

@@ -144,7 +144,7 @@ $("#itemCode").autocomplete({
                         quantity: item.quantity,
                         vendorId: item.vendorId,
                         vendorName: item.vendor.vendorName,
-                        stockOutSn: item.sn,
+                        stockoutSn: item.sn,
                     }
                 }));
             }
@@ -162,7 +162,7 @@ $("#itemCode").autocomplete({
         $("#outQuantity").val(ui.item.quantity);
         $("#vendorName").val(ui.item.vendorName);
         $("#vendorId").val(ui.item.vendorId);
-        $("#stockOutSn").val(ui.item.stockOutSn);
+        $("#stockoutSn").val(ui.item.stockoutSn);
         return false;
     },
     select: function (event, ui) {
@@ -177,7 +177,7 @@ $("#itemCode").autocomplete({
         $("#outQuantity").val(ui.item.quantity);
         $("#vendorName").val(ui.item.vendorName);
         $("#vendorId").val(ui.item.vendorId);
-        $("#stockOutSn").val(ui.item.stockOutSn);
+        $("#stockoutSn").val(ui.item.stockoutSn);
         return false;
     }
 }).focus(function () {
@@ -203,7 +203,7 @@ function cleanStockOutInfo() {
     $("#outQuantity").val("");
     $("#vendorName").val("");
     $("#vendorId").val("");
-    $("#stockOutSn").val("");
+    $("#stockoutSn").val("");
 }
 
 function add() {
@@ -219,7 +219,7 @@ function add() {
     var customerId  = $("input[name='customerId']").val();
     var remark  = $("#remark").val();
     var returnDate  = $("input[name='returnDate']").val();
-    var stockOutSn  = $("input[name='stockOutSn']").val();
+    var stockoutSn  = $("input[name='stockoutSn']").val();
 
 
     $.ajax({
@@ -227,7 +227,7 @@ function add() {
         type : "POST",
         url : "/inventory/salesReturn/save",
         data : {
-            "stockOutSn": stockOutSn,
+            "stockoutSn": stockoutSn,
             "itemCode": itemCode,
             "batch": batch,
             "warehouse": warehouse,

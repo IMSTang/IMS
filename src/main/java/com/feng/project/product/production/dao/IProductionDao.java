@@ -30,4 +30,5 @@ public interface IProductionDao {
     public List<ProductionSimple> selectProductionSimpleByName(String searchStr);
 
     public int checkItemCodeUnique(String itemCode);
+    public int checkItemCodeIsUsed(Long id);
 }

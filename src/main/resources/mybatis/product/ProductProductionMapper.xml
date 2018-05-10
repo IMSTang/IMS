@@ -40,12 +40,16 @@
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="Long" >
-        update pro_production set status = 1
-        where production_id = #{productionId}
+        update pro_production set status = 1 where production_id = #{productionId}
     </delete>
 
     <select id="checkItemCodeUnique" parameterType="String" resultType="int">
-		select count(*) from pro_production where item_code=#{itemCode} and status="0"
+		select count(*) from pro_production where item_code=#{itemCode} and status=0
+	</select>
+
+
+    <select id="checkItemCodeIsUsed" parameterType="Long" resultType="int">
+		select count(*) from inv_inventory_in i where i.item_code=(select item_code from pro_production where production_id=#{productionId})
 	</select>
 
 
@@ -57,8 +61,6 @@
         </foreach>
 
     </update>
-
-
 
 
     <insert id="insertSelective" parameterType="com.feng.project.product.production.domain.Production"

@@ -12,7 +12,7 @@ public class SalesReturn extends PageDomain {
         private int sn;
         private String returnDate;
         private String itemCode;
-        private int stockOutSn;
+        private int stockoutSn;
         private String batch;
         private String warehouse;
         private String position;

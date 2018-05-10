@@ -49,7 +49,7 @@ $(function() {
 
         {
             field: 'returnDate',
-            title: 'Stock Out Date'
+            title: 'Return Date'
         },
 
         {
