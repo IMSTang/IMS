@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class StockOut extends PageDomain {
-        private int sn;
+        private Long sn;
         private String stockoutDate;
         private String itemCode;
         private int inventorySn;

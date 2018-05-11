@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.feng.project.system.attach.dao.IAttachmentDao">
+
+	<resultMap type="Attachment" id="AttachmentResult">
+		<id     property="attachmentId"      column="attachment_id"      />
+		<result property="attachmentName"    column="attachment_name"   />
+		<result property="attachmentUuid"    column="attachment_uuid"       />
+		<result property="mainType"          column="main_type"       />
+		<result property="mainSn"            column="main_sn"         />
+	</resultMap>
+	
+	<select id="selectAttachmentList" resultMap="AttachmentResult">
+		select attachment_id, attachment_name, attachment_uuid, main_type, main_sn from sys_attachment
+		<where>
+			main_type = #{mainType} and main_sn = #{mainSn}
+		</where>
+	</select>
+
+	<select id="selectAttachmentById" parameterType="int" resultMap="AttachmentResult">
+		select attachment_id, attachment_name, attachment_uuid, main_type, main_sn
+		from sys_attachment a
+		where a.attachment_id = #{attachmentId}
+	</select>
+
+	<delete id="deleteAttachmentById" parameterType="int">
+		delete sys_attachment
+		where attachment_id = #{attachmentId}
+ 	</delete>
+
+</mapper> 

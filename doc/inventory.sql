@@ -141,13 +141,13 @@ create table inv_inventory
 
 
 drop table if exists inv_attchment;
-create table inv_attchment
+create table sys_attchment
 (
   attachment_id int(11) unsigned NOT NULL AUTO_INCREMENT,
-	attachment_name     varchar(100)    not null                   ,
-  attachment     varchar(500)    not null        ,
-  inventory_sn  int(11)    not null,
-  inventory_type varchar(100) not null,
+	attachment_name     varchar(100)    not null        ,
+  attachment_uuid     varchar(100)    not null        ,
+  main_sn  int(11)    not null,
+  main_type varchar(100) not null,
   create_by     varchar(64)     default ''                 comment '创建者',
   create_time   timestamp       default current_timestamp  comment '创建时间',
   update_by     varchar(64) 	  default ''			     comment '更新者',

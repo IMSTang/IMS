@@ -1,9 +1,7 @@
 package com.feng.project.inventory.instock.service;
-import com.feng.common.utils.StringUtils;
 import com.feng.project.inventory.instock.dao.IStockInDao;
+import com.feng.project.system.attach.domain.Attachment;
 import com.feng.project.inventory.instock.domain.StockIn;
-import com.feng.project.product.production.dao.IProductionDao;
-import com.feng.project.product.production.domain.Production;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.feng.common.utils.security.ShiroUtils;
 import org.springframework.stereotype.Service;
@@ -38,24 +36,17 @@ public class StockInServiceImpl implements IStockInService {
     public void spStockIn(StockIn stockin) {
         Map<String, Object> paramsMap =  new HashMap<String, Object>();
         stockin.setCreateBy(ShiroUtils.getLoginName());
-        System.out.println("---------save2-----------------");
-        System.out.println("---------save2---"+stockin.getBatch()+"-----");
-        /*
-"warehouse111",
-"position111",
-10,
-10,
-50,
-"irradiation111",
-"tpc111",
-111111122,
-333333333,
-"admin",
-"attachment Name 1",
-"attachmentURL",
-"remark111"
-)
-         */
+        System.out.println("---------save2  spStockIn ---"+stockin.getBatch()+"-----");
+
+        String str_attachmentName="";
+        String str_attachmentUuid="";
+
+        List<Attachment> attachmentList = stockin.getAttachmentList();
+        for (Attachment att1 : attachmentList){
+            str_attachmentName = str_attachmentName + (str_attachmentName.equals("") ? "" : ",") + att1.getAttachmentName() ;
+            str_attachmentUuid = str_attachmentUuid + (str_attachmentUuid.equals("") ? "" : ",") + att1.getAttachmentUuid() ;
+        }
+
         paramsMap.put("itemCode",stockin.getItemCode() );
         paramsMap.put("batch",stockin.getBatch() );
         paramsMap.put("warehouse",stockin.getWarehouse() );
@@ -67,12 +58,12 @@ public class StockInServiceImpl implements IStockInService {
         paramsMap.put("tpc",stockin.getTpc());
         paramsMap.put("vendorId",stockin.getVendorId());
         paramsMap.put("createBy",stockin.getCreateBy());
-        paramsMap.put("attachmentName",stockin.getAttachment());
-        paramsMap.put("attachment",stockin.getAttachment());
+        paramsMap.put("attachmentName",str_attachmentName);
+        paramsMap.put("attachmentUuid",str_attachmentUuid);
         paramsMap.put("remark",stockin.getRemark());
         paramsMap.put("result","");
 
-        System.out.println("stockin.getAttachment() ----------   "+stockin.getAttachment());
+        System.out.println("stockin.getAttachment() ----------   "+stockin.getAttachmentList().toString());
         stockInDao.spStockIn(paramsMap);
 
         System.out.println("stockin.spStockIn result ----------   "+paramsMap.get("result").toString());

@@ -7,6 +7,7 @@ import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.inventory.instock.domain.StockIn;
 import com.feng.project.inventory.instock.service.IStockInService;
+import com.feng.project.system.attach.service.IAttachmentService;
 import com.feng.project.system.dict.domain.DictData;
 import com.feng.project.system.dict.domain.DictType;
 import com.feng.project.system.dict.domain.SelectedDictData;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
-import com.feng.project.inventory.instock.domain.Attachment;
+import com.feng.project.system.attach.domain.Attachment;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.ArrayList;
@@ -48,6 +49,9 @@ import java.util.Map;
         @Autowired
         private IDictTypeService dictTypeService;
 
+        @Autowired
+        private IAttachmentService attachmentService;
+
 
         @RequiresPermissions("inventory:inStock:list")
         @GetMapping("/list")
@@ -65,6 +69,10 @@ import java.util.Map;
         {
             StockIn stockIn = stockInService.selectStockInById(sn);
             model.addAttribute("stockIn", stockIn);
+
+            List<Attachment> aList = attachmentService.selectAttachmentList("INV_IN", sn.intValue());
+
+            model.addAttribute("attachmentList", aList);
             return prefix + "/detail";
         }
 
@@ -99,7 +107,8 @@ import java.util.Map;
             JSONObject jsStr = JSONObject.parseObject(stockIn);
             StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
            Map<String,String> names=UploadFileUtils.saveFile(file);
-            List<Attachment> attachments=null;
+            System.out.println("---------save saveFile result ---"+names.toString()+"-----");
+            List<Attachment> attachments=new ArrayList<>();
 
             for (Map.Entry<String,String>  entry : names.entrySet()) {
                 attachments.add(new Attachment(entry.getValue(),entry.getKey()));

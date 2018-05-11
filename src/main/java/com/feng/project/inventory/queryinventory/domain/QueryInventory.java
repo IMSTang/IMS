@@ -18,7 +18,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 public class QueryInventory extends PageDomain
 {
-    private int sn;
+    private Long sn;
     private String itemCode;
     private String batch;
     private String warehouse;

@@ -200,10 +200,6 @@ var createTime  = $("input[name='createTime']").val();
 var updateBy  = $("input[name='updateBy']").val(); 
 var updateTime  = $("input[name='updateTime']").val(); 
 
-var attachmentName  = $("input[name='attachmentName']").val(); 
-var attachment  = $("input[name='attachment']").val();
-
-
 
     var formData = new FormData($("#form-inStock-add")[0]);
     var StockIn = new Object();

@@ -88,8 +88,8 @@ IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
 IN  create_by   varchar(64),
-IN  attachment_name  varchar(100) ,
-IN  attachment     varchar(100)  ,
+IN  str_attachment_name  varchar(100) ,
+IN  str_attachment_uuid     varchar(100)  ,
 IN  remark 		  varchar(500),
 OUT var_result VARCHAR(10)
 )
@@ -98,6 +98,10 @@ BEGIN
 
 declare sn_inv_in INT default 0;
 declare sn_inv INT default 0;
+
+declare cnt int default 0;
+declare i int default 0;
+
 start transaction;
 
 call sp_insert_inv_in(item_code, batch, warehouse, position,price_purchase, price_fob_ontario, quantity,irradiation ,tpc, vendor_id,create_by, remark, sn_inv_in);
@@ -105,18 +109,28 @@ call sp_insert_inv_in(item_code, batch, warehouse, position,price_purchase, pric
 -- select max(sn) into sn1 from inv_inventory_in;
 -- SELECT concat('inv_inventory_in max id is --- ', sn_inv_in);
 
-call sp_insert_inv_attachment(attachment_name, attachment, sn_inv_in, "INV_IN", create_by, remark);
+-- call sp_insert_sys_attachment(attachment_name, attachment, sn_inv_in, "INV_IN", create_by, remark);
 
 call sp_insert_inv(item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc, vendor_id, null, create_by, remark, sn_inv);
 
 -- select max(sn) into sn2 from inv_inventory;
 -- SELECT concat('inv_inventory max id is :::: ', sn_inv);
 
-call sp_insert_inv_attachment(attachment_name,attachment,sn_inv_in,"INV",create_by, remark);
+-- call sp_insert_sys_attachment(attachment_name, attachment, sn_inv, "INV", create_by, remark);
+
+
+  set cnt = func_get_split_string_total(str_attachment_uuid,',');
+
+  while i < cnt
+  do
+    set i = i + 1;
+    call sp_insert_sys_attachment(func_get_split_string(str_attachment_name,',',i), func_get_split_string(str_attachment_uuid,',',i), sn_inv_in, "INV_IN", create_by, '');
+    call sp_insert_sys_attachment(func_get_split_string(str_attachment_name,',',i), func_get_split_string(str_attachment_uuid,',',i), sn_inv, "INV", create_by, '');
+  end while;
 
 commit;
 
-  select '1' into var_result from dual;
+select sn_inv_in into var_result from dual;
 
 END
 ;;

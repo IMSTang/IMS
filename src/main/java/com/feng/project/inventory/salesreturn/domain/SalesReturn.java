@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class SalesReturn extends PageDomain {
-        private int sn;
+        private Long sn;
         private String returnDate;
         private String itemCode;
         private int stockoutSn;

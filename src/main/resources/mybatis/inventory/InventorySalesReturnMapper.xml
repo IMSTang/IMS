@@ -71,7 +71,7 @@
 	</select>
 
     <parameterMap type="java.util.HashMap" id="salesReturnParams">
-        <parameter property="stockoutSn" jdbcType="INTEGER" javaType="java.lang.Integer"
+        <parameter property="stockoutSn" jdbcType="BIGINT" javaType="java.lang.Long"
                    mode="IN" />
         <parameter property="itemCode" jdbcType="VARCHAR" javaType="java.lang.String"
                    mode="IN" />
@@ -96,7 +96,7 @@
     </parameterMap>
 
     <parameterMap type="java.util.HashMap" id="salesReturnParamsId">
-        <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer"
+        <parameter property="sn"  jdbcType="BIGINT"   javaType="java.lang.Long"
                    mode="IN" />
     </parameterMap>
 

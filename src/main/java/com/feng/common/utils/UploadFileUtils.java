@@ -25,7 +25,8 @@ public class UploadFileUtils {
                 if (file != null) {
                     //取得当前上传文件的文件名称
                     String fileName = file.getOriginalFilename();
-                    String newName= UUIDUtils.getUUID()+fileName;
+                    String prefix=fileName.substring(fileName.lastIndexOf(".")+1);
+                    String newName= UUIDUtils.getUUID()+ "." + prefix;
                     names.put(newName,fileName);
                     //如果名称不为“”,说明该文件存在，否则说明该文件不存在
                     if (fileName.trim() != null) {
