@@ -1,7 +1,8 @@
-var prefix = "/system/attach"
-// 下载附件
-function download(id) {
-     alert(id);
-     _ajax(prefix + "/download/" + id, "", "post");
+
+function download_attach(id) {
+
+    $.modalConfirm("Do you want to download this attachment?", function(r) {
+        _ajax("/system/attach/download/" + id, "", "get", r);
+    });
 
 }

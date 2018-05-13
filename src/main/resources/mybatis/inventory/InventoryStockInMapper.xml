@@ -80,13 +80,13 @@
         <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"  mode="IN" />
         <parameter property="createBy" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="attachmentName" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
-        <parameter property="attachment" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
+        <parameter property="attachmentUuid" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="remark" jdbcType="VARCHAR" javaType="java.lang.String" mode="IN" />
         <parameter property="result"  jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
     </parameterMap>
 
     <parameterMap type="java.util.HashMap" id="inStockParamsId">
-        <parameter property="sn"  jdbcType="BIGINT"   javaType="java.lang.Long" mode="IN" />
+        <parameter property="sn"  jdbcType="INTEGER"   javaType="java.lang.Integer" mode="IN" />
         <parameter property="result"  jdbcType="VARCHAR" javaType="java.lang.String" mode="OUT" />
     </parameterMap>
 

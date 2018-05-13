@@ -88,8 +88,8 @@ IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
 IN  create_by   varchar(64),
-IN  str_attachment_name  varchar(100) ,
-IN  str_attachment_uuid     varchar(100)  ,
+IN  str_attachment_name  varchar(1000) ,
+IN  str_attachment_uuid     varchar(1000)  ,
 IN  remark 		  varchar(500),
 OUT var_result VARCHAR(10)
 )

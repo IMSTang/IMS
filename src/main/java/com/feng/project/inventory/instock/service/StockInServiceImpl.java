@@ -64,6 +64,8 @@ public class StockInServiceImpl implements IStockInService {
         paramsMap.put("result","");
 
         System.out.println("stockin.getAttachment() ----------   "+stockin.getAttachmentList().toString());
+        System.out.println("stockin.str_attachmentName ----------   "+str_attachmentName);
+        System.out.println("stockin.str_attachmentUuid ----------   "+str_attachmentUuid);
         stockInDao.spStockIn(paramsMap);
 
         System.out.println("stockin.spStockIn result ----------   "+paramsMap.get("result").toString());
