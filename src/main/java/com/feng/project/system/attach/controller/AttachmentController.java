@@ -144,8 +144,8 @@ public class AttachmentController extends BaseController
 
     //response 已经到了前台页面。 为什么不提示保存文件？？
     @RequestMapping("/download/{attachmentId}")
-    public String downloadFile(HttpServletRequest request, HttpServletResponse response) {
-        String fileName = "0adb32d9c67f46e8b487306516d102a4.xml";// 设置文件名，根据业务需要替换成要下载的文件名
+    public void downloadFile(HttpServletRequest request, HttpServletResponse response) {
+        String fileName = "4d4371f9a2a34611842c437cd38c3294.txt";// 设置文件名，根据业务需要替换成要下载的文件名
         if (fileName != null) {
             //设置文件路径
             String realPath = System.getProperty("user.dir") + "/uploadFile";
@@ -186,7 +186,7 @@ public class AttachmentController extends BaseController
                 }
             }
         }
-        return null;
+//        return "success";
     }
 
 }

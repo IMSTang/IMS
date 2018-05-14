@@ -81,7 +81,6 @@ public class QuoteController extends BaseController {
     @ResponseBody
     public JSON save(Quote quote)
     {
-
         int  rows =  quoteService.insertQuote(quote);
          if( rows>0){
                 return JSON.ok();

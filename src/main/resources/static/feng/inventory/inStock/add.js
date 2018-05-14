@@ -16,7 +16,7 @@ $("#form-inStock-add").validate({
         },
 		quantity:{
             number: true,
-            max:65530,
+            max:65000,
             min: 0.001,
         },
         vendorName:{
