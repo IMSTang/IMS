@@ -32,7 +32,9 @@
         ) tt
         <where>
             <if test="searchValue != null and searchValue != ''">
-                tt.item_name like CONCAT('%',#{searchValue},'%' )
+                tt.item_code like CONCAT('%',#{searchValue},'%' )
+                or tt.item_name like CONCAT('%',#{searchValue},'%' )
+                or tt.customer_name like CONCAT('%',#{searchValue},'%' )
             </if>
         </where>
     </select>
