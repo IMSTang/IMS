@@ -7474,7 +7474,7 @@ body
 	background-image:url(../img/homebg.jpg) !important;
 	background-repeat: no-repeat !important;;
     background-color: #fff !important;;
-	background-size: 100%;
+	background-size: 100% 100%;
 }
 
 /* css from jQuery-Autocomplete*/

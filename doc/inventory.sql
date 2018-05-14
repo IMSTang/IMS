@@ -140,8 +140,8 @@ create table inv_inventory
 
 
 
-drop table if exists inv_attchment;
-create table sys_attchment
+drop table if exists sys_attachment;
+create table sys_attachment
 (
   attachment_id int(11) unsigned NOT NULL AUTO_INCREMENT,
 	attachment_name     varchar(100)    not null        ,

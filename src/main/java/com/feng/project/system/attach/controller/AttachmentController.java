@@ -144,15 +144,21 @@ public class AttachmentController extends BaseController
 
     //response 已经到了前台页面。 为什么不提示保存文件？？
     @RequestMapping("/download/{attachmentId}")
-    public void downloadFile(HttpServletRequest request, HttpServletResponse response) {
-        String fileName = "4d4371f9a2a34611842c437cd38c3294.txt";// 设置文件名，根据业务需要替换成要下载的文件名
-        if (fileName != null) {
+    public void downloadFile(@PathVariable("attachmentId") int attachmentId, HttpServletRequest request, HttpServletResponse response) {
+
+        Attachment att1 = attachmentService.selectAttachmentById(attachmentId);
+
+        String fileOriginalName = att1.getAttachmentName();// 设置文件名
+        String fileUuidName = att1.getAttachmentUuid();// 设置文件名
+
+//        String fileName = "4d4371f9a2a34611842c437cd38c3294.txt";// 设置文件名，根据业务需要替换成要下载的文件名
+        if (fileUuidName != null) {
             //设置文件路径
             String realPath = System.getProperty("user.dir") + "/uploadFile";
-            File file = new File(realPath , fileName);
+            File file = new File(realPath , fileUuidName);
             if (file.exists()) {
                 response.setContentType("application/force-download");// 设置强制下载不打开
-                response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);// 设置文件名
+                response.addHeader("Content-Disposition", "attachment;fileName=" + fileOriginalName);// 设置文件名
                 byte[] buffer = new byte[1024];
                 FileInputStream fis = null;
                 BufferedInputStream bis = null;
