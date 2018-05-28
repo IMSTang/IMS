@@ -148,7 +148,7 @@ insert into sys_menu values('6',   'Menus', '1', '3', '/system/menu',        'C'
 insert into sys_menu values('7',   'Department', '1', '4', '/system/dept',        'C', '0', 'system:dept:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '部门管理菜单');
 insert into sys_menu values('8',   'Post', '1', '5', '/system/post',        'C', '0', 'system:post:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '岗位管理菜单');
 insert into sys_menu values('10',  'DictType', '1', '7', '/system/dict',        'C', '0', 'system:dict:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典type菜单');
-insert into sys_menu values('16',  'DictData', '1', '7', '/system/dictData',        'C', '0', 'system:dictdata:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '字典data菜单');
+
 insert into sys_menu values('11',  'Operation Logs', '1', '11', '/monitor/operlog',    'C', '0', 'monitor:operlog:view',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '操作日志菜单');
 insert into sys_menu values('12',  'Login Logs', '1', '12', '/monitor/logininfor', 'C', '0', 'monitor:logininfor:view',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '登录日志菜单');
 insert into sys_menu values('13',  'Online Users', '1', '13', '/monitor/online',     'C', '0', 'monitor:online:view',      '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '在线用户菜单');
@@ -197,12 +197,6 @@ insert into sys_menu values('49', '批量删除', '10', '6', '#',  'F', '0', 'sy
 insert into sys_menu values('50', '字典保存', '10', '5', '#',  'F', '0', 'system:dict:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('71', '字典删除', '10', '4', '#',  'F', '0', 'system:dict:remove',       '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
--- 字典Data按钮
-insert into sys_menu values('66', '字典查询', '16', '1', '#',  'F', '0', 'system:dictdata:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('67', '字典新增', '16', '2', '#',  'F', '0', 'system:dictdata:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('68', '字典修改', '16', '3', '#',  'F', '0', 'system:dictdata:edit',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('69', '批量删除', '16', '4', '#',  'F', '0', 'system:dictdata:batchRemove',  '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
-insert into sys_menu values('70', '字典保存', '16', '5', '#',  'F', '0', 'system:dictdata:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 -- 操作日志按钮
 insert into sys_menu values('51', '操作查询', '11', '1', '#',  'F', '0', 'monitor:operlog:list',            '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('52', '批量删除', '11', '2', '#',  'F', '0', 'monitor:operlog:batchRemove',     '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
@@ -515,7 +509,7 @@ SELECT * FROM sys_user_role;
 SELECT * FROM sys_role_menu;
 
 -- 操作日志管理表
-SELECT * FROM oper_log;
+SELECT * FROM sys_oper_log;
 
 -- 字典类型表
 SELECT * FROM sys_dict_type;

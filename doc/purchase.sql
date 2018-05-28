@@ -45,6 +45,7 @@ insert into sys_role_menu values ('1', '223');
 insert into sys_role_menu values ('1', '224');
 insert into sys_role_menu values ('1', '225');
 insert into sys_role_menu values ('1', '226');
+insert into sys_role_menu values ('1', '230');
 insert into sys_role_menu values ('1', '231');
 insert into sys_role_menu values ('1', '232');
 insert into sys_role_menu values ('1', '233');

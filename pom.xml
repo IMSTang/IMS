@@ -6,7 +6,7 @@
 	<groupId>com.feng</groupId>
 	<artifactId>IMS</artifactId>
 	<version>1.0.8</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>IMS</name>
 	<description>Invoicing Management System</description>
@@ -27,7 +27,7 @@
 		<mybatis-spring-boot-starter.version>1.1.1</mybatis-spring-boot-starter.version>
 		<fastjson.version>1.2.31</fastjson.version>
 		<druid.version>1.0.28</druid.version>		
-		<commons.lang3.version>3.6</commons.lang3.version>			
+		<commons.lang3.version>3.6</commons.lang3.version>
 		<bitwalker.version>1.19</bitwalker.version>
 		<lombok.version>1.16.18</lombok.version>
 		<mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
@@ -60,7 +60,19 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		
 		<!-- SpringBoot集成thymeleaf模板 -->
 		<dependency>
@@ -190,6 +202,23 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+
+						<resource>
+							<directory>${basedir}/WEB-INF</directory>
+							<targetPath>WEB-INF/</targetPath>
+							<includes>
+								<include>*.xml</include>
+							</includes>
+						</resource>
+					</webResources>
+
 				</configuration>
 			</plugin>
 		</plugins>

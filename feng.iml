@@ -2,10 +2,23 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/framework/config/DruidConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/common/utils/ServiceInfoUtil.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/framework/config/I18nConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/framework/config/BaseConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/framework/config/ScheduleConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/Application.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/feng/framework/config/ShiroConfig.java</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>
+        <descriptors>
+          <deploymentDescriptor name="jboss-web.xml" url="file://$MODULE_DIR$/WEB-INF/jboss-web.xml" />
+        </descriptors>
         <webroots />
       </configuration>
     </facet>

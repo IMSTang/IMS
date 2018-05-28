@@ -70,6 +70,9 @@ public class QueryInventoryController extends BaseController
     {
         QueryInventory queryInventory = queryInventoryService.selectQueryInventoryById(sn);
         model.addAttribute("queryInventory", queryInventory);
+
+        List<QueryInventory> detailList = queryInventoryService.selectQueryInventoryListEqualBatch(queryInventory.getBatch(),queryInventory.getItemCode());
+        model.addAttribute("detailList", detailList);
         return prefix + "/detail";
     }
 

@@ -36,6 +36,37 @@ insert into sys_menu values('444', 'Remove', '440', '4',  '#',  'F', '0', 'inven
 insert into sys_menu values('445', 'Save', '440', '5',  '#',  'F', '0', 'inventory:salesReturn:save',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('446', 'Detail', '440', '3',  '#',  'F', '0', 'inventory:salesReturn:detail',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 
+-- 将按钮权限赋予role
+insert into sys_role_menu values ('1', '400');
+insert into sys_role_menu values ('1', '410');
+insert into sys_role_menu values ('1', '411');
+insert into sys_role_menu values ('1', '412');
+insert into sys_role_menu values ('1', '414');
+insert into sys_role_menu values ('1', '415');
+insert into sys_role_menu values ('1', '416');
+insert into sys_role_menu values ('1', '420');
+insert into sys_role_menu values ('1', '421');
+insert into sys_role_menu values ('1', '422');
+insert into sys_role_menu values ('1', '424');
+insert into sys_role_menu values ('1', '425');
+insert into sys_role_menu values ('1', '426');
+insert into sys_role_menu values ('1', '430');
+insert into sys_role_menu values ('1', '431');
+insert into sys_role_menu values ('1', '432');
+insert into sys_role_menu values ('1', '440');
+insert into sys_role_menu values ('1', '441');
+insert into sys_role_menu values ('1', '442');
+insert into sys_role_menu values ('1', '444');
+insert into sys_role_menu values ('1', '445');
+insert into sys_role_menu values ('1', '446');
+
+
+insert into sys_role_menu values ('1', '450');
+insert into sys_role_menu values ('1', '451');
+insert into sys_role_menu values ('1', '452');
+
+
+
 drop table if exists inv_inventory_in;
 create table inv_inventory_in
 (

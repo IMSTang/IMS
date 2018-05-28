@@ -111,9 +111,9 @@ CREATE TABLE `sale_customer` (
 -- ----------------------------
 -- Records of sale_customer
 -- ----------------------------
-INSERT INTO `sale_customer` VALUES ('1', 'jack', '0', 'aa', 'bbssd', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'admin', '2018-04-18 09:36:03', 'admin', '2018-04-18 09:37:09', 'admin111111');
-INSERT INTO `sale_customer` VALUES ('3', 'tom', '0', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'bb', '2018-04-17 15:52:56', 'admin', '2018-04-17 15:52:56', 'my');
-INSERT INTO `sale_customer` VALUES ('10', 'aaa', '0', 's', 's', 's', 's', 's', 's', 's', 's', 's', 'wewe@qsq', 's', 'ss', 's', 'aa', '2018-04-17 15:52:54', 'admin', '2018-04-17 15:52:54', 'admin');
+-- INSERT INTO `sale_customer` VALUES ('1', 'jack', '0', 'aa', 'bbssd', 'cc', 'dd', 'tester', '123456', '123456', '188888222', '1125565', '12122@qq.com', '121454@163.com', 'adsd', 'kkk', 'admin', '2018-04-18 09:36:03', 'admin', '2018-04-18 09:37:09', 'admin111111');
+-- INSERT INTO `sale_customer` VALUES ('3', 'tom', '0', 'cat', 'tom', 'state', 'tom', 'manager', '1122365', '112555', '1222554', '1222554', '1225555@.123', '232556@qq.com', 'ass', 'aad', 'bb', '2018-04-17 15:52:56', 'admin', '2018-04-17 15:52:56', 'my');
+-- INSERT INTO `sale_customer` VALUES ('10', 'aaa', '0', 's', 's', 's', 's', 's', 's', 's', 's', 's', 'wewe@qsq', 's', 'ss', 's', 'aa', '2018-04-17 15:52:54', 'admin', '2018-04-17 15:52:54', 'admin');
 
 
 
@@ -158,23 +158,23 @@ create table sale_quote_body
 
 
 
-INSERT INTO `sale_quote` VALUES ('1', '2018-04-19', '3', '21', '0', 'admin', '2018-04-18 16:52:21', '', '2018-04-18 16:52:21', 'ad');
-INSERT INTO `sale_quote` VALUES ('2', '2018-04-18', '1', '12', '0', 'admin', '2018-04-18 16:53:28', '', '2018-04-18 16:53:28', '12');
-INSERT INTO `sale_quote` VALUES ('19', '2018-04-23', '22', '1', '0', 'admin', '2018-04-23 21:42:42', '', '2018-04-23 21:42:42', 'as');
-INSERT INTO `sale_quote` VALUES ('21', '2018-04-24', '1', '3', '1', 'admin', '2018-04-24 13:46:43', '', '2018-04-24 13:46:43', '');
-INSERT INTO `sale_quote` VALUES ('22', '2018-04-24', '23', '3', '0', 'admin', '2018-04-24 09:24:57', '', '2018-04-24 09:24:57', '12');
-INSERT INTO `sale_quote` VALUES ('23', '2018-04-24', '22', '3', '1', 'admin', '2018-04-24 14:49:08', '', '2018-04-24 14:49:08', '123');
-INSERT INTO `sale_quote` VALUES ('24', '2018-04-24', '22', '3', '0', 'admin', '2018-04-24 17:07:47', '', '2018-04-24 17:07:47', 'aaa');
+-- INSERT INTO `sale_quote` VALUES ('1', '2018-04-19', '3', '21', '0', 'admin', '2018-04-18 16:52:21', '', '2018-04-18 16:52:21', 'ad');
+-- INSERT INTO `sale_quote` VALUES ('2', '2018-04-18', '1', '12', '0', 'admin', '2018-04-18 16:53:28', '', '2018-04-18 16:53:28', '12');
+-- INSERT INTO `sale_quote` VALUES ('19', '2018-04-23', '22', '1', '0', 'admin', '2018-04-23 21:42:42', '', '2018-04-23 21:42:42', 'as');
+-- INSERT INTO `sale_quote` VALUES ('21', '2018-04-24', '1', '3', '1', 'admin', '2018-04-24 13:46:43', '', '2018-04-24 13:46:43', '');
+-- INSERT INTO `sale_quote` VALUES ('22', '2018-04-24', '23', '3', '0', 'admin', '2018-04-24 09:24:57', '', '2018-04-24 09:24:57', '12');
+-- INSERT INTO `sale_quote` VALUES ('23', '2018-04-24', '22', '3', '1', 'admin', '2018-04-24 14:49:08', '', '2018-04-24 14:49:08', '123');
+-- INSERT INTO `sale_quote` VALUES ('24', '2018-04-24', '22', '3', '0', 'admin', '2018-04-24 17:07:47', '', '2018-04-24 17:07:47', 'aaa');
 
 
-INSERT INTO `sale_quote_body` VALUES ('1', '1', 'ASP101', '12.00', '121.000');
-INSERT INTO `sale_quote_body` VALUES ('2', '2', 'EE101', '1212.00', '11.000');
-INSERT INTO `sale_quote_body` VALUES ('8', '19', 'ASP101', '1.00', '1.000');
-INSERT INTO `sale_quote_body` VALUES ('9', '19', 'EE101', '1.00', '1.000');
-INSERT INTO `sale_quote_body` VALUES ('14', '22', 'DeE101', '2.00', '1.000');
-INSERT INTO `sale_quote_body` VALUES ('15', '22', 'EE101', '3.00', '2.000');
-INSERT INTO `sale_quote_body` VALUES ('18', '24', 'DeE101', '1.00', '2.000');
-INSERT INTO `sale_quote_body` VALUES ('19', '24', 'EE(GW41(41)', '4.00', '3.000');
+-- INSERT INTO `sale_quote_body` VALUES ('1', '1', 'ASP101', '12.00', '121.000');
+-- INSERT INTO `sale_quote_body` VALUES ('2', '2', 'EE101', '1212.00', '11.000');
+-- INSERT INTO `sale_quote_body` VALUES ('8', '19', 'ASP101', '1.00', '1.000');
+-- INSERT INTO `sale_quote_body` VALUES ('9', '19', 'EE101', '1.00', '1.000');
+-- INSERT INTO `sale_quote_body` VALUES ('14', '22', 'DeE101', '2.00', '1.000');
+-- INSERT INTO `sale_quote_body` VALUES ('15', '22', 'EE101', '3.00', '2.000');
+-- INSERT INTO `sale_quote_body` VALUES ('18', '24', 'DeE101', '1.00', '2.000');
+-- INSERT INTO `sale_quote_body` VALUES ('19', '24', 'EE(GW41(41)', '4.00', '3.000');
 
 
 
@@ -217,20 +217,20 @@ create table sale_sample_body
 
 
 
-INSERT INTO `sale_sample` VALUES ('1', '2018-04-19', '3', '21', '0', 'admin', '2018-04-18 16:52:21', '', '2018-04-18 16:52:21', 'ad');
-INSERT INTO `sale_sample` VALUES ('2', '2018-04-18', '1', '12', '0', 'admin', '2018-04-18 16:53:28', '', '2018-04-18 16:53:28', '12');
-INSERT INTO `sale_sample` VALUES ('19', '2018-04-23', '22', '1', '0', 'admin', '2018-04-23 21:42:42', '', '2018-04-23 21:42:42', 'as');
-INSERT INTO `sale_sample` VALUES ('21', '2018-04-24', '1', '3', '1', 'admin', '2018-04-24 13:46:43', '', '2018-04-24 13:46:43', '');
-INSERT INTO `sale_sample` VALUES ('22', '2018-04-24', '23', '3', '0', 'admin', '2018-04-24 09:24:57', '', '2018-04-24 09:24:57', '12');
-INSERT INTO `sale_sample` VALUES ('23', '2018-04-24', '22', '3', '1', 'admin', '2018-04-24 14:49:08', '', '2018-04-24 14:49:08', '123');
-INSERT INTO `sale_sample` VALUES ('24', '2018-04-24', '22', '3', '0', 'admin', '2018-04-24 17:07:47', '', '2018-04-24 17:07:47', 'aaa');
+-- INSERT INTO `sale_sample` VALUES ('1', '2018-04-19', '3', '21', '0', 'admin', '2018-04-18 16:52:21', '', '2018-04-18 16:52:21', 'ad');
+-- INSERT INTO `sale_sample` VALUES ('2', '2018-04-18', '1', '12', '0', 'admin', '2018-04-18 16:53:28', '', '2018-04-18 16:53:28', '12');
+-- INSERT INTO `sale_sample` VALUES ('19', '2018-04-23', '22', '1', '0', 'admin', '2018-04-23 21:42:42', '', '2018-04-23 21:42:42', 'as');
+-- INSERT INTO `sale_sample` VALUES ('21', '2018-04-24', '1', '3', '1', 'admin', '2018-04-24 13:46:43', '', '2018-04-24 13:46:43', '');
+-- INSERT INTO `sale_sample` VALUES ('22', '2018-04-24', '23', '3', '0', 'admin', '2018-04-24 09:24:57', '', '2018-04-24 09:24:57', '12');
+-- INSERT INTO `sale_sample` VALUES ('23', '2018-04-24', '22', '3', '1', 'admin', '2018-04-24 14:49:08', '', '2018-04-24 14:49:08', '123');
+-- INSERT INTO `sale_sample` VALUES ('24', '2018-04-24', '22', '3', '0', 'admin', '2018-04-24 17:07:47', '', '2018-04-24 17:07:47', 'aaa');
 
 
-INSERT INTO `sale_sample_body` VALUES ('1', '1', 'ASP101', '12.00', '121.000');
-INSERT INTO `sale_sample_body` VALUES ('2', '2', 'EE101', '1212.00', '11.000');
-INSERT INTO `sale_sample_body` VALUES ('8', '19', 'ASP101', '1.00', '1.000');
-INSERT INTO `sale_sample_body` VALUES ('9', '19', 'EE101', '1.00', '1.000');
-INSERT INTO `sale_sample_body` VALUES ('14', '22', 'DeE101', '2.00', '1.000');
-INSERT INTO `sale_sample_body` VALUES ('15', '22', 'EE101', '3.00', '2.000');
-INSERT INTO `sale_sample_body` VALUES ('18', '24', 'DeE101', '1.00', '2.000');
-INSERT INTO `sale_sample_body` VALUES ('19', '24', 'EE(GW41(41)', '4.00', '3.000');
+-- INSERT INTO `sale_sample_body` VALUES ('1', '1', 'ASP101', '12.00', '121.000');
+-- INSERT INTO `sale_sample_body` VALUES ('2', '2', 'EE101', '1212.00', '11.000');
+-- INSERT INTO `sale_sample_body` VALUES ('8', '19', 'ASP101', '1.00', '1.000');
+-- INSERT INTO `sale_sample_body` VALUES ('9', '19', 'EE101', '1.00', '1.000');
+-- INSERT INTO `sale_sample_body` VALUES ('14', '22', 'DeE101', '2.00', '1.000');
+-- INSERT INTO `sale_sample_body` VALUES ('15', '22', 'EE101', '3.00', '2.000');
+-- INSERT INTO `sale_sample_body` VALUES ('18', '24', 'DeE101', '1.00', '2.000');
+-- INSERT INTO `sale_sample_body` VALUES ('19', '24', 'EE(GW41(41)', '4.00', '3.000');

@@ -38,7 +38,7 @@
 
     <insert id="batchDemand" >
         insert into pur_product_demand(demand_date,item_code,quantity,urgency_degree,status,create_by)
-        select CONCAT(curdate(),''),item_code,IFNULL(safety_stock,0)*5,'B',0,#{createBy} from pro_production
+        select CONCAT(curdate(),''),item_code,IFNULL(safety_stock,0)*2,'B',0,#{createBy} from pro_production
         where item_code in
         <foreach collection="arrayItemCode" item="itemCode" open="(" separator="," close=")">
             #{itemCode}
