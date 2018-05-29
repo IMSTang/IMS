@@ -5,47 +5,63 @@
 <body class="white-bg">
 <div class="wrapper wrapper-content animated fadeInRight ibox-content">
     <form class="form-horizontal m" id="form-quote-add">
-        <input name="quoteId"  type="hidden" id="quoteId"/>
-        <div class="form-group">
-            <label class="col-sm-3">Quote Date:</label>
-            <div class="col-sm-9">
-                <input class="form-control" type="text" name="quoteDate" id="quoteDate" th:value="${today}">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3">Customer Name:</label>
-            <div class="col-sm-9">
-                <input class="form-control" type="text" name="customerName" id="customerName" >
-            </div>
-            <input name="customerId"  type="hidden" id="customerId"/>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3">Reminder:</label>
-            <div class="col-sm-9">
-                <input class="form-control" type="text" name="reminder" id="reminder" value="3" >
-            </div>
-        </div>
+        <table >
+        <tr>
+            <td width="750px">
+                <input name="quoteId"  type="hidden" id="quoteId"/>
+                <div class="form-group">
+                    <label class="col-sm-3">Quote Date:</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" name="quoteDate" id="quoteDate" th:value="${today}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Customer Name:</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" name="customerName" id="customerName" >
+                    </div>
+                    <input name="customerId"  type="hidden" id="customerId"/>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Reminder:</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" name="reminder" id="reminder" value="3" >
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label class="col-sm-3">Remark:</label>
-            <div class="col-sm-9">
-                <textarea id="remark" name="remark" class="form-control" rows="3" type="text"></textarea>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Remark:</label>
+                    <div class="col-sm-9">
+                        <textarea id="remark" name="remark" class="form-control" rows="3" type="text"></textarea>
+                    </div>
+                </div>
 
-        <div style="border: 1px solid #ddd; border-bottom: 0; padding: 10px; background: #f2f2f2;">
-            <input class="btn btn-info" style="padding: 3px 6px; border-radius: 0;" type="button" value="Add Quota"  id="add"/>
-        </div>
+                <div style="border: 1px solid #ddd; border-bottom: 0; padding: 10px; background: #f2f2f2;">
+                    <input class="btn btn-info" style="padding: 3px 6px; border-radius: 0;" type="button" value="Add Quota"  id="add"/>
+                </div>
 
-        <div style="border: 1px solid #ddd; padding: 10px;">
-            <div class="col-sm-2" style="padding: 0;">Item Code</div>
-            <div class="col-sm-5" style="padding: 0;">Item Name</div>
-            <div class="col-sm-2" style="padding: 0;">Price</div>
-            <div class="col-sm-2" style="padding: 0;">Quantity(KG)</div>
-            <div class="clear"></div>
-            <div class="form-group"  id="tableDiv"  style="max-height: 140px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;">
-            </div>
-        </div>
+                <div style="border: 1px solid #ddd; padding: 10px;">
+                    <div class="col-sm-2" style="padding: 0;">Item Code</div>
+                    <div class="col-sm-5" style="padding: 0;">Item Name</div>
+                    <div class="col-sm-2" style="padding: 0;">Price</div>
+                    <div class="col-sm-2" style="padding: 0;">Quantity(KG)</div>
+                    <div class="clear"></div>
+                    <div class="form-group"  id="tableDiv"  style="max-height: 140px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;">
+                    </div>
+                </div>
+
+            </td>
+            <td width="20px"><span>&nbsp;</span>
+            </td>
+            <td width="350px" valign="top">
+                <div class="form-group" style="max-height: 260px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="referenceDiv">
+                    <div style="border: 1px solid #ddd; border-bottom: 0; padding: 10px; background: #f2f2f2;">For Reference</div>
+                </div>
+
+            </td>
+        </tr>
+
+        </table>
 
         <div class="form-group" style="margin-top: 5px;">
             <div class="form-control-static" style="text-align: right; padding-right: 15px;">

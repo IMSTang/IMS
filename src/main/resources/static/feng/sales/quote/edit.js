@@ -178,6 +178,7 @@ function addElement(){
     var TPrice=document.createElement("input");
     TPrice.type="text";
     TPrice.className = 'col-sm-1';
+    TPrice.style.width = '90px';
     TPrice.style.margin= '0 -1px';
     TPrice.name="price"+Element_index;
     TPrice.id="price"+Element_index;
@@ -189,6 +190,7 @@ function addElement(){
     var TQuantity=document.createElement("input");
     TQuantity.type="text";
     TQuantity.className = 'col-sm-2';
+    TQuantity.style.width = '90px';
     TQuantity.style.margin= '0 -1px';
     TQuantity.name="quantity"+Element_index;
     TQuantity.id="quantity"+Element_index;

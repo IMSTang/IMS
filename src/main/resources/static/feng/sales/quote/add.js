@@ -1,3 +1,4 @@
+var selectedRadioId = '';
 
 $("#customerName").autocomplete({
     minLength: 2,
@@ -82,12 +83,16 @@ function autoInfomation(element1,element2,idElement,elementType){
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
             // $(idElement).val(ui.item.PID);
+            selectedRadioId = '';
+            checkRadio($(element1)[0].parentElement.id);
             return false;
         },
         select: function (event, ui) {
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
             // $(idElement).val(ui.item.PID);
+            selectedRadioId = '';
+            checkRadio($(element1)[0].parentElement.id);
             return false;
         }
     });
@@ -124,6 +129,16 @@ function addElement(){
     TId.name="itemId"+Element_index;
     TId.id="itemId"+Element_index;
 
+    /**
+     * radio
+     */
+    var TRadio=document.createElement("input");
+    TRadio.type="radio";
+    TRadio.className = 'col-sm-1';
+    TRadio.style.width = '30px';
+    TRadio.style.verticalAlign = 'text-bottom';
+    TRadio.name="showedItem";
+    TRadio.id="radio"+Element_index;
 
     /**
      *item Code
@@ -193,6 +208,7 @@ function addElement(){
         delButton(div.id);
     };
 
+    div.appendChild(TRadio);
     div.appendChild(TId);
     div.appendChild(TCode);
     div.appendChild(TName);
@@ -217,6 +233,163 @@ function delButton(divId) {
     }
 
 }
+
+/***
+ * 点击一套产品信息，选中它的单选按钮
+ */
+
+function checkRadio(divId) {
+    var div = document.getElementById(divId);
+    //$(divId).find("input[type=radio]").attr("checked", 'checked');
+    var radioId = divId.replace("div","radio");
+    var itemCodeId = divId.replace("div","itemCode");
+
+    if(selectedRadioId != radioId){
+        var input_radio = "input[id='"+radioId+"']";
+        $(input_radio).prop("checked", true);
+        selectedRadioId = radioId;
+
+        var input_itemCode = "input[id='"+itemCodeId+"']";
+        var itemCode = $(input_itemCode).val();
+        if(itemCode == null || itemCode ==""){
+            selectedRadioId = "";
+            return false;
+        }
+        // ajax get batch quantity from inventory by item_code
+        $.ajax({
+            cache : true,
+            type : "GET",
+            url : "/inventory/queryinventory/search_itemcode",
+            dataType: "json",
+            data: {"itemCode": itemCode },
+            async : true,
+            error : function(request) {
+                $.modalAlert("System ERROR", "Error, please re-open the system");
+            },
+            success : function(data) {
+                if (data.vendorRefPrice != "undefined") {
+                    //alert(itemCode);
+
+                    var div = document.createElement('div');
+                    div.style.border = '1px solid #ddd';
+                    div.style.borderBottom = '0';
+                    div.style.height = '32px';
+                    div.style.padding = '5px 10px 0 16px';
+                    div.style.background = '#f2f2f2';
+                    var span=document.createElement('span');
+                    span.innerHTML = "For Reference (" + itemCode + ")";
+                    div.appendChild(span);
+
+                    var divV = document.createElement('div');
+                    divV.style.border = '1px solid #ddd';
+                    divV.style.borderBottom = '0';
+                    divV.style.height = '32px';
+                    divV.style.padding = '5px 10px 0 16px';
+                    var spanV=document.createElement('span');
+                    spanV.innerHTML = "Vendor Reference Price: " + data.vendorRefPrice + "";
+                    divV.appendChild(spanV);
+
+                    var divQ = document.createElement('div');
+                    divQ.style.border = '1px solid #ddd';
+                    divQ.style.borderBottom = '0';
+                    divQ.style.height = '32px';
+                    divQ.style.padding = '5px 10px 0 16px';
+                    var spanQ=document.createElement('span');
+                    spanQ.innerHTML = "Recent Quota Price: " + data.recentQuotaPrice + "";
+                    divQ.appendChild(spanQ);
+
+                    var clearDiv =document.createElement("div");
+                    clearDiv.className = 'clear';
+
+                    $("#referenceDiv").empty();
+                    $("#referenceDiv").append(div);
+                    $("#referenceDiv").append(divV);
+                    $("#referenceDiv").append(divQ);
+
+                    if(data.inventoryList.length>0){
+                        var divI = document.createElement('div');
+                        divI.style.border = '1px solid #ddd';
+                        divI.style.borderBottom = '0';
+                        divI.style.height = '32px';
+                        divI.style.padding = '5px 10px 0 16px';
+                        divI.style.textAlign = 'center';
+                        div.style.verticalAlign = 'center';
+                        var spanI=document.createElement('span');
+                        spanI.innerHTML = "Inventory";
+                        divI.appendChild(spanI);
+
+                        $("#referenceDiv").append(divI);
+
+                        var divT = document.createElement('div');
+                        divT.style.border = '1px solid #ddd';
+                        divT.style.borderBottom = '0';
+                        divT.style.height = '32px';
+                        divT.style.padding = '0 10px 0 16px';
+
+                        divT.appendChild(createEl('div',{'class': 'col-sm-4'},{height:'32px', margin:'0px auto', padding: '5px 10px 0px 16px', border:'1px solid #DDD', 'text-align':'center'},'Batch'));
+                        divT.appendChild(createEl('div',{'class': 'col-sm-4'},{height:'32px', margin:'0px auto', padding: '5px 10px 0px 16px', border:'1px solid #DDD', 'text-align':'center'},'Price'));
+                        divT.appendChild(createEl('div',{'class': 'col-sm-4'},{height:'32px', margin:'0px auto', padding: '5px 10px 0px 16px', border:'1px solid #DDD', 'text-align':'center'},'Quantity(KG)'));
+
+                        $("#referenceDiv").append(divT);
+
+                        var list = data.inventoryList;
+                        for(var inv in list){
+                            var divR = document.createElement('div');
+                            divR.style.border = '1px solid #ddd';
+                            divR.style.borderBottom = '0';
+                            divR.style.height = '32px';
+                            divR.style.padding = '0 10px 0 16px';
+
+                            divR.appendChild(createEl('div',{'class': 'col-sm-4'},{height:'32px', margin:'0 auto', padding: '5px 10px 0px 16px', border:'1px solid #DDD', 'text-align':'center'},list[inv].batch));
+                            divR.appendChild(createEl('div',{'class': 'col-sm-4'},{height:'32px', margin:'0 auto', padding: '5px 10px 0px 16px', border:'1px solid #DDD', 'text-align':'center'},list[inv].priceFobOntario));
+                            divR.appendChild(createEl('div',{'class': 'col-sm-4'},{height:'32px', margin:'0 auto', padding: '5px 10px 0px 16px', border:'1px solid #DDD', 'text-align':'center'},list[inv].quantity));
+                            $("#referenceDiv").append(divR);
+                        }
+
+                    }
+
+                    $("#referenceDiv").append(clearDiv);
+
+                    var divFoot = document.createElement('div');
+                    divFoot.style.border = '1px solid #ddd';
+                    divFoot.style.height = '32px';
+                    divFoot.style.padding = '5px 10px 0 16px';
+                    divFoot.style.background = '#f2f2f2';
+                    var span=document.createElement('span');
+                    span.innerHTML = "Today: " + data.Today + "";
+                    divFoot.appendChild(span);
+
+                    $("#referenceDiv").append(divFoot);
+
+                } else {
+                    $.modalAlert(data.msg, "error");
+                }
+            }
+        });
+
+    }
+}
+
+/*
+ *  var newElement = createEl('div',
+ *     {'class': 'newDivClass', id: 'newDiv', name: 'newDivName'},
+ *     {width: '300px', height:'200px', margin:'0 auto', border:'1px solid #DDD'},
+ *     '這是存在於在新建立標籤 div 中的文字。');
+ */
+function createEl(t, a, y, x) {
+    var e = document.createElement(t);
+    if (a) {
+        for (var k in a) {
+            if (k == 'class') e.className = a[k];
+            else if (k == 'id') e.id = a[k];
+            else e.setAttribute(k, a[k]);
+        }
+    }
+    if (y) { for (var k in y) e.style[k] = y[k]; }
+    if (x) { e.appendChild(document.createTextNode(x)); }
+    return e;
+};
+
 $("#form-quote-add").validate({
     rules:{
         customerName:{
