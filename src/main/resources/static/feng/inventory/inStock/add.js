@@ -1,12 +1,14 @@
 $("#form-inStock-add").validate({
 	rules:{
         pricePurchase:{
+            required: true,
             number: true,
-            min: 0.01,
+            min: 0,
         },
 		priceFobOntario:{
+            required: true,
             number: true,
-            min: 0.01,
+            min: 0,
         },
         warehouse: {
             required: true,
@@ -15,6 +17,7 @@ $("#form-inStock-add").validate({
             required: true,
         },
 		quantity:{
+            required: true,
             number: true,
             max:65000,
             min: 0.001,

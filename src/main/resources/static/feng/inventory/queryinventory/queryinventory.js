@@ -24,14 +24,14 @@ $(function() {
             field: 'batch',
             title: 'Batch'
         },
-        {
-            field: 'warehouse',
-            title: 'Warehouse'
-        },
-        {
-            field: 'position',
-            title: 'Position'
-        },
+        // {
+        //     field: 'warehouse',
+        //     title: 'Warehouse'
+        // },
+        // {
+        //     field: 'position',
+        //     title: 'Position'
+        // },
         {
             field: 'quantity',
             title: 'Quantity(KG)'
