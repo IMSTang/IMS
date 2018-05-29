@@ -88,6 +88,7 @@ import java.util.Map;
                 SelectedDictData data1 = new SelectedDictData();
                 data1.setDictLabel(cate.getDictLabel());
                 data1.setDictValue(cate.getDictValue());
+                //add
                 listWarehouse.add(data1);
             }
             model.addAttribute("listWarehouse", listWarehouse);
@@ -107,13 +108,15 @@ import java.util.Map;
             JSONObject jsStr = JSONObject.parseObject(stockIn);
             StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
            Map<String,String> names=UploadFileUtils.saveFile(file);
-            System.out.println("---------save saveFile result ---"+names.toString()+"-----");
-            List<Attachment> attachments=new ArrayList<>();
+//            System.out.println("---------save saveFile result ---"+names.toString()+"-----");
+            List<Attachment> attachments = new ArrayList<>();
+            if(names != null) {
 
-            for (Map.Entry<String,String>  entry : names.entrySet()) {
-                attachments.add(new Attachment(entry.getValue(),entry.getKey()));
+            System.out.println("attachment+++++++++++++++++++++++++");
+                for (Map.Entry<String, String> entry : names.entrySet()) {
+                    attachments.add(new Attachment(entry.getValue(), entry.getKey()));
+                }
             }
-
             SI.setAttachmentList(attachments);
             stockInService.spStockIn(SI);
             return JSON.ok();
