@@ -15,7 +15,7 @@ public interface IInquiryService {
              */
     public int insertInquiry(Inquiry inquiry);
 
-
+    public String selectMinMaxPriceByItemCode(String itemCode);
 
     /**
      * delete inquiry by Id

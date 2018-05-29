@@ -41,6 +41,11 @@ public interface IQueryInventoryDao
      */
     public List<QueryInventory> selectQueryInventoryListEqualBatch(@Param("batch")String batch, @Param("itemCode")String itemCode);
 
+    /*
+     *  itemCode 精确查询
+     */
+    public List<QueryInventory> selectQueryInventoryListByItemCode(@Param("itemCode")String itemCode);
+
     /**
      * 查询库存详细
      * 

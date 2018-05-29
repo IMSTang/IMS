@@ -91,7 +91,7 @@ function batchRemove() {
 /!*inquiry Management-修改*!/
 function edit(quoteId) {
     var url = prefix + '/edit/' + quoteId;
-    layer_show("edit Quote", url, '800', '600');
+    layer_show("edit Quote", url, '1200', '600');
 }
 
 

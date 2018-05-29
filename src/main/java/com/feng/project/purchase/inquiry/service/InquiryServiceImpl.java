@@ -31,6 +31,11 @@ public class InquiryServiceImpl implements  IInquiryService{
         return inquiryDao.selectInquiryList(inquiry);
     }
 
+    @Override
+    public String selectMinMaxPriceByItemCode(String itemCode){
+        return inquiryDao.selectMinMaxPriceByItemCode(itemCode);
+    }
+
     /**
      * 插入 inquiry
      *

@@ -2,6 +2,7 @@ package com.feng.project.purchase.inquiry.dao;
 
 import com.feng.project.purchase.inquiry.domain.Inquiry;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,6 +18,10 @@ public interface IInquiryDao {
      */
     public int insertInquiry(Inquiry inquiry);
 
+    /*
+     *  itemCode 查询询价区间
+     */
+    public String selectMinMaxPriceByItemCode(@Param("itemCode")String itemCode);
 
     /**
      * delete inquiry by Id

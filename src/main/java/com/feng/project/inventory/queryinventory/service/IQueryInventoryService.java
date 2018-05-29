@@ -23,6 +23,8 @@ public interface IQueryInventoryService
 
     public List<QueryInventory> selectQueryInventoryListByBatch(String batch, String itemCode);
     public List<QueryInventory> selectQueryInventoryListEqualBatch(String batch, String itemCode);
+
+    public List<QueryInventory> selectQueryInventoryListByItemCode(String itemCode);
     /**
      * 查询库存详细
      * 

@@ -85,6 +85,8 @@
         <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
         <result column="position" jdbcType="VARCHAR" property="position" />
         <result column="quantity"  property="quantity" />
+        <result column="price_purchase"  property="pricePurchase" />
+        <result column="price_fob_ontario"  property="priceFobOntario" />
         <result column="stock_in_date"  property="stockInDate" />
         <result column="vendor_id"  property="vendorId" />
         <association property="vendor"    column="vendor_id" javaType="Vendor" resultMap="vendorResult"/>
@@ -102,10 +104,18 @@
     </select>
 
     <select id="selectQueryInventoryListEqualBatch" resultMap="QueryInventoryBatchResult">
-        select i.sn, i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.stock_in_date
+        select i.sn, i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.price_purchase, i.price_fob_ontario, date_format(i.stock_in_date ,'%Y-%m-%d' ) as stock_in_date
         from inv_inventory i
         <where>
             i.status = 0 AND i.item_code = #{itemCode} AND i.batch = #{batch}
+        </where>
+    </select>
+
+    <select id="selectQueryInventoryListByItemCode" resultMap="QueryInventoryBatchResult">
+        select i.sn, i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.price_purchase, i.price_fob_ontario, date_format(i.stock_in_date ,'%Y-%m-%d' ) as stock_in_date
+        from inv_inventory i
+        <where>
+            i.status = 0 AND i.item_code = #{itemCode}
         </where>
     </select>
 
