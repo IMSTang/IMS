@@ -39,4 +39,6 @@ public interface IQuoteService {
 //             * @return
 //             */
 //    public int updateQuote(Quote quote);
+
+    public String initRole();
 }

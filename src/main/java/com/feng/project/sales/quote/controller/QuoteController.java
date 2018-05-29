@@ -38,6 +38,9 @@ public class QuoteController extends BaseController {
     @RequiresPermissions("sales:quote:view")
     @GetMapping()
     public  String  quote(){
+        String result = quoteService.initRole();
+        if(result == null)
+            return "error";
         return prefix +"/quote";
     }
 

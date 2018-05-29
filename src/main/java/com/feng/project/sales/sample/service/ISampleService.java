@@ -39,4 +39,5 @@ public interface ISampleService {
 //             * @return
 //             */
 //    public int updateSample(Sample sample);
+    public String initRole();
 }

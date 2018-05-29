@@ -38,6 +38,10 @@ public class SampleController extends BaseController {
     @RequiresPermissions("sales:sample:view")
     @GetMapping()
     public  String  sample(){
+        String result = sampleService.initRole();
+        if(result == null)
+            return "error";
+
         return prefix +"/sample";
     }
 

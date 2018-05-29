@@ -1,5 +1,6 @@
 package com.feng.project.sales.sample.service;
 
+import com.feng.common.constant.CustomerConstants;
 import com.feng.common.utils.StringUtils;
 import com.feng.common.utils.security.ShiroUtils;
 import com.feng.project.product.production.dao.IProductionDao;
@@ -7,6 +8,8 @@ import com.feng.project.sales.sample.dao.ISampleBodyDao;
 import com.feng.project.sales.sample.dao.ISampleDao;
 import com.feng.project.sales.sample.domain.Sample;
 import com.feng.project.sales.sample.domain.SampleBody;
+import com.feng.project.system.role.dao.IRoleDao;
+import com.feng.project.system.user.dao.IUserRoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +29,24 @@ public class SampleServiceImpl implements  ISampleService{
     @Autowired
     private IProductionDao productionDao;
 
+    @Autowired
+    private IUserRoleDao userRoleDao;
+
+    @Autowired
+    private IRoleDao roleDao;
+
+    private static  String ROLE_KEY=null;
     @Override
     public List<Sample> selectSampleList(Sample sample) {
+        if(ROLE_KEY == null){
+            initRole();
+        }
+        String loginName=ShiroUtils.getLoginName();
+        if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ) {
+            sample.setCreateBy("");
+            return sampleDao.selectSampleList(sample);
+        }
+        sample.setCreateBy(loginName);
         return sampleDao.selectSampleList(sample);
     }
 
@@ -43,7 +62,6 @@ public class SampleServiceImpl implements  ISampleService{
         //判断 Item Code 是否存在
         int ItemCodeNum=0;
         for (int i=0;i<sample.getBody().size();i++){
-            System.out.println();
             ItemCodeNum= productionDao.checkItemCodeUnique(sample.getBody().get(i).getItemCode());
             if( ItemCodeNum<=0){
 
@@ -145,4 +163,20 @@ public class SampleServiceImpl implements  ISampleService{
     public Sample selectSampleById(Long sampleId) {
         return sampleDao.selectSampleById(sampleId);
     }
+
+
+
+    @Override
+    public  String initRole(){
+
+        String userId = ShiroUtils.getUserId().toString();
+        int roleId = userRoleDao.getRoleId(userId);
+
+        Long lRoleId = new Long((long)roleId);
+        ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
+        System.out.println("ROLE_KEY:"+ROLE_KEY);
+        return ROLE_KEY;
+
+    }
+
 }

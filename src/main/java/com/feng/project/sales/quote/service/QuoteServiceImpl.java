@@ -1,5 +1,6 @@
 package com.feng.project.sales.quote.service;
 
+import com.feng.common.constant.CustomerConstants;
 import com.feng.common.utils.StringUtils;
 import com.feng.common.utils.security.ShiroUtils;
 import com.feng.project.product.production.dao.IProductionDao;
@@ -7,6 +8,8 @@ import com.feng.project.sales.quote.dao.IQuoteBodyDao;
 import com.feng.project.sales.quote.dao.IQuoteDao;
 import com.feng.project.sales.quote.domain.Quote;
 import com.feng.project.sales.quote.domain.QuoteBody;
+import com.feng.project.system.role.dao.IRoleDao;
+import com.feng.project.system.user.dao.IUserRoleDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +29,27 @@ public class QuoteServiceImpl implements  IQuoteService{
     @Autowired
     private IProductionDao productionDao;
 
+    @Autowired
+    private IUserRoleDao userRoleDao;
+
+    @Autowired
+    private IRoleDao roleDao;
+
+    private static  String ROLE_KEY=null;
+
     @Override
     public List<Quote> selectQuoteList(Quote quote) {
+
+        if(ROLE_KEY == null){
+            initRole();
+        }
+        String loginName=ShiroUtils.getLoginName();
+        if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
+            quote.setCreateBy("");
+            return quoteDao.selectQuoteList(quote);
+
+        }
+        quote.setCreateBy(loginName);
         return quoteDao.selectQuoteList(quote);
     }
 
@@ -43,7 +65,6 @@ public class QuoteServiceImpl implements  IQuoteService{
         //判断 Item Code 是否存在
         int ItemCodeNum=0;
         for (int i=0;i<quote.getBody().size();i++){
-            System.out.println();
             ItemCodeNum= productionDao.checkItemCodeUnique(quote.getBody().get(i).getItemCode());
             if( ItemCodeNum<=0){
 
@@ -142,5 +163,21 @@ public class QuoteServiceImpl implements  IQuoteService{
     @Override
     public Quote selectQuoteById(Long quoteId) {
         return quoteDao.selectQuoteById(quoteId);
+    }
+
+
+
+    @Override
+    public  String initRole(){
+        //get current login name
+//        String loginName=ShiroUtils.getLoginName();
+
+        //get role id by user Id
+        String userId = ShiroUtils.getUserId().toString();
+        int roleId = userRoleDao.getRoleId(userId);
+        Long lRoleId = new Long((long)roleId);
+        ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
+        return ROLE_KEY;
+
     }
 }
