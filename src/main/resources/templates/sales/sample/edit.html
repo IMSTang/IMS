@@ -43,8 +43,8 @@
             <div class="form-group" style="max-height: 140px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="tableDiv">
                 <div style="height: 34px; padding: 0px 10px 0px 16px;" th:id = "'div'+${iterStat.index}" th:each="sampleData,iterStat :${sampleBodies}">
                     <input  type="hidden" name="itemId" th:id = "'itemId'+${iterStat.index}" th:value="${sampleData.sampleBodyId}">
-                    <input  type="text" class="col-sm-2" name="itemCode" th:id = "'itemCode'+${iterStat.index}" th:value="${sampleData.itemCode}" style="margin: 0px -1px;">
-                    <input  type="text" class="col-sm-5" name="itemName" th:id = "'itemName'+${iterStat.index}" th:value="${sampleData.itemName}" style="margin: 0px -1px;">
+                    <input  type="text" class="col-sm-2" name="itemCode" readonly="true" th:id = "'itemCode'+${iterStat.index}" th:value="${sampleData.itemCode}" style="color:blue; margin: 0px -1px;">
+                    <input  type="text" class="col-sm-5" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${sampleData.itemName}" style="color:blue; margin: 0px -1px;">
                     <input  type="text" class="col-sm-2" name="price" th:id = "'price'+${iterStat.index}" th:value="${sampleData.price}" style="margin: 0px -1px;">
                     <input  type="text" class="col-sm-2" name="quantity" th:id = "'quantity'+${iterStat.index}" th:value="${sampleData.quantity}" style="margin: 0px -1px;">
                     <button  type="button" class="col-sm-1" th:onclick="'javascript:delButton(\'div'+${iterStat.index}+'\');'" style="margin: 0px 0px 0px 3px; height: 24px; padding: 0px;">Remove</button>

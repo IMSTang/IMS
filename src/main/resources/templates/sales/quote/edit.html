@@ -8,7 +8,7 @@
     <form class="form-horizontal m" id="form-quote-edit">
         <table >
             <tr>
-                <td width="750px">
+                <td width="750px" valign="top">
 
                     <input id="quoteId" name="quoteId"  type="hidden" th:value="${quote.quoteId}" />
                     <input name="customerId"  type="hidden" id="customerId"  th:value="${quote.customerId}"/>
@@ -43,17 +43,17 @@
                         <div class="col-sm-1" style="width:30px; padding: 0;">&nbsp;</div>
                         <div class="col-sm-2" style="padding: 0;">Item Code</div>
                         <div class="col-sm-5" style="padding: 0;">Item Name</div>
-                        <div class="col-sm-1" style="padding: 0;">Price</div>
-                        <div class="col-sm-2" style="padding: 0;">Quantity(KG)</div>
+                        <div class="col-sm-2" style="width:90px; padding: 0;">Price</div>
+                        <div class="col-sm-2" style="width:90px; padding: 0;">Quantity(KG)</div>
                         <div class="clear"></div>
                         <div class="form-group" style="max-height: 140px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="tableDiv">
                             <div style="height: 34px; padding: 0px 10px 0px 16px;" th:id = "'div'+${iterStat.index}" th:each="quoteData,iterStat :${quoteBodies}" th:onclick="'javascript:checkRadio(\'div'+${iterStat.index}+'\');'">
                                 <input  type="hidden" name="itemId" th:id = "'itemId'+${iterStat.index}" th:value="${quoteData.quoteBodyId}">
                                 <input  type="radio" class="col-sm-1" name="showedItem" th:id = "'radio'+${iterStat.index}" th:value="${quoteData.itemCode}" style="width:30px; vertical-align:text-bottom; margin-bottom:2px; margin-bottom:-2px;">
-                                <input  type="text" class="col-sm-2" name="itemCode" readonly="true" th:id = "'itemCode'+${iterStat.index}" th:value="${quoteData.itemCode}" style="background-color:#f2f2f2; margin: 0px -1px;">
-                                <input  type="text" class="col-sm-5" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${quoteData.itemName}" style="background-color:#f2f2f2; margin: 0px -1px;">
-                                <input  type="text" class="col-sm-1" name="price" th:id = "'price'+${iterStat.index}" th:value="${quoteData.price}" style="margin: 0px -1px;">
-                                <input  type="text" class="col-sm-2" name="quantity" th:id = "'quantity'+${iterStat.index}" th:value="${quoteData.quantity}" style="margin: 0px -1px;">
+                                <input  type="text" class="col-sm-2" name="itemCode" readonly="true" th:id = "'itemCode'+${iterStat.index}" th:value="${quoteData.itemCode}" style="color:blue; margin: 0px -1px;">
+                                <input  type="text" class="col-sm-5" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${quoteData.itemName}" style="color:blue; margin: 0px -1px;">
+                                <input  type="text" class="col-sm-2" name="price" th:id = "'price'+${iterStat.index}" th:value="${quoteData.price}" style="width:90px; margin: 0px -1px;">
+                                <input  type="text" class="col-sm-2" name="quantity" th:id = "'quantity'+${iterStat.index}" th:value="${quoteData.quantity}" style="width:90px; margin: 0px -1px;">
                                 <button  type="button" class="col-sm-1" th:onclick="'javascript:delButton(\'div'+${iterStat.index}+'\');'" style="margin: 0px 0px 0px 3px; height: 24px; padding: 0px;">Remove</button>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                 <td width="20px"><span>&nbsp;</span>
                 </td>
                 <td width="350px" valign="top">
-                    <div class="form-group" style="max-height: 260px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="referenceDiv">
+                    <div class="form-group" style="max-height: 460px; OVERFLOW-Y: auto; OVERFLOW-X:hidden; margin-right: -5px; margin-bottom: 0;" id="referenceDiv">
                         <div style="border: 1px solid #ddd; border-bottom: 0; padding: 10px; background: #f2f2f2;">For Reference</div>
                     </div>
 

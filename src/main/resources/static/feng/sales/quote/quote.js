@@ -62,7 +62,7 @@ $(function() {
 // /!*inquiry Management-新增*!/
 function add() {
     var url = prefix + '/add';
-    layer_show("add Quote", url, '800', '600');
+    layer_show("add Quote", url, '1200', '600');
 }
 
 // 单条删除
