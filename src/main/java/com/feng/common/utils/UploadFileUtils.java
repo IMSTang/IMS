@@ -8,14 +8,22 @@ import java.util.*;
 
 public class UploadFileUtils {
 
+
+
     /**
      * 保存上传的文件
      */
-    public static  Map  saveFile(MultipartHttpServletRequest files) {
+    public static Map saveFile(MultipartHttpServletRequest files, String filepath) {
 
         Map names = new HashMap();
-//        List<String[]> names = new ArrayList<String[]>();
-    String path = System.getProperty("user.dir") + "/uploadFile";
+        String path ;
+
+        if(filepath == null || filepath == "" || filepath.startsWith("/")){
+            path = System.getProperty("user.dir") + "/uploadFile";
+        }else {
+            path = filepath;
+        }
+
         Iterator<String> iter = files.getFileNames();
         while (iter.hasNext()) {
             //取得一个input里面所有的上传文件

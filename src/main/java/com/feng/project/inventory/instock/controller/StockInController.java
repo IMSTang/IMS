@@ -15,6 +15,7 @@ import com.feng.project.system.dict.service.IDictDataService;
 import com.feng.project.system.dict.service.IDictTypeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,6 +52,9 @@ import java.util.Map;
 
         @Autowired
         private IAttachmentService attachmentService;
+
+        @Value(value = "${attachment.filepath}")
+        private String filepath;
 
 
         @RequiresPermissions("inventory:inStock:list")
@@ -107,7 +111,7 @@ import java.util.Map;
 
             JSONObject jsStr = JSONObject.parseObject(stockIn);
             StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
-           Map<String,String> names=UploadFileUtils.saveFile(file);
+           Map<String,String> names=UploadFileUtils.saveFile(file, filepath);
             List<Attachment> attachments = new ArrayList<>();
             if(names != null) {
 
