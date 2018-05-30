@@ -50,6 +50,9 @@
         <if test="createBy != null and createBy != ''">
            and q.create_by = #{createBy}
         </if>
+        <if test="currentQuoteId != null and currentQuoteId != ''">
+            and q.quote_id != #{currentQuoteId}
+        </if>
         GROUP BY b.item_code
     </select>
 

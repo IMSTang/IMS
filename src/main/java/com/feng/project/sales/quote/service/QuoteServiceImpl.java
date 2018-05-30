@@ -53,9 +53,9 @@ public class QuoteServiceImpl implements  IQuoteService{
     }
 
     @Override
-    public String selectMinMaxPriceByItemCode(String itemCode){
+    public String selectMinMaxPriceByItemCode(String itemCode, String currentQuoteId){
         String createBy=ShiroUtils.getLoginName();
-        return quoteDao.selectMinMaxPriceByItemCode(itemCode, createBy);
+        return quoteDao.selectMinMaxPriceByItemCode(itemCode, currentQuoteId, createBy);
     }
 
     /**

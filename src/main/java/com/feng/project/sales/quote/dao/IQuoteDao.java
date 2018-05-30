@@ -13,7 +13,7 @@ public interface IQuoteDao {
     /*
      *  itemCode 查询询价区间
      */
-    public String selectMinMaxPriceByItemCode(@Param("itemCode")String itemCode, @Param("createBy")String createBy);
+    public String selectMinMaxPriceByItemCode(@Param("itemCode")String itemCode, @Param("currentQuoteId")String currentQuoteId, @Param("createBy")String createBy);
 
     /**
      * 插入 quote

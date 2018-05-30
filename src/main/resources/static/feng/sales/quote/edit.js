@@ -222,7 +222,6 @@ function addElement(){
     div.appendChild(TButton);
     div.appendChild(clearDiv);
     div.onclick=function () {//绑定点击事件
-        // var delId = "div"+Element_index;
         checkRadio(div.id);
     };
     document.getElementById("tableDiv").appendChild(div);
@@ -270,7 +269,10 @@ function checkRadio(divId) {
             type : "GET",
             url : "/inventory/queryinventory/search_itemcode",
             dataType: "json",
-            data: {"itemCode": itemCode },
+            data: {
+                "itemCode": itemCode,
+                "currentQuoteId": $("input[name='quoteId']").val()
+            },
             async : true,
             error : function(request) {
                 $.modalAlert("System ERROR", "Error, please re-open the system");

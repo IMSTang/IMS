@@ -78,6 +78,7 @@ public class QueryInventoryController extends BaseController
         Map itemInfo = new HashMap();
 
         String itemCode = request.getParameter("itemCode");
+        String currentQuoteId = request.getParameter("currentQuoteId");
         if(itemCode ==null || itemCode==""){
             return itemInfo;
         }
@@ -89,7 +90,7 @@ public class QueryInventoryController extends BaseController
         }
         itemInfo.put("vendorRefPrice", min_max_price);
 
-        String min_max_Quote_price = quoteService.selectMinMaxPriceByItemCode(itemCode);
+        String min_max_Quote_price = quoteService.selectMinMaxPriceByItemCode(itemCode, currentQuoteId);
         if(min_max_Quote_price == null || min_max_Quote_price == "") {
             min_max_Quote_price = "no quote price in 3 months.";
         }else{
