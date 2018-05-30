@@ -47,4 +47,6 @@ public class ShiroUtils
     {
         return String.valueOf(getSubjct().getSession().getId());
     }
+
+    public static  String ROLE_KEY=null;
 }

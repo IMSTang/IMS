@@ -35,17 +35,17 @@ public class QuoteServiceImpl implements  IQuoteService{
     @Autowired
     private IRoleDao roleDao;
 
-    private static  String ROLE_KEY=null;
+//    private static  String ROLE_KEY=null;
 
     @Override
     public List<Quote> selectQuoteList(Quote quote) {
 
-        if(ROLE_KEY == null){
+        if(ShiroUtils.ROLE_KEY == null){
             initRole();
         }
         String loginName=ShiroUtils.getLoginName();
         String createBy = loginName;
-        if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
+        if (ShiroUtils.ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ShiroUtils.ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
             createBy = "";
         }
         quote.setCreateBy(createBy);
@@ -181,8 +181,8 @@ public class QuoteServiceImpl implements  IQuoteService{
         String userId = ShiroUtils.getUserId().toString();
         int roleId = userRoleDao.getRoleId(userId);
         Long lRoleId = new Long((long)roleId);
-        ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
-        return ROLE_KEY;
+        ShiroUtils.ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
+        return ShiroUtils.ROLE_KEY;
 
     }
 }

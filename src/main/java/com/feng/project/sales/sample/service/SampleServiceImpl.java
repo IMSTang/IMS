@@ -35,14 +35,14 @@ public class SampleServiceImpl implements  ISampleService{
     @Autowired
     private IRoleDao roleDao;
 
-    private static  String ROLE_KEY=null;
+//    private static  String ROLE_KEY=null;
     @Override
     public List<Sample> selectSampleList(Sample sample) {
-        if(ROLE_KEY == null){
+        if(ShiroUtils.ROLE_KEY == null){
             initRole();
         }
         String loginName=ShiroUtils.getLoginName();
-        if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ) {
+        if (ShiroUtils.ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ShiroUtils.ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ) {
             sample.setCreateBy("");
             return sampleDao.selectSampleList(sample);
         }
@@ -173,9 +173,9 @@ public class SampleServiceImpl implements  ISampleService{
         int roleId = userRoleDao.getRoleId(userId);
 
         Long lRoleId = new Long((long)roleId);
-        ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
-        System.out.println("ROLE_KEY:"+ROLE_KEY);
-        return ROLE_KEY;
+        ShiroUtils.ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
+        System.out.println("ROLE_KEY:"+ShiroUtils.ROLE_KEY);
+        return ShiroUtils.ROLE_KEY;
 
     }
 

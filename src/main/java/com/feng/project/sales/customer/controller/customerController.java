@@ -2,6 +2,8 @@ package com.feng.project.sales.customer.controller;
 
 
 import java.util.List;
+
+import com.feng.common.utils.security.ShiroUtils;
 import com.feng.project.sales.customer.domain.Customer;
 import com.feng.project.sales.customer.domain.CustomerIdName;
 import com.feng.project.sales.customer.service.ICustomerService;
@@ -40,9 +42,11 @@ public class customerController extends BaseController{
     @GetMapping()
     public String customer()
     {
-        String result = customerService.initRole();
-        if(result == null)
-            return "error";
+        if(ShiroUtils.ROLE_KEY == null) {
+            String result = customerService.initRole();
+            if (result == null)
+                return "error";
+        }
         return prefix + "/customer";
     }
 

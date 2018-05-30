@@ -108,11 +108,9 @@ import java.util.Map;
             JSONObject jsStr = JSONObject.parseObject(stockIn);
             StockIn SI =  (StockIn)JSONObject.toJavaObject(jsStr,StockIn.class);
            Map<String,String> names=UploadFileUtils.saveFile(file);
-//            System.out.println("---------save saveFile result ---"+names.toString()+"-----");
             List<Attachment> attachments = new ArrayList<>();
             if(names != null) {
 
-            System.out.println("attachment+++++++++++++++++++++++++");
                 for (Map.Entry<String, String> entry : names.entrySet()) {
                     attachments.add(new Attachment(entry.getValue(), entry.getKey()));
                 }

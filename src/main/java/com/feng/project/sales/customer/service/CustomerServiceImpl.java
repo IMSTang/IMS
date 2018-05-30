@@ -26,7 +26,7 @@ public class CustomerServiceImpl implements ICustomerService {
     @Autowired
     private IRoleDao roleDao;
 
-    private static  String ROLE_KEY=null;
+//    private static  String ROLE_KEY=null;
     /**
      * get customer list
      * @return
@@ -37,13 +37,13 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public List<Customer> selectAllCustomer(Customer customer) {
 
-        if(ROLE_KEY == null){
+        if(ShiroUtils.ROLE_KEY  == null){
              initRole();
         }
 
         String loginName=ShiroUtils.getLoginName();
         //equal current user prmission, get all info if is admin
-        if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
+        if (ShiroUtils.ROLE_KEY .equals(CustomerConstants.ADMINISTRATOR) || ShiroUtils.ROLE_KEY .equals(CustomerConstants.SALESMANAGER) ){
             return customerDao.selectAllCustomer(customer);
 
         }
@@ -121,11 +121,11 @@ public class CustomerServiceImpl implements ICustomerService {
         Long lRoleId = new Long((long)roleId);
 
         //get role name
-        ROLE_KEY  = (roleDao.selectRoleById(lRoleId)).getRoleKey();
+        ShiroUtils.ROLE_KEY   = (roleDao.selectRoleById(lRoleId)).getRoleKey();
 
 
 
-        return ROLE_KEY;
+        return ShiroUtils.ROLE_KEY ;
 
     }
 

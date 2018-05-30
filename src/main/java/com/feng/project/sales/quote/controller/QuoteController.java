@@ -2,6 +2,7 @@ package com.feng.project.sales.quote.controller;
 
 
 import com.feng.common.utils.DateUtils;
+import com.feng.common.utils.security.ShiroUtils;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.domain.JSON;
@@ -38,9 +39,11 @@ public class QuoteController extends BaseController {
     @RequiresPermissions("sales:quote:view")
     @GetMapping()
     public  String  quote(){
-        String result = quoteService.initRole();
-        if(result == null)
-            return "error";
+        if(ShiroUtils.ROLE_KEY == null) {
+            String result = quoteService.initRole();
+            if (result == null)
+                return "error";
+        }
         return prefix +"/quote";
     }
 
