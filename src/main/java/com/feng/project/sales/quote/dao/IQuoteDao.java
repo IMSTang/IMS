@@ -2,6 +2,7 @@ package com.feng.project.sales.quote.dao;
 
 import com.feng.project.sales.quote.domain.Quote;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -9,6 +10,10 @@ import java.util.List;
 public interface IQuoteDao {
 
     public List<Quote> selectQuoteList(Quote quote);
+    /*
+     *  itemCode 查询询价区间
+     */
+    public String selectMinMaxPriceByItemCode(@Param("itemCode")String itemCode, @Param("createBy")String createBy);
 
     /**
      * 插入 quote

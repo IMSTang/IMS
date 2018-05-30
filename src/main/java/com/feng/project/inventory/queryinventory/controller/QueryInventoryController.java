@@ -7,6 +7,7 @@ import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.inventory.queryinventory.domain.QueryInventory;
 import com.feng.project.inventory.queryinventory.service.IQueryInventoryService;
 import com.feng.project.purchase.inquiry.service.IInquiryService;
+import com.feng.project.sales.quote.service.IQuoteService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,8 @@ public class QueryInventoryController extends BaseController
 
     @Autowired
     private IInquiryService inquiryService;
+    @Autowired
+    private IQuoteService quoteService;
 
     @RequiresPermissions("inventory:queryinventory:view")
     @GetMapping()
@@ -86,7 +89,13 @@ public class QueryInventoryController extends BaseController
         }
         itemInfo.put("vendorRefPrice", min_max_price);
 
-        itemInfo.put("recentQuotaPrice","28 - 38");
+        String min_max_Quote_price = quoteService.selectMinMaxPriceByItemCode(itemCode);
+        if(min_max_Quote_price == null || min_max_Quote_price == "") {
+            min_max_Quote_price = "no quote price in 3 months.";
+        }else{
+            min_max_Quote_price = "US $ " + min_max_Quote_price;
+        }
+        itemInfo.put("recentQuotaPrice",min_max_Quote_price);
         List<QueryInventory> list = queryInventoryService.selectQueryInventoryListByItemCode(itemCode);
         itemInfo.put("inventoryList",list);
 

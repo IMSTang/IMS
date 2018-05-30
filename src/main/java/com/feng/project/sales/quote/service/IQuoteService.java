@@ -8,6 +8,7 @@ public interface IQuoteService {
 
     public List<Quote>  selectQuoteList(Quote quote);
 
+    public String selectMinMaxPriceByItemCode(String itemCode);
     /**
             * 插入 quote
      * @param quote

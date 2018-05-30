@@ -44,13 +44,18 @@ public class QuoteServiceImpl implements  IQuoteService{
             initRole();
         }
         String loginName=ShiroUtils.getLoginName();
+        String createBy = loginName;
         if (ROLE_KEY.equals(CustomerConstants.ADMINISTRATOR) || ROLE_KEY.equals(CustomerConstants.SALESMANAGER) ){
-            quote.setCreateBy("");
-            return quoteDao.selectQuoteList(quote);
-
+            createBy = "";
         }
-        quote.setCreateBy(loginName);
+        quote.setCreateBy(createBy);
         return quoteDao.selectQuoteList(quote);
+    }
+
+    @Override
+    public String selectMinMaxPriceByItemCode(String itemCode){
+        String createBy=ShiroUtils.getLoginName();
+        return quoteDao.selectMinMaxPriceByItemCode(itemCode, createBy);
     }
 
     /**

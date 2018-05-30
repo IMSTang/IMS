@@ -4,7 +4,7 @@ f_string varchar(1000),f_delimiter varchar(5)
 ) RETURNS int(11)
 BEGIN
   -- Get the total number of given string.
-  return 1+(length(f_string) - length(replace(f_string,f_delimiter,'')));
+  return IF(length(f_string)=0,0,1+(length(f_string) - length(replace(f_string,f_delimiter,''))));
 END
 ;;
 DELIMITER ;

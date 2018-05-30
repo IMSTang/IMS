@@ -43,6 +43,9 @@ public class StockInServiceImpl implements IStockInService {
 
         List<Attachment> attachmentList = stockin.getAttachmentList();
         for (Attachment att1 : attachmentList){
+            if(att1.getAttachmentName()==null || att1.getAttachmentUuid()==null ||att1.getAttachmentName().equals("") || att1.getAttachmentUuid().equals("")){
+                continue;
+            }
             str_attachmentName = str_attachmentName + (str_attachmentName.equals("") ? "" : ",") + att1.getAttachmentName() ;
             str_attachmentUuid = str_attachmentUuid + (str_attachmentUuid.equals("") ? "" : ",") + att1.getAttachmentUuid() ;
         }
