@@ -213,4 +213,14 @@ public class UserServiceImpl implements IUserService
         }
         return UserConstants.NAME_UNIQUE;
     }
+
+    @Override
+    public int changePWD(String newPWD) {
+        String password = new PasswordService().encryptPassword(ShiroUtils.getLoginName(),newPWD, "");
+        User user = new User();
+       Long userId = ShiroUtils.getUserId();
+        user.setUserId(userId);
+        user.setPassword(password);
+        return userDao.changePWD(user);
+    }
 }

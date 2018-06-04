@@ -121,5 +121,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  			sysdate()
  		)
 	</insert>
-	
+
+
+	<update id="changePWD" parameterType="User">
+		update sys_user
+		<set>
+			password=#{password}
+		</set>
+		where  user_id = #{userId}
+
+	</update>
 </mapper> 

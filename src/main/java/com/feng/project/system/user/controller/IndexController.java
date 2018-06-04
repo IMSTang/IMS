@@ -42,4 +42,11 @@ public class IndexController extends BaseController
         return "main";
     }
 
+    //修改密码
+    @GetMapping("/system/changePWD")
+    public String changePWD()
+    {
+        return "system/user/changePassword";
+    }
+
 }

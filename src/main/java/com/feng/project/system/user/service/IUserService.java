@@ -75,4 +75,6 @@ public interface IUserService
      */
     public String checkNameUnique(String loginName);
 
+    public int changePWD(String newPWD);
+
 }

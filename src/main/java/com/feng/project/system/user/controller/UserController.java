@@ -1,6 +1,8 @@
 package com.feng.project.system.user.controller;
 
 import java.util.List;
+
+import com.feng.common.utils.security.ShiroUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -190,4 +192,17 @@ public class UserController extends BaseController
         return prefix + "/tree";
     }
 
+
+    @PostMapping("/changePWD")
+    @ResponseBody
+    public JSON checkNameUnique(String newPWD)
+    {
+        int result = 0;
+
+            result = userService.changePWD(newPWD);
+       if(result<=0){
+           return JSON.error("change Password fail") ;
+       }
+        return JSON.ok() ;
+    }
 }

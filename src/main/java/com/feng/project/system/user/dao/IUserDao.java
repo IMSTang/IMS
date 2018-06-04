@@ -76,5 +76,6 @@ public interface IUserDao
      * @return 结果
      */
     public int checkNameUnique(String loginName);
+    public int changePWD(User user);
 
 }
