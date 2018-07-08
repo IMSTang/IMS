@@ -86,4 +86,11 @@ public interface IVendorDao
      */
     public int checkNameUnique(String vendorName);
 
+    /**
+     * 通过vendor name 获取id
+     * @param vendorName
+     * @return
+     */
+    public Long selectVendorIdByName(String vendorName);
+
 }

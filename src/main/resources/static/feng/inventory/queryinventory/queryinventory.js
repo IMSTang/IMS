@@ -22,7 +22,7 @@ $(function() {
         },
         {
             field: 'batch',
-            title: 'Batch'
+            title: 'Batch No'
         },
         // {
         //     field: 'warehouse',

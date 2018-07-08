@@ -1,11 +1,11 @@
 -- 一级菜单
 insert into sys_menu values('400', 'Inventory Management', '0', '20', '#', 'M', '0', '', 'fa fa-archive font12',         'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory Management');
 -- 二级菜单
-insert into sys_menu values('410',   'In Stock', '400', '1', '/inventory/inStock',        'C', '0', 'inventory:inStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'In Stock');
-insert into sys_menu values('420',   'Out Stock', '400', '2', '/inventory/outStock',        'C', '0', 'inventory:outStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Out Stock');
-insert into sys_menu values('430',   'QueryInventory', '400', '3', '/inventory/queryinventory',        'C', '0', 'inventory:queryinventory:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory');
-insert into sys_menu values('440',   'Sales Return', '400', '4', '/inventory/salesReturn',        'C', '0', 'inventory:salesReturn:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'resell Stock');
-insert into sys_menu values('450',   'QueryProduct', '400', '5', '/inventory/queryproduct',        'C', '0', 'inventory:queryproduct:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'QueryProduct');
+insert into sys_menu values('410',   'Stock In', '400', '1', '/inventory/inStock',        'C', '0', 'inventory:inStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'In Stock');
+insert into sys_menu values('420',   'Stock Out', '400', '2', '/inventory/outStock',        'C', '0', 'inventory:outStock:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Out Stock');
+insert into sys_menu values('430',   'Inventory List', '400', '3', '/inventory/queryinventory',        'C', '0', 'inventory:queryinventory:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'Inventory');
+insert into sys_menu values('440',   'Sell Return', '400', '4', '/inventory/salesReturn',        'C', '0', 'inventory:salesReturn:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'resell Stock');
+insert into sys_menu values('450',   'Replenishment', '400', '5', '/inventory/queryproduct',        'C', '0', 'inventory:queryproduct:view',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', 'QueryProduct');
 
 insert into sys_menu values('411', 'Query', '410', '1',  '#',  'F', '0', 'inventory:inStock:list',         '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');
 insert into sys_menu values('412', 'Add', '410', '2',  '#',  'F', '0', 'inventory:inStock:add',          '#', 'admin', '2018-03-01', 'admin', '2018-03-01', '');

@@ -75,4 +75,11 @@ public interface IVendorService
      */
     public  String checkNameUnique(String  customerName);
 
+    /**
+     * 通过vendor name 获取id
+     * @param vendorName
+     * @return
+     */
+    public Long selectVendorIdByName(String vendorName);
+
 }

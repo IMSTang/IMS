@@ -64,7 +64,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from pur_vendor v
 		where v.status = 0 and v.vendor_id = #{vendorId}
 	</select>
-	
+
+
+	<select id="selectVendorIdByName" parameterType="Long" resultType="Long">
+		select vendor_id   from pur_vendor
+		<where>
+			status = 0 AND vendor_name = #{vendorName}
+		</where>
+ 	</select>
+
 	<delete id="deleteVendorById" parameterType="Long">
 		update pur_vendor set status = 1
 		where 1=1 and vendor_id = #{vendorId}

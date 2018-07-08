@@ -126,4 +126,14 @@ public class VendorServiceImpl implements IVendorService
         return "0";
     }
 
+    /**
+     * 通过vendor name 获取id
+     *
+     * @param vendorName
+     * @return
+     */
+    @Override
+    public Long selectVendorIdByName(String vendorName) {
+        return vendorDao.selectVendorIdByName(vendorName);
+    }
 }

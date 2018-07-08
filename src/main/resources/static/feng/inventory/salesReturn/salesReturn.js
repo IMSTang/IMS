@@ -25,12 +25,12 @@ $(function() {
         },
         {
             field: 'batch',
-            title: 'Batch'
+            title: 'Batch No'
         },
        
 	    {
             field: 'warehouse',
-            title: 'Warehouse'
+            title: 'Location'
         },
 		
 		{

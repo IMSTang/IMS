@@ -1,18 +1,25 @@
 package com.feng.project.inventory.instock.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.feng.common.utils.ExcelUtils;
 import com.feng.common.utils.UploadFileUtils;
 import com.feng.framework.aspectj.lang.annotation.Log;
 import com.feng.framework.web.controller.BaseController;
 import com.feng.framework.web.page.TableDataInfo;
 import com.feng.project.inventory.instock.domain.StockIn;
 import com.feng.project.inventory.instock.service.IStockInService;
+import com.feng.project.purchase.vendor.service.IVendorService;
 import com.feng.project.system.attach.service.IAttachmentService;
 import com.feng.project.system.dict.domain.DictData;
 import com.feng.project.system.dict.domain.DictType;
 import com.feng.project.system.dict.domain.SelectedDictData;
 import com.feng.project.system.dict.service.IDictDataService;
 import com.feng.project.system.dict.service.IDictTypeService;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,8 +28,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.feng.framework.web.domain.JSON;
 import com.feng.project.system.attach.domain.Attachment;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +63,11 @@ import java.util.Map;
         @Autowired
         private IAttachmentService attachmentService;
 
-        @Value(value = "${attachment.filepath}")
+        @Autowired
+        private IVendorService vendorService;
+
+
+    @Value(value = "${attachment.filepath}")
         private String filepath;
 
 
@@ -141,5 +155,72 @@ import java.util.Map;
         }
 
 
+    @RequestMapping(value="/importEXL")
+    public @ResponseBody String importEXL(@RequestParam("file") MultipartFile file)   {
+/**
+ * 要对每一个数据添加非空校验
+ */
 
+
+        //行数
+        int totalRows=0;
+
+        //产品的列表
+        List stocks = new ArrayList();
+        //列数
+        int totalCells=0;
+        String[] temporary = new String[12];
+        Workbook wb =null;
+    try {
+        InputStream is = file.getInputStream();
+        wb =  new XSSFWorkbook(is);
+    }catch (Exception e){
+        System.out.println(e);
+    }
+
+        if(wb == null){
+        return "please select Excel file";
+        }
+        //获取excel文件共有多少个sheet页
+        int length=wb.getNumberOfSheets();
+        for(int i=0;i<length;i++){
+            Sheet sheet = wb.getSheetAt(i);
+            totalRows=sheet.getPhysicalNumberOfRows();
+            if (totalRows > 1 && sheet.getRow(0) != null) {
+                totalCells = sheet.getRow(0).getPhysicalNumberOfCells();
+            }
+            // 循环Excel行数
+            for (int r = 1; r < totalRows; r++) {
+                Row row = sheet.getRow(r);
+                if (row == null){
+                    continue;
+                }
+
+                StockIn stockIn =  new StockIn();
+                stockIn.setItemCode( row.getCell(0).getStringCellValue());
+                stockIn.setBatch( row.getCell(4).getStringCellValue());
+                stockIn.setWarehouse( row.getCell(5).getStringCellValue());
+                stockIn.setPosition( row.getCell(6).getStringCellValue());
+
+                Cell cellQuantity  =  row.getCell(7);
+                cellQuantity .setCellType(Cell.CELL_TYPE_STRING);
+                stockIn.setQuantity( Double.valueOf(cellQuantity.getStringCellValue()));
+
+                String vendorName =  row.getCell(8).getStringCellValue();
+                Long vendorId = vendorService.selectVendorIdByName(vendorName);
+                stockIn.setVendorId(vendorId.toString());
+
+
+                stockIn.setIrradiation( row.getCell(9).getStringCellValue());
+                stockIn.setTpc( row.getCell(10).getStringCellValue());
+                stockIn.setRemark( row.getCell(11).getStringCellValue());
+                stockIn.setAttachmentList(null);
+
+                stocks.add(stockIn);
+            }
+        }
+        System.out.println("-------------"+stocks.size());
+
+        return "ok";
+     }
     }

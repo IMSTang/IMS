@@ -35,7 +35,7 @@
 
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Batch:</label>
+			<label class="col-sm-3 control-label">Batch No:</label>
 			<div class="col-sm-8">
 				<input class="form-control" type="text"  readonly="true" name="batch" id="batch" th:value="${inventory.batch}">
 			</div>
@@ -43,7 +43,7 @@
 
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Warehouse:</label>
+			<label class="col-sm-3 control-label">Location:</label>
 			<div class="col-sm-3">
 				<input class="form-control" type="text" readonly="true"  name="warehouse" id="warehouse" th:value="${inventory.warehouse}">
 			</div>
@@ -71,7 +71,7 @@
 			<div class="col-sm-3">
 				<input class="form-control" type="text" name="pricePurchase" readonly="true" id="pricePurchase" th:value="${inventory.pricePurchase}">
 			</div>
-			<label class="col-sm-2 control-label">FOB Ontario:</label>
+			<label class="col-sm-2 control-label">Suggestion Sell Quote:</label>
 			<div class="col-sm-3">
 				<input class="form-control" type="text" name="priceFobOntario"  readonly="true" id="priceFobOntario" th:value="${inventory.priceFobOntario}">
 			</div>
@@ -100,7 +100,7 @@
 		</div>
 
 		<div class="form-group">
-			<label class="col-sm-3 control-label">Tpc:</label>
+			<label class="col-sm-3 control-label">Total Plate Count:</label>
 			<div class="col-sm-8">
 				<input id="tpc" name="tpc" class="form-control"  readonly="true" type="text" th:value="${inventory.tpc}">
 			</div>

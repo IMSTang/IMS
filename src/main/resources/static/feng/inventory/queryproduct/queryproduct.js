@@ -31,11 +31,11 @@ $(function() {
         },
         {
             field: 'sumInventory.pricePurchase',
-            title: 'Price Purchase'
+            title: 'Cost'
         },
         {
             field: 'sumInventory.priceFobOntario',
-            title: 'Price FOB Ontario'
+            title: 'Suggestion Sell Quote'
         },
         {
             field: 'latestDemandDate',
