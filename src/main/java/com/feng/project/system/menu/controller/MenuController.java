@@ -131,4 +131,9 @@ public class MenuController extends BaseController
         List<Map<String, Object>> tree = menuService.selectMenuTree(role);
         return tree;
     }
+
+//    @GetMapping("/homePackage")
+//    public String homePage(){
+//        return "main";
+//    }
 }
