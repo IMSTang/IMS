@@ -32,6 +32,10 @@ $("#form-user-add").validate({
 		phonenumber:{
 			required:true,
 		},
+        post:{
+            required:true,
+        },
+
 	},
 	messages: {
         "loginName": {
