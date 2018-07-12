@@ -233,6 +233,7 @@
         <if test="searchValue != null and searchValue != ''">
             AND itemCode like CONCAT('%',#{searchValue},'%' )
         </if>
+        Order By create_time
 	</select>
 
 

@@ -36,6 +36,10 @@ $(function() {
             field: 'remark',
             title: 'Remark'
         },
+        {
+            field: 'createTime',
+            title: 'CreateTime'
+        },
 		
         {
             title: 'Action',
