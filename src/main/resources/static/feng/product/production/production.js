@@ -11,6 +11,8 @@ $(function() {
         {
             field: 'itemCode',
             title: 'Item Code'
+            // ,
+            // sortable : true
         },
         {
             field: 'itemName',
