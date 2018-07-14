@@ -25,6 +25,7 @@
         <id column="production_id" property="productionId"  />
         <result column="item_code" property="itemCode" jdbcType="VARCHAR" />
         <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+        <result column="specification" property="specification" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
@@ -261,7 +262,7 @@
 
     <select id="selectProductionSimpleByCode" parameterType="String"
             resultMap="prodcutionSimpleResult">
-        SELECT production_id, item_code, item_name FROM pro_production
+        SELECT production_id, item_code, item_name,specification FROM pro_production
         <where>
             status = 0
                 AND (
@@ -274,7 +275,7 @@
     <select id="selectProductionSimpleByName" parameterType="String"
             resultMap="prodcutionSimpleResult">
 
-        SELECT production_id, item_code, item_name FROM pro_production
+        SELECT production_id, item_code, item_name,specification FROM pro_production
         <where>
             status = 0
                     AND (

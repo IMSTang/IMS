@@ -19,6 +19,7 @@ public class QuoteBody extends PageDomain {
     private String price;
     /**  */
     private String quantity;
+    private String specification;
 
 //    public void setItemName(String itemName) {
 //        this.itemName = itemName;
