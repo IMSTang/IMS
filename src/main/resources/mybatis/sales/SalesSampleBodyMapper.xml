@@ -11,6 +11,7 @@
         <result property="price"      column="price" />
         <result property="quantity"      column="quantity"     />
         <result property="itemName"      column="item_name"     />
+        <result property="specification"      column="specification"     />
     </resultMap>
 
 
@@ -36,7 +37,7 @@
 	<!--</select>-->
 
     <select id="selectBodyBySampleId" parameterType="Long" resultMap="SampleBodyResult">
-		select sale_sample_body.* ,pro_production.item_name
+		select sale_sample_body.* ,pro_production.item_name,pro_production.specification
         from sale_sample_body,pro_production
         where sale_sample_body.item_code =pro_production.item_code and sample_id=#{sampleId}
 	</select>
