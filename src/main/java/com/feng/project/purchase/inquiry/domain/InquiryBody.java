@@ -18,6 +18,6 @@ public class InquiryBody extends PageDomain {
     private String price;
     /**  */
     private String quantity;
-
+    private String specification;
 
 }

@@ -11,6 +11,7 @@
         <result property="price"      column="price" />
         <result property="quantity"      column="quantity"     />
         <result property="itemName"      column="item_name"     />
+        <result property="specification"      column="specification"     />
     </resultMap>
 
 
@@ -36,7 +37,7 @@
 	<!--</select>-->
 
     <select id="selectBodyByInquiryId" parameterType="Long" resultMap="InquiryBodyResult">
-		select pur_inquiry_body.* ,pro_production.item_name
+		select pur_inquiry_body.* ,pro_production.item_name,pro_production.specification
         from pur_inquiry_body,pro_production
         where pur_inquiry_body.item_code =pro_production.item_code and inquiry_id=#{inquiryId}
 	</select>
