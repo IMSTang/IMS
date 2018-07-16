@@ -56,7 +56,10 @@
 				</div>
 				<label class="col-sm-2 control-label">Test Method:</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="testMethod" id="testMethod"  th:value="${production.testMethod}" >
+					<select id="testMethod" name="testMethod" class="form-control select2-hidden-accessible">
+						<option value="TLC">TLC</option>
+						<option value="HPLC">HPLC</option>
+						<option value="UV">UV</option>
 				</div>
 			</div>
 			

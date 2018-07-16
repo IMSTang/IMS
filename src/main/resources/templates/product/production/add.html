@@ -56,7 +56,13 @@
 
 				<label class="col-sm-2 control-label">Test Method:</label>
 				<div class="col-sm-3">
-					<input class="form-control" type="text" name="testMethod" id="testMethod">
+					<!--<input class="form-control" type="text" name="testMethod" id="testMethod">-->
+					<select id="testMethod" name="testMethod" class="form-control select2-hidden-accessible">
+						<option value="TLC">TLC</option>
+						<option value="HPLC">HPLC</option>
+						<option value="UV">UV</option>
+						<!--<option th:each="cate:${listProductCategory}" th:value="${cate.dictLabel}" th:text="${cate.dictLabel}"></option>-->
+					</select>
 				</div>
 			</div>
 			
