@@ -10,6 +10,12 @@ $("#form-production-edit").validate({
         safetyStock:{
             required:true,
             digits : true,
+        },
+        itemNameCn: {
+            required: true,
+        },
+        specification: {
+            required: true,
         }
 	},
 	submitHandler:function(form){

@@ -11,6 +11,12 @@ $("#form-productionMapping-add").validate({
         rate:{
             required:true,
             number : true,
+        },
+        itemName:{
+            required:true,
+        },
+        newItemName:{
+            required:true,
         }
 	},
 	submitHandler:function(form){

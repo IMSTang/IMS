@@ -21,6 +21,15 @@ $("#form-production-add").validate({
         safetyStock:{
             required:true,
             digits : true,
+        },
+        itemName: {
+            required: true,
+        },
+        itemNameCn: {
+         required: true,
+        },
+        specification: {
+         required: true,
         }
 	},
 	submitHandler:function(form){
