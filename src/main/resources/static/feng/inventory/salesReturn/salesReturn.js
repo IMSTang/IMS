@@ -33,11 +33,15 @@ $(function() {
             title: 'Location'
         },
 		
-		{
-            field: 'position',
-            title: 'Position'
+        // {
+        //     field: 'position',
+        //     title: 'Position'
+        // },
+
+        {
+            field: 'poCode',
+            title: 'PO Code'
         },
-		
 		{
             field: 'quantity',
             title: 'Quantity(KG)'

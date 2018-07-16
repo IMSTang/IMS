@@ -17,6 +17,8 @@ public class StockOut extends PageDomain {
         private String warehouse;
         private String position;
         private Double quantity;
+        private Double priceSale;
+        private String poCode;
         private String irradiation;
         private String tpc;
         private String vendorId;

@@ -31,11 +31,19 @@
 			</div>
 		</div>
 		<div class="form-group">
+			<label class="col-sm-2 control-label">Date:</label>
+			<div class="col-sm-2 form-control-static" th:text="${stockOut.stockoutDate}">
+			</div>
+		</div>
+		<div class="form-group">
 			<label class="col-sm-2 control-label">Quantity(KG):</label>
 			<div class="col-sm-2 form-control-static" th:text="${stockOut.quantity}">
 			</div>
-			<label class="col-sm-2 control-label">Date:</label>
-			<div class="col-sm-2 form-control-static" th:text="${stockOut.stockoutDate}">
+			<label class="col-sm-2 control-label">Sale Price:</label>
+			<div class="col-sm-2 form-control-static" th:text="${stockOut.priceSale}">
+			</div>
+			<label class="col-sm-2 control-label">PO Code:</label>
+			<div class="col-sm-2 form-control-static" th:text="${stockOut.poCode}">
 			</div>
 		</div>
 		<div class="form-group">
@@ -43,14 +51,14 @@
 			<div class="col-sm-8 form-control-static" th:text="${stockOut.customer.customerName}">
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Irradiation:</label>
-			<div class="col-sm-2 form-control-static" th:text="${stockOut.irradiation}">
-			</div>
-			<label class="col-sm-2 control-label">Total Plate Count:</label>
-			<div class="col-sm-4 form-control-static" th:text="${stockOut.tpc}">
-			</div>
-		</div>
+		<!--<div class="form-group">-->
+			<!--<label class="col-sm-2 control-label">Irradiation:</label>-->
+			<!--<div class="col-sm-2 form-control-static" th:text="${stockOut.irradiation}">-->
+			<!--</div>-->
+			<!--<label class="col-sm-2 control-label">Total Plate Count:</label>-->
+			<!--<div class="col-sm-4 form-control-static" th:text="${stockOut.tpc}">-->
+			<!--</div>-->
+		<!--</div>-->
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Vendor Name:</label>
 			<div class="col-sm-8 form-control-static" th:text="${stockOut.vendor.vendorName}">

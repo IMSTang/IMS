@@ -8,7 +8,6 @@
         <id     property="inquiryId"        column="inquiry_id"       />
         <result property="inquiryDate"      column="inquiry_date"     />
         <result property="vendorId"      column="vendor_id"     />
-        <result property="reminder"      column="reminder"     />
         <result property="status"        column="status"        />
         <result property="createBy"      column="create_by"     />
         <result property="createTime"    column="create_time"   />
@@ -50,14 +49,14 @@
     insert into pur_inquiry(
         <if test="inquiryDate != null ">inquiry_date,</if>
         <if test="vendorId != null ">vendor_id,</if>
-        <if test="reminder != null ">reminder,</if>
+
         <if test="createBy != null ">create_by,</if>
         <if test="remark != null ">remark,</if>
         create_time
         )values(
         <if test="inquiryDate != null ">#{inquiryDate},</if>
         <if test="vendorId != null ">#{vendorId},</if>
-        <if test="reminder != null ">#{reminder},</if>
+
         <if test="createBy != null ">#{createBy},</if>
         <if test="remark != null ">#{remark},</if>
         sysdate()
@@ -80,7 +79,7 @@
         update pur_inquiry
         <set>
             <if test="vendorId != null">vendor_id = #{vendorId},</if>
-            <if test="reminder != null ">reminder = #{reminder},</if>
+
             <if test="inquiryDate != null ">inquiry_date = #{inquiryDate},</if>
             <if test="remark != null and remark != ''">remark = #{remark},</if>
             update_by = #{updateBy},

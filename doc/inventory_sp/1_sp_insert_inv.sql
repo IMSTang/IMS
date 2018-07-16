@@ -78,7 +78,7 @@ BEGIN
 
 declare inv_sn int;
 select max(i.sn) into inv_sn
-from inv_inventory i where i.status=0 and i.item_code=item_code and i.batch=batch and i.warehouse=warehouse and i.position=position;
+from inv_inventory i where i.status=0 and i.item_code=item_code and i.batch=batch and i.vendor_id=vendor_id and i.warehouse=warehouse and i.position=position;
 IF (inv_sn is null ) THEN
 			INSERT INTO inv_inventory(	item_code, batch, warehouse, position, price_purchase, price_fob_ontario, quantity, irradiation, tpc,
                           vendor_id, customer_id, status ,stock_in_date , create_time, create_by, update_by,	update_time, remark )

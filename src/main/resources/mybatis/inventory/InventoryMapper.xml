@@ -108,7 +108,7 @@
         select i.sn, i.item_code, i.batch, i.warehouse, i.position, i.quantity, i.price_purchase, i.price_fob_ontario, date_format(i.stock_in_date ,'%Y-%m-%d' ) as stock_in_date
         from inv_inventory i
         <where>
-            i.status = 0 AND i.item_code = #{itemCode} AND i.batch = #{batch} and i.quantity>=0.001
+            i.status = 0 AND i.item_code = #{itemCode} AND i.batch = #{batch} AND i.vendor_id = #{vendorId} and i.quantity>=0.001
         </where>
     </select>
 

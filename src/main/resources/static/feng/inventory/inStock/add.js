@@ -10,6 +10,9 @@ $("#form-inStock-add").validate({
             number: true,
             min: 0,
         },
+        batch: {
+            required: true,
+        },
         warehouse: {
             required: true,
         },

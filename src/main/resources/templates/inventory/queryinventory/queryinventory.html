@@ -6,13 +6,12 @@
 <body class="gray-bg">
 	<div class="wrapper wrapper-content">
        <div class="btn-group hidden-xs" id="tableToolbar" role="group">
-			<!--<button type="button" class="btn btn-outline btn-default" th:onclick="'javascript:batchRemove()'" shiro:hasPermission="monitor:operlog:batchRemove">-->
-	            <!--<i class="glyphicon glyphicon-trash"></i>-->
-	        <!--</button>-->
+			<input type="checkbox" class="bs-checkbox" th:onclick="'javascript:includeZero()'">Include 0 Quantity
+	        </input>
         </div>
         
 		<table class="bootstrap-table" data-mobile-responsive="true" 
-			   data-sort-name="item_code" data-sort-order="desc">
+			   data-sort-name="sn" data-sort-order="asc">
 		</table>
 	</div>
 	<div th:include="include :: footer"></div>

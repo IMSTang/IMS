@@ -39,9 +39,9 @@ public class QueryInventoryServiceImpl implements IQueryInventoryService
     }
 
     @Override
-    public List<QueryInventory> selectQueryInventoryListEqualBatch(String batch, String itemCode)
+    public List<QueryInventory> selectQueryInventoryListEqualBatch(String batch, String itemCode, String vendorId)
     {
-        return queryInventoryDao.selectQueryInventoryListEqualBatch(batch, itemCode);
+        return queryInventoryDao.selectQueryInventoryListEqualBatch(batch, itemCode, vendorId);
     }
 
     @Override

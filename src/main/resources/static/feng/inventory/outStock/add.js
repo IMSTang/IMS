@@ -65,6 +65,14 @@ $("#form-outStock-add").validate({
         stockoutDate:{
             required:true,
             dateISO:true
+        },
+        priceSale:{
+            required: true,
+            number: true,
+            min: 0,
+        },
+        poCode:{
+            required:true,
         }
     },
     messages:{
@@ -288,6 +296,8 @@ function add() {
     var warehouse  = $("input[name='warehouse']").val();
     var position  = $("input[name='position']").val();
     var quantity  = $("input[name='quantity']").val();
+    var priceSale  = $("input[name='priceSale']").val();
+    var poCode  = $("input[name='poCode']").val();
     var irradiation  = $("input[name='irradiation']").val();
     var tpc  = $("input[name='tpc']").val();
     var vendorId  = $("input[name='vendorId']").val();
@@ -308,6 +318,8 @@ function add() {
             "warehouse": warehouse,
             "position": position,
             "quantity": quantity,
+            "priceSale": priceSale,
+            "poCode": poCode,
             "irradiation": irradiation,
             "tpc": tpc,
             "vendorId": vendorId,

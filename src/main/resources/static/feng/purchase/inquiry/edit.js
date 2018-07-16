@@ -240,11 +240,11 @@ $("#form-inquiry-edit").validate({
         itemCode:{
             required:true,
         },
-        reminder:{
-            required: true,
-            number: true,
-            min: 0.01,
-        },
+        // reminder:{
+        //     required: true,
+        //     number: true,
+        //     min: 0.01,
+        // },
         inquiryDate:{
             required:true,
             dateISO:true
@@ -271,7 +271,7 @@ function update() {
         var inquiryDate = $("input[name='inquiryDate']").val();
         var vendorId = $("input[name='vendorId']").val();
         var vendorName = $("input[name='vendorName']").val();
-        var reminder = $("input[name='reminder']").val();
+        // var reminder = $("input[name='reminder']").val();
         var remark = $("#remark").val();
 
         inquiryItem.inquiryId=inquiryId;
@@ -279,7 +279,7 @@ function update() {
         inquiryItem.vendorId=vendorId;
         inquiryItem.vendorName=vendorName;
         inquiryItem.remark=remark;
-        inquiryItem.reminder=reminder;
+        // inquiryItem.reminder=reminder;
 
         var parentDiv =  document.getElementById('tableDiv');
         //获取div个数

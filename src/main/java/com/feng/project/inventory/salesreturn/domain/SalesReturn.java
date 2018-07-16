@@ -17,6 +17,7 @@ public class SalesReturn extends PageDomain {
         private String warehouse;
         private String position;
         private Double quantity;
+        private String poCode;
         private String irradiation;
         private String tpc;
         private String vendorId;

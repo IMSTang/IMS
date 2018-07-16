@@ -62,6 +62,14 @@
 				<div class="col-sm-2">
 					<input class="form-control" type="text" name="StockQuantity" id="StockQuantity" readonly="true">
 				</div>
+				<label class="col-sm-2 control-label">&nbsp;</label>
+				<div class="col-sm-2">
+					&nbsp;
+				</div>
+				<label class="col-sm-2 control-label">Date:</label>
+				<div class="col-sm-2">
+					<input class="form-control" type="text" name="stockoutDate" id="stockoutDate" th:value="${today}">
+				</div>
 
 			</div>
 
@@ -75,9 +83,13 @@
 				<div class="col-sm-2">
 					<input class="form-control" type="text" name="quantity" id="quantity">
 				</div>
-				<label class="col-sm-2 control-label">Date:</label>
+				<label class="col-sm-2 control-label">Sale Price</label>
 				<div class="col-sm-2">
-					<input class="form-control" type="text" name="stockoutDate" id="stockoutDate" th:value="${today}">
+					<input class="form-control" type="text" name="priceSale" id="priceSale">
+				</div>
+				<label class="col-sm-2 control-label">PO Code:</label>
+				<div class="col-sm-2">
+					<input class="form-control" type="text" name="poCode" id="poCode">
 				</div>
 
 			</div>

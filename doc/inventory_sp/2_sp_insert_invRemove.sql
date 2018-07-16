@@ -9,6 +9,7 @@ BEGIN
 
 declare tmp_item_code VARCHAR(100);
 declare tmp_batch VARCHAR(100);
+declare tmp_vendorId VARCHAR(100);
 declare tmp_warehouse VARCHAR(100);
 declare tmp_position VARCHAR(100);
 declare tmp_in_quantity double(16,3);
@@ -16,10 +17,10 @@ declare tmp_inventory_quantity double(16,3);
 declare tmp_new_quantity double(16,3);
 declare inv_sn int;
 
-select item_code , batch , warehouse , position , quantity into tmp_item_code, tmp_batch, tmp_warehouse, tmp_position , tmp_in_quantity from inv_inventory_in where sn=var_sn ;
+select item_code , batch , vendor_id , warehouse , position , quantity into tmp_item_code, tmp_batch, tmp_vendorId, tmp_warehouse, tmp_position , tmp_in_quantity from inv_inventory_in where sn=var_sn ;
 
 select max(i.sn) into inv_sn
-    from inv_inventory i where i.status=0 and i.item_code=item_code and i.batch=batch and i.warehouse=warehouse and i.position=position;
+    from inv_inventory i where i.status=0 and i.item_code=tmp_item_code and i.batch=tmp_batch and i.vendor_id=tmp_vendorId and i.warehouse=tmp_warehouse and i.position=tmp_position;
 
 select i.quantity into tmp_inventory_quantity from inv_inventory i where i.sn=inv_sn ;
 

@@ -35,6 +35,7 @@ public class SalesReturnServiceImpl implements ISalesReturnService {
         paramsMap.put("warehouse",salesreturn.getWarehouse() );
         paramsMap.put("position",salesreturn.getPosition() );
         paramsMap.put("quantity",salesreturn.getQuantity() );
+        paramsMap.put("poCode",salesreturn.getPoCode() );
 //        paramsMap.put("irradiation",salesreturn.getIrradiation() );
 //        paramsMap.put("tpc",salesreturn.getTpc() );
         paramsMap.put("vendorId",salesreturn.getVendorId());

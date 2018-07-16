@@ -9,6 +9,7 @@
         <result column="warehouse" jdbcType="VARCHAR" property="warehouse" />
         <result column="position" jdbcType="VARCHAR" property="position" />
         <result column="quantity"  property="quantity" />
+        <result column="po_code"  property="poCode" />
         <result column="vendor_id"  property="vendorId" />
         <result column="customer_id"  property="customerId" />
         <result column="status" property="status" />
@@ -42,7 +43,7 @@
     </resultMap>
 
     <sql id="Base_Column_List" >
-        sn, stockout_sn, item_code, batch, warehouse, position, quantity,
+        sn, stockout_sn, item_code, batch, warehouse, position, quantity, po_code ,
     irradiation, tpc, vendor_id, customer_id, status, return_date, create_by, create_time,
     update_by, update_time, remark
     </sql>
@@ -83,6 +84,8 @@
                    mode="IN" />
         <parameter property="quantity"  jdbcType="DOUBLE"  javaType="java.lang.Double"
                    mode="IN" />
+        <parameter property="poCode" jdbcType="VARCHAR" javaType="java.lang.String"
+                   mode="IN" />
         <parameter property="vendorId"  jdbcType="INTEGER"   javaType="java.lang.String"
                    mode="IN" />
         <parameter property="customerId"  jdbcType="INTEGER"   javaType="java.lang.String"
@@ -103,7 +106,7 @@
     <insert id="spSalesReturn" parameterMap="salesReturnParams"
             statementType="CALLABLE">
     <![CDATA[
-        {call  sp_salesReturn(?, ?, ?, ?, ?,     ?, ?, ?, ?, ?,     ? )}
+        {call  sp_salesReturn(?, ?, ?, ?, ?,     ?, ?, ?, ?, ?,     ?, ? )}
     ]]>
 </insert>
 

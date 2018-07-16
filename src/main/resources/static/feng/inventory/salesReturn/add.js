@@ -135,13 +135,14 @@ $("#itemCode").autocomplete({
                 response($.map(data, function (item) {
 
                     return {
-                        label: item.itemCode +"  -  "+item.batch +"  -  "+item.production.itemName +"  ( "+item.stockoutDate +" )",
+                        label: item.poCode +"  -  "+item.itemCode +"  -  "+item.batch +"  -  "+item.production.itemName +"  ( "+item.stockoutDate +" )",
                         value: item.itemCode,
                         itemName: item.production.itemName,
                         batch: item.batch,
                         warehouse: item.warehouse,
                         position: item.position,
                         quantity: item.quantity,
+                        poCode: item.poCode,
                         vendorId: item.vendorId,
                         vendorName: item.vendor.vendorName,
                         stockoutSn: item.sn,
@@ -160,6 +161,7 @@ $("#itemCode").autocomplete({
         $("#warehouse").val(ui.item.warehouse);
         $("#position").val(ui.item.position);
         $("#outQuantity").val(ui.item.quantity);
+        $("#poCode").val(ui.item.poCode);
         $("#vendorName").val(ui.item.vendorName);
         $("#vendorId").val(ui.item.vendorId);
         $("#stockoutSn").val(ui.item.stockoutSn);
@@ -175,6 +177,7 @@ $("#itemCode").autocomplete({
         $("#warehouse").val(ui.item.warehouse);
         $("#position").val(ui.item.position);
         $("#outQuantity").val(ui.item.quantity);
+        $("#poCode").val(ui.item.poCode);
         $("#vendorName").val(ui.item.vendorName);
         $("#vendorId").val(ui.item.vendorId);
         $("#stockoutSn").val(ui.item.stockoutSn);
@@ -201,6 +204,7 @@ function cleanStockOutInfo() {
     $("#warehouse").val("");
     $("#position").val("");
     $("#outQuantity").val("");
+    $("#poCode").val("");
     $("#vendorName").val("");
     $("#vendorId").val("");
     $("#stockoutSn").val("");
@@ -213,6 +217,7 @@ function add() {
     var warehouse  = $("input[name='warehouse']").val();
     var position  = $("input[name='position']").val();
     var quantity  = $("input[name='quantity']").val();
+    var poCode  = $("input[name='poCode']").val();
     // var irradiation  = $("input[name='irradiation']").val();
     // var tpc  = $("input[name='tpc']").val();
     var vendorId  = $("input[name='vendorId']").val();
@@ -233,6 +238,7 @@ function add() {
             "warehouse": warehouse,
             "position": position,
             "quantity": quantity,
+            "poCode": poCode,
             "vendorId": vendorId,
             "customerId": customerId,
             "remark": remark,

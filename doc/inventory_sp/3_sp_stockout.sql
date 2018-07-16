@@ -8,6 +8,8 @@ IN  batch     varchar(100)  ,
 IN  warehouse varchar(100)  ,
 IN  position  varchar(100) ,
 IN  quantity   double(16,3) ,
+IN  price_sale   double(16,2) ,
+IN  po_code  varchar(20) ,
 IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
@@ -19,9 +21,9 @@ IN  remark 		  varchar(500)
 
 BEGIN
 
-INSERT INTO inv_inventory_out( item_code , inventory_sn , batch , warehouse , position  , quantity  , irradiation , tpc ,
+INSERT INTO inv_inventory_out( item_code , inventory_sn , batch , warehouse , position  , quantity, price_sale , po_code  , irradiation , tpc ,
                                 vendor_id , customer_id , status ,stockout_date , create_time, create_by , update_by , update_time , remark )
-              VALUES ( item_code , inventory_sn , batch , warehouse , position , quantity ,	irradiation , tpc ,
+              VALUES ( item_code , inventory_sn , batch , warehouse , position , quantity, price_sale , po_code ,	irradiation , tpc ,
                         vendor_id , customer_id ,	0 ,	stockout_date , sysdate() , create_by , create_by , sysdate() , remark );
 
 END
@@ -38,6 +40,8 @@ IN  batch     varchar(100)  ,
 IN  warehouse varchar(100)  ,
 IN  position  varchar(100) ,
 IN  var_quantity   double(16,3) ,
+IN  price_sale   double(16,2) ,
+IN  po_code  varchar(20) ,
 IN	irradiation     varchar(100)   ,
 IN  tpc     varchar(100)    ,
 IN  vendor_id     int(11)   ,
@@ -62,7 +66,7 @@ start transaction;
 update inv_inventory  set quantity=res_quantity   where sn =inventory_sn;
 
 call sp_insert_inv_out(item_code, inventory_sn, batch, warehouse, position ,
-                      var_quantity ,irradiation ,tpc , vendor_id , customer_id , stockout_date , create_by , remark 	 	);
+                      var_quantity , price_sale , po_code ,irradiation ,tpc , vendor_id , customer_id , stockout_date , create_by , remark 	 	);
 
 
 commit;

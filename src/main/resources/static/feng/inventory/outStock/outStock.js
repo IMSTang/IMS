@@ -28,19 +28,27 @@ $(function() {
             title: 'Batch No'
         },
        
-	    {
-            field: 'warehouse',
-            title: 'Location'
+        // {
+        //     field: 'warehouse',
+        //     title: 'Location'
+        // },
+        //
+        // {
+        //     field: 'position',
+        //     title: 'Position'
+        // },
+
+        {
+            field: 'poCode',
+            title: 'PO Code'
         },
-		
-		{
-            field: 'position',
-            title: 'Position'
-        },
-		
 		{
             field: 'quantity',
             title: 'Quantity(KG)'
+        },
+        {
+            field: 'priceSale',
+            title: 'Sale Price'
         },
         {
             field: 'customer.customerName',
