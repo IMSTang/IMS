@@ -9,6 +9,15 @@ public class ProductionSimple extends PageDomain {
         private Long productionId;
         private String itemCode;
         private String itemName;
+        private String specification;
+
+        public String getSpecification() {
+                return specification;
+        }
+
+        public void setSpecification(String specification) {
+                this.specification = specification;
+        }
 
         public Long getProductionId() {
                 return productionId;

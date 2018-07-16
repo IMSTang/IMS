@@ -35,7 +35,9 @@ $("#form-user-add").validate({
         post:{
             required:true,
         },
-
+        deptName:{
+            required:true,
+        },
 	},
 	messages: {
         "loginName": {

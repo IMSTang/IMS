@@ -10,6 +10,12 @@ $("#form-production-edit").validate({
         safetyStock:{
             required:true,
             digits : true,
+        },
+        itemNameCn: {
+            required: true,
+        },
+        specification: {
+            required: true,
         }
 	},
 	submitHandler:function(form){
@@ -29,8 +35,8 @@ var itemName  = $("input[name='itemName']").val();
 var itemNameCn  = $("input[name='itemNameCn']").val();
 var productCategory = $("#productCategory").val() + "";
 var specification  = $("input[name='specification']").val(); 
-var specificationCn  = $("input[name='specificationCn']").val(); 
-var testMethod  = $("input[name='testMethod']").val(); 
+var specificationCn  = $("input[name='specificationCn']").val();
+    var testMethod  = $("#testMethod").val() + "";
 var placeOfOrigin  = $("input[name='placeOfOrigin']").val(); 
 var efficiency  = $("input[name='efficiency']").val(); 
 var safetyStock  = $("input[name='safetyStock']").val();

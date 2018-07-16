@@ -42,7 +42,8 @@
                     <div style="border: 1px solid #ddd; padding: 10px;">
                         <div class="col-sm-1" style="width:30px; padding: 0;">&nbsp;</div>
                         <div class="col-sm-2" style="padding: 0;">Item Code</div>
-                        <div class="col-sm-5" style="padding: 0;">Item Name</div>
+                        <div class="col-sm-3" style="padding: 0;">Item Name</div>
+                        <div class="col-sm-2" style="padding: 0;">Spec</div>
                         <div class="col-sm-2" style="width:90px; padding: 0;">Price</div>
                         <div class="col-sm-2" style="width:90px; padding: 0;">Quantity(KG)</div>
                         <div class="clear"></div>
@@ -51,7 +52,8 @@
                                 <input  type="hidden" name="itemId" th:id = "'itemId'+${iterStat.index}" th:value="${quoteData.quoteBodyId}">
                                 <input  type="radio" class="col-sm-1" name="showedItem" th:id = "'radio'+${iterStat.index}" th:value="${quoteData.itemCode}" style="width:30px; vertical-align:text-bottom; margin-bottom:2px; margin-bottom:-2px;">
                                 <input  type="text" class="col-sm-2" name="itemCode" readonly="true" th:id = "'itemCode'+${iterStat.index}" th:value="${quoteData.itemCode}" style="color:blue; margin: 0px -1px;">
-                                <input  type="text" class="col-sm-5" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${quoteData.itemName}" style="color:blue; margin: 0px -1px;">
+                                <input  type="text" class="col-sm-3" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${quoteData.itemName}" style="color:blue; margin: 0px -1px;">
+                                <input  type="text" class="col-sm-2" name="specification" readonly="true" th:id = "'specification'+${iterStat.index}" th:value="${quoteData.specification}" style="color:blue; margin: 0px -1px;">
                                 <input  type="text" class="col-sm-2" name="price" th:id = "'price'+${iterStat.index}" th:value="${quoteData.price}" style="width:90px; margin: 0px -1px;">
                                 <input  type="text" class="col-sm-2" name="quantity" th:id = "'quantity'+${iterStat.index}" th:value="${quoteData.quantity}" style="width:90px; margin: 0px -1px;">
                                 <button  type="button" class="col-sm-1" th:onclick="'javascript:delButton(\'div'+${iterStat.index}+'\');'" style="margin: 0px 0px 0px 3px; height: 24px; padding: 0px;">Remove</button>

@@ -36,7 +36,8 @@
             <input class="btn btn-info" style="padding: 3px 6px; border-radius: 0;" type="button" value="Add Inquiry Data"  id="add"/></div>
         <div style="border: 1px solid #ddd; padding: 10px;">
             <div class="col-sm-2" style="padding: 0;">Item Code</div>
-            <div class="col-sm-5" style="padding: 0;">Item Name</div>
+            <div class="col-sm-3" style="padding: 0;">Item Name</div>
+            <div class="col-sm-2" style="padding: 0;">Spec</div>
             <div class="col-sm-2" style="padding: 0;">Price</div>
             <div class="col-sm-2" style="padding: 0;">Quantity(KG)</div>
             <div class="clear"></div>
@@ -44,7 +45,8 @@
                 <div style="height: 34px; padding: 0px 10px 0px 16px;" th:id = "'div'+${iterStat.index}" th:each="inquiryData,iterStat :${inquiryBodies}">
                     <input  type="hidden" name="itemId" th:id = "'itemId'+${iterStat.index}" th:value="${inquiryData.inquiryBodyId}">
                     <input  type="text" class="col-sm-2" name="itemCode" readonly="true" th:id = "'itemCode'+${iterStat.index}" th:value="${inquiryData.itemCode}" style="color:blue; margin: 0px -1px;">
-                    <input  type="text" class="col-sm-5" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${inquiryData.itemName}" style="color:blue; margin: 0px -1px;">
+                    <input  type="text" class="col-sm-3" name="itemName" readonly="true" th:id = "'itemName'+${iterStat.index}" th:value="${inquiryData.itemName}" style="color:blue; margin: 0px -1px;">
+                    <input  type="text" class="col-sm-2" name="specification" readonly="true" th:id = "'specification'+${iterStat.index}" th:value="${inquiryData.specification}" style="color:blue; margin: 0px -1px;">
                     <input  type="text" class="col-sm-2" name="price" th:id = "'price'+${iterStat.index}" th:value="${inquiryData.price}" style="margin: 0px -1px;">
                     <input  type="text" class="col-sm-2" name="quantity" th:id = "'quantity'+${iterStat.index}" th:value="${inquiryData.quantity}" style="margin: 0px -1px;">
                     <button  type="button" class="col-sm-1" th:onclick="'javascript:delButton(\'div'+${iterStat.index}+'\');'" style="margin: 0px 0px 0px 3px; height: 24px; padding: 0px;">Remove</button>

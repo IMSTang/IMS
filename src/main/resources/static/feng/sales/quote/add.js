@@ -36,7 +36,7 @@ $("#customerName").autocomplete({
     }
 });
 
-function autoInfomation(element1,element2,idElement,elementType){
+function autoInfomation(element1,element2,TSpec,idElement,elementType){
 
     $(element1).autocomplete({
 
@@ -62,6 +62,7 @@ function autoInfomation(element1,element2,idElement,elementType){
 
                                 label: item.itemCode,
                                 value: item.itemName,
+                                specification:item.specification,
                                 // PID:item.productionId
                             }  }
                         else{
@@ -69,6 +70,7 @@ function autoInfomation(element1,element2,idElement,elementType){
 
                                 label: item.itemName,
                                 value: item.itemCode,
+                                specification:item.specification,
                                 // PID:item.productionId
                             }
 
@@ -82,6 +84,7 @@ function autoInfomation(element1,element2,idElement,elementType){
 
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
+            $(TSpec).val(ui.item.specification);
             // $(idElement).val(ui.item.PID);
             selectedRadioId = '';
             checkRadio($(element1)[0].parentElement.id);
@@ -90,6 +93,7 @@ function autoInfomation(element1,element2,idElement,elementType){
         select: function (event, ui) {
             $(element1).val(ui.item.label);
             $(element2).val(ui.item.value);
+            $(TSpec).val(ui.item.specification);
             // $(idElement).val(ui.item.PID);
             selectedRadioId = '';
             checkRadio($(element1)[0].parentElement.id);
@@ -155,18 +159,32 @@ function addElement(){
      * */
     var TName=document.createElement("input");
     TName.type="text";
-    TName.className = 'col-sm-5';
+    TName.className = 'col-sm-3';
     TName.style.margin= '0 -1px';
     TName.name="itemName"+Element_index;
     TName.id="itemName"+Element_index;
 
+    /**
+     *
+     *
+     * specification
+     */
+    var TSpec=document.createElement("input");
+    TSpec.type="text";
+    TSpec.readOnly=true;
+    TSpec.className = 'col-sm-2';
+    TSpec.style.margin= '0 -1px';
+    TSpec.name="spec"+Element_index;
+    TSpec.id="spec"+Element_index;
+
+
     TCode.onclick=function () {//绑定点击事件
-        autoInfomation(TCode,TName,TId,"code");
+        autoInfomation(TCode,TName,TSpec,TId,"code");
     };
 
 
     TName.onclick=function () {//绑定点击事件
-        autoInfomation(TName,TCode,TId,"name");
+        autoInfomation(TName,TCode,TSpec,TId,"name");
     };
 
     /**
@@ -214,6 +232,7 @@ function addElement(){
     div.appendChild(TId);
     div.appendChild(TCode);
     div.appendChild(TName);
+    div.appendChild(TSpec);
     div.appendChild(TPrice);
     div.appendChild(TQuantity);
     div.appendChild(TButton);

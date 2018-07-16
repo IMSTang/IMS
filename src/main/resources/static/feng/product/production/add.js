@@ -21,6 +21,15 @@ $("#form-production-add").validate({
         safetyStock:{
             required:true,
             digits : true,
+        },
+        itemName: {
+            required: true,
+        },
+        itemNameCn: {
+         required: true,
+        },
+        specification: {
+         required: true,
         }
 	},
 	submitHandler:function(form){
@@ -31,14 +40,14 @@ $("#form-production-add").validate({
 
 		
 function add() {
-	
+
 var itemCode  = $("input[name='itemCode']").val(); 
 var itemName  = $("input[name='itemName']").val(); 
 var itemNameCn  = $("input[name='itemNameCn']").val();
 var productCategory = $("#productCategory").val() + "";
 var specification  = $("input[name='specification']").val(); 
 var specificationCn  = $("input[name='specificationCn']").val(); 
-var testMethod  = $("input[name='testMethod']").val(); 
+var testMethod  = $("#testMethod").val() + "";
 var placeOfOrigin  = $("input[name='placeOfOrigin']").val(); 
 var efficiency  = $("input[name='efficiency']").val(); 
 var safetyStock  = $("input[name='safetyStock']").val();
@@ -48,7 +57,7 @@ var updateBy  = $("input[name='updateBy']").val();
 var updateTime  = $("input[name='updateTime']").val(); 
 var remark  = $("input[name='remark']").val(); 
 	
-	
+
 	
 	$.ajax({
 		cache : true,
