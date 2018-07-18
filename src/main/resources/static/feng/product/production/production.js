@@ -9,10 +9,16 @@ $(function() {
             title: 'Category'
         },
         {
+
             field: 'itemCode',
-            title: 'Item Code'
-            // ,
-            // sortable : true
+            title: 'Item Code',
+            remoteSort:true,
+            sortable : true,
+            sortName:'item_code'
+
+
+
+
         },
         {
             field: 'itemName',
@@ -27,6 +33,7 @@ $(function() {
 		{
             field: 'specification',
             title: 'specification'
+
         },
 
         {
@@ -40,7 +47,11 @@ $(function() {
         },
         {
             field: 'createTime',
-            title: 'CreateTime'
+            title: 'CreateTime',
+            remoteSort:true,
+            sortable : true,
+            sortName:'create_time'
+
         },
 		
         {
