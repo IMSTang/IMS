@@ -14,6 +14,9 @@ ADD COLUMN `po_code`  varchar(20) NULL AFTER `quantity`;
 
 UPDATE sys_menu SET menu_name='Stock In' where menu_id='410';
 UPDATE sys_menu SET menu_name='Stock Out' where menu_id='420';
+UPDATE sys_menu SET menu_name='Inventory List' where menu_id='430';
+UPDATE sys_menu SET menu_name='Sell Return' where menu_id='440';
+UPDATE sys_menu SET menu_name='Replenishment' where menu_id='450';
 
 UPDATE sys_menu SET menu_name='Product List' where menu_id='310';
 UPDATE sys_menu SET menu_name='Product Mapping' where menu_id='320';
