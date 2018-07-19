@@ -1,5 +1,6 @@
 SP1 修改数据库步骤
 
+
 ALTER TABLE `inv_inventory_out`
 ADD COLUMN `price_sale`  double(16,2) NULL AFTER `quantity`,
 ADD COLUMN `po_code`  varchar(20) NULL AFTER `price_sale`;
@@ -18,7 +19,7 @@ UPDATE sys_menu SET menu_name='Product List' where menu_id='310';
 UPDATE sys_menu SET menu_name='Product Mapping' where menu_id='320';
 
 
-�洢����
+存储过程
 1_sp_insert_inv.sql
 2_sp_insert_invRemove.sql
 3_sp_stockout.sql
