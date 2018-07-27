@@ -40,8 +40,8 @@
 
     <!--<association property="customer"  column="customer_id" javaType="Customer" resultMap="customerResult"/>-->
     <!--<resultMap id="customerResult" type="Customer">-->
-        <!--<id     property="customerId"   column="customer_id" />-->
-        <!--<result property="customerName" column="customer_name" />-->
+    <!--<id     property="customerId"   column="customer_id" />-->
+    <!--<result property="customerName" column="customer_name" />-->
     <!--</resultMap>-->
 
     <select id="selectQueryInventoryList" parameterType="QueryInventory" resultMap="QueryInventoryResult">
@@ -61,12 +61,15 @@
         select inv.max_sn as sn, inv.item_code, inv.batch, inv.sum_quantity as quantity, inv.vendor_id,
         p.production_id, p.item_name, p.item_name_cn, p.specification , v.vendor_name
         from (select max(i.sn) as max_sn, i.item_code, i.batch, sum(i.quantity) as sum_quantity, i.vendor_id from inv_inventory i
-        where i.status=0 and i.quantity>=0.001
+        where i.status=0
+        <if test="remark == 0">
+            AND i.quantity>=0.001
+        </if>
         group by i.item_code, i.batch, i.vendor_id) inv left join pro_production p on p.item_code = inv.item_code
-        left join pur_vendor v on v.vendor_id = inv.vendor_id where inv.sum_quantity>=0.001
+        left join pur_vendor v on v.vendor_id = inv.vendor_id where 1=1
         <if test="searchValue != null and searchValue != ''">
             AND ( inv.item_code like CONCAT('%',#{searchValue},'%' ) or inv.batch like CONCAT('%',#{searchValue},'%' )
-                   or p.item_name like CONCAT('%',#{searchValue},'%' ) or p.item_name_cn like CONCAT('%',#{searchValue},'%' ) )
+            or p.item_name like CONCAT('%',#{searchValue},'%' ) or p.item_name_cn like CONCAT('%',#{searchValue},'%' ) )
         </if>
 
 
