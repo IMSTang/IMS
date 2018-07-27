@@ -18,8 +18,8 @@ public class UploadFileUtils {
         Map names = new HashMap();
         String path ;
 
-        // linux 的文件是以 "/" 为开头的  filepath.startsWith("/")  这个条件去掉
-        if(filepath == null || filepath == "" || filepath.startsWith("/")){
+
+        if(filepath == null || filepath == "" ){
             path = System.getProperty("user.dir") + "/uploadFile";
         }else {
             path = filepath;
