@@ -109,8 +109,7 @@ public class UserServiceImpl implements IUserService
     {
         int count = 0;
         Long userId = user.getUserId();
-        String password = new PasswordService().encryptPassword(user.getLoginName(), user.getPassword(), "");
-        user.setPassword(password);
+
         if (StringUtils.isNotNull(userId))
         {
             user.setUpdateBy(ShiroUtils.getLoginName());
@@ -128,6 +127,9 @@ public class UserServiceImpl implements IUserService
         }
         else
         {
+            String password = new PasswordService().encryptPassword(user.getLoginName(), user.getPassword(), "");
+            user.setPassword(password);
+
             user.setCreateBy(ShiroUtils.getLoginName());
             // 新增用户信息
             count = userDao.insertUser(user);
